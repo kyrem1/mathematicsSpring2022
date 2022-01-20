@@ -1,0 +1,201 @@
+\documentclass[12pt,letterpaper]{article}
+
+%%%%%%%%%%%%%%%%%%%%%%%% Packages %%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{tikz,amsmath, amsthm, amssymb}
+\usetikzlibrary{calc}%
+\usepackage{graphicx}
+\usepackage{hhline}
+\usepackage{amssymb}
+\usepackage{array}
+\usepackage{multicol}
+\usepackage{tikz}
+\usepackage{mathtools}
+\usepackage{enumerate}
+\usepackage{delarray}
+\usepackage{mathtools}
+\usepackage{tikz-cd}
+\usepackage{fullpage}
+\usepackage{faktor} % For quotients
+
+% \usepackage{quiver}
+
+% Special Algorthm Packages
+\usepackage[plain]{algorithm}
+\usepackage{algpseudocode}
+\usepackage{amsfonts}
+\newcommand{\alg}[1]{\textsc{\bfseries \footnotesize #1}}
+
+% \usepackage{quiver}
+\usetikzlibrary{cd}
+\usepackage[linguistics]{forest}
+%%
+\pagestyle{empty}%
+
+\setlength{\hoffset}{-1.54cm}
+\setlength{\voffset}{-1.54cm}
+
+\setlength{\topmargin}{0pt}
+\setlength{\headsep}{0pt}
+\setlength{\headheight}{0pt}
+
+\setlength{\oddsidemargin}{0pt}
+
+\setlength{\textwidth}{195mm}
+\setlength{\textheight}{250mm}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%% Macros %%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\sub}{\subseteq}
+\newcommand{\bigzero}{\mbox{\normalfont\Large\bfseries 0}} % For block matrices
+
+
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\QQ}{\mathbb{Q}}
+\newcommand{\NN}{\mathbb{N}}
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\FF}{\mathbb{F}}
+\newcommand{\PP}{\mathbb{F}}
+\newcommand{\lcm}{\text{lcm}}
+\newcommand{\mc}[1]{\mathcal{#1}}
+\newcommand{\mf}[1]{\mathfrak{#1}}
+\newcommand{\sO}{\mathcal{O}}
+\newcommand{\cyclic}[1]{\langle#1\rangle}
+\newcommand{\units}[1]{#1 ^{\times}}
+\newcommand{\la}{\langle}
+\newcommand{\ra}{\rangle}
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\Ann}{Ann}
+\DeclareMathOperator{\End}{End}
+\DeclareMathOperator{\Aut}{Aut}
+\DeclareMathOperator{\Char}{char}
+\DeclareMathOperator{\Gal}{Gal}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\Irr}{Irr}
+
+
+\DeclareMathOperator{\SL}{SL}
+\DeclareMathOperator{\GL}{GL}
+
+\DeclareMathOperator{\U}{U}
+\DeclareMathOperator{\SU}{SU}
+
+% \newcommand{\GL}[0]{\text{GL}}
+% \newcommand{\SL}[2]{\text{SL}_{#1}(#2)}
+\newcommand{\tr}[0]{\text{Tr}}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\Ext}{Ext}
+\DeclareMathOperator{\Tor}{Tor}
+\newcommand{\coker}{\text{coker}}
+
+
+\newcommand{\dd}[2][]{\frac{\partial^{#1}}{\partial {#2}^{#1}}}
+\newcommand{\summ}{\sum\limits}
+
+
+\newtheorem{definition}{Definition}[]
+\newtheorem{lemma}{Lemma}[]
+\newtheorem{corollary}{Corollary}[]
+\newtheorem{theorem}{Theorem}[]
+
+\newenvironment{solution}
+  {\begin{proof}[Solution]}
+  {\end{proof}}
+
+
+\newcommand{\norm}[1]{\left \vert \left \vert #1 \right \vert \right \vert}
+\newcommand{\thicc}{\bigg}
+\newcommand{\overbar}[1]{\mkern 1.5mu\overline{\mkern-1.5mu#1\mkern-1.5mu}\mkern 1.5mu}
+\newcommand{\eps}{\varepsilon}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\makeatletter
+\newcommand{\thickhline}{%
+    \noalign {\ifnum 0=`}\fi \hrule height 1pt
+    \futurelet \reserved@a \@xhline
+}
+\newcolumntype{"}{@{\hskip\tabcolsep\vrule width 1pt\hskip\tabcolsep}}
+\makeatother
+
+%%%%%%%%%%%%%%%%% Problem environment %%%%%%%%%%%%%%%%%%%%
+\setlength\parindent{0pt}
+\setcounter{secnumdepth}{0}
+\newcounter{partCounter}
+\newcounter{homeworkProblemCounter}
+\setcounter{homeworkProblemCounter}{1}
+% \nobreak\extramarks{Problem \arabic{homeworkProblemCounter}}{}\nobreak{}
+%
+% Homework Problem Environment
+%
+% This environment takes an optional argument. When given, it will adjust the
+% problem counter. This is useful for when the problems given for your
+% assignment aren't sequential.
+
+\newenvironment{homeworkProblem}[1][-1]{
+    \ifnum#1>0
+        \setcounter{homeworkProblemCounter}{#1}
+    \fi
+    \section{Problem \arabic{homeworkProblemCounter}}
+    \setcounter{partCounter}{1}
+    \stepcounter{homeworkProblemCounter}
+}
+
+\title{MATH 7310 Homework 0}
+\author{James Harbour}
+
+
+\begin{document}
+\maketitle
+
+\begin{homeworkProblem}
+  Let $J$ be an infinite set, and $(t_j)_{j\in J}$ nonnegative real numbers. We define $\sum_{j\in J} t_j = \sup_F \sum_{j\in F} t_j$ where the supremum is over all finite subsets of $J$, and is equal to $\infty$ if $\left\{ \sum_{j\in F}t_j : F\sub J\ \textrm{is finite}\right\}$ is not bounded above. \\
+
+  \textbf{(i)} Suppose that $\sum_{j\in J}t_j < \infty$. Prove that for every $\eps > 0$, there is a finite $F\sub J$ so that $\sum_{j\in J\setminus F}t_j < \eps$. \\
+
+  \begin{proof}
+    Let $\eps > 0$ an $J_0 = \{ j\in J : t_j > 0\}$. By proposition 0.20, as $\sum_{j\in J} t_j < \infty$, $J_0$ is countably infinite. Moreover, letting $g:\NN \to J_0$ be a bijection, proposition 0.20 gives that
+    \[
+      \sum_{n=1}^{\infty} t_{g(n)} = \sum_{j\in J} t_j < \infty
+    \]
+    As this sum is nonnegative and converges, there exists a $k\in \NN$ such that
+    \[\sum_{n=k+1}^{\infty} t_{g(n)} < \eps.\]
+    Letting $F = g(\{ 1,2,\ldots, k\})$, it follows that
+    \[\sum_{j\in J\setminus F} t_j= \sum_{n=k+1}^{\infty} t_{g(n)} < \eps.\]
+  \end{proof}
+
+  \textbf{(ii)} Suppose that $(\alpha_j)_{j\in J}$ are complex numbers and $\sum_{j\in J} |\alpha_j| < \infty$. Suppose further that $J_0 = \{ j\in J : \alpha_j \neq 0\}$ is infinite. Suppose that $\phi: \NN \to J_0,\ \psi:\NN\to J_0$ are two bijections. Prove that
+  \[
+    \sum_{n=1}^{\infty} \alpha_{\phi(n)} = \sum_{n=1}^{\infty} \alpha_{\psi(n)}.
+  \]
+
+
+\end{homeworkProblem}
+
+
+\begin{homeworkProblem}
+  It follows from Problem 1 that if $(\alpha_j)_{j\in J}$ are complex numbers and $\sum_{j\in J} |\alpha_j| < \infty$, we may define $\sum_{j\in J}$ as follows: let $J_0 = \{ j:\alpha_j \neq 0\}$. If $J_0$ is finite, then $\sum_{j\in J} = \sum_{j\in J_0}$. If $J_0$ is infinite, choose a bijection $\phi: \NN \to J_0$, and define
+  \[
+    \sum_{j\in J}\alpha_j = \sum_{n=1}^{\infty}\alpha_{\phi(n)}.
+  \]
+  Suppose that $(\alpha_j)_{j\in J}$ are complex numbers and $\sum_{j\in J}|\alpha_j| < \infty$. Show that $\sum_{j\in J}|\alpha_j|$ is the unique complex number $s$ satisfying the following property. For every $\eps>0$, there is a finite set $F\sub J$ so that if $F\sub E\sub J$ and $E$ is finite, then
+  \[
+    \left|s-\sum_{j\in E}\alpha_j \right| < \eps.
+  \]
+\end{homeworkProblem}
+
+
+\begin{homeworkProblem}
+  Suppose that $I, J$ are sets, and $(a_{ij})_{i\in I}{j\in J}$ are nonnegative real numbers. Prove that
+  \[
+    \sum_{j\in J}\left(\sum_{i\in I} a_{ij}\right) = \sum_{(i,j)\in I\times J} a_{ij} = \sum_{i\in I} \left(\sum_{j\in J} a_{ij}\right)
+  \]
+\end{homeworkProblem}
+
+
+
+
+
+
+\end{document}
