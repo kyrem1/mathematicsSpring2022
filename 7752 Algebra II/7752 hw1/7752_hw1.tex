@@ -1,0 +1,226 @@
+\documentclass[12pt,letterpaper]{article}
+
+%--------Packages--------
+\usepackage{tikz,amsmath, amsthm, amssymb}
+\usetikzlibrary{calc}%
+\usepackage{xspace}
+\usepackage{graphicx}
+\usepackage{hhline}
+\usepackage{amssymb}
+\usepackage{array}
+\usepackage{multicol}
+\usepackage{tikz}
+\usepackage{mathtools}
+\usepackage{enumerate}
+\usepackage{delarray}
+\usepackage{mathtools}
+\usepackage{tikz-cd}
+\usepackage{fullpage}
+\usepackage{faktor} % For quotients
+
+
+% \usepackage{quiver}
+\usetikzlibrary{cd}
+\usepackage[linguistics]{forest}
+
+\pagestyle{empty}%
+
+\setlength{\hoffset}{-1.54cm}
+\setlength{\voffset}{-1.54cm}
+
+\setlength{\topmargin}{0pt}
+\setlength{\headsep}{0pt}
+\setlength{\headheight}{0pt}
+
+\setlength{\oddsidemargin}{0pt}
+
+\setlength{\textwidth}{195mm}
+\setlength{\textheight}{250mm}
+
+
+%--------Macros--------
+
+\newcommand{\sub}{\subseteq}
+
+\newcommand{\lcm}{\text{lcm}}
+\newcommand{\mc}[1]{\mathcal{#1}}
+\newcommand{\mf}[1]{\mathfrak{#1}}
+\newcommand{\sO}{\mathcal{O}}
+\newcommand{\cyclic}[1]{\langle#1\rangle}
+\newcommand{\units}[1]{#1 ^{\times}}
+\newcommand{\la}{\langle}
+\newcommand{\ra}{\rangle}
+
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\N}{\mathbb{N}\xspace}
+\newcommand{\I}{\mathbb{I}\xspace}
+\newcommand{\R}{\mathbb{R}\xspace}
+\newcommand{\Z}{\mathbb{Z}\xspace}
+\newcommand{\Q}{\mathbb{Q}\xspace}
+\newcommand{\G}{\mathbb{G}\xspace}
+\DeclareMathOperator{\Spec}{Spec}
+\DeclareMathOperator{\res}{res}
+\DeclareMathOperator{\Tr}{Tr}
+\DeclareMathOperator{\ord}{ord}
+\DeclareMathOperator{\Sym}{Sym}
+\DeclareMathOperator{\dv}{div}
+\DeclareMathOperator{\alb}{alb}
+\DeclareMathOperator{\img}{Im}
+\DeclareMathOperator{\et}{et}
+\DeclareMathOperator{\ck}{coker}
+\DeclareMathOperator{\Reg}{Reg}
+\DeclareMathOperator{\Cor}{Cor}
+\DeclareMathOperator{\Ac}{at}
+\DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\Pic}{Pic}
+\DeclareMathOperator{\Gal}{Gal}
+\DeclareMathOperator{\fc}{frac}
+\DeclareMathOperator{\Ann}{Ann}
+\DeclareMathOperator{\Mod}{Mod}
+\DeclareMathOperator{\Cone}{Cone}
+\DeclareMathOperator{\FI}{FI}
+\DeclareMathOperator{\End}{End}
+\DeclareMathOperator{\Alb}{Alb}
+\DeclareMathOperator{\Ext}{Ext}
+\DeclareMathOperator{\ab}{ab}
+\DeclareMathOperator{\Jac}{Jac}
+\DeclareMathOperator{\coker}{coker}
+\DeclareMathOperator{\fr}{frac}
+
+
+%----Analysis
+\newcommand{\dd}[2][]{\frac{\partial^{#1}}{\partial {#2}^{#1}}}
+\newcommand{\summ}{\sum\limits}
+\newcommand{\norm}[1]{\left \vert \left \vert #1 \right \vert \right \vert}
+\newcommand{\thicc}{\bigg}
+\newcommand{\overbar}[1]{\mkern 1.5mu\overline{\mkern-1.5mu#1\mkern-1.5mu}\mkern 1.5mu}
+\newcommand{\eps}{\varepsilon}
+
+\newtheorem{definition}{Definition}[]
+\newtheorem{lemma}{Lemma}[]
+\newtheorem{corollary}{Corollary}[]
+\newtheorem{theorem}{Theorem}[]
+
+\newenvironment{solution}
+{\begin{proof}[Solution]}
+{\end{proof}}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\makeatletter
+\newcommand{\thickhline}{%
+    \noalign {\ifnum 0=`}\fi \hrule height 1pt
+    \futurelet \reserved@a \@xhline
+}
+\newcolumntype{"}{@{\hskip\tabcolsep\vrule width 1pt\hskip\tabcolsep}}
+\makeatother
+
+% --------Problem environment--------
+\setlength\parindent{0pt}
+\setcounter{secnumdepth}{0}
+\newcounter{partCounter}
+\newcounter{homeworkProblemCounter}
+\setcounter{homeworkProblemCounter}{1}
+
+
+\newenvironment{homeworkProblem}[1][-1]{
+    \ifnum#1>0
+        \setcounter{homeworkProblemCounter}{#1}
+    \fi
+    \section{Problem \arabic{homeworkProblemCounter}}
+    \setcounter{partCounter}{1}
+    \stepcounter{homeworkProblemCounter}
+}
+
+
+%--------Metadata--------
+\title{MATH 7752 Homework 1}
+\author{James Harbour}
+
+
+\begin{document}
+\maketitle
+
+\begin{homeworkProblem}
+  Let $R$ be a ring and $M$ an $R$-module. \\
+
+  \textbf{(a)} Prove that for every $m\in M$, the map $r\mapsto rm$ from $R$ to $M$ is a homomorphism of $R$-modules. \\
+
+  \textbf{(b)} Assume that $R$ is commutative and $M$ an $R$-module. Prove that there is an isomorphism  $\Hom_R(R,M)\simeq M$ as $R$-modules.
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+  Give an explicit example of a map $f:A\to B$ with the following properties:
+  \begin{itemize}
+    \item $A,B$ are $R$-modules.
+    \item $f$ is a group homomorphism.
+    \item $f$ is not an $R$-module homomorphism.
+  \end{itemize}
+
+
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+  Let $R$ be a ring and $M$ an $R$-module.
+  \textbf{(a)}Let $N$ be a subset of $M$. The \textit{annihilator} of $N$ is defined to be the set \[\Ann_R(N):=\{r\in R: rn=0, \text{ for all }n\in N\}.\] Prove that $\Ann_R(N)$ is a left ideal of $R$. \\
+
+  \textbf{(b)} Show that if $N$ is an $R$-submodule of $M$, then $\Ann_R(N)$ is an ideal of $R$ (i.e. it is two-sided ideal). \\
+
+  \textbf{(c)}For a subset $I$ of $R$ the \textit{annihilator} of $I$ in $M$ is defined to be the set,
+  \[
+    \Ann_M(I):=\{m\in M:xm=0, \text{ for all }x\in I\}.
+  \]
+  Find a natural condition on $I$ that guarantees that $\Ann_M(I)$ is a submodule of $M$. \\
+
+  \textbf{(d)} Let $R$ be an integral domain. Prove that every finitely generated torsion $R$-module has a nonzero annihilator. \\
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+  In class we obtained a simple characterization of $R$-modules when $R=\Z$, and $R=F[x]$, with $F$ a field. Imitate the method to find similar characterizations for $R$-modules in the following cases: (a) $R=\Z/n\Z$, for some $n\geq 2$; (b) $R=\Z[x]$; (c) $R=F[x,y]$.
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+  An $R$-module $M$ is called \textit{simple} (or \textit{irreducible}) if its only submodules are $\{0\}$ and $M$. An $R$-module $M$ is called \textit{indecomposable} if $M$ is not isomorphic to $N\oplus Q$ for some non-zero submodules $N,Q$. Show that every simple $R$-module is indecomposable, but the converse is not true.
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+  Let $R$ be a ring. An $R$-module $M$ is called \textit{cyclic} if it is generated as an $R$-module by a single element. \\
+
+  \textbf{(a)} Prove that every cyclic $R$-module is of the form $R/I$ for some left ideal $I$ of $R$. \\
+
+  \textbf{(b)} Show that the simple $R$-modules are precisely the ones which are isomorphic to $R/\mathfrak{m}$ for some maximal left ideal $\mathfrak{m}$. \\
+
+  \textbf{(c)} Show that any non-zero homomorphism of simple $R$-modules is an isomorphism. Deduce that if $M$ is simple, its endomorphism ring $\End_R(M):=\Hom_R(M,M)$ is a division ring. This result is known as \textit{Schur's Lemma}. \\
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+  Show that $\Q$ is not a free $\Z$-module, that is $\Q$ is not isomorphic to a direct sum of the form $\displaystyle\bigoplus_I \Z$, for any index set $I$. More generally, let $R$ be a PID which is not a field and $K=\fr(R)$ be its fraction field. Show that $K$ is not a free $R$-module.
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+  Let $R$ be a commutative ring. Recall that an ideal $I$ of $R$ is called \textit{nilpotent} if there exists some $n\in\N$ such that $I^n=0$. \\
+
+  \textbf{(a)} Let $i\in I$. Show that the element $r=1-i$ is invertible in $R$. \\
+
+  \textbf{(b)} Let $M,N$ be $R$-modules and let $\phi:M\rightarrow N$ be an $R$-module homomorphism. Show that $\phi$ induces an $R$-module homomorphism, $\overline{\phi}:M/IM\rightarrow N/IN$. \\
+
+  \textbf{(c)} Prove that if $\overline{\phi}$ is sujective, then $\phi$ is itself surjective.
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+  Let $G$ be a finite group and $k$ a field. Consider the group ring $k[G]$. \\
+
+  \textbf{(a)} Let $M$ be a $k$-vector space with a $G$-action. Show that $M$ becomes a $k[G]$-module. Conversely, if $M$ is a $k[G]$-module, show that $M$ is a $G$-set. \\
+
+  \textbf{(b)} Let $M,N$ be two $k[G]$-modules. Show that $\Hom_{k}(M,N)$ becomes a $k[G]$-module with the following $G$-action: For $g\in G$ and $\phi:M\to N$ a $k[G]$-homomorphism define
+  \[
+    (g\cdot\phi)(m):=g\phi(g^{-1}m),\text{ for }m\in M.
+  \]
+\end{homeworkProblem}
+
+
+\end{document}
