@@ -260,11 +260,33 @@
 \begin{homeworkProblem}
   Let $R$ be a commutative ring. Recall that an ideal $I$ of $R$ is called \textit{nilpotent} if there exists some $n\in\N$ such that $I^n=0$. \\
 
-  \textbf{(a)} Let $i\in I$. Show that the element $r=1-i$ is invertible in $R$. \\
+  \textbf{(a)} Let $i\in I$. Show that the element $r=1-i$ is invertible in $R$.
 
-  \textbf{(b)} Let $M,N$ be $R$-modules and let $\phi:M\rightarrow N$ be an $R$-module homomorphism. Show that $\phi$ induces an $R$-module homomorphism, $\overline{\phi}:M/IM\rightarrow N/IN$. \\
+  \begin{proof}
+    As $I$ is a nilpotent ideal, there exists an $n\in \N$ such that $I^n = 0$. Then $i^n = 0$, so
+    \[
+      1 = 1 - i^n = (1-i)(1+i+\cdots+i^{n-1}),
+    \]
+    whence $1-i \in \units{R}$.
+  \end{proof}
+
+  \textbf{(b)} Let $M,N$ be $R$-modules and let $\phi:M\rightarrow N$ be an $R$-module homomorphism. Show that $\phi$ induces an $R$-module homomorphism, $\overline{\phi}:M/IM\rightarrow N/IN$.
+
+  \begin{proof}
+    Let $\pi_M:M\to M/IM$ and $\pi_N:N\to N/IN$ be the natural projections. Define a map $\overline{\phi}:M/IM\to N/IN$ by $\overline{\phi}(m+IM) := \phi(m)+IN = (\pi_N \circ\phi)(m)$. To see that this map is well defined, suppose that $m + IM = m' + IM$. Then there exist $i_1, \ldots, i_s \in I$ and $m_1, \ldots, m_s \in M$ such that $m-m' = i_1 m_1 + \cdots + i_s m_s$. So
+    \[
+      \phi(m-m')= \phi(i_1 m_1 + \cdots + i_s m_s) = i_1 \phi(m_1) + \cdots + i_s \phi(m_s) \in IN,
+    \]
+    whence $\pi_N (\phi(m))-\pi_N (\phi(m'))=\pi_N (\phi(m-m')) = 0$, so $\pi_N (\phi(m))=\pi_N (\phi(m'))$.
+
+    To see that this map is an $R$-module homomorphism, note that $\overline{\phi} = \pi_N \circ\phi$.
+  \end{proof}
 
   \textbf{(c)} Prove that if $\overline{\phi}$ is sujective, then $\phi$ is itself surjective.
+
+  \begin{proof}
+
+  \end{proof}
 \end{homeworkProblem}
 
 \begin{homeworkProblem}
