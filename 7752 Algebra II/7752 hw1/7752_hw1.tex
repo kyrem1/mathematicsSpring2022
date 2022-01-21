@@ -50,6 +50,10 @@
 \newcommand{\units}[1]{#1 ^{\times}}
 \newcommand{\la}{\langle}
 \newcommand{\ra}{\rangle}
+%----Switch phi and varphi
+\let\temp\phi
+\let\phi\varphi
+\let\varphi\temp
 
 \newcommand{\C}{\mathbb{C}}
 \newcommand{\F}{\mathbb{F}}
@@ -98,10 +102,14 @@
 \newcommand{\overbar}[1]{\mkern 1.5mu\overline{\mkern-1.5mu#1\mkern-1.5mu}\mkern 1.5mu}
 \newcommand{\eps}{\varepsilon}
 
+
+%--------Theorem environments--------
 \newtheorem{definition}{Definition}[]
 \newtheorem{lemma}{Lemma}[]
 \newtheorem{corollary}{Corollary}[]
 \newtheorem{theorem}{Theorem}[]
+\newtheorem*{claim}{Claim}
+
 
 \newenvironment{solution}
 {\begin{proof}[Solution]}
@@ -165,22 +173,60 @@
 \end{homeworkProblem}
 
 \begin{homeworkProblem}
-  Let $R$ be a ring and $M$ an $R$-module.
-  \textbf{(a)}Let $N$ be a subset of $M$. The \textit{annihilator} of $N$ is defined to be the set \[\Ann_R(N):=\{r\in R: rn=0, \text{ for all }n\in N\}.\] Prove that $\Ann_R(N)$ is a left ideal of $R$. \\
+  Let $R$ be a ring and $M$ an $R$-module. \\
+
+  \textbf{(a)} Let $N$ be a subset of $M$. The \textit{annihilator} of $N$ is defined to be the set \[\Ann_R(N):=\{r\in R: rn=0, \text{ for all }n\in N\}.\] Prove that $\Ann_R(N)$ is a left ideal of $R$.
+
+  \begin{proof}
+    Let $x,y\in I$ and $r\in R$. Fix $n\in N$. Noting that $xn = 0 = yn$, it follows that
+    \[
+      (x+ry)n = xn + (ry)n = xn + r(yn) = 0.
+    \]
+    Thus $x+ry\in \Ann_R(N)$. Since all elements chosen were arbitrary, $\Ann_R(N)$ is a left ideal of $R$.
+  \end{proof}
 
   \textbf{(b)} Show that if $N$ is an $R$-submodule of $M$, then $\Ann_R(N)$ is an ideal of $R$ (i.e. it is two-sided ideal). \\
 
-  \textbf{(c)}For a subset $I$ of $R$ the \textit{annihilator} of $I$ in $M$ is defined to be the set,
+  \begin{proof}
+    By part (a), it suffices to show that $\Ann_R(N)$ is a right ideal of $R$. Moreover, part (a) shows \textit{a fortiori} that $\Ann_R(N)$ is already an abelian group, so we need only address its multiplicative structure. Let $y\in \Ann_R(N)$ and $r\in R$. Fix $n\in N$. As $N$ is an $R$-submodule of $M$, $yn\in N$, whence $(yr)n = y(rn) = 0$ by definition. Hence $\Ann_R(N)$ is a two-sided ideal of $R$.
+  \end{proof}
+
+  \textbf{(c)} For a subset $I$ of $R$ the \textit{annihilator} of $I$ in $M$ is defined to be the set,
   \[
     \Ann_M(I):=\{m\in M:xm=0, \text{ for all }x\in I\}.
   \]
   Find a natural condition on $I$ that guarantees that $\Ann_M(I)$ is a submodule of $M$. \\
 
-  \textbf{(d)} Let $R$ be an integral domain. Prove that every finitely generated torsion $R$-module has a nonzero annihilator. \\
+  \begin{claim}
+     $\Ann_M(I)$ is an $R$-submodule of $M$ if $I$ is a right ideal of $R$.
+  \end{claim}
+
+  \begin{proof}
+    Suppose $I$ is a right ideal of $R$. As $x\cdot 0 = 0$ for all $x\in I$, $\Ann_M(I) \neq \emptyset$. Suppose $m,n \in \Ann_M(I)$ and $r\in R$. Fix $x\in I$. By definition $x\cdot m = 0$. As $I$ is a right ideal, $xr \in I$, so $x\cdot (m + r\cdot n) = x\cdot m + (xr)\cdot n = 0$. Thus $\Ann_M(I)$ is an $R$-submodule of $M$.
+  \end{proof}
+
+
+  \textbf{(d)} Let $R$ be an integral domain. Prove that every finitely generated torsion $R$-module has a nonzero annihilator.
+
+  \begin{proof}
+    Let $M$ be a finitely generated torsion $R$-module. Taking a generating set $m_1,\ldots, m_n\in M$ of $M$, for each $k\in \{ 1,\ldots, n\}$ there exists an $x_k\in \units{R} = R\setminus \{ 0\}$ such that $x_k m_k = 0$. As $\units{R}$ is closed under multiplication, $r := x_1 \cdots x_n \in \units{R}$ whence $r\neq 0$.
+
+    Now suppose that $m\in M$. Then there exist $r_1, \ldots, r_n \in R$ such that $m = r_1 m_1 + \cdots + r_n m_n$. Observe that, by the commutativity of $R$,
+    \[
+      rm = (x_1 \cdots x_n)(r_1 m_1 + \cdots + r_n m_n) = \sum_{k=1}^{n} \left(\prod_{i\neq k}x_i\right) (x_k m_k) = 0.
+    \]
+    Thus $0\neq r\in \Ann_R(M)$, so $M$ has nonzero annihilator.
+  \end{proof}
 \end{homeworkProblem}
 
 \begin{homeworkProblem}
-  In class we obtained a simple characterization of $R$-modules when $R=\Z$, and $R=F[x]$, with $F$ a field. Imitate the method to find similar characterizations for $R$-modules in the following cases: (a) $R=\Z/n\Z$, for some $n\geq 2$; (b) $R=\Z[x]$; (c) $R=F[x,y]$.
+  In class we obtained a simple characterization of $R$-modules when $R=\Z$, and $R=F[x]$, with $F$ a field. Imitate the method to find similar characterizations for $R$-modules in the following cases: \\
+
+  \textbf{(a)} $R=\Z/n\Z$, for some $n\geq 2$.\\
+
+  \textbf{(b)} $R=\Z[x]$. \\
+
+  \textbf{(c)} $R=F[x,y]$.
 \end{homeworkProblem}
 
 \begin{homeworkProblem}
@@ -190,9 +236,19 @@
 \begin{homeworkProblem}
   Let $R$ be a ring. An $R$-module $M$ is called \textit{cyclic} if it is generated as an $R$-module by a single element. \\
 
-  \textbf{(a)} Prove that every cyclic $R$-module is of the form $R/I$ for some left ideal $I$ of $R$. \\
+  \textbf{(a)} Prove that every cyclic $R$-module is of the form $R/I$ for some left ideal $I$ of $R$.
 
-  \textbf{(b)} Show that the simple $R$-modules are precisely the ones which are isomorphic to $R/\mathfrak{m}$ for some maximal left ideal $\mathfrak{m}$. \\
+  \begin{proof}
+    Let $M$ be a cyclic $R$-module. Then there exists an $m\in M$ such that $M = Rm$. Consider the map $\phi:R\to M$ given by $\phi(r)= rm$ for $r\in R$. By problem 1 part (a), $\phi$ is an $R$-module homomorphism; moreover, $\phi$ is surjective since $m$ generates $M$. Let $I = \ker(\phi)$, a left ideal of $R$ (actually two-sided, but we are identifying $R$ with its left regular module over itself so a priori $I$ is just a left R-submodule). Then, by the first isomorphism theorem, $M = \phi(R)\cong R/\ker(\phi) = R/I$.
+  \end{proof}
+
+  \textbf{(b)} Show that the simple $R$-modules are precisely the ones which are isomorphic to $R/\mathfrak{m}$ for some maximal left ideal $\mathfrak{m}$.
+
+  \begin{proof}
+    On one hand, $\mf{m}$ be a maximal left ideal of $R$. By the correspondence theorem applied to the natural projection, the only $R$-submodules of $R/\mf{m}$ are $\{ 0\}$ and $R/\mf{m}$, so $R/\mf{m}$ is simple (and so is every $R$-module isomorphic to it). \\
+
+    On the other hand, suppose $M$ is a nonzero simple $R$-module. Take $m\in M\setminus\{ 0\}$. Then by the simplicity of $M$, $Rm = M$ i.e. $M$ is a cyclic module generated by $m$. Part (a) implies that there is some left ideal $\mf{m}$ of $R$ such that $M\cong R/\mf{m}$. Suppose that $I$ is a proper left ideal of $R$ such that $\mf{m}\sub I\subsetneq R$. Applying the natural projection, we see that $0 \sub I/\mf{m} \subsetneq R/\mf{m}$, whence simplicity of $R/\mf{m}$ implies that $I/\mf{m}$ is trivial i.e. $I = \mf{m}$. Thus by definition $\mf{m}$ is a maximal left ideal.
+  \end{proof}
 
   \textbf{(c)} Show that any non-zero homomorphism of simple $R$-modules is an isomorphism. Deduce that if $M$ is simple, its endomorphism ring $\End_R(M):=\Hom_R(M,M)$ is a division ring. This result is known as \textit{Schur's Lemma}. \\
 \end{homeworkProblem}
