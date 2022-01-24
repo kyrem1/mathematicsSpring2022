@@ -158,7 +158,40 @@
 
   \textbf{(a)} Prove that for every $m\in M$, the map $r\mapsto rm$ from $R$ to $M$ is a homomorphism of $R$-modules. \\
 
+  \begin{proof}
+    Fix $m\in M$ and let $\phi$ denote the map $r\mapsto rm$. Fix $x,y\in R$ and $r\in R$. Observe that
+    \[
+      \phi(x+y) = (x+y)m = xm + ym = \phi(x) + \phi(y)
+    \]
+    and
+    \[
+      \phi(rx) = (rx)m = r(xm) = r\phi(x),
+    \]
+    so $\phi$ is an $R$-module homomorphism.
+  \end{proof}
+
   \textbf{(b)} Assume that $R$ is commutative and $M$ an $R$-module. Prove that there is an isomorphism  $\Hom_R(R,M)\simeq M$ as $R$-modules.
+
+  \begin{proof}
+    For $m\in M$, let $\phi_m$ denote the $R$-module homomorphism in part (a). \\
+    Consider the map $\psi: M \to \Hom_R(R,M)$ given by $\psi(m) = \phi_m$. For $m,n \in M$ and $r,x\in R$,
+    \[
+      \psi(m+n)(x) = \phi_{m+n}(x) = x(m+n) = xm+xn = \phi_m(x) +\phi_n(x) = (\psi(m)+\psi(n))(x)
+    \]
+    so $\psi(m+n) = \psi(m)+\psi(n)$, and
+    \[
+      \psi(rm)(x) = \phi_{rm}(x) =x(rm) = r(xm) = r\phi_{m}(x)=(r\psi(m))(x)
+    \]
+    so $\psi(rm) = r\psi(m)$. \\
+
+    Suppose $\psi(m) = \psi(n)$. Then $m = \phi_m(1) = \psi(m)(1) = \psi(n)(1) = \phi_n(1) = n$, so $\psi$ is injective. \\
+
+    Suppose $\phi \in \Hom_R(R,M)$. For $r \in R$,
+    \[
+      \psi_{\phi(1)}(r) = r\phi(1) = \phi(r),
+    \]
+    so $\psi_{\phi(1)} = \phi$, i.e. $\psi$ is surjective.
+  \end{proof}
 \end{homeworkProblem}
 
 \begin{homeworkProblem}
