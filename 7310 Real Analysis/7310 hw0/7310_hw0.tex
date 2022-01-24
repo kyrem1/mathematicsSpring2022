@@ -165,6 +165,15 @@
   \]
 
 
+  \begin{proof}
+    By proposition 0.20, as $\sum_{j\in J} |\alpha_j| < \infty$, the set $\{ j\in J : \alpha_j \neq 0\} =  \{ j\in J : \alpha_j \neq 0\}  = J_0$ is countable. Moreover,
+    \begin{align*}
+      \sum_{n=1}^{\infty} |\alpha_{\phi(n)}| &= \sum_{j\in J} |\alpha_{j}| < \infty \\
+      \sum_{n=1}^{\infty} |\alpha_{\psi(n)}| &= \sum_{j\in J} |\alpha_{j}| < \infty,
+    \end{align*}
+    so the sums $\sum_{n=1}^{\infty} \alpha_{\phi(n)}$ and $\sum_{n=1}^{\infty} \alpha_{\psi(n)}$ are absolutely convergent. As such, they are equal since the value of an absolutely convergent series is unchanged under rearrangement.
+  \end{proof}
+
 \end{homeworkProblem}
 
 
@@ -177,6 +186,22 @@
   \[
     \left|s-\sum_{j\in E}\alpha_j \right| < \eps.
   \]
+
+  \begin{proof}
+    Let $\eps > 0$. Since $\sum_{j\in J} |\alpha_j| < \infty$, there exists a finite $F \sub J$ so that $\sum_{j\in J\setminus F} |\alpha_j|< \frac{\eps}{2}$. If $F\sub E\sub J$ and $E$ is finite, then $J\setminus E \sub J\setminus F$ implies that $\sum_{j\in J\setminus E} |\alpha_j|\leq \sum_{j\in J\setminus F} |\alpha_j|< \eps$.
+
+    By the triangle inequality,
+
+    \[
+      \left|s-\sum_{j\in E}\alpha_j \right|  = \left|\sum_{j\in J\setminus E}\alpha_j \right| \leq \sum_{j\in J\setminus E} |\alpha_j| < \eps.
+    \]
+
+    Now suppose that $s,s'\in \CC$ satisfy the desired property. Let $\eps>0$. Then there exists finite sets $F, F' \sub J$ satisyfing the above property for $s$ and $s'$ respectively. Then $F\cup F'$ is finite and $F,F'\sub F\cup F'\sub J$, so
+    \[
+      |s-s'| = \left| s-\sum_{j\in F\cup F'} \alpha_j + \sum_{j\in F\cup F'} \alpha_j - s'\right| \leq \left| s-\sum_{j\in F\cup F'} \alpha_j\right| + \left|\sum_{j\in F\cup F'} \alpha_j - s'\right| < 2\eps.
+    \]
+    Hence $s=s'$.
+  \end{proof}
 \end{homeworkProblem}
 
 
@@ -187,6 +212,15 @@
   \]
 \end{homeworkProblem}
 
+\begin{proof}
+  On one hand, observe that, since $ (a_{ij})_{i\in I}{j\in J}$ are nonnegative real numbers, a finite sum of suprema is equal to a suprema of finite sums. Hence,
+  \begin{align*}
+    \sup_{\substack{F\sub I \\ F\ \textrm{finite}}}\sum_{i\in F} \left(\sup_{\substack{G\sub J \\ G\ \textrm{finite}}} \sum_{j\in G} a_{ij}\right)
+    &= \sup_{\substack{F\sub I \\ F\ \textrm{finite}}} \sup_{\substack{G\sub J \\ G\ \textrm{finite}}} \left(\sum_{i\in F}\sum_{j\in G} a_{ij}\right)  = \sup_{\substack{F\sub I \\ F\ \textrm{finite}}} \sup_{\substack{G\sub J \\ G\ \textrm{finite}}} \left(\sum_{(i,j) \in F\times G} a_{ij}\right) \\
+    &=\sup_{\substack{X\sub I \times J \\ X\ \textrm{finite}}} \left(\sum_{(i,j) \in X} a_{ij}\right) = \sum_{(i,j)\in I\times J} a_{ij}.
+  \end{align*}
+  The other direction follows similarly.
+\end{proof}
 
 
 
