@@ -99,7 +99,6 @@
 \newcommand{\summ}{\sum\limits}
 \newcommand{\norm}[1]{\left \vert \left \vert #1 \right \vert \right \vert}
 \newcommand{\thicc}{\bigg}
-\newcommand{\overbar}[1]{\mkern 1.5mu\overline{\mkern-1.5mu#1\mkern-1.5mu}\mkern 1.5mu}
 \newcommand{\eps}{\varepsilon}
 
 
@@ -202,6 +201,9 @@
     \item $f$ is not an $R$-module homomorphism.
   \end{itemize}
 
+  \begin{solution}
+    Consider $A=B=\C$ viewed as $\C$-modules over themselves. Let $f:A\to B$ be complex conjugation. For $z,w\in A$, $f(z+w) = \overline{z+w} = \overline{z}+\overline{w} = f(z)+f(w)$, so $f$ is a group homomorphism. However, for $z\in A\setminus \{ 0\}$, $f(i z)= -i \overline{z} \neq i \overline{z} = if(z)$, so $f$ is not an $R$-module homomorphism.
+  \end{solution}
 
 \end{homeworkProblem}
 
@@ -257,6 +259,10 @@
 
   \textbf{(a)} $R=\Z/n\Z$, for some $n\geq 2$.\\
 
+  \begin{proof}
+
+  \end{proof}
+
   \textbf{(b)} $R=\Z[x]$. \\
 
   \textbf{(c)} $R=F[x,y]$.
@@ -264,6 +270,12 @@
 
 \begin{homeworkProblem}
   An $R$-module $M$ is called \textit{simple} (or \textit{irreducible}) if its only submodules are $\{0\}$ and $M$. An $R$-module $M$ is called \textit{indecomposable} if $M$ is not isomorphic to $N\oplus Q$ for some non-zero submodules $N,Q$. Show that every simple $R$-module is indecomposable, but the converse is not true.
+
+  \begin{proof}
+    Let $M$ be a simple $R$-module. Then $M\neq 0$ as otherwise there would only be one submodule. Suppose, for the sake of contradiction, that $M$ is not indecomposable. Then there exist some nonzero submodules $N,Q\sub M$ such that $M \cong N\oplus Q$. By simplicity of $M$, it follows that $N,Q = M$. But then $M\cong M\oplus M$. Moreover, $0\oplus M$ is then a nonzero proper submodule of $M\oplus M$, whence via the isomorphism $M\oplus M \cong M$ we obtain a nonzero proper submodule of $M$, contradicting the simplicity of $M$. \\
+
+    To see that the converse does not hold, consider $R=\Z$ and $M=\Z$ considered as a $\Z$-module over itself. Note that $2\Z\sub \Z$ is a nonzero proper submodule fo $\Z$, so $M$ is not simple. to see that $M$ is indecomposable, note that all nonzero submodules of $M$ are of the form $a\Z$ for some $a\in \Z\setminus \{ 0\}$, and for any $a,b\in \Z\setminus\{ 0\}$, $ab\in a\Z \cap b\Z$. Hence, no sum of the required form would be direct.
+  \end{proof}
 \end{homeworkProblem}
 
 \begin{homeworkProblem}
@@ -284,10 +296,22 @@
   \end{proof}
 
   \textbf{(c)} Show that any non-zero homomorphism of simple $R$-modules is an isomorphism. Deduce that if $M$ is simple, its endomorphism ring $\End_R(M):=\Hom_R(M,M)$ is a division ring. This result is known as \textit{Schur's Lemma}. \\
+
+  \begin{proof}
+    Suppose that $M,N$ are simple $R$-modules and let $f:M\to N$ be a nonzero $R$-module homomorphism.  As $f(M)\neq 0$ is a submodule of $N$, by simplicity $f(M) = N$ i.e. $f$ is surjective. As $f$ is nonzero, $\ker(f)$ is a nonzero submodule of $M$ whence $\ker(f) = 0$ i.e. $f$ is injective. Hence $f$ is an isomorphism. \\
+
+    Suppose $M$ is simple and $f\in \End_R(M)\setminus\{ 0\}$. Then $f$ is an isomorphism, so the set-theoretic inverse $f^{-1}$ is in fact an R-module isomorphism and $f^{-1}\in \End_R(M)$. Hence $\End_R(M)$ is a divison ring.
+  \end{proof}
+
+
 \end{homeworkProblem}
 
 \begin{homeworkProblem}
   Show that $\Q$ is not a free $\Z$-module, that is $\Q$ is not isomorphic to a direct sum of the form $\displaystyle\bigoplus_I \Z$, for any index set $I$. More generally, let $R$ be a PID which is not a field and $K=\fr(R)$ be its fraction field. Show that $K$ is not a free $R$-module.
+
+  \begin{proof}
+
+  \end{proof}
 \end{homeworkProblem}
 
 \begin{homeworkProblem}
@@ -312,13 +336,17 @@
     \]
     whence $\pi_N (\phi(m))-\pi_N (\phi(m'))=\pi_N (\phi(m-m')) = 0$, so $\pi_N (\phi(m))=\pi_N (\phi(m'))$.
 
-    To see that this map is an $R$-module homomorphism, note that $\overline{\phi} = \pi_N \circ\phi$.
+    % TODO Show this is an R-module homomorphism.
   \end{proof}
 
   \textbf{(c)} Prove that if $\overline{\phi}$ is sujective, then $\phi$ is itself surjective.
 
   \begin{proof}
-
+    Suppose that $\overline{\phi}$ is surjective. Then $N/IN=\overline{\phi}(M/IM) = (\overline{\phi}\circ\pi_M)(M) = (\pi_N \circ \phi)(M) = \phi(M)/IN$. Take $n\in N$. Then there exists an $m\in M$ such that $n+IN = \overline{\phi}(m+IM) = \phi(m) + IN$, whence $n-\phi(m)\in IN$. It follows that $n = \phi(m) + (n-\phi(m)) \in \phi(M) + IN$, whence $N=\phi(M) + IN$. As $I$ is a nilpotent ideal, there exists a $k\in \N$ such that $I^k = 0$. Observe that
+    \[
+      N = \phi(M) + IN = \phi(M) + I(\phi(M)+IN) = \phi(M) + I^2 N = \cdots = \phi(M) + I^k N =\phi(M),
+    \]
+    so $\phi$ is surjective.
   \end{proof}
 \end{homeworkProblem}
 
