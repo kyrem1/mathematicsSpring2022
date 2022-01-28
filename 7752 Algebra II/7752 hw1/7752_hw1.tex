@@ -1,27 +1,29 @@
 \documentclass[12pt,letterpaper]{article}
 
 %--------Packages--------
-\usepackage{tikz,amsmath, amsthm, amssymb}
-\usetikzlibrary{calc}%
+\usepackage{amsmath, amsthm, amssymb}
 \usepackage{xspace}
 \usepackage{graphicx}
 \usepackage{hhline}
 \usepackage{amssymb}
 \usepackage{array}
+\usepackage{braket}
 \usepackage{multicol}
-\usepackage{tikz}
 \usepackage{mathtools}
 \usepackage{enumerate}
 \usepackage{delarray}
 \usepackage{mathtools}
-\usepackage{tikz-cd}
 \usepackage{fullpage}
 \usepackage{faktor} % For quotients
 
 
 % \usepackage{quiver}
-\usetikzlibrary{cd}
 \usepackage[linguistics]{forest}
+
+
+
+
+%--------Page Setup--------
 
 \pagestyle{empty}%
 
@@ -41,7 +43,6 @@
 %--------Macros--------
 
 \newcommand{\sub}{\subseteq}
-
 \newcommand{\lcm}{\text{lcm}}
 \newcommand{\mc}[1]{\mathcal{#1}}
 \newcommand{\mf}[1]{\mathfrak{#1}}
@@ -107,6 +108,7 @@
 \newtheorem{lemma}{Lemma}[]
 \newtheorem{corollary}{Corollary}[]
 \newtheorem{theorem}{Theorem}[]
+\theoremstyle{remark}
 \newtheorem*{claim}{Claim}
 
 
@@ -114,9 +116,6 @@
 {\begin{proof}[Solution]}
 {\end{proof}}
 
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \makeatletter
 \newcommand{\thickhline}{%
@@ -257,15 +256,58 @@
 \begin{homeworkProblem}
   In class we obtained a simple characterization of $R$-modules when $R=\Z$, and $R=F[x]$, with $F$ a field. Imitate the method to find similar characterizations for $R$-modules in the following cases: \\
 
-  \textbf{(a)} $R=\Z/n\Z$, for some $n\geq 2$.\\
+  \textbf{(a)} $R=\Z/n\Z$, for some $n\geq 2$.
+  \begin{claim}
+    $\{\Z/n\Z \text{-modules}\}\longleftrightarrow\{n\text{-torsion abelian groups}\}$
+  \end{claim}
 
-  \begin{proof}
+  \begin{proof}\ \\
+    \underline{$\implies$}: Let $A$ be a $\Z/n\Z$-module. We write $\Z/n\Z = \Set{[0], [1], \ldots, [n-1]}$. Define a $\Z$-module structure on $A$ by letting $m\cdot a := [m]\cdot a$ for $m\in \Z$. This gives $A$ the structure of an abelian group. To see that $A$ is $n$-torsion, observe that, for any $a\in A$,
+    \[
+      n\cdot a = [n]\cdot a = [0]\cdot a = 0.
+    \]
 
+    \underline{$\impliedby$}: Let $A$ be an $n$-torsion abelian group. Then $A$ has a natural $\Z$-module structure given by repeated addition. Define a $\Z/n\Z$-module structure on $A$ by letting $[m]\cdot a = m\cdot a$. To see that this definition is well-defined, suppose that $[m] = [m']$. Then $n$ divides $m-m'$, whence there exists a $k\in \Z$ such that $m-m' = kn$. Now, $(m-m')\cdot a = (kn)\cdot a = k\cdot(n\cdot a) = 0$ by $n$-torsion, so $m\cdot a = m'\cdot a$. That this action gives a $\Z/n\Z$-structure follows from the fact that it descends from a $\Z$-module structure.
   \end{proof}
 
-  \textbf{(b)} $R=\Z[x]$. \\
+  \textbf{(b)} $R=\Z[x]$.
+  \begin{claim}
+    \[
+      \Set{ \Z[x] \text{-modules}}\longleftrightarrow\Set{(A, T)\ | \begin{array}{c}
+        A \text{ an abelian group} \\
+        T:A\to A \text{ an abelian group endomorphism}
+        \end{array}
+      }
+    \]
+  \end{claim}
+
+  \begin{proof}\ \\
+    \underline{$\implies$}: Let $A$ be a $\Z[x]$-module. Via restriction of scalars under the natural inclusion $\Z \hookrightarrow \Z[x]$, $A$ has an abelian group structure. Define a map $T:A\to A$ be $T(a) = x\cdot a$. By distributivity, $T$ is an abelian group endomorphism. Moreover, given any $p(x)\in \Z[x]$, we have by linearity that $p(x)\cdot a = p(T)a$. \\
+
+    \underline{$\impliedby$}: Let $A$ be an abelian group and $T:A\to A$ an abelian group endomorphism. Define a $\Z[x]$-module structure on $A$ by declaring $p(x)\cdot a = p(T)a$ for all $p(x)\in \Z[x]$. That this action gives a $\Z[x]$-module structure is clear.
+  \end{proof}
 
   \textbf{(c)} $R=F[x,y]$.
+  \begin{claim}
+    \[
+      \Set{\F[x,y] \text{-modules}} \longleftrightarrow \Set{(V, T, S)\ |
+        \begin{array}{c}
+          V \text{ an $F$-vector space} \\
+          T,S:V\to V \text{ are $F$-linear maps such that } TS = ST
+        \end{array}
+      }
+    \]
+  \end{claim}
+
+  \begin{proof}\ \\
+    \underline{$\implies$}: Let $V$ be an $F[x,y]$-module. Via restriction of scalars under the natural inclusion $F\hookrightarrow F[x,y]$, $V$ has the structure of an $F$-vector space. Define maps $T,S:V\to V$ by $T(v) := x\cdot v$ and $S(v) := y\cdot v$ for all $v\in V$. For $\lambda \in F$ and $v,w\in A$, observe that \[T(\lambda v+w) = x\cdot (\lambda v+w) = \lambda\cdot( x\cdot v) + x\cdot w = \lambda \cdot T(v) + T(w)\] and same for $S$ (mutatis mutandis), so $T$ and $S$ are $F$-linear endomorphisms of $V$. Moreover, for $v\in V$,
+    \[
+      (ST) (v) = S(x\cdot v) = y\cdot (x\cdot v) = (yx)\cdot v = (xy) \cdot v = x\cdot(y\cdot v) = (TS)(v),
+    \]
+    so $ST = TS$. \\
+
+    \underline{$\impliedby$}: Let $V$ be an $F$-vector space and $T,S:V\to V$ be commuting $F$-linear endomorpisms of $V$. Define an $F[x,y]$-module structure on $V$ by setting $\lambda \cdot v :=\lambda v$ for $\lambda\in F$, $x \cdot v := T(v)$, $y\cdot v := S(v)$, and extending to $F(x,y)$ by linearity and distributivity, i.e. $p(x,y)\cdot v := p(T,S)v$.
+  \end{proof}
 \end{homeworkProblem}
 
 \begin{homeworkProblem}
@@ -310,7 +352,27 @@
   Show that $\Q$ is not a free $\Z$-module, that is $\Q$ is not isomorphic to a direct sum of the form $\displaystyle\bigoplus_I \Z$, for any index set $I$. More generally, let $R$ be a PID which is not a field and $K=\fr(R)$ be its fraction field. Show that $K$ is not a free $R$-module.
 
   \begin{proof}
+    Suppose, for the sake of contradiction, that $\Q$ is a free $\Z$-module. Let $X\sub \Q\setminus\{ 0\}$ be a $\Z$-basis for $\Q$. Fix $\frac{a}{b}, \frac{c}{d}\in X$. Noting that $a,b,c,d \neq 0$, observe that then
+    \[
+      (-bc)\cdot\frac{a}{b} + (da)\frac{c}{d} = \frac{-ac}{1} + \frac{ac}{1} = 0.
+    \]
+    Thus, for $X$ to be a basis, $|X| = 1$. Then by assumption, there exists a $\Z$-module isomorphism $f:\Q\to\Z$. Now, by surjectivity there exists a $\frac{p}{q}\in \Q$ such that $f(\frac{p}{q}) = 1$. Then,
+    \[
+      1 = f\left(\frac{p}{q}\right) = f\left(2\cdot\frac{p}{2q}\right) = 2\cdot f\left(\frac{p}{2q}\right),
+    \]
+    which is absurd. \\
 
+    Now let $R$ be a PID which is not a field and $K=\fr(R)$ be its fraction field. Suppose, for the sake of contradiction, that $K$ is a free $R$-module. As before, take $X\sub K\setminus\{ 0\}$ to be an $R$-basis for $K$. Again, fix $\frac{a}{b}, \frac{c}{d}\in X$. Since $R$ is an integral domain and $a,b,c,d \neq 0$, $-bc\neq 0$ and $da\neq 0$. Observe that then
+    \[
+      (-bc)\cdot\frac{a}{b} + (da)\frac{c}{d} = \frac{-ac}{1} + \frac{ac}{1} = 0,
+    \]
+    so for $X$ to be a basis, $|X| = 1$. Let $f:R\to K$ be an $R$-module isomorphism and $\iota:R\to K$ be the natural localization map. As $R\setminus \{ 0\}$ has no zero divisors, $\iota$ is injective. From the fact that $f$ is an $R$-module isomorphism, we see that $K=f(R)=R\cdot f(1)$. \\
+
+    Write $f(1) = \frac{a}{s} = \iota(a)\frac{1}{s}$. Then there exists an $r\in R$ such that
+    \[
+      \frac{1}{s^2} = r\cdot\frac{a}{s} = \iota(r)\frac{a}{s} \implies \frac{1}{s} = \iota(ra) \in \iota(R)
+    \]
+    but then, $f(1) = \iota(a)\iota(ra) = \iota(ara) \in \iota(R)$, whence $K = R\cdot f(1) = \iota(R)f(1) = \iota(R)$. As $\iota$ is injective, it follows that $K$ is ring-isomorphic to $R$, contradicting that $R$ is not a field.
   \end{proof}
 \end{homeworkProblem}
 
@@ -337,6 +399,11 @@
     whence $\pi_N (\phi(m))-\pi_N (\phi(m'))=\pi_N (\phi(m-m')) = 0$, so $\pi_N (\phi(m))=\pi_N (\phi(m'))$.
 
     % TODO Show this is an R-module homomorphism.
+    That $\overline{\phi}$ is an abelian group homomorphism is clear from the fact the $\phi$ is one. Suppose $r\in R$ and $m\in M$. Then
+    \[
+      \overline{\phi}(r\cdot (m+IM)) = \overline{\phi}(rm+IM) = \phi(rm)+IN = r\phi(m)+IN = r\cdot(\phi(m)+IN) = r\cdot\overline{\phi}(m+IM),
+    \]
+    so $\overline{\phi}$ is an $R$-module homomorphism.
   \end{proof}
 
   \textbf{(c)} Prove that if $\overline{\phi}$ is sujective, then $\phi$ is itself surjective.
