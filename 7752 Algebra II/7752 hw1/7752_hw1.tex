@@ -306,7 +306,7 @@
     \]
     so $ST = TS$. \\
 
-    \underline{$\impliedby$}: Let $V$ be an $F$-vector space and $T,S:V\to V$ be commuting $F$-linear endomorpisms of $V$. Define an $F[x,y]$-module structure on $V$ by setting $\lambda \cdot v :=\lambda v$ for $\lambda\in F$, $x \cdot v := T(v)$, $y\cdot v := S(v)$, and extending to $F(x,y)$ by linearity and distributivity, i.e. $p(x,y)\cdot v := p(T,S)v$.
+    \underline{$\impliedby$}: Let $V$ be an $F$-vector space and $T,S:V\to V$ be commuting $F$-linear endomorpisms of $V$. Define an $F[x,y]$-module structure on $V$ by setting $\lambda \cdot v :=\lambda v$ for $\lambda\in F$, $x \cdot v := T(v)$, $y\cdot v := S(v)$, and extending to $F(x,y)$ by linearity and distributivity, i.e. $p(x,y)\cdot v := p(T,S)v$. That the action of $p(T,S)$ on $V$ is well-defined follows from the assumption that $S$ and $T$ commute. Moreover, this ensures that this action is respects multiplication within $F[x,y]$, whence we receive an $F[x,y]$-module.
   \end{proof}
 \end{homeworkProblem}
 
@@ -319,7 +319,7 @@
     To see that the converse does not hold, consider $R=\Z$ and $M=\Z$ considered as a $\Z$-module over itself. Note that $2\Z\sub \Z$ is a nonzero proper submodule fo $\Z$, so $M$ is not simple. to see that $M$ is indecomposable, note that all nonzero submodules of $M$ are of the form $a\Z$ for some $a\in \Z\setminus \{ 0\}$, and for any $a,b\in \Z\setminus\{ 0\}$, $ab\in a\Z \cap b\Z$. Hence, no sum of the required form would be direct.
   \end{proof}
 \end{homeworkProblem}
-
+,.
 \begin{homeworkProblem}
   Let $R$ be a ring. An $R$-module $M$ is called \textit{cyclic} if it is generated as an $R$-module by a single element. \\
 
@@ -417,16 +417,24 @@
   \end{proof}
 \end{homeworkProblem}
 
-\begin{homeworkProblem}
-  Let $G$ be a finite group and $k$ a field. Consider the group ring $k[G]$. \\
-
-  \textbf{(a)} Let $M$ be a $k$-vector space with a $G$-action. Show that $M$ becomes a $k[G]$-module. Conversely, if $M$ is a $k[G]$-module, show that $M$ is a $G$-set. \\
-
-  \textbf{(b)} Let $M,N$ be two $k[G]$-modules. Show that $\Hom_{k}(M,N)$ becomes a $k[G]$-module with the following $G$-action: For $g\in G$ and $\phi:M\to N$ a $k[G]$-homomorphism define
-  \[
-    (g\cdot\phi)(m):=g\phi(g^{-1}m),\text{ for }m\in M.
-  \]
-\end{homeworkProblem}
+% \begin{homeworkProblem}
+%   Let $G$ be a finite group and $k$ a field. Consider the group ring $k[G]$. \\
+%
+%   \textbf{(a)} Let $M$ be a $k$-vector space with a $G$-action. Show that $M$ becomes a $k[G]$-module. Conversely, if $M$ is a $k[G]$-module, show that $M$ is a $G$-set. \\
+%
+%   \begin{proof}
+%     \underline{$\implies$}: Let $M$ be a $k$-vector space with a $G$-action. Define a $k[G]$-action on $M$ in the natural way, i.e. for $m\in M$ let
+%     \[
+%       \left(\sum_{g\in G} a_g g\right)\cdot m := \sum_{g\in G}a_g (g\cdot m).
+%     \]
+%     By group action axioms, $e\cdot m = m$ for all $m\in M$, so $1_{k[G]} = e$ acts trivially on $M$ as desired. For $$
+%   \end{proof}
+%
+%   \textbf{(b)} Let $M,N$ be two $k[G]$-modules. Show that $\Hom_{k}(M,N)$ becomes a $k[G]$-module with the following $G$-action: For $g\in G$ and $\phi:M\to N$ a $k[G]$-homomorphism define
+%   \[
+%     (g\cdot\phi)(m):=g\phi(g^{-1}m),\text{ for }m\in M.
+%   \]
+% \end{homeworkProblem}
 
 
 \end{document}
