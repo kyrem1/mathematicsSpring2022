@@ -1,0 +1,237 @@
+\documentclass[12pt,letterpaper]{article}
+
+%--------Packages--------
+\usepackage{amsmath, amsthm, amssymb}
+\usepackage{xspace}
+\usepackage{graphicx}
+\usepackage{hhline}
+\usepackage{amssymb}
+\usepackage{array}
+\usepackage{braket}
+\usepackage{multicol}
+\usepackage{mathtools}
+\usepackage{enumerate}
+\usepackage{delarray}
+\usepackage{mathtools}
+\usepackage{fullpage}
+\usepackage{faktor} % For quotients
+
+
+% \usepackage{quiver}
+\usepackage[linguistics]{forest}
+
+
+
+
+%--------Page Setup--------
+
+\pagestyle{empty}%
+
+\setlength{\hoffset}{-1.54cm}
+\setlength{\voffset}{-1.54cm}
+
+\setlength{\topmargin}{0pt}
+\setlength{\headsep}{0pt}
+\setlength{\headheight}{0pt}
+
+\setlength{\oddsidemargin}{0pt}
+
+\setlength{\textwidth}{195mm}
+\setlength{\textheight}{250mm}
+
+
+%--------Macros--------
+
+\newcommand{\sub}{\subseteq}
+\newcommand{\lcm}{\text{lcm}}
+\newcommand{\mc}[1]{\mathcal{#1}}
+\newcommand{\mf}[1]{\mathfrak{#1}}
+\newcommand{\sO}{\mathcal{O}}
+\newcommand{\cyclic}[1]{\langle#1\rangle}
+\newcommand{\units}[1]{#1 ^{\times}}
+\newcommand{\la}{\langle}
+\newcommand{\ra}{\rangle}
+%----Switch phi and varphi
+\let\temp\phi
+\let\phi\varphi
+\let\varphi\temp
+
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\N}{\mathbb{N}\xspace}
+\newcommand{\I}{\mathbb{I}\xspace}
+\newcommand{\R}{\mathbb{R}\xspace}
+\newcommand{\Z}{\mathbb{Z}\xspace}
+\newcommand{\Q}{\mathbb{Q}\xspace}
+\newcommand{\G}{\mathbb{G}\xspace}
+\DeclareMathOperator{\Spec}{Spec}
+\DeclareMathOperator{\res}{res}
+\DeclareMathOperator{\Tr}{Tr}
+\DeclareMathOperator{\ord}{ord}
+\DeclareMathOperator{\Sym}{Sym}
+\DeclareMathOperator{\dv}{div}
+\DeclareMathOperator{\alb}{alb}
+\DeclareMathOperator{\img}{Im}
+\DeclareMathOperator{\et}{et}
+\DeclareMathOperator{\ck}{coker}
+\DeclareMathOperator{\Reg}{Reg}
+\DeclareMathOperator{\Cor}{Cor}
+\DeclareMathOperator{\Ac}{at}
+\DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\Pic}{Pic}
+\DeclareMathOperator{\Gal}{Gal}
+\DeclareMathOperator{\fc}{frac}
+\DeclareMathOperator{\Ann}{Ann}
+\DeclareMathOperator{\Mod}{Mod}
+\DeclareMathOperator{\Cone}{Cone}
+\DeclareMathOperator{\FI}{FI}
+\DeclareMathOperator{\End}{End}
+\DeclareMathOperator{\Alb}{Alb}
+\DeclareMathOperator{\Ext}{Ext}
+\DeclareMathOperator{\ab}{ab}
+\DeclareMathOperator{\Jac}{Jac}
+\DeclareMathOperator{\coker}{coker}
+\DeclareMathOperator{\fr}{frac}
+
+
+%----Analysis
+\newcommand{\dd}[2][]{\frac{\partial^{#1}}{\partial {#2}^{#1}}}
+\newcommand{\summ}{\sum\limits}
+\newcommand{\norm}[1]{\left \vert \left \vert #1 \right \vert \right \vert}
+\newcommand{\thicc}{\bigg}
+\newcommand{\eps}{\varepsilon}
+
+
+%--------Theorem environments--------
+\newtheorem{definition}{Definition}[]
+\newtheorem{lemma}{Lemma}[]
+\newtheorem{corollary}{Corollary}[]
+\newtheorem{theorem}{Theorem}[]
+\theoremstyle{remark}
+\newtheorem*{claim}{Claim}
+
+
+\newenvironment{solution}
+{\begin{proof}[Solution]}
+{\end{proof}}
+
+
+\makeatletter
+\newcommand{\thickhline}{%
+    \noalign {\ifnum 0=`}\fi \hrule height 1pt
+    \futurelet \reserved@a \@xhline
+}
+\newcolumntype{"}{@{\hskip\tabcolsep\vrule width 1pt\hskip\tabcolsep}}
+\makeatother
+
+% --------Problem environment--------
+\setlength\parindent{0pt}
+\setcounter{secnumdepth}{0}
+\newcounter{partCounter}
+\newcounter{homeworkProblemCounter}
+\setcounter{homeworkProblemCounter}{1}
+
+
+\newenvironment{homeworkProblem}[1][-1]{
+    \ifnum#1>0
+        \setcounter{homeworkProblemCounter}{#1}
+    \fi
+    \section{Problem \arabic{homeworkProblemCounter}}
+    \setcounter{partCounter}{1}
+    \stepcounter{homeworkProblemCounter}
+}
+
+
+%--------Metadata--------
+\title{MATH 7310 Homework 1}
+\author{James Harbour}
+
+
+\begin{document}
+\maketitle
+
+\begin{homeworkProblem}
+    A family of sets $\mc{R}\sub\mc{P}(X)$ is called a \emph{ring} if it is closed under finite unions and differences. A ring that is closed under countable unions is called a \emph{$\sigma$-ring}.
+
+    \textbf{(a)} Rings (resp. $\sigma$-rings) are closed under finite (resp. countable) intersections.
+    \begin{proof}
+      Let $\mc{R}$ be ring (resp. $\sigma$-ring). Let $(E_i)_{i\in I}$ be a finite (resp. countable) family of elements of $\mc{R}$ with finite (resp. countable) indexing set $I$. Let $j\in I$ be arbitrary. For any set $F\sub X$, note that
+      \[
+        E_j \setminus (E_j \setminus F) = (E_j\cap F) \cup (E_j\setminus E_j) = E_j \cap F
+      \]
+      Hence, utilizing De Morgan's laws, we write
+      \[
+        \bigcap_{i\in I} E_i = E_j \cap \bigcap_{i\in I\setminus\{ j\}} E_i = E_j \setminus \left(E_j \setminus \left(\bigcap_{i\in I\setminus\{ j\}} E_i \right)\right) = E_j \setminus \left(\bigcup_{i\in I\setminus\{ j\}}( E_j \setminus E_i )\right) \in \mc{R}
+      \]
+      as desired.
+    \end{proof}
+
+    \textbf{(b)} If $\mc{R}$ is a ring (resp. $\sigma$-ring), then $\mc{R}$ is an algebra (resp. $\sigma$-algebra) if and only if $X\in \mc{R}$.
+
+    \begin{proof}\ \\
+      \underline{$\implies$}: Let $E\in \mc{R}$. Then $\emptyset = E\setminus E \in \mc{R}$. As $\mc{R}$ is an algebra (resp. $\sigma$-algebra), it follows that $X= \emptyset^c \in \mc{R}$.
+
+      \underline{$\impliedby$}: Suppose that $X\in\mc{R}$. As $\mc{R}$ is already a ring (resp. $\sigma$-algebra), to show $\mc{R}$ is an algebra (resp.$\sigma$-algebra) it suffices to show that $\mc{R}$ is closed under complements. Suppose $E\in \mc{R}$. As $X\in \mc{R}$ and $\mc{R}$ is closed under differences, it follows that $E^c = X\setminus E \in \mc{R}$.
+    \end{proof}
+
+    \textbf{(c)} If $\mc{R}$ is a $\sigma$-ring, then $\{ E\sub X : E\in \mc{R} \text{ or } E^c\in \mc{R}\}$ is a $\sigma$-algebra.
+
+    \begin{proof}
+      Let $\Sigma = \{ E\sub X : E\in \mc{R} \text{ or } E^c\in \mc{R}\}$. By construction, $\Sigma$ is closed under complements. Suppose that $(E_i)_{i\in I}$ is a countable family of elements of $\Sigma$, where $I$ is an indexing set. Let $I_0 = \{ i\in I : E_i \in \mc{R}\}$. Note that $\bigcup_{i\in I_0} E_i \in \mc{R}\sub \Sigma$. Moreover
+      \[
+        \left(\bigcup_{j\in I\setminus I_0} E_j \right)^c =  \bigcap_{j\in I\setminus I_0} E_j ^c \in \mc{R},
+      \]
+      so $\bigcap_{j\in I\setminus I_0} E_j \in \Sigma$. Hence
+      \[
+        \bigcup_{i\in I} E_i = \bigcup_{i\in I_0} E_i \cup \bigcup_{j\in I\setminus I_0} E_j \in \Sigma,
+      \]
+      so $\Sigma$ is a $\sigma$-algebra.
+    \end{proof}
+
+    \textbf{(d)} If $\mc{R}$ is a $\sigma$-ring, then $\{ E\sub X : E\cap F\in \mc{R} \text{ for all } F\in\mc{R}\}$ is a $\sigma$-algebra.
+
+    \begin{proof}
+      Let $\Sigma = \{ E\sub X : E\cap F\in \mc{R} \text{ for all } F\in\mc{R}\}$. Suppose $(E_i)_{i\in I}$ is a countable family of elements of $\Sigma$. For any $F\in \mc{R}$,
+      \[
+        F\cap \bigcup_{i\in I} E_i = \bigcup_{i\in I} F\cap E_i \in \mc{R}
+      \]
+      by definition, so $\bigcup_{i\in I} E_i \in \Sigma$.
+      Now suppose $E\in \Sigma$. Let $F\in \mc{R}$. Observe that, as $E\cap F \in \mc{R}$ and $\mc{R}$ is closed under differences,
+      \[
+        E^c\cap F = (X\setminus E) \cap F = X \cap(F\setminus E) = F\setminus E = (F\setminus E) \cup (F\setminus F ) = F\setminus (E\cap F) \in \mc{R}.
+      \]
+      Thus, $E^c \in \Sigma$, so $\Sigma$ is a $\sigma$-algebra.
+    \end{proof}
+
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+  An algebra $\mc{A}$ is a $\sigma$-algebra if and only if $\mc{A}$ is closed under countable increasing unions.
+\end{homeworkProblem}
+
+\begin{homeworkProblem}[3]
+  Let $X,Y$ be sets and $f:X\to Y$.
+
+  \textbf{(i)} If $\Sigma \sub \mc{P}(X)$ is a $\sigma$-algebra, show that \[ \{ E\sub Y : f^{-1}(E)\in \Sigma\}\]
+  is a $\sigma$-algebra.
+
+  \textbf{(ii)} If $\Sigma \sub \mc{P}(X)$ is a $\sigma$-algebra, show that \[ \{ E\sub X : E=f^{-1}(F) \text{ for some } F\in \Sigma\}\]
+  is a $\sigma$-algebra.
+
+  \textbf{(iii)} If $Y$ is a countable, show that \[ \{ E\sub X : E=f^{-1}(F) \text{ for some } F\in \Sigma\}\] is the $\sigma$-algebra generated by $\{ f^{-1}(\{ y\}) : y\in Y\}$.
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+  \textbf{(i)} Suppose that $X$ is a set. Let $J$ be a contable set and suppose that $X=\bigsqcup_{j\in J} A_j$ with $A_j \neq \emptyset$ for all $j\in J$. Show that the $\sigma$-algebra generated by $(A_j)_{j\in J}$ is $\{\bigcup_{j\in J_0} : J_0\sub J\}$.
+
+  \textbf{(ii)} Show that the $\sigma$-algebra generated by a finite collection of sets is finite.
+
+\end{homeworkProblem}
+
+
+\begin{homeworkProblem}
+  Let $(X,d_X)$ be a metric space. A collection $\mc{B}$ of open sets in $X$ is said to be a \emph{basis} if for every open $U\sub X$ and every $x\in U$, there is a $B\in\mc{B}$ so that $x\in B\sub U$. If $\mc{B}$ is a \emph{countable} basis of open sets in $X$, show that the $\sigma$-algebra generated by $\mc{B}$ coincides with the Borel sets in $X$.
+\end{homeworkProblem}
+
+\end{document}
