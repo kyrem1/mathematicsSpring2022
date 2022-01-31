@@ -14,7 +14,7 @@
 \usepackage{mathtools}
 \usepackage{fullpage}
 \usepackage{faktor} % For quotients
-
+\usepackage{mathrsfs}
 
 % \usepackage{quiver}
 \usepackage[linguistics]{forest}
@@ -43,6 +43,7 @@
 
 \newcommand{\sub}{\subseteq}
 \newcommand{\lcm}{\text{lcm}}
+\newcommand{\ms}[1]{\mathscr{#1}}
 \newcommand{\mc}[1]{\mathcal{#1}}
 \newcommand{\mf}[1]{\mathfrak{#1}}
 \newcommand{\sO}{\mathcal{O}}
@@ -92,6 +93,7 @@
 \DeclareMathOperator{\Jac}{Jac}
 \DeclareMathOperator{\coker}{coker}
 \DeclareMathOperator{\fr}{frac}
+\DeclareMathOperator{\spn}{span}
 
 
 %----Analysis
@@ -147,13 +149,49 @@
 \begin{document}
 \maketitle
 
-\begin{homeworkProblem}[3]
+\begin{homeworkProblem}
+  Let $D$ be a division ring (not necessarily commutative) and $M$ be a $D$-module.\\
+
+  \textbf{(a)} Let $X$ be a generating set of $M$ and $Y$ a $D$-linearly independent subset of $X$. Prove that $M$ has a $D$-basis $B$ with $Y\sub B\sub X$.
+
+  \begin{proof}
+    Consider the poset $\ms{S} = \{ B\sub M : Y\sub B\sub X \text{ and } B \text{ is $D$-linearly independent}\}$ ordered by inclusion. Since $Y$ is a $D$-linearly independent subset of $X$, we have that $Y\in \ms{S}$ so $\ms{S}\neq\emptyset$. \\
+
+    Suppose that $\ms{C}\sub\ms{S}$ is any linearly ordered chain in $\ms{S}$. Let $B = \bigcup \ms{C}$. Then $Y\sub B\sub X$. Suppose that $d_i\in D$ and $b_i\in B$ such that $\sum_{i=1}^{n} d_i \cdot b_i = 0$. Then for each $i\in \{ 1, \ldots, n\}$, there exists a $B_i\in \ms{C}$ such that $b_i\in B_i$. As $\ms{C}$ is a chain, there is some $l\in \{ 1,\ldots, n\}$ such that $B_i\sub B_l$ for all $1\leq i \leq n$. It follows that $b_i\in B_l$ for all $1\leq i\leq n$, whence $B_l$ being $D$-linearly independent implies that $d_i = 0$ for all $i$. Thus $B$ is $D$-linearly independent, so $B\in \ms{S}$. \\
+
+    Now by Zorn's lemma, there exists a maximal element $B\in \ms{S}$ of $\ms{S}$. We claim that $B$ is in fact a $D$-basis for $M$. It suffices to show that $B$ is a generating set for $M$. Let $N = \spn_D(B)$. Suppose, for the sake of contradiction, that $N \neq M$. As $B\sub X$ and $X$ is a generating set for $M$, it follows that there exists an $x\in X\setminus \spn_D(B)$. Suppose $r, r_1, \ldots, r_n\in R$ are such that
+    \[
+      0 = rx + r_1 b_1 + \cdots + r_n b_n.
+    \]
+    If $r\neq 0$, then
+    \[
+      x = (-r^{-1} r_1)\cdot b_1 + \cdots + (-r^{-1} r_1)\cdot r_n,
+    \]
+    which would imply that $x\in \spn_D(B)$, contradicting the choice of $x$. Hence $r=0$, so $B$ being $D$-linearly independent implies that $r_i = 0$ for all $i$. Thus $B\cup \{x\}$ is $D$-linearly independent, contradicting the maximality of $B$.
+  \end{proof}
+
+  \textbf{(b)} Conclude that every non zero $D$-module $M$ has a $D$-basis.
+
+  \begin{proof}
+    Since $M\neq 0$, there exists an $y\in M\setminus \{ 0\}$. It follows that the singleton $\{ y\}$ is a $D$-linearly independent subset of $M$. On the other hand, $M = 1\cdot M$, so the set $M$ is a generating set of $M$. Applying part (a) to $X = M$ and $Y = \{ y\}$, it follows that $M$ has a $D$-basis.
+  \end{proof}
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+    Let $R$ be a commutative domain. Let $I$ be a non-principal ideal of $R$. SHow that when $I$ is considered as an $R$-module (by left multiplication), then $I$ is indecomposable but not cyclic.
+
+    \begin{proof}
+      Since $I$ is non-principal, by definition $I$ is not cyclic as an $R$-module. Suppose, for the sake of contradiction, that $I=P\oplus Q$ for some nonzero proper $R$-submodules $P,Q$ of $I$. Take $p\in P\setminus \{ 0\}$ and $q\in Q\setminus\{ 0\}$. Then $p\cdot q - q\cdot p = pq-qp = 0 \implies p\cdot q= q\cdot p$. As $R$ is a domain $pq=qp \neq 0$, whence $pq=qp\in P\cap Q$ contradicts that the sum $P\oplus Q$ is direct.
+    \end{proof}
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
   Let $R$ be a commutative ring. An $R$-module $M$ is called \emph{torsion} if for any $m\in M$ there exists some nonzero $r\in R$ such that $rm=0$. An $R$-module $N$ is called \emph{divisible} if for any nonzero $r\in R$ it holds that $rN=N$. \\
 
   \textbf{(a)} Suppose $M$ is a torsion $R$-module and $N$ is a divisible $R$-module. Prove that $M\otimes_R N = \{ 0\}$.
 
   \begin{proof}
-    Let $m\in M$ and $n\in N$. Since $M$ is torsion, there exists a nonzero $r in R$ such that $rm=0$. Now, by divisibility of $N$, there exists an $n'\in N$ such that $rn' = n$. Hence
+    Let $m\in M$ and $n\in N$. Since $M$ is torsion, there exists a nonzero $r \in R$ such that $rm=0$. Now, by divisibility of $N$, there exists an $n'\in N$ such that $rn' = n$. Hence
     \[
       m\otimes n = m \otimes rn' = rm \otimes n' = 0\otimes n' = 0.
     \]
@@ -163,10 +201,53 @@
   \textbf{(b)} Consider the $\Z$-module $M = \Q/\Z$. Prove that $M\otimes_{\Z} M = \{ 0\}$
 
   \begin{proof}
-    We show that $M$ is both torsion and divisible. Note that 
+    We show that $M$ is both torsion and divisible. Note that for any $\frac{p}{q} + \Z\in \Q/\Z$, $q\neq 0$ and $q\cdot (\frac{p}{q} + \Z) = q\cdot\frac{p}{q} + \Z = p + \Z = \Z$, so $\Q/\Z$ is torsion. \\
+
+    On the other hand, suppose $n\in \Z\setminus \{ 0\}$. For $\frac{p}{q} + \Z \in \Q/\Z$, observe that
+    \[
+      n\cdot\left(\frac{p}{nq} + \Z \right) = \frac{np}{nq} + \Z = \frac{p}{q} + \Z
+    \]
+    so $\Q/\Z$ is divisible. Appealing to part(a), it follows that $M\otimes_{\Z} M = 0$.
   \end{proof}
 \end{homeworkProblem}
 
+\begin{homeworkProblem}
+  Let $R$ be a PID and $A$ be an $R$-module. Let $K$ be the field of fractions of $R$, and consider the $K$-module $B = K\otimes_R A$. Prove that every $z\in B$ is a simple tensor.
 
+  \begin{proof}
+    Let $z\in B$. Then there exists $\frac{x_1}{s_1}, \ldots,\frac{x_n}{s_n} \in K$, $a_1, \ldots, a_n\in A$ and $c_1, \ldots, c_n \in R$ such that
+    \[
+      z = \sum_{i=1}^{n} c_i \cdot\left(\frac{x_i}{s_i} \otimes a_i\right) = \sum_{i=1}^{n} \frac{c_i x_i}{s_i} \otimes a_i = \sum_{i=1}^{n} \frac{c_i x_i \prod_{j\neq i}s_j}{s_1 \cdots s_n} \otimes a_i.
+    \]
+    Since $R$ is a PID, there exists an $s\in R$ such that $(s) = \left\la c_i x_i \prod_{j\neq i} s_j: 1\leq i\leq n \right\ra$. Then for each $i\in \{ 1,\ldots, n\}$, there is an $r_i\in R$ such that $c_i x_i \prod_{j\neq i} s_j = r_i s$. Hence,
+    \[
+      z = \sum_{i=1}^{n} \frac{c_i x_i \prod_{j\neq i}s_j}{s_1 \cdots s_n} \otimes a_i = \sum_{i=1}^{n} \frac{r_i s}{s_1 \cdots s_n} \otimes a_i = \sum_{i=1}^{n} \frac{ s}{s_1 \cdots s_n} \otimes r_i a_i = \frac{ s}{s_1 \cdots s_n} \otimes \left(\sum_{i=1}^{n}r_i a_i\right)
+    \]
+    is a simple tensor.
+  \end{proof}
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+  Let $R$ be a commutative ring and $M$ an $R$-module.
+
+  \textbf{(a)}: Let $I$ be an ideal of $R$. Prove an isomorphism
+  \[
+    R/I \otimes M \simeq M/IM.
+  \]
+
+  \begin{proof}
+    Consider the exact sequence
+    \[
+      0\to I\rightarrow R \rightarrow R/I \to 0.
+    \]
+    Upon applying the right exact functor $-\otimes_R M$ to the above exact sequence, we obtain the exact sequence
+    \[
+      I\otimes_R M \rightarrow R\otimes_R M\cong M \rightarrow R/I \otimes_R M \to 0
+    \]
+    The image of $I\otimes_R M$ under the identification $R\otimes_R M \cong M$ via $r\otimes m \mapsto r\cdot m$ is $IM$, hence by the first isomorphism theorem $M/IM \cong R/I \otimes_R M$.
+  \end{proof}
+
+  \textbf{(b)}: Suppose that $M$ is a finitely generated free $R$-module. Show that the \emph{rank} of $M$ is well-defined, i.e. any two $R$-bases of $M$ have the same number of elements.
+\end{homeworkProblem}
 
 \end{document}
