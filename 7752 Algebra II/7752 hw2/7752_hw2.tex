@@ -236,15 +236,17 @@
   \]
 
   \begin{proof}
-    Consider the exact sequence
-    \[
-      0\to I\rightarrow R \rightarrow R/I \to 0.
-    \]
-    Upon applying the right exact functor $-\otimes_R M$ to the above exact sequence, we obtain the exact sequence
-    \[
-      I\otimes_R M \rightarrow R\otimes_R M\cong M \rightarrow R/I \otimes_R M \to 0
-    \]
-    The image of $I\otimes_R M$ under the identification $R\otimes_R M \cong M$ via $r\otimes m \mapsto r\cdot m$ is $IM$, hence by the first isomorphism theorem $M/IM \cong R/I \otimes_R M$.
+    % Consider the exact sequence
+    % \[
+    %   0\to I\rightarrow R \rightarrow R/I \to 0.
+    % \]
+    % Upon applying the right exact functor $-\otimes_R M$ to the above exact sequence, we obtain the exact sequence
+    % \[
+    %   I\otimes_R M \rightarrow R\otimes_R M\cong M \rightarrow R/I \otimes_R M \to 0
+    % \]
+    % The image of $I\otimes_R M$ under the identification $R\otimes_R M \cong M$ via $r\otimes m \mapsto r\cdot m$ is $IM$, hence by the first isomorphism theorem $M/IM \cong R/I \otimes_R M$.
+
+    On one hand, consider the map $\widetilde\Psi: M \to R/I\otimes_R M$ given by $\widetilde\Psi(m):= (1+I)\otimes m$ for $m\in M$. This map is clearly an $R$-module homomorphism by the second and third defining relations the tensor product. For $i\in I$ and $m\in M$, $\widetilde\Psi(im) = (1+I)\otimes im = i\cdot(1 + I) \otimes m = 0$, so the generators of $IM$ lie in $\ker(\widetilde\Psi)$ whence $IM\sub \ker(\widetilde\Psi)$. Hence, $\widetilde\Psi$ descends to an $R$-module homomorphism $\Psi: M/IM \to R/I\otimes_R M$ such that $\Psi(m+IM) = \widetilde\Psi(m)$.
   \end{proof}
 
   \textbf{(b)}: Suppose that $M$ is a finitely generated free $R$-module. Show that the \emph{rank} of $M$ is well-defined, i.e. any two $R$-bases of $M$ have the same number of elements.
