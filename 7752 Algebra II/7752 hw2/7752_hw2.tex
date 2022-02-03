@@ -252,7 +252,18 @@
   \textbf{(b)}: Suppose that $M$ is a finitely generated free $R$-module. Show that the \emph{rank} of $M$ is well-defined, i.e. any two $R$-bases of $M$ have the same number of elements.
 
   \begin{proof}
-    Let $\mf{m}\sub R$ be a maximal ideal of R. Let $k = R/\mf{m}$ be the corresponding  residue field. Suppose that
+    Let $\mf{m}\sub R$ be a maximal ideal of R. Let $k=R/\mf{m}$ be the corresponding residue field. Suppose that $n,l\in \N$ such that $R^l \cong M \cong R^n$. Then,
+
+    \[
+      k^l \cong (R/\mf{m}\otimes R)^l \cong R/\mf{m}\otimes R^l \cong R/\mf{m} \otimes R^n \cong (R/\mf{m}\otimes R)^n \cong k^n
+    \]
+
+    as $R$-modules. Let $\phi:k^l\to k^n$ be the composition of the above $R$-module isomorphisms. Note that $\mf{m}\sub \Ann_R(k^l), \Ann_R(k^n)$, so the $k$-module structures on $k^l, k^m$ given by $(r+\mf{m})\cdot a := r\cdot a$ and $(r+\mf{m})\cdot b$ for $a\in k^l$ and $b\in k^n$ are well-defined. Moreover, for $r\in R$ and $a\in k^l$,
+    \[
+      \phi((r+\mf{m})\cdot a) = \phi(r\cdot a) = r\cdot \phi(a)  = (r+\mf{m})\cdot\phi(a),
+    \]
+    so $\phi$ is also a $k$-module isomorphism. As $k^l$ and $k^n$ are isomorphic $k$-vector spaces, it follows that $l=n$.
+
   \end{proof}
 \end{homeworkProblem}
 
