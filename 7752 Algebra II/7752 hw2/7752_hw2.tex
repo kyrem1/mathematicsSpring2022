@@ -228,7 +228,7 @@
 \end{homeworkProblem}
 
 \begin{homeworkProblem}
-  Let $R$ be a commutative ring and $M$ an $R$-module.
+  Let $R$ be a commutative ring and $M$ an $R$-module. \\
 
   \textbf{(a)}: Let $I$ be an ideal of $R$. Prove an isomorphism
   \[
@@ -246,7 +246,27 @@
     % \]
     % The image of $I\otimes_R M$ under the identification $R\otimes_R M \cong M$ via $r\otimes m \mapsto r\cdot m$ is $IM$, hence by the first isomorphism theorem $M/IM \cong R/I \otimes_R M$.
 
-    On one hand, consider the map $\widetilde\Psi: M \to R/I\otimes_R M$ given by $\widetilde\Psi(m):= (1+I)\otimes m$ for $m\in M$. This map is clearly an $R$-module homomorphism by the second and third defining relations the tensor product. For $i\in I$ and $m\in M$, $\widetilde\Psi(im) = (1+I)\otimes im = i\cdot(1 + I) \otimes m = 0$, so the generators of $IM$ lie in $\ker(\widetilde\Psi)$ whence $IM\sub \ker(\widetilde\Psi)$. Hence, $\widetilde\Psi$ descends to an $R$-module homomorphism $\Psi: M/IM \to R/I\otimes_R M$ such that $\Psi(m+IM) = \widetilde\Psi(m)$.
+    On one hand, consider the map $\widetilde\Psi: M \to R/I\otimes_R M$ given by $\widetilde\Psi(m):= (1+I)\otimes m$ for $m\in M$. This map is clearly an $R$-module homomorphism by the second and third defining relations the tensor product. For $i\in I$ and $m\in M$, $\widetilde\Psi(im) = (1+I)\otimes im = i\cdot(1 + I) \otimes m = 0$, so the generators of $IM$ lie in $\ker(\widetilde\Psi)$ whence $IM\sub \ker(\widetilde\Psi)$. Hence, $\widetilde\Psi$ descends to an $R$-module homomorphism $\Psi: M/IM \to R/I\otimes_R M$ such that $\Psi(m+IM) = \widetilde\Psi(m)$. Observe that, for $r\in R$ and $m\in M$, $\Psi(rm+IM) = (1+I)\otimes r\cdot m = (r+I)\otimes m$, so $\Psi(M/IM)$ contains all simple tensors, whence by linearity $\Psi$ is surjective. \\
+
+    On the hand, consider the map $\widetilde\Phi: R/I \times M \to M/IM$ given by $\widetilde\Phi(r+I, m) = rm + IM$. To see that this is well-defined, if $r+I = r'+I\in R/I$, then $r-r'\in I$ whence $(r-r')\cdot m + IM = IM$. Suppose now that $m, n\in M$, $r+I,s+I\in R/I$, and $x\in R$. Then
+    \begin{align*}
+      \widetilde\Phi((r+I)+(s+I),m) &= \widetilde\Phi((r+s)+I,m) = (r+s)\cdot m+IM \\ &= (r\cdot m + IM) + (s \cdot m + IM) = \widetilde\Phi(r+I,m) + \widetilde\Phi(s+I,m) \\
+      \widetilde\Phi(r+I,m+n) &= r\cdot(m+n) + IM = r\cdot m + r\cdot n + IM = (r\cdot m + IM) + (r\cdot n + IM) \\ &= \widetilde\Phi(r+I,m) + \widetilde\Phi(r+I,n) \\
+      \widetilde\Phi(x\cdot (r+I),m) &= \widetilde\Phi(xr+I,m) = (xr)\cdot m + IM = x\cdot(r\cdot m+IM) = x\cdot\widetilde\Phi(r+I,m) \\
+      \widetilde\Phi(r+I, x\cdot m) &= r\cdot (x\cdot m) + IM = x\cdot (r\cdot m + IM) = x\cdot\widetilde\Phi(r+I,m),
+    \end{align*}
+    so $\widetilde\Phi$ is an $R$-bilinear map. By the universal property of tensor products, there exists a unique $R$-module homomorphism $\Phi:R/I\otimes M\to M/IM$ such that $\Phi((r+I)\otimes m) = \widetilde\Phi(r+I, m)$ for all $r\in R$ and $m\in M$. \\
+
+    Now we show that $\Phi$ and $\Psi$ are mutual inverses. On one hand, for $m+IM \in M/IM$,
+    \[
+      \Phi(\Psi(m+IM)) = \Phi((1+I)\otimes m) = 1\cdot m + IM = m + IM,
+    \]
+    so $\Phi\circ\Psi= id_{M/IM}$. For the other direction, it suffices by linearity to prove that $\Psi\circ\Phi$ is the identity on just the simple tensors. For $(r+I)\otimes m \in R/I\otimes M$,
+    \[
+      \Psi(\Phi((r+I)\otimes m)) = \Psi(rm + IM) = (1+I)\otimes rm = (r+I)\otimes m
+    \]
+    so $\Psi\circ\Phi$ is the identity on simple tensors, whence $\Psi\circ\Phi = id_{R/I\otimes M}$.
+
   \end{proof}
 
   \textbf{(b)}: Suppose that $M$ is a finitely generated free $R$-module. Show that the \emph{rank} of $M$ is well-defined, i.e. any two $R$-bases of $M$ have the same number of elements.
@@ -269,7 +289,72 @@
 
 \begin{homeworkProblem}
   Let $R\sub S$ be an inclusion of commutative rings. Consider the polynomial rings $R[x]$ and $S[x]$. Prove that there is an isomorphism of $S$-modules,
-  \[S\otimes_R R[x]\rightarrow S[x]\]
+  \[
+    S\otimes_R R[x]\rightarrow S[x].
+  \]
+
+  \begin{proof}
+    On one hand, there is an obvious map $\Psi:S[x]\to S\otimes_R R[x]$ defined by
+    \[
+      \Psi\left(\sum_{k=0}^{n} s_k x^k\right) := \sum_{k=0}^{n}s_k\otimes x^k.
+    \]
+    Then, for monomials $s_k x^k, t_k x^k \in S[x]$ and $s\in S$,
+    \[
+      \Psi(s\cdot(s_k x^k) + t_k x^k) = \Psi((ss_k +t_k)x^k) = (ss_k+t_k)\otimes x^k = s\cdot (s_k\otimes x^k) + t_k\otimes x^k = s\cdot\Psi(s_k x^k) + \Psi(t_k x^k),
+    \]
+    whence via extending linearly and applying this relation, it follows that $\Psi$ is an $S$-module homomorphism. \\
+
+    On the other hand, consider the map $\widetilde\Phi:S\times R[x]\to S[x]$ given by $(s,f(x))\mapsto sf(x)$. This map is clearly $R$-bilinear as it is a multiplication map, so there exists a unique $R$-module homomorphism $\Phi:S\otimes R[x]\to S[x]$ such $\Phi(s\otimes f(x)) = \widetilde\Phi(s,f(x)) = sf(x)$. Moreover, we will show that this map is in fact an $S$-module homomorphism. It suffices to show this relation on simple tensors, whence linearity would imply that it holds on all of $S\otimes_R R[x]$ considered as an $S$-module. Let $s,s'\in S$ and $f(x)\in R[x]$. Then,
+    \[
+      \Phi(s \cdot (s'\otimes f(x))) = \Phi((ss')\otimes f(x)) = ss'f(x) = s\cdot\Phi(s'\otimes f(x)).
+    \]
+
+    Now we show that the $S$-module homomorphisms $\Psi$ and $\Phi$ are mutual inverses. On one hand, suppose that $f(x) = \sum_{k=0}^{n} s_k x^k\in S[x] $. Then
+    \[
+      \Phi(\Psi(f(x))) = \Phi\left(\sum_{k=0}^{n}s_k\otimes x^k\right) = \sum_{k=0}^{n}\Phi(s_k\otimes x^k ) = \sum_{k=0}^{n} s_k x^k = f(x),
+    \]
+    so $\Phi\circ\Psi = id_{S[x]}$. On the other hand, it suffices to show that $\Psi\circ\Phi$ agrees with the identity on simple tensors, whence by linearity it would agree with the identity on all of $S\otimes_R R[x]$. Suppose $f(x) = \sum_{k=0}^{n} r_k x^k\in R[x]$ and $s\in S$. Then,
+    \[
+      \Psi(\Phi(s\otimes f(x))) = \Psi(sf(x)) = \sum_{k=0}^{n} \Psi(sr_k x^k) = \sum_{k=0}^{n} (sr_k)\otimes x^k = \sum_{k=0}^{n} s\otimes r_k x^k = s\otimes\sum_{k=0}^{n}  r_k x^k = s\otimes f(x),
+    \]
+    so $\Psi\circ\Phi = id_{S\otimes R[x]}$.
+  \end{proof}
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+  Let $R$ be a commutative ring and $I_1, \ldots, I_k$ be a finite collection of ideals of $R$. Let $M$ be an $R$-module.\\
+
+  \textbf{(a)} Prove that the map $f:M\to \frac{M}{I_1 M}\times \cdots\times \frac{M}{I_k M}$ defined by \[m\mapsto (m+I_1 M, \ldots, m+I_k M)\] is an $R$-module homomorphism with kernel $I_1 M\cap \cdots \cap I_k M$.
+
+  \begin{proof}
+    Let $m,n\in M$ and $r\in R$. Then
+    \[
+      f(r\cdot m+n) = (r\cdot m + n + I_1 M, \ldots, r\cdot m + n + I_k M) =  r\cdot(m + I_1 M, \ldots, m + I_k M) + (n + I_1 M, \ldots, n + I_k M) = r\cdot f(m) + f(n),
+    \]
+    so $f$ is an $R$-module homomorphism. It is clear that $I_1 M\cap \cdots \cap I_k M \sub \ker(f)$, so it remains to show the reverse inclusion. Suppose that $m\in\ker(f)$. Then $(I_1 M, \ldots, I_k M) = f(m) = (m+I_1 M, \ldots, m+I_k M)$, whence $m\in I_j M$ for $1\leq j\leq k$, so $m\in I_1 M\cap \cdots \cap I_k M$.
+  \end{proof}
+
+  \textbf{(b)} Assume in addition that the ideals $I_1,\ldots, I_k$ are pairwise comaximal. Show that there is an isomorphism of $R$-modules,
+  \[
+    \frac{M}{(I_1\cdots I_k)M}\cong \frac{M}{I_1 M}\times\cdots\times \frac{M}{I_k M}.
+  \]
+  \begin{proof}
+    We proceed by induction on the integer $k\geq 2$. Suppose first that $k=2$. Then by comaximality, there exists an $r\in I_1$ and $s\in I_2$ such that $r+s=1$. Then $1-s = r\in I_1$, so for $m\in M$,
+    \begin{align*}
+      f(rm) &= (rm+I_1 M, rm+I_2 M) = (I_1 M, (1-s)\cdot m +I_2 M) = (I_1 M, m +I_2 M) \\
+      f(sm) &= (sm+I_1 M, sm+I_2 M) = ((1-r)\cdot m+I_1 M, I_2 M) = (m+I_1 M, I_2 M).
+    \end{align*}
+    Hence, for a fixed $(m+I_1 M,n+I_2 M)\in M/I_1 M\times M/I_2 M$,
+    \[
+      f(rn + sm) = f(rn) + f(sm) = (m + I_1 M, n + I_2 M),
+    \]
+    so $f$ is surjective. Now we show that $I_1\cap I_2 = I_1 I_2$. The reverse inclusion is true \emph{a priori}, regardless of comaximality of the ideals. For the forward inclusion, suppose that $x\in I_1\cap I_2$. Then $x= x(r+s) = xr+xs \in I_1 I_2$. Hence $\ker(f)= I_1 I_2$ by part (a), so the claim follows via the first isomorphism theorem. \\
+
+    Now fix $k>2$ suppose that the claim holds for all integers less than $k$. Consider the ideals $I = I_1$ and $J = I_2 \cdots I_k$. We claim that these ideals are comaximal. For $j\in \{ 2,\ldots, k\}$, choose $r_j\in I$ and $s_j\in I_i$ such that $r_j + s_j = 1$. Then, every term in the expansion of the product $1 = (x_2+y_2)\cdots (x_k+y_k)$ is in $I$ except for the term $y_2\cdots y_k\in J$, so $1 \in I+J$ i.e. $I,J$ are comaximal. By the induction hypothesis,
+    \[
+      \frac{M}{(I_1\cdots I_k)M}= \frac{M}{(IJ) M} \cong \frac{M}{I_1 M}\times \frac{M}{(I_2\cdots I_k) M} \cong \frac{M}{I_1 M} \times\cdots\times \frac{M}{I_k M}.
+    \]
+  \end{proof}
 \end{homeworkProblem}
 
 \end{document}
