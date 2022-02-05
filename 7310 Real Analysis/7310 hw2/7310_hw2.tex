@@ -1,0 +1,299 @@
+\documentclass[12pt,letterpaper]{article}
+
+%--------Packages--------
+\usepackage{amsmath, amsthm, amssymb}
+\usepackage{xspace}
+\usepackage{graphicx}
+\usepackage{hhline}
+\usepackage{amssymb}
+\usepackage{array}
+\usepackage{braket}
+\usepackage{multicol}
+\usepackage{mathtools}
+\usepackage{enumerate}
+\usepackage{delarray}
+\usepackage{mathtools}
+\usepackage{fullpage}
+\usepackage{faktor} % For quotients
+
+
+% \usepackage{quiver}
+\usepackage[linguistics]{forest}
+
+
+
+
+%--------Page Setup--------
+
+\pagestyle{empty}%
+
+\setlength{\hoffset}{-1.54cm}
+\setlength{\voffset}{-1.54cm}
+
+\setlength{\topmargin}{0pt}
+\setlength{\headsep}{0pt}
+\setlength{\headheight}{0pt}
+
+\setlength{\oddsidemargin}{0pt}
+
+\setlength{\textwidth}{195mm}
+\setlength{\textheight}{250mm}
+
+
+%--------Macros--------
+
+\newcommand{\sub}{\subseteq}
+\newcommand{\lcm}{\text{lcm}}
+\newcommand{\mc}[1]{\mathcal{#1}}
+\newcommand{\mf}[1]{\mathfrak{#1}}
+\newcommand{\sO}{\mathcal{O}}
+\newcommand{\cyclic}[1]{\langle#1\rangle}
+\newcommand{\units}[1]{#1 ^{\times}}
+\newcommand{\la}{\langle}
+\newcommand{\ra}{\rangle}
+%----Switch phi and varphi
+\let\temp\phi
+\let\phi\varphi
+\let\varphi\temp
+
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\N}{\mathbb{N}\xspace}
+\newcommand{\I}{\mathbb{I}\xspace}
+\newcommand{\R}{\mathbb{R}\xspace}
+\newcommand{\Z}{\mathbb{Z}\xspace}
+\newcommand{\Q}{\mathbb{Q}\xspace}
+\newcommand{\G}{\mathbb{G}\xspace}
+\DeclareMathOperator{\Spec}{Spec}
+\DeclareMathOperator{\res}{res}
+\DeclareMathOperator{\Tr}{Tr}
+\DeclareMathOperator{\ord}{ord}
+\DeclareMathOperator{\Sym}{Sym}
+\DeclareMathOperator{\dv}{div}
+\DeclareMathOperator{\alb}{alb}
+\DeclareMathOperator{\img}{Im}
+\DeclareMathOperator{\et}{et}
+\DeclareMathOperator{\ck}{coker}
+\DeclareMathOperator{\Reg}{Reg}
+\DeclareMathOperator{\Cor}{Cor}
+\DeclareMathOperator{\Ac}{at}
+\DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\Pic}{Pic}
+\DeclareMathOperator{\Gal}{Gal}
+\DeclareMathOperator{\fc}{frac}
+\DeclareMathOperator{\Ann}{Ann}
+\DeclareMathOperator{\Mod}{Mod}
+\DeclareMathOperator{\Cone}{Cone}
+\DeclareMathOperator{\FI}{FI}
+\DeclareMathOperator{\End}{End}
+\DeclareMathOperator{\Alb}{Alb}
+\DeclareMathOperator{\Ext}{Ext}
+\DeclareMathOperator{\ab}{ab}
+\DeclareMathOperator{\Jac}{Jac}
+\DeclareMathOperator{\coker}{coker}
+\DeclareMathOperator{\fr}{frac}
+\DeclareMathOperator{\Int}{Int}
+
+
+%----Analysis
+\newcommand{\dd}[2][]{\frac{\partial^{#1}}{\partial {#2}^{#1}}}
+\newcommand{\summ}{\sum\limits}
+\newcommand{\norm}[1]{\left \vert \left \vert #1 \right \vert \right \vert}
+\newcommand{\thicc}{\bigg}
+\newcommand{\eps}{\varepsilon}
+\newcommand*\cls[1]{\overline{#1}}
+
+
+%--------Theorem environments--------
+\newtheorem{definition}{Definition}[]
+\newtheorem{lemma}{Lemma}[]
+\newtheorem{corollary}{Corollary}[]
+\newtheorem{theorem}{Theorem}[]
+\theoremstyle{remark}
+\newtheorem*{claim}{Claim}
+
+
+\newenvironment{solution}
+{\begin{proof}[Solution]}
+{\end{proof}}
+
+
+\makeatletter
+\newcommand{\thickhline}{%
+    \noalign {\ifnum 0=`}\fi \hrule height 1pt
+    \futurelet \reserved@a \@xhline
+}
+\newcolumntype{"}{@{\hskip\tabcolsep\vrule width 1pt\hskip\tabcolsep}}
+\makeatother
+
+% --------Problem environment--------
+\setlength\parindent{0pt}
+\setcounter{secnumdepth}{0}
+\newcounter{partCounter}
+\newcounter{homeworkProblemCounter}
+\setcounter{homeworkProblemCounter}{1}
+
+
+\newenvironment{homeworkProblem}[1][-1]{
+    \ifnum#1>0
+        \setcounter{homeworkProblemCounter}{#1}
+    \fi
+    \section{Problem \arabic{homeworkProblemCounter}}
+    \setcounter{partCounter}{1}
+    \stepcounter{homeworkProblemCounter}
+}
+
+
+%--------Metadata--------
+\title{MATH 7310 Homework 2}
+\author{James Harbour}
+
+\begin{document}
+\maketitle
+
+\begin{homeworkProblem}[1]
+  Let $\mu$ be a finitely additive measure. \\
+
+  \textbf{(a)} Prove that $\mu$ is a measure if and only if it is continuous from below as in Theorem 1.8c.
+
+  \begin{proof}
+    Theorem 1.8c shows the forward direction so it suffices to show the reverse direction. Suppose that $\mu$ is continuous from below. Let $(E_j)_{j=1}^{\infty}$ be a sequence of disjoint elements in the sigma algebra $\mc{M}$ corresponding to $\mu$. Define a new sequence $(F_n)_{n=1}^{\infty}$ in $\mc{M}$ by $F_n = \bigsqcup_{j=1}^{n}E_j$. Then $\bigsqcup_{n=1}^{\infty}E_n = \bigcup_{n=1}^{\infty} F_n$. As $(F_n)_{n=1}^{\infty}$ is an increasing sequence in $\mc{M}$, we have that
+    \[
+      \mu\left(\bigsqcup_{n=1}^{\infty}E_n\right) = \mu\left(\bigcup_{n=1}^{\infty}F_n\right) = \lim_{n\to\infty}\mu(F_n) \lim_{n\to\infty}\sum_{j=1}^{n}\mu(E_j) = \sum_{j=1}^{\infty} \mu(E_j),
+    \]
+    so $\mu$ is a measure.
+  \end{proof}
+
+  \textbf{(b)} If $\mu(X)<\infty$, prove that $\mu$ is a measure if and only if it is continuous from above as in Theorem 1.8d.
+
+  \begin{proof}
+    Theorem 1.8d shows the forward direction so it suffices to show the reverse direction. Suppose that $\mu$ is continuous from above. Let $(E_j)_{j=1}^{\infty}$ be a sequence of disjoint elements in $\mc{M}$. Define a new sequence $(F_n)_{n=1}^{\infty}$ in $\mc{M}$ by $F_n = \bigsqcup_{j=1}^{n}E_j$. Observe that $F_1^c\supset F_2^c \subset F_3^c \supset \cdots$ is a decreasing sequence in $\mc{M}$ with $\mu(F_1^c) = \mu(X)-\mu(F_1) < +\infty$. Hence, by continuity from above,
+    \begin{align*}
+      \mu\left(\bigsqcup_{j=1}^{\infty}E_j\right)&=\mu\left(\bigcup_{n=1}^{\infty}F_n\right) = \mu\left(X\setminus\bigcap_{n=1}^{\infty}F_n^c\right) = \mu(X)-\mu\left(\bigcap_{n=1}^{\infty}F_n^c\right) = \mu(X)-\lim_{n\to\infty}(F_n^c) \\
+      &= \mu(X)-\lim_{n\to\infty}\mu\left(X\setminus \bigsqcup_{j=1}^{n}E_j\right) = \mu(X)-\lim_{n\to\infty}\mu(X)-\mu\left(X\setminus \bigsqcup_{j=1}^{n}E_j\right) = \lim_{n\to\infty}\sum_{j=1}^{n}\mu(E_j) = \sum_{j=1}^{\infty}\mu(E_j),
+    \end{align*}
+    so $\mu$ is a measure.
+  \end{proof}
+\end{homeworkProblem}
+
+\begin{homeworkProblem}[2]
+  Let $(X, \mc{M}, \mu)$ be a finite measure space. \\
+
+  \textbf{(a)} If $E,F\in \mc{M}$ and $\mu(E\Delta F) = 0$, then $\mu(E)=\mu(F)$.
+
+  \begin{proof}
+    Observe that
+    \[
+      0 = \mu(E\Delta F) = \mu((E\setminus F)\sqcup(F\setminus E)) = \mu(E\setminus F) + \mu(F\setminus E).
+    \]
+    As $\mu(E\setminus F),\mu(F\setminus E)\geq 0$, it follows that $\mu(E\setminus F),\mu(F\setminus E) = 0$. Then as $E = (E\setminus F)\sqcup (E\cap F)$ and $F = (F\setminus E) \sqcup (F\cap E)$, $\mu(E) = \mu(F)$.
+  \end{proof}
+
+  \textbf{(b)} Say that $E\sim F$ if $\mu(E\Delta F) = 0$; show that $\sim$ is an equivalence relation on $\mc{M}$.
+
+  \begin{proof}\ \\
+    \emph{(Reflexivity):} Note that $E\Delta E = E\setminus E = \emptyset \implies \mu(E\Delta E) = 0$, so $E\sim E$.
+
+    \emph{(Symmetry):} Note that $E\Delta F = (E\setminus F) \sqcup (F\setminus E) = F\Delta E$, so $E\sim F\implies F\sim E$.
+
+    \emph{(Transitivity):} Suppose that $E\sim F$ and $F\sim G$. Observe that
+    \begin{align*}
+      E\setminus G &= ((E\setminus F)\sqcup (E\cap F))\setminus G = ((E\setminus F)\setminus G) \cup ((E\cap F)\setminus G) \sub (E\setminus F) \cup (F\setminus G) \\
+      G\setminus E &= ((G\setminus F)\sqcup (G\cap F))\setminus E = ((G\setminus F)\setminus E) \cup ((G\cap F)\setminus E) \sub (G\setminus F) \cup (F\setminus E) \\
+    \end{align*}
+    so by monotonicity and subadditivity,
+    \[
+      \mu(E\Delta G) \leq \mu((E\setminus F) \cup (F\setminus G)) + \mu((G\setminus F) \cup (F\setminus E)) \leq \mu(E\setminus F)+\mu(F\setminus E) + \mu(F\setminus G) + \mu(G\setminus F) = \mu(E\Delta F) + \mu(F\Delta G) = 0,
+    \]
+    hence $E\sim G$.
+  \end{proof}
+
+  \textbf{(c)} For $E,F\in\mc{M}$, define $\rho(E,F)=\mu(E\Delta F)$. Then $\rho(E,G)\leq \rho(E,F)+\rho(F,G)$, and hence $\rho$ defines a metric on the space $\mc{M}/\sim$.
+
+  \begin{proof}
+    Note that the inequality used in the proof of transitivity above held regardless of the assumptions that the symmetric differences were zero, whence
+    \[
+      \rho(E,G) = \mu(E\Delta G) \leq \mu(E\Delta F) + \mu(F\Delta G) = \rho(E,F) + \rho(F,G).
+    \]
+  \end{proof}
+\end{homeworkProblem}
+
+
+\begin{homeworkProblem}
+  Let $\mc{A}$ be the collection of finite unions of sets of the form $(a,b]\cap \Q)$ where $-\infty\leq a\leq b\leq +\infty$. \\
+
+  \textbf{(i)} Show that $\mc{A}$ is an algebra on $\Q$. (Use Proposition 1.7.)
+
+  \begin{proof}
+    Let $\mc{E}$ be the collection of sets of the form $(a,b]\cap \Q$ with $-\infty\leq a<b\leq +\infty$. By Proposition 1.7, it suffices to show that $\mc{E}$ is an elementary family.\\
+
+    Note that for an $a\in \R$, $(a,a]\cap \Q = \emptyset$, so $\emptyset\in \mc{E}$. \\
+    Suppose $E,F\in \mc{E}$.
+
+
+  \end{proof}
+
+  \textbf{(ii)} Show that the $\sigma$-algebra generated by $\mc{A}$ is $\mc{P}(\Q)$.
+
+  \begin{proof}
+    As $\mc{A}\sub\mc{P}(\Q)$, by minimality $\Sigma(\mc{a})\sub \mc{P}(\Q)$. Now take $q\in Q$. Observe that $(q-\frac{1}{n}, q]\cap\Q\in\mc{A}$ for all $n\in \N$, whence $\{ q\} =  \bigcap_{n=1}^{\infty}(q-\frac{1}{n}, q]\cap\Q \in \Sigma(\mc{A})$. Hence, $\Sigma(\mc{A})$ contains all finite and countable subsets of $\Q$, so countability of $\Q$ implies that $\mc{P}(\Q)\sub\Sigma(\mc{A})$.
+  \end{proof}
+
+  \textbf{(ii)} Define $\mu_0$ on $\mc{A}$ by $\mu_0(\emptyset)=0$ and $\mu_0(A)=\infty$ for $A\neq\emptyset$. Prove that $\mu_0$ is a premeasure on $\mc{A}$, and that there is more than one measure on $\mc{P}(\Q)$ whose restriction to $\mc{A}$ is $\mu_0$.
+
+  \begin{proof}
+
+  \end{proof}
+\end{homeworkProblem}
+
+
+\begin{homeworkProblem}[5]
+  A \emph{metric measure space} is a triple $(X,d,\mu)$ where $(X,d)$ is a metric space and $\mu\mc{B}_{(X,d)} \to [0,+\infty]$ is a measure. We say that $E\sub X$ is a \emph{continuity set}, if $\mu(\cls{E}\setminus \Int(E)) = 0$. For this problem, fix a metric measure space $(X,d,\mu)$. \\
+
+  \textbf{(i)} Show that the collection of continuity sets forms an algebra of sets.
+
+  \textbf{(ii)} Show that if $x\in X$, $r>0$ and $\mu(B_r(x,d))<+\infty$, then there is an $s\in (0,r)$ so that $B_s(x,d)$ is a continuity set.
+
+  \textbf{(iii)}
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+  Let $(X,d)$ be a metric space and $\mu,\nu$ be finite Borel measures on $X$ with $\mu(X) = \nu(X)$. Let $\mc{A}=\{ E\in\mc{B}_{(X,d)} : \mu(E)=\nu(E)\}$. \\
+
+  \textbf{(i)} Show that if $F\sub E$ and $F,E\in\mc{A}$, then $E\setminus F\in\mc{A}$. Also show that if $(E_n)_{n=1}^{\infty}$ is an increasing sequence of elements of $\mc{A}$, then $\bigcup_{n=1}^{\infty}E_n\in\mc{A}$.
+
+  \begin{proof}
+    As $E,F\in\mc{A}$, $\mu(E)=\nu(E)$ and $\mu(F)=\nu(F)$. Then
+    \[
+      \mu(E\setminus F) = \mu(E)-\mu(F) = \nu(E)-\nu(F) = \nu(E\setminus F)
+    \]
+    so $E\setminus F\in \mc{A}$. Now suppose that $(E_n)_{n=1}^{\infty}$ is an increasing sequence of elements of $\mc{A}$. By continuity from above,
+    \[
+      \mu\left(\bigcup_{n=1}^{\infty}E_n\right) = \lim_{n\to\infty}\mu(E_n) = \lim_{n\to\infty}\nu(E_n) = \nu\left(\bigcup_{n=1}^{\infty}E_n\right),
+    \]
+    so $\bigcup_{n=1}^{\infty}E_n\in\mc{A}$.
+  \end{proof}
+
+  \textbf{(ii)} Given a nonempty $F\sub X$ closed and $x\in X$, define $d(x,F)=\inf_{y\in F}d(x,y)$. Show that $x\mapsto d(x,F)$ is continuous and $F=\{ x\in X : d(x,F) = 0\}$.
+
+  \begin{proof}
+    Suppose $x,y\in X$. For $z\in F$,
+    \[
+      d(x,F) \leq d(x,z) \leq d(x,y)+ d(y,z) \implies d(x,F)-d(x,y)\leq d(y,z).
+    \]
+    As this holds for arbitrary $z\in F$, it follows that $d(x,F) - d(x,y) \leq d(y,F)$, so $d(x,F)- d(y,F) \leq d(x,y)$. By symmetry, $d(y,F)-d(x,F) \leq d(x,y)$, so $|d(x,F)-d(y,F)|\leq d(x,y)$. Thus, the function $x\mapsto d(x,F)$ is $1-Lipschitz$ whence it is continuous. \\
+
+    Clearly $F\sub \{ x\in X : d(x,F) = 0\}$, so it suffices to show the reverse containment. Suppose that $x\in X$ such that $d(x,F) = 0$. For all $n\in \N$, there exists an $f_n\in F$ such that $0\leq d(x,f_n)<\frac{1}{n}$. It follows that $d(x,f_n)\xrightarrow{n\to\infty}0$, so $f_n\xrightarrow{n\to\infty}x$. Thus $x$ is a limit point of $F$, so $F$ being closed implies that $x\in F$.
+  \end{proof}
+
+  \textbf{(iii)} Show that $\{ U\sub X: U\text{ is open}\}\sub\mc{A}$ if an only if $\{ F\sub X : F\text{ is closed}\}\sub\mc{A}$.
+
+  \begin{proof}\ \\
+    \underline{$\implies$}: Suppose that $\{ U\sub X: U\text{ is open}\}\sub\mc{A}$. Take $F\sub X$ such that $F$ is closed. 
+
+    \underline{$\impliedby$}:
+
+  \end{proof}
+\end{homeworkProblem}
+\end{document}
