@@ -15,7 +15,7 @@
 \usepackage{mathtools}
 \usepackage{fullpage}
 \usepackage{faktor} % For quotients
-
+\usepackage{mathrsfs}
 
 % \usepackage{quiver}
 \usepackage[linguistics]{forest}
@@ -46,6 +46,7 @@
 \newcommand{\lcm}{\text{lcm}}
 \newcommand{\mc}[1]{\mathcal{#1}}
 \newcommand{\mf}[1]{\mathfrak{#1}}
+\newcommand{\ms}[1]{\mathscr{#1}}
 \newcommand{\sO}{\mathcal{O}}
 \newcommand{\cyclic}[1]{\langle#1\rangle}
 \newcommand{\units}[1]{#1 ^{\times}}
@@ -274,14 +275,31 @@
   \end{enumerate}
 
   \begin{proof}\ \\
-    \emph{(1$\implies$2)}: Let $(A_j)_{j=1}^{\infty}$ be a sequence in $\mc{A}$ such that $\bigcup_{j=1}^{\infty}A_j\in\mc{A}$. Define a new sequence $(A_n')_{n=1}^{\infty}$ by $A_1'=A_1$ and $A_n' = A_n \setminus \bigcup_{j=1}^{n-1}A_j$ for $n\geq 2$. Then by disjoint countable additivity and monotonicity,
+    \emph{(1$\implies$2)}: Let $(A_j)_{j=1}^{\infty}$ be a sequence in $\mc{A}$ such that $\bigcup_{j=1}^{\infty}A_j\in\mc{A}$. Define a new sequence $(A_n')_{n=1}^{\infty}$ in $\mc{A}$ by $A_1'=A_1$ and $A_n' = A_n \setminus \bigcup_{j=1}^{n-1}A_j$ for $n\geq 2$. Then by disjoint countable additivity and monotonicity,
     \[
       \mu\left(\bigcup_{j=1}^{\infty}A_j\right) = \mu\left(\bigsqcup_{j=1}^{\infty}A_j'\right) = \sum_{j=1}^{\infty}\mu(A_j')\leq \sum_{j=1}^{\infty}\mu(A_j).
     \]
 
-    \emph{($2\implies 3$)}: \\
+    \emph{($1\implies 3$)}:
 
-    \emph{($3\implies 1$)}: Follows identically to the proof in problem 1 part (b) by assumingthe sequence is such that the countable union stays in $\mc{A}$.
+
+
+    \emph{($3\implies 1$)}: Follows identically to the proof in problem 1 part (b) by assuming the sequence is such that the countable union stays in $\mc{A}$.
+
+    \emph{($3\implies 2$)}: Suppose that  $(A_j)_{j=1}^{\infty}$ is a sequence in $\mc{A}$ with $\bigcup_{j=1}^{\infty}A_j\in\mc{A}$. Then, by finite subadditivity (which follows from finite additivity),
+    \[
+      \mu\left(\bigcup_{j=1}^{\infty}A_j\right) = \mu\left(\bigcup_{n=1}^{\infty}\bigcup_{j=1}^{n}A_j\right) = \lim_{n\to\infty}\mu\left(\bigcup_{j=1}^{n}A_j\right) \leq \lim_{n\to\infty}\sum_{j=1}^{n}\mu(A_j) = \sum_{j=1}^{\infty}\mu(A_j).
+    \]
+  \end{proof}
+
+  \textbf{(iii)} If $\mu(X)<+\infty$, show that $\mu$ is a premeasure if and only if for every decreasing sequence $(E_n)_{n=1}^{\infty}$ of sets in $\mc{A}$ with $\bigcap_{n=1}^{\infty}E_n = \emptyset$, we have
+  \[
+    \lim_{n\to\infty}\mu(E_n) = 0.
+  \]
+
+  \begin{proof}\ \\
+    \underline{$\implies$}: Let $(E_n)_{n=1}^{\infty}$ be a decreasing sequence of sets in $\mc{A}$ with $\bigcap_{n=1}^{\infty}E_n = \emptyset$
+
   \end{proof}
 \end{homeworkProblem}
 
@@ -300,7 +318,7 @@
     \[
       \mu\left(\cls{\bigcup_{j=1}^{n} E_j} \setminus \Int\left(\bigcup_{j=1}^{n}E_j\right)\right) = \mu\left(\bigcup_{j=1}^{n} \cls{E_j} \setminus \Int(E_j)\right) \leq \sum_{j=1}^{n}\mu(\cls{E_j}\setminus \Int(E_j)) = 0
     \]
-    whence $E_1\cup\cdots\cup E_n$ is a continuity set. Now suppose that $E\sub X$ is a continuity set. Then
+    whence $E_1\cup\cdots\cup E_n$ is a continuity set. Now suppose that $E\sub X$ is a continuity set.
     \[
       (\cls{X\setminus E})\setminus \Int(X\setminus E) = (X\setminus \Int(E)) \setminus \Int (X\setminus E) = (X\setminus \Int(E)) \setminus (X\setminus \cls{E}) = \cls{E}\setminus \Int(E)
     \]
@@ -314,7 +332,7 @@
     \[
       A_n=\{ s\in(0,r): \frac{1}{n}\leq \mu(\cls{B_s(x)}\setminus\Int(B_s(x))) < \frac{1}{n-1}\}
     \]
-    where $1/0 := \infty$ by convention. Then $(0,r) = \bigcup_{n=1}^{\infty}A_n$, so there exists an $n\in \N$ such that $A_n$ is infinite. Take a countably infinite subset $\{ s_1, s_2, \ldots\}\sub A_n$. Then
+    where $1/0 := \infty$ by convention. Then $(0,r) = \bigcup_{n=1}^{\infty}A_n$, so there exists an $n\in \N$ such that $A_n$ is infinite. Take a countably infinite subset $\{ s_1, s_2, \ldots\}\sub A_n$. Note that, for any fixed $t\in(0,+\infty)$, $\cls{B_t(x)}\setminus\Int(B_t(x))\sub\{y\in X:d(x,y) = t\}$, whence
     \[
       \mu\left(\bigsqcup_{j=1}^{\infty}\cls{B_{s_j}(x)}\setminus\Int(B_{s_j}(x)) \right) = \sum_{j=1}^{\infty}\mu(\cls{B_{s_j}(x)}\setminus\Int(B_{s_j}(x))) = \infty
     \]
@@ -322,6 +340,16 @@
   \end{proof}
 
   \textbf{(iii)} Suppose that $(X,d)$ is separable and that for every $x\in X$, there is an $r>0$ so that $\mu(B_r(x,d))<+\infty$. Show that there is a countable basis consisting of open continuity sets. (Hint: given a countable dense $D\sub X$ and $x\in D$, use the preceding part to choose a countable set $J_x\sub (0,+\infty)$ with the property that $\inf_{t\in J_x}t = 0$ and so that $B_t(x,d)$ is a continuity set for all $t\in J_x$).
+
+  \begin{proof}
+    Let $D\sub X$ be a countable dense subset of $X$. Fix $x\in D$. For $n\in \N$, appeal to part (i) to find a $t_n\in(0,r)$ such that $B_{t_n}(x,d)$ is a continuity set. Letting $J_x = \{ t_n:n\in\N\}$, it follows that $J_x$ has the property that $\inf_{t\in J_x}t = 0$ and so that $B_t(x,d)$ is a continuity set for all $t\in J_x$. Let
+    \[
+      \ms{J} = \{(x,t):x\in D, t\in J_x\}
+    \]
+    Note that $\ms{J}$ is countable. Let $\ms{B} = \{ B_t(x,d): (x,t)\in J_x\}$. We claim that $\ms{B}$ is a basis for the metric topology on $(X,d)$. As $\ms{B}$ covers $D$ and $D$ is dense in $X$, it is clear that $\ms{B}$ covers $X$.
+
+    Suppose that $x\in X$ and $ B_t(y,d),B_{t'}(z,d)\in \ms{B}$ such that $x\in B_t(y,d) \cap B_{t'}(z,d)$. As $\inf_{t\in J_x}t = 0$, there exists a $t''\in J_x$ such that $t\leq t,t'$, whence $x\in B_{t''}(x,d)\sub B_{t}(x,d)\cap B_{t}(x,d)$.
+  \end{proof}
 \end{homeworkProblem}
 
 \begin{homeworkProblem}
