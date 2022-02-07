@@ -315,7 +315,11 @@
       0 = \mu\left(\bigcap_{n=1}^{\infty}E_n\right) = \mu\left(X\setminus\bigcap_{n=1}^{\infty}(X\setminus E_n)\right) = \mu(X)-\mu\left(\bigcup_{n=1}^{\infty} X\setminus E_n\right) =\mu(X)-\lim_{n\to\infty}(\mu(X)-\mu(E_n)) = \lim_{n\to\infty}\mu(E_n)
     \]
 
-    \underline{$\impliedby$}: 
+    \underline{$\impliedby$}: Let $(A_j)_{j=1}^{\infty}$ be a sequence of pairwise disjoint elements of $\mc{A}$ such that $A=\bigcup_{j=1}^{\infty}A_j\in\mc{A}$. Define a new sequence in $\mc{A}$ by $E_n = A\setminus\bigsqcup_{j=1}^{n}A_j$. Then $(E_n)_{n=1}^{\infty}$ is a decreasing sequence in $\mc{A}$ such that $\bigcap_{n=1}^{\infty}=0$. Hence, by assumption,
+    \[
+      0 = \lim_{n\to\infty}\mu(E_n) = \lim_{n\to\infty}\mu(A)-\mu\left(\bigsqcup_{j=1}^{n}A_j\right) = \mu(A)-\lim_{n\to\infty}\sum_{j=1}^{n}\mu(A_j) \implies \mu\left(\bigsqcup_{j=1}^{\infty}A_j\right) = \sum_{j=1}^{\infty}\mu(A_j),
+    \]
+    so $\mu$ is a premeasure.
   \end{proof}
 \end{homeworkProblem}
 

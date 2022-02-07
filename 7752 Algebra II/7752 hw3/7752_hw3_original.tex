@@ -1,0 +1,242 @@
+\documentclass[12pt,
+psamsfonts]{amsart}
+
+%-------Packages---------
+\usepackage{amssymb,amsfonts,amsmath}
+\usepackage[all,arc]{xy}
+\usepackage{enumerate}
+\usepackage{mathrsfs}
+\usepackage{fullpage}
+\usepackage{xspace}
+\usepackage[margin=1.0in]{geometry}
+\usepackage{tcolorbox}
+\usepackage{tikz-cd}
+\usepackage{color}
+\usepackage{aliascnt}
+\usepackage[foot]{amsaddr}
+\usepackage{hyperref}
+
+
+%--------Theorem Environments--------
+%theoremstyle{plain} --- default
+\newtheorem{thm}{Theorem}[section]
+
+%----Theorem
+\newaliascnt{theo}{thm}
+\newtheorem{theo}[theo]{Theorem}
+\aliascntresetthe{theo}
+\newcommand{\theoautorefname}{Theorem}
+%----Corollary
+\newaliascnt{cor}{thm}
+\newtheorem{cor}[cor]{Corollary}
+\aliascntresetthe{cor}
+\newcommand{\corautorefname}{Corollary}
+%----Proposition
+\newaliascnt{prop}{thm}
+\newtheorem{prop}[prop]{Proposition}
+\aliascntresetthe{prop}
+\newcommand{\propautorefname}{Proposition}
+%----Lemma
+\newaliascnt{lem}{thm}
+\newtheorem{lem}[lem]{Lemma}
+\aliascntresetthe{lem}
+\newcommand{\lemautorefname}{Lemma}
+%----Conjecture
+\newaliascnt{conj}{thm}
+\newtheorem{conj}[conj]{Conjecture}
+\aliascntresetthe{conj}
+\newcommand{\conjautorefname}{Conjecture}
+%----Question
+\newaliascnt{que}{thm}
+\newtheorem{que}[que]{Question}
+\aliascntresetthe{que}
+\newcommand{\queautorefname}{Question}
+%----Assumption
+\newaliascnt{ass}{thm}
+\newtheorem{ass}[ass]{Assumption}
+\aliascntresetthe{ass}
+\newcommand{\assautorefname}{Assumption}
+%----Definition
+\newaliascnt{defn}{thm}
+\newtheorem{defn}[defn]{Definition}
+\aliascntresetthe{defn}
+\newcommand{\defnautorefname}{Definition}
+
+
+
+
+%Style
+\theoremstyle{remark}
+%----Remark
+\newaliascnt{rem}{thm}
+\newtheorem{rem}[rem]{Remark}
+\aliascntresetthe{rem}
+\newcommand{\remautorefname}{Remark}
+
+\newtheorem*{ack}{Acknowledgements}
+
+
+
+
+\newtheorem{Proof}{Proof}
+
+\theoremstyle{definition}
+%\newtheorem{defn}[thm]{Definition}
+\newtheorem{defns}[thm]{Definitions}
+\newtheorem{con}[thm]{Construction}
+\newtheorem{exmp}[thm]{Example}
+\newtheorem{exmps}[thm]{Examples}
+\newtheorem{notn}[thm]{Notation}
+\newtheorem{notns}[thm]{Notations}
+\newtheorem{addm}[thm]{Addendum}
+\newtheorem{exer}[thm]{Exercise}
+\newtheorem{conv}[thm]{Convention}
+
+\newtheorem{case}[thm]{Case}
+
+
+\newtheorem{rems}[thm]{Remarks}
+\newtheorem{warn}[thm]{Warning}
+%\newtheorem{sch}[thm]{Scholium}
+\newtheorem{notation}[thm]{Notation}
+\newtheorem{ex}[thm]{Examples}
+\newtheorem{note}[thm]{Note}
+
+
+
+\newcommand{\N}{\mathbb{N}\xspace}
+\newcommand{\I}{\mathbb{I}\xspace}
+\newcommand{\R}{\mathbb{R}\xspace}
+\newcommand{\Z}{\mathbb{Z}\xspace}
+\newcommand{\Q}{\mathbb{Q}\xspace}
+\newcommand{\C}{\mathbb{C}\xspace}
+\newcommand{\G}{\mathbb{G}\xspace}
+\DeclareMathOperator{\Spec}{Spec}
+\DeclareMathOperator{\res}{res}
+\DeclareMathOperator{\Tr}{Tr}
+\DeclareMathOperator{\ord}{ord}
+\DeclareMathOperator{\Sym}{Sym}
+\DeclareMathOperator{\dv}{div}
+\DeclareMathOperator{\alb}{alb}
+\DeclareMathOperator{\img}{Im}
+\DeclareMathOperator{\et}{et}
+\DeclareMathOperator{\ck}{coker}
+\DeclareMathOperator{\Reg}{Reg}
+\DeclareMathOperator{\Cor}{Cor}
+\DeclareMathOperator{\Ac}{at}
+\DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\Pic}{Pic}
+\DeclareMathOperator{\Gal}{Gal}
+\DeclareMathOperator{\fc}{frac}
+\DeclareMathOperator{\Ann}{Ann}
+\DeclareMathOperator{\Mod}{Mod}
+\DeclareMathOperator{\Cone}{Cone}
+\DeclareMathOperator{\FI}{FI}
+\DeclareMathOperator{\End}{End}
+\DeclareMathOperator{\Alb}{Alb}
+\DeclareMathOperator{\Ext}{Ext}
+\DeclareMathOperator{\ab}{ab}
+\DeclareMathOperator{\Jac}{Jac}
+\DeclareMathOperator{\coker}{coker}
+\DeclareMathOperator{\fr}{frac}
+\makeatletter
+\let\c@equation\c@theo
+\makeatother
+\numberwithin{equation}{section}
+
+\bibliographystyle{plain}
+%\newcommand{\textlatin }
+
+
+
+
+%--------Meta Data: Fill in your info------
+\title{Math 7752 - Homework 3\\
+Due Wednesday 02/05/20}
+
+\begin{document}
+
+\maketitle
+
+\begin{enumerate}
+
+%\item Solve problem 8 on pp. 375-376 of Dummit/Foote. Note that there is a small mistake (or rather a misprint) in the setup that you need to find and fix. \\
+
+\item Let $R$ be a commutative domain, and let $M$ be a free $R$-module with basis $X=\{e_1,\ldots,e_k\}$, with $k\geq 2$. Prove that the element $e_1\otimes e_2+e_2\otimes e_1$ cannot be written as simple tensor $m\otimes n$, for some $m,n\in M$. \\
+
+\item Let $R$ be a commutative ring (with $1$) and $n,m\in\N$. Prove that there is an isomorphism of \textbf{$R$-algebras} $R^n\otimes R^m\simeq R^{nm}$. (Here by $R^n$ we mean the direct sum $\underbrace{R\oplus\cdots\oplus R}_n$.) \\
+
+\item \begin{enumerate}
+\item Let $V$ be a finite-dimensional $\C$-vector space. Then $V$ can be considered as a vector over $\R$ (by restriction of scalars), and it holds $\dim_{\R}V=2\dim_{\C}V$. Prove that $V\otimes_{\C}V$ is not isomorphic to $V\otimes_{\R}V$ as $\R$-vector spaces, and compute their dimensions over $\R$.
+\item Let $R$ be an integral domain (commutative), and let $K$ be its fraction field. Prove that there is an isomorphism of $F$-modules, $F\otimes_R F\simeq F\otimes_F F\simeq F$, where the $F$-module structure on $F\otimes_R F$ is given by \textbf{extension of scalars} (i.e. tensor product of Type I).  
+\end{enumerate} 
+\medskip
+
+
+
+
+
+
+\item The purpose of this problem is to classify all $2$-dimensional $\R$-algebras (where $\R$ are the real numbers). That means, to classify (up to algebra isomorphism) those $\R$-algebras that are $2$-dimensional $\R$ vector spaces. 
+
+Let $A$ be a $2$-dimensional $\R$-algebra (with $1$). 
+\begin{enumerate}
+[(a)]\item Let $u\in A$ be any element that is $\R$-linearly independent from $1$. Prove that 
+\begin{enumerate}
+[(i)] \item $u$ generates $A$ as an $\R$-algebra. That is, the minimal $\R$-subalgebra of $A$ containing $u$ and $1$ is $A$ itself. 
+\item The element $u$ satisfies a quadratic equation $au^2+bu+c=0$, for some $a,b,c\in\R$ with $a\neq 0$. Conclude that $A$ is necessarily commutative. 
+\end{enumerate}
+\item Show that there exists some $v\in A$ which is $\R$-linearly independent from $1$ and is such that $v^2=-1$, or $v^2=1$, or $v^2=0$. 
+\item Deduce from part (b) that $A$ is isomorphic as an $\R$-algebra to one of the following: $\R[x]/(x^2+1)$, or $\R[x]/(x^2-1)$, or $\R[x]/(x^2)$.
+\item Prove that the algebras $\R[x]/(x^2+1)$, $\R[x]/(x^2-1)$, and $\R[x]/(x^2)$ are pairwise non-isomorphic. \textbf{Hint:} This can be shown with almost no computation. 
+\end{enumerate}
+\medskip
+\item The purpose of this problem is to prove the following theorem: Let $D$ be a finite dimensional division algebra over $\R$. Then $D$ is isomorphic to $\R,\C$ or $\mathbb{H}$ (the quaternions). One way to proceed is to use the following steps: 
+% Let $R$ be a commutative ring (with $1$). An $R$-algebra $A$ is called \textit{central} if $Z_0(A)=R$. An $R$-algebra $A$ is called \textit{division} if every non zero $a\in A$ has an inverse. The purpose of this problem is to classify all finite dimensional central division $\R$-algebras (where $\R$ are the real numbers). 
+\begin{enumerate}
+[(a)]\item Let $\alpha\in D$ be an element $\R$-linearly independent from $1$. Show that $\alpha$ satisfies a quadratic irreducible polynomial $p_\alpha(x)=x^2+ax+b\in\R[x]$. 
+\item Let $V=\{\alpha\in D:\alpha^2\in\R_{<0}\}$. Show that $V$ is an $\R$-linear subspace of $D$. \textbf{Hint:} Show there is an $\R$-linear map $f:D\to\R$ with kernel $V$. 
+\item Define $B:V\times V\to\R$, $\displaystyle B(\alpha,\beta):=-\frac{\alpha\beta+\beta\alpha}{2}$. Show that $B$ defines an inner product on $V$ (i.e. $B$ is a symmetric, positive definite bilinear form on $V$). 
+\item Let $W$ be a linear subspace of $V$ that generates $D$ as an $\R$-algebra. Let $n=\dim_{\R}W$. Choose an orthonormal basis of $W$, i.e. a basis $\{e_i\}$ of $W$ such that $B(e_i,e_i)=1$ for all $i$ and $B(e_i,e_j)=0$ for all $i\neq j$ (such a basis always exists). Using this orthonormal basis show that if $n\geq 2$, then $D$ has a subalgebra isomorphic to $\mathbb{H}$.  
+\item \textbf{Bonus:} Suppose $n\geq 2$. Prove that $A=H$. \textbf{Hint:} One way to proceed is to show that if $n>2$, then the multiplication  in $D$ cannot be associative.
+\end{enumerate}
+
+
+
+
+\end{enumerate}
+
+\bigskip
+\begin{center}
+\textbf{Problems for extra Practice (not due)}
+\end{center}
+\begin{enumerate}
+\item Let $I$ and $J$ be ideals of a commutative ring $R$. Let $\pi_I:R\rightarrow R/I$ and $\pi_J:R\rightarrow R/J$ be the canonical projections. 
+\begin{enumerate}
+[(a)]
+\item Prove that every element of $R/I\otimes_R R/J$ can be written as a simple tensor. 
+\item Prove that there is an isomorphism of $R$-modules, $R/I\otimes_R R/J\simeq R/(I+J)$.
+\item Show that there is a surjective $R$-module homomorphism $\Phi:I\otimes_R J\rightarrow IJ$ such that $i\otimes j\mapsto ij$. 
+\item Give an example where the homomorphism $\Phi$ of part (c) is not an isomorphism. 
+\end{enumerate}
+
+
+\item Let $R,S$ be commutative rings (with 1). Let $f:R\rightarrow S$ be a ring homomorphism such that $f(1_R)=1_S$, so that $f$ induces an $R$-module structure on $S$. Let $M$ be an $S$-module and $N$ an $R$-module. Prove that there is an isomorphism of $S$-modules, $M\otimes_R N\simeq M\otimes_S(S\otimes_R N)$. 
+
+
+\end{enumerate}
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}
