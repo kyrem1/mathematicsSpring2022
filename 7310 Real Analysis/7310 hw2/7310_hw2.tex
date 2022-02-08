@@ -368,10 +368,12 @@
     \[
       \ms{J} = \bigsqcup_{x\in D} \{x\}\times J_x.
     \]
-    By the axiom of choice, $\ms{J}$ is countable. Let $\ms{B} = \{ B_t(x,d): (x,t)\in \ms{J}\}$. We claim that $\ms{B}$ is a basis for the metric topology on $(X,d)$. As $\ms{B}$ covers $D$ and $D$ is dense in $X$, it is clear that $\ms{B}$ covers $X$.\\
-    % TODO, it is, in fact, not clear that \ms{B} covers X.
+    By the axiom of choice, $\ms{J}$ is countable. Let $\ms{B} = \{ B_t(x,d): (x,t)\in \ms{J}\}$. We claim that $\ms{B}$ is a basis for the metric topology on $(X,d)$. Let $U\sub X$ be open and $p\in U$. 
 
-    Suppose that $x\in X$ and $ B_t(y,d),B_{t'}(z,d)\in \ms{B}$ such that $x\in B_t(y,d) \cap B_{t'}(z,d)$. As $\inf_{t\in J_x}t = 0$, there exists a $t''\in J_x$ such that $t''\leq t,t'$, whence $x\in B_{t''}(x,d)\sub B_{t}(x,d)\cap B_{t}(x,d)$.
+    % As $\ms{B}$ covers $D$ and $D$ is dense in $X$, it is clear that $\ms{B}$ covers $X$.\\
+    % % TODO, it is, in fact, not clear that \ms{B} covers X.
+    %
+    % Suppose that $x\in X$ and $ B_t(y,d),B_{t'}(z,d)\in \ms{B}$ such that $x\in B_t(y,d) \cap B_{t'}(z,d)$. As $\inf_{t\in J_x}t = 0$, there exists a $t''\in J_x$ such that $t''\leq t,t'$, whence $x\in B_{t''}(x,d)\sub B_{t}(x,d)\cap B_{t}(x,d)$.
   \end{proof}
 \end{homeworkProblem}
 
