@@ -271,6 +271,7 @@
     Hence, it follows that $\mu(A)\geq \sum_{j=1}^{\infty}\mu(A_j)$.
   \end{proof}
 
+
   \textbf{(ii)} Show that the following are equivalent:
   \begin{enumerate}
     \item $\mu$ is a premeasure,
@@ -348,13 +349,16 @@
   \textbf{(ii)} Show that if $x\in X$, $r>0$ and $\mu(B_r(x,d))<+\infty$, then there is an $s\in (0,r)$ so that $B_s(x,d)$ is a continuity set.
 
   \begin{proof}
-    We show the stronger statement that, for all $\eps\in(0,r]$, there exists an $s\in (r-\eps,r)$ so that $B_s(x,d)$ is a continuity set. \\
+    We show the stronger statement that there are only countably many $s\in (0,r)$ such that $B_s(x,d)$ is not a continuity set. \\
 
-    Suppose, for the sake of contradiction, that there exists an $\eps\in(0,r]$  such that $\mu(\cls{B_s(x)}\setminus\Int(B_s(x)))\neq 0$ for all $s\in(r-\eps,r)$. For $n\in \N$, define a set
+
+
+
+    Suppose, for the sake of contradiction, that there exists uncountably many counterexamples $s\in (0,r)$ such that $\mu(\cls{B_s(x)}\setminus\Int(B_s(x)))\neq 0$. For $n\in \N$, define a set
     \[
-      A_n=\{ s\in(r-\eps,r): \frac{1}{n}\leq \mu(\cls{B_s(x)}\setminus\Int(B_s(x))) < \frac{1}{n-1}\}
+      A_n=\{ s\in(0,r): \frac{1}{n}\leq \mu(\cls{B_s(x)}\setminus\Int(B_s(x))) < \frac{1}{n-1}\}
     \]
-    where $1/0 := \infty$ by convention. Then, by assumption, $(r-\eps,r) = \bigcup_{n=1}^{\infty}A_n$ which is necessarily uncountable, so there exists an $n\in \N$ such that $A_n$ is infinite. Take a countably infinite subset $\{ s_1, s_2, \ldots\}\sub A_n$. Note that, for any fixed $t\in(0,+\infty)$, $\cls{B_t(x)}\setminus\Int(B_t(x))\sub\{y\in X:d(x,y) = t\}$, whence the following union is disjoint:
+    where $1/0 := \infty$ by convention. Then, by assumption, $\bigcup_{n=1}^{\infty}A_n$ is uncountable, so there exists an $n\in \N$ such that $A_n$ is infinite. Take a countably infinite subset $\{ s_1, s_2, \ldots\}\sub A_n$. Note that, for any fixed $t\in(0,+\infty)$, $\cls{B_t(x)}\setminus\Int(B_t(x))\sub\{y\in X:d(x,y) = t\}$, whence the following union is disjoint:
     \[
       \mu\left(\bigsqcup_{j=1}^{\infty}\cls{B_{s_j}(x)}\setminus\Int(B_{s_j}(x)) \right) = \sum_{j=1}^{\infty}\mu(\cls{B_{s_j}(x)}\setminus\Int(B_{s_j}(x))) = \infty.
     \]
@@ -364,16 +368,15 @@
   \textbf{(iii)} Suppose that $(X,d)$ is separable and that for every $x\in X$, there is an $r>0$ so that $\mu(B_r(x,d))<+\infty$. Show that there is a countable basis consisting of open continuity sets. (Hint: given a countable dense $D\sub X$ and $x\in D$, use the preceding part to choose a countable set $J_x\sub (0,+\infty)$ with the property that $\inf_{t\in J_x}t = 0$ and so that $B_t(x,d)$ is a continuity set for all $t\in J_x$).
 
   \begin{proof}
-    Let $D\sub X$ be a countable dense subset of $X$. Fix $x\in D$. Then there exists an $r_x>0$ such that $\mu(B_{r_x}(x,d))<+\infty$. Define two sets $L_x, U_x\sub (0,r_x)$ as follows. For each $n\in \N$, by part (ii) there exists a $u_n\in (r_x-\frac{1}{n},r_x)$ and $l_n\in (0, \frac{r_x}{n})$ such that $B_{u_n}(x,d)$ and $B_{l_n}(x,d)$ are continuity sets. Let $L_x = \{ l_n : n\in \N\}$ and $U_x = \{ u_n : n\in \N\}$ and set $J_x = U_x \cup L_x$. Then $J_x\sub(0,+\infty)$ is countable such that $\inf_{t\in J_x}t = 0$,  $\sup_{t\in J_x} = r_x$, and $B_t(x,d)$ is a continuity set for all $t\in J_x$. Let
+    Let $D\sub X$ be a countable dense subset of $X$. Fix $x\in D$. Then the set $\{ r\in(0,+\infty): \mu(B_{r_x}(x,d))<+\infty\}$ is nonempty, so define $R_x = \sup\{ r\in(0,+\infty): \mu(B_{r_x}(x,d))<+\infty\}\in [0, +\infty]$. By part (ii), we may take $J_x\sub (0, R_x)$ to be a countable, dense subset of $(0, R_x)$ such that $B_t(x,d)$ is a continuity set for all $t\in J_x$, whence $\inf_{t\in J_x}t = 0$
+
+    % Define two sets $L_x, U_x\sub (0,r_x)$ as follows. For each $n\in \N$, by part (ii) there exists a $u_n\in (r_x-\frac{1}{n},r_x)$ and $l_n\in (0, \frac{r_x}{n})$ such that $B_{u_n}(x,d)$ and $B_{l_n}(x,d)$ are continuity sets. Let $L_x = \{ l_n : n\in \N\}$ and $U_x = \{ u_n : n\in \N\}$ and set $J_x = U_x \cup L_x$.
+
     \[
       \ms{J} = \bigsqcup_{x\in D} \{x\}\times J_x.
     \]
-    By the axiom of choice, $\ms{J}$ is countable. Let $\ms{B} = \{ B_t(x,d): (x,t)\in \ms{J}\}$. We claim that $\ms{B}$ is a basis for the metric topology on $(X,d)$. Let $U\sub X$ be open and $p\in U$. 
+    By the axiom of choice, $\ms{J}$ is countable. Let $\ms{B} = \{ B_t(x,d): (x,t)\in \ms{J}\}$. We claim that $\ms{B}$ is a basis for the metric topology on $(X,d)$. Let $U\sub X$ be open and $p\in U$. Then there exist $r,r'>0$  such that $B_r(p,d)\sub U$ and $\mu(B_{r'}(p,d))<+\infty$. Take $\eps = \min\{ r,r'\}$, so $B_\eps(p,d)\sub U$ and $\mu(B_\eps(p,d))<+\infty$. By density, there exists an $x\in D$ such that $d(x,p)<\frac{\eps}{4}$. Note that $B_{\frac{3\eps}{4}}(x,d)\sub B_{\eps}(p,d)$, whence $\mu(B_{\frac{3\eps}{4}}(x,d))<+\infty$ so $\frac{2\eps}{4}<\frac{3\eps}{4}\leq R_x$. Then, by density of $J_x$ in $(0, R_x)$, there exists a $t\in J_x$ such that $|t-\frac{2\eps}{4}|<\frac{\eps}{100}$. Then $p\in B_t(x,d)$ and $B_t(x,d)$ is a continuity set in $U$.
 
-    % As $\ms{B}$ covers $D$ and $D$ is dense in $X$, it is clear that $\ms{B}$ covers $X$.\\
-    % % TODO, it is, in fact, not clear that \ms{B} covers X.
-    %
-    % Suppose that $x\in X$ and $ B_t(y,d),B_{t'}(z,d)\in \ms{B}$ such that $x\in B_t(y,d) \cap B_{t'}(z,d)$. As $\inf_{t\in J_x}t = 0$, there exists a $t''\in J_x$ such that $t''\leq t,t'$, whence $x\in B_{t''}(x,d)\sub B_{t}(x,d)\cap B_{t}(x,d)$.
   \end{proof}
 \end{homeworkProblem}
 
