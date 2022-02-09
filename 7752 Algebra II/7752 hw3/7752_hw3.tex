@@ -204,9 +204,41 @@
 \begin{homeworkProblem}
   The purpose of this problem is to prove the following theorem: Let $D$ be a finite dimensional division algebra over $\R$. Then $D$ is isomorphic to $\R,\C$ or $\mathbb{H}$ (the quaternions). One way to proceed is to use the following steps: \\
 
-  \textbf{(a)} Let $\alpha\in D$ be an element $\R$-linearly independent from $1$. Show that $\alpha$ satisfies a quadratic irreducible polynomial $p_\alpha(x)=x^2+ax+b\in\R[x]$.\\
+  \textbf{(a)} Let $\alpha\in D$ be an element $\R$-linearly independent from $1$. Show that $\alpha$ satisfies a quadratic irreducible polynomial $p_\alpha(x)=x^2+ax+b\in\R[x]$.
 
-  \textbf{(b)} Let $V=\{\alpha\in D:\alpha^2\in\R_{<0}\}$. Show that $V$ is an $\R$-linear subspace of $D$. \textbf{Hint:} Show there is an $\R$-linear map $f:D\to\R$ with kernel $V$.\\
+  \begin{proof}
+    Since $D$ is finite-dimensional over $\R$, there exists an $n\in\N$ such that the set $\{ 1, \alpha, \ldots, \alpha^n\}$ is $\R$-linearly dependent. Hence $\alpha$ is algebraic over $\R$, so the set $I_\alpha = \{ f(x)\in\R[x]: f(\alpha) = 0\}$.
+
+    % TODO, prove $I_\alpha$ is an ideal.
+    As $I_\alpha$ is an ideal and $\R[x]$ is a PID, there exists a (without loss of generality) monic polynomial $p_\alpha(x)\in\R[x]$ such that $I_\alpha = (p_\alpha)$. As $\alpha$ is algebraic, $p_\alpha=\neq 0$. Moreover, $p_\alpha$ is nonconstant by $p_\alpha(\alpha) = 0$. Hence, $p_\alpha$ is not a unit in $\R[x]$. If $f\in I_\alpha = (p_\alpha)$ is irreducible, then in writing $f = gp_\alpha$ for some $g\in \R[x]$, irreducibility implies that $(f) = (p_\alpha) = I_\alpha$. Moreover, this implies that $\deg(f) = \deg(p_\alpha)$, so $p_\alpha$ being monic implies that $p_\alpha$ is the unique irreducible monic element of $I_\alpha$.
+
+    As $\alpha \not\in \R\cdot 1$, $\deg(p_\alpha)\geq 2$. By the Fundamental Theorem of Algebra, it follows then that $p_\alpha$ must be quadratic, so there exist $a,b\in \R[x]$ such that $p_\alpha(x) = x^2 + ax +b$.
+
+  \end{proof}
+
+  \textbf{(b)} Let $V=\{\alpha\in D:\alpha^2\in\R_{\leq 0}\}$. Show that $V$ is an $\R$-linear subspace of $D$. \textbf{Hint:} Show there is an $\R$-linear map $f:D\to\R$ with kernel $V$.\\
+
+  \begin{proof}
+    For $\alpha\in D$, define an $\R$-endomorphism $T_\alpha$ of $D$ via left multiplication by $\alpha$. This furnished a linear map $D\to \End_\R(D)$. We claim that $V$ is the kernel of the composition of the $\R$-linear maps
+    \[
+      D\rightarrow \End_\R(D) \xrightarrow{\Tr} \R.
+    \]
+    Fix $\alpha\in D$ such that $\alpha\not\in\R\cdot 1$. Then by part (a) there exist $a,b\in\R$ such that $\alpha$ satisfies a quadratic irreducible polynomial $p_\alpha(x) = x^2+ax +b$. Observe that, for $v\in D$,
+    \[
+      p_\alpha(T_\alpha)(v) = T_\alpha^2(v) + aT_\alpha(v) + b(v) = \alpha^2 v +a\alpha v + bv = (\alpha^2+a\alpha + b\alpha)(v) = 0
+    \]
+    so $p_\alpha(T_\alpha) = 0\in\End_\R(D)$. Irreducibility of $p_\alpha$ then implies that $p_\alpha$ is the minimal polynomial for the operator $T\alpha$. Let $\chi_{\alpha}(x)$ be the characteristic polynomial for $T_\alpha$. Then $p_{\alpha}(x)\vert \chi_\alpha(x)$  and there exists a $k\in \N$ such that $\chi_\alpha(x)\vert (p_\alpha(x))^k$. As $\chi_\alpha$ is monic and $p_\alpha$ is irreducible, there exists an $l\in\N$ such that $\chi_\alpha(x) = (p_\alpha(x))^l$. By multinomial expansion,
+
+    \begin{align*}
+      \chi_\alpha(x) = (p_\alpha(x))^l = \sum_{\substack{n_1+n_2+n_3 = l \\ n_1,n_2,n_3\geq 0}}\binom{l}{n_1,\ n_2,\ n_3} x^{2n_1+n_2}a^{n_2}b^{n_3}
+    \end{align*}
+
+    This polynomial has $x^{2l-1}$ coefficient
+    \[
+      \binom{l}{l-1,\ 1,\ 0}a = l\cdot a
+    \]
+    However, the $x^{2l-1}$ coefficient of $\chi_\alpha$ is also $\pm\Tr(T_\alpha)$, so $\pm\Tr(T_\alpha) = l\cdot a$. Moreover, as $p_\alpha(x)$ is irreducible, $a^2-4b < 0\implies b>\frac{a^2}{4}\geq 0$. Hence, if $\alpha$ is such that $\Tr(\alpha) = 0$, then $a = 0$ whence $0 = p_\alpha(\alpha) = \alpha^2 + b \implies \alpha^2 = -b \leq 0$, i.e. $\alpha\in V$. Conversely, suppose that $\alpha\in D\setminus\{0\}$ is such that $\alpha^2 < 0$. Then $\alpha$ is linearly independent from $1$, so there exist $a,b\in \R$. such that $\alpha^2 + a\alpha + b = 0$. Note that, as $\alpha^2\in \R$, linear independence of $\alpha$ from $1$ implies that $a=0$ and $\alpha^2+b = 0$. Then, $\Tr(T_\alpha) = 0$, as desired. 
+  \end{proof}
 
   \textbf{(c)} Define $B:V\times V\to\R$, $\displaystyle B(\alpha,\beta):=-\frac{\alpha\beta+\beta\alpha}{2}$. Show that $B$ defines an inner product on $V$ (i.e. $B$ is a symmetric, positive definite bilinear form on $V$).\\
 
