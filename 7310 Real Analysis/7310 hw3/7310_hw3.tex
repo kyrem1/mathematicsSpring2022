@@ -1,0 +1,211 @@
+\documentclass[12pt,letterpaper]{article}
+
+%--------Packages--------
+\usepackage{amsmath, amsthm, amssymb}
+\usepackage{xspace}
+\usepackage{graphicx}
+\usepackage{hhline}
+\usepackage{amssymb}
+\usepackage{array}
+\usepackage{braket}
+\usepackage{multicol}
+\usepackage{mathtools}
+\usepackage{enumerate}
+\usepackage{delarray}
+\usepackage{mathtools}
+\usepackage{fullpage}
+\usepackage{faktor} % For quotients
+\usepackage{mathrsfs}
+
+% \usepackage{quiver}
+\usepackage[linguistics]{forest}
+
+
+
+
+%--------Page Setup--------
+
+\pagestyle{empty}%
+
+\setlength{\hoffset}{-1.54cm}
+\setlength{\voffset}{-1.54cm}
+
+\setlength{\topmargin}{0pt}
+\setlength{\headsep}{0pt}
+\setlength{\headheight}{0pt}
+
+\setlength{\oddsidemargin}{0pt}
+
+\setlength{\textwidth}{195mm}
+\setlength{\textheight}{250mm}
+
+
+%--------Macros--------
+
+\newcommand{\sub}{\subseteq}
+\newcommand{\lcm}{\text{lcm}}
+\newcommand{\mc}[1]{\mathcal{#1}}
+\newcommand{\mf}[1]{\mathfrak{#1}}
+\newcommand{\ms}[1]{\mathscr{#1}}
+\newcommand{\sO}{\mathcal{O}}
+\newcommand{\cyclic}[1]{\langle#1\rangle}
+\newcommand{\units}[1]{#1 ^{\times}}
+\newcommand{\la}{\langle}
+\newcommand{\ra}{\rangle}
+%----Switch phi and varphi
+\let\temp\phi
+\let\phi\varphi
+\let\varphi\temp
+
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\N}{\mathbb{N}\xspace}
+\newcommand{\I}{\mathbb{I}\xspace}
+\newcommand{\R}{\mathbb{R}\xspace}
+\newcommand{\Z}{\mathbb{Z}\xspace}
+\newcommand{\Q}{\mathbb{Q}\xspace}
+\newcommand{\G}{\mathbb{G}\xspace}
+\DeclareMathOperator{\Spec}{Spec}
+\DeclareMathOperator{\res}{res}
+\DeclareMathOperator{\Tr}{Tr}
+\DeclareMathOperator{\ord}{ord}
+\DeclareMathOperator{\Sym}{Sym}
+\DeclareMathOperator{\dv}{div}
+\DeclareMathOperator{\alb}{alb}
+\DeclareMathOperator{\img}{Im}
+\DeclareMathOperator{\et}{et}
+\DeclareMathOperator{\ck}{coker}
+\DeclareMathOperator{\Reg}{Reg}
+\DeclareMathOperator{\Cor}{Cor}
+\DeclareMathOperator{\Ac}{at}
+\DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\Pic}{Pic}
+\DeclareMathOperator{\Gal}{Gal}
+\DeclareMathOperator{\fc}{frac}
+\DeclareMathOperator{\Ann}{Ann}
+\DeclareMathOperator{\Mod}{Mod}
+\DeclareMathOperator{\Cone}{Cone}
+\DeclareMathOperator{\FI}{FI}
+\DeclareMathOperator{\End}{End}
+\DeclareMathOperator{\Alb}{Alb}
+\DeclareMathOperator{\Ext}{Ext}
+\DeclareMathOperator{\ab}{ab}
+\DeclareMathOperator{\Jac}{Jac}
+\DeclareMathOperator{\coker}{coker}
+\DeclareMathOperator{\fr}{frac}
+\DeclareMathOperator{\Int}{Int}
+
+
+%----Analysis
+\newcommand{\dd}[2][]{\frac{\partial^{#1}}{\partial {#2}^{#1}}}
+\newcommand{\summ}{\sum\limits}
+\newcommand{\norm}[1]{\left \vert \left \vert #1 \right \vert \right \vert}
+\newcommand{\thicc}{\bigg}
+\newcommand{\eps}{\varepsilon}
+\newcommand*\cls[1]{\overline{#1}}
+
+
+%--------Theorem environments--------
+\newtheorem{definition}{Definition}[]
+\newtheorem{lemma}{Lemma}[]
+\newtheorem{corollary}{Corollary}[]
+\newtheorem{theorem}{Theorem}[]
+\theoremstyle{remark}
+\newtheorem*{claim}{Claim}
+
+
+\newenvironment{solution}
+{\begin{proof}[Solution]}
+{\end{proof}}
+
+
+\makeatletter
+\newcommand{\thickhline}{%
+    \noalign {\ifnum 0=`}\fi \hrule height 1pt
+    \futurelet \reserved@a \@xhline
+}
+\newcolumntype{"}{@{\hskip\tabcolsep\vrule width 1pt\hskip\tabcolsep}}
+\makeatother
+
+% --------Problem environment--------
+\setlength\parindent{0pt}
+\setcounter{secnumdepth}{0}
+\newcounter{partCounter}
+\newcounter{homeworkProblemCounter}
+\setcounter{homeworkProblemCounter}{1}
+
+
+\newenvironment{homeworkProblem}[1][-1]{
+    \ifnum#1>0
+        \setcounter{homeworkProblemCounter}{#1}
+    \fi
+    \section{Problem \arabic{homeworkProblemCounter}}
+    \setcounter{partCounter}{1}
+    \stepcounter{homeworkProblemCounter}
+}
+
+
+%--------Metadata--------
+\title{MATH 7310 Homework 3}
+\author{James Harbour}
+
+\begin{document}
+\maketitle
+
+\begin{homeworkProblem}[2]
+  Let $(X,\Sigma,\mu)$ be a measure space. We say that $E\sub X$ is \emph{an atom} if
+  \begin{itemize}
+    \item $E\in\Sigma$,
+    \item $\mu(E)>0$,
+    \item $\{\mu(F) : F\sub E, F\in \Sigma\} = \{ 0, \mu(E)\}$.
+  \end{itemize}
+  We say the $\mu$ is \emph{diffuse} if it has no atoms.\\
+
+  \textbf{(a)} Let $(X,d,\mu)$ be a metric measure space. Assume that $\mu$ is outer regular, and that
+  \[
+    \mu(E) = \sup\{\mu(K):K\sub E\text{ compact}\}\text{ for all Borel } E\sub X.
+  \]
+  If $\mu(\{ p\}) = 0$ for all $p\in X$, show that $\mu$ is diffuse.
+
+  \begin{proof}
+    Suppose, for the sake of contradiction, that $\mu$ is not diffuse. Then there exists an atom $E\sub X$.
+  \end{proof}
+
+  \textbf{(b)} Let $F:\R\to\R$ be an increasing, right-continuous function. Show that for $p\in\R$ we have that $\{ p\}$ is an atom of $\mu_F$ if and only if $F$ is discontinuous at $p$. Show that $\mu_F$ is diffuse if and only if $F$ is continuous.
+\end{homeworkProblem}
+
+
+\begin{homeworkProblem}[4]
+  Let $(X,\Sigma,\mu)$ be a diffuse $\sigma$-finite measure space. For $A\in\Sigma$, show that:
+  \[
+    \{ \mu(B): B\sub A, B\in\Sigma\} = [0,\mu(A)].
+  \]
+  Suggestions: Reduce to the finite case. It might be helpful to first show that for every $E\in\Sigma$ with $\mu(E)>0$, we have $0 = \inf\{ \mu(B): B\sub E\text{ and }\mu(B)>0\}$.
+
+  \begin{proof}\ \\
+    (\emph{reduction to finite case}): Write $X = \bigcup_{i=1}^{\infty}X_i$ where $X_i\in\Sigma$ and $\mu(X_i) <+\infty$. \\
+
+    Suppose that $E\in \Sigma$ with $\mu(E)>0$. Since $\mu$ is diffuse, there exists a $B_1\sub E$ such that $B_1\in \Sigma$ and $0<\mu(B_1)<\mu(E)$. Note that either $\mu(B_1)$ or $\mu(E\setminus B_1)$ is less than $2^{-1}\mu(E)$, so without loss of generality assume that $\mu(B_1)<2^{-1}\mu(E)$. Now, again as $\mu$ is diffuse, there exists a $B_2\sub B_1$ such that $B_2\in\Sigma$ and $0<\mu(B_2)<\mu(B_1) <\mu(E)$. Again, we may assume without loss of generality that $\mu(B_2)<2^{-1}\mu(B_1)<2^{-2}\mu(E)$. Continuing as such, we obtain a decreasing sequence of sets $E\supset B_1\supset B_2 \supset\cdots$ such that $0<\mu(B_n)<2^{-n}\mu(E)$. It follows that $0 = \inf\{ \mu(B): B\sub E\text{ and }\mu(B)>0\}$. \\
+
+    % Observe that, given any $E\in\Sigma$ with $\mu(E)>0$, we can always find a $B\sub E$ with $B\in \Sigma$ such that $0<\mu(B)<\frac{\mu(E)}{2} \implies \frac{\mu(E)}{2}<\mu(E\setminus B)<\mu(E)$, i.e. we can always find sets $B,B'\in\Sigma$ with $B,B'\sub E$ such that $\mu(B)\in(0,\frac{\mu(E)}{2})$ and $\mu(B')\in (\frac{\mu(E)}{2},\mu(A))$. \\
+    % With this information, we mimic the binary search algorithm from computer science.\\
+
+    % Fix $\beta\in (0,\mu(A))$. Let $a_0 = 0$, $b_0=\mu(A)$, and $c_0 = \frac{\mu(A)}{2}$. Construct the sequences $a_n < b_n < c_n$ in $[0,\mu(A)]$ and $(B_n)$ in $\Sigma$ inductively as follows: given $a_j < c_j < b_j$ and $$, if $\beta\in(a_j,c_j]$ then set $a_{j+1} := a_j$, $b_{j+1} = c_j$, and $c_{j+1} = \frac{a_j+c_j}{2}$; otherwise set $a_{j+1} := c_j$, $b_{j+1} = b_j$, and $c_{j+1} = \frac{c_j+b_j}{2}$. Note that $(a_n)$ is nondecreasing and $(b_n)$ is nondecreasing. \\
+
+    Zornification time. Consider the poset $(\ms{S},\preceq)$ where $\ms{S} = \{ B\sub A: B\in\Sigma, \mu(B)\leq\beta\}$ and
+    \[
+      B\preceq B' \iff \mu(B\setminus B') = 0
+    \]
+    i.e. $B\sub B'$ $\mu$-almost everywhere. Let $\ms{C}$ be a chain in $\ms{S}$. Let $\alpha = \sub_{B\in\ms{C}}\mu(B)$. Then we may choose $B_1\preceq B_2\preceq B_3\preceq\cdots$ in $\mc{C}$ such that $\lim_{n\to\infty}\mu(B_n) = \alpha$
+  \end{proof}
+\end{homeworkProblem}
+
+
+
+
+
+
+
+
+\end{document}
