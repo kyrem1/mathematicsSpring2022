@@ -176,6 +176,32 @@
 \end{homeworkProblem}
 
 
+\begin{homeworkProblem}[3]
+  Let $(X,\Sigma,\mu)$ be a $\sigma$-finite measure space.
+
+  \textbf{(i)} Suppose  that $(E_j)_{j\in J}$ is a collection of sets with $E_j\in\Sigma$ for all $j\in J$ and with $\mu(E_j)>0$ for all $j\in J$, and so that $\mu(E_j\cap E_k) = 0$ for all $j\neq k$ in $J$. Show that $J$ is countable.
+
+  \begin{proof}
+    Without loss of generality, assume that $X=\bigsqcup_{n=1}^{\infty}X_n$ where $X_n\in\Sigma$, $\mu(X_n>0)$ for all $n\in\N$, and $X_i\cap X_j = \emptyset$ for $i\neq j$. \\
+
+    Suppose, for the sake of contradiction, that $J$ is uncountable. For $j\in J$, note that
+    \[
+      0<\mu(E_j) = \sum_{n=1}^{\infty}\mu(E_j\cap X_n),
+    \]
+    whence there exists an $n_j\in\N$ such that $\mu(E_j\cap X_n)>0$. As there can only be countably many such $n_j$'s and there are uncountably many $E_j$'s, there exists a $k\in\N$ and $J_0\sub J$ uncountable such that $\mu(E_j\cap X_{k})>0$ for all $j\in J_0$.  \\
+
+    Choose a countable sequence $(j_l)_{l=1}^{\infty}$ in $J_0$ such that $j_{l}\neq j_{s}$ for $l\neq s$. For $n\in\N$, set $F_n = E_j\cap X_k$. Note that, for $l\neq s$, we have that $\mu(F_l\cap F_s) = 0$. Define a new sequence of pairwise disjoint sets $(L_n)_{n=1}^{\infty}$ in $\Sigma$ by $L_1=F_1$ and
+    \[
+      L_n = \left(\bigcup_{l=1}^{n} F_l\right) \setminus \left(\bigcup_{s=1}^{n-1}F_s\right) = .
+    \]
+    If $n>1$, then
+    \[
+      L_n =
+    \]
+    % TODO This doesn't work.
+  \end{proof}
+\end{homeworkProblem}
+
 \begin{homeworkProblem}[4]
   Let $(X,\Sigma,\mu)$ be a diffuse $\sigma$-finite measure space. For $A\in\Sigma$, show that:
   \[
