@@ -52,6 +52,7 @@
 \newcommand{\units}[1]{#1 ^{\times}}
 \newcommand{\la}{\langle}
 \newcommand{\ra}{\rangle}
+\newcommand{\lr}[1]{\left(#1\right)}
 %----Switch phi and varphi
 \let\temp\phi
 \let\phi\varphi
@@ -188,18 +189,59 @@
     \[
       0<\mu(E_j) = \sum_{n=1}^{\infty}\mu(E_j\cap X_n),
     \]
-    whence there exists an $n_j\in\N$ such that $\mu(E_j\cap X_n)>0$. As there can only be countably many such $n_j$'s and there are uncountably many $E_j$'s, there exists a $k\in\N$ and $J_0\sub J$ uncountable such that $\mu(E_j\cap X_{k})>0$ for all $j\in J_0$.  \\
+    whence there exists an $n_j\in\N$ such that $\mu(E_j\cap X_n)>0$. As there can only be countably many such $n_j$'s and there are uncountably many $E_j$'s, there exists a $k\in\N$ and $J_0\sub J$ uncountable such that $\mu(E_j\cap X_{k})>0$ for all $j\in J_0$. By a pigeonhole argument, there exists a $b>0$ and an infinite $J_0'\sub J_0$ such that $\mu(E_j\cap X_k) > b$ for all $j\in J_0'$. \\
 
-    Choose a countable sequence $(j_l)_{l=1}^{\infty}$ in $J_0$ such that $j_{l}\neq j_{s}$ for $l\neq s$. For $n\in\N$, set $F_n = E_j\cap X_k$. Note that, for $l\neq s$, we have that $\mu(F_l\cap F_s) = 0$. Define a new sequence of pairwise disjoint sets $(L_n)_{n=1}^{\infty}$ in $\Sigma$ by $L_1=F_1$ and
+    Choose a countable sequence $(j_l)_{l=1}^{\infty}$ in $J_0$ such that $j_{l}\neq j_{s}$ for $l\neq s$. For $n\in\N$, set $F_n = E_j\cap X_k$. Note that, for $l\neq s$, we have that $\mu(F_l\cap F_s) = 0$. \\
+
+    % Define a new sequence of pairwise disjoint sets $(L_n)_{n=1}^{\infty}$ in $\Sigma$ by $L_1=F_1$ and
+    % \[
+    %   L_n = \left(\bigcup_{l=1}^{n} F_l\right) \setminus \left(\bigcup_{s=1}^{n-1}F_s\right) = .
+    % \]
+    % If $n>1$, then
+    % \[
+    %   L_n =
+    % \]
+    % % TODO This doesn't work.
+
+    We claim that $\mu(\sum_{l=1}^{n}F_l) = \sum_{l=1}^{n}\mu(F_l)$ for all $n\in\N$ by induction. Observe that
     \[
-      L_n = \left(\bigcup_{l=1}^{n} F_l\right) \setminus \left(\bigcup_{s=1}^{n-1}F_s\right) = .
+      \mu(F_1\cup F_2) = \mu(F_1)+\mu(F_2)-\mu(F_1\cap F_2) = \mu(F_1)+\mu(F_2).
     \]
-    If $n>1$, then
+    Now fix $n>2$ and suppose that $\mu(\sum_{l=1}^{n-1}F_l) = \sum_{l=1}^{n-1}\mu(F_l)$. Observe that
     \[
-      L_n =
+      \mu\lr{F_n \cap \bigcup_{j=1}^{n-1}F_j} = \mu\lr{\bigcup_{j=1}^{n-1}F_n\cap F_j} \leq \sum_{j=1}^{n-1}\mu(F_n\cap F_j) = 0,
     \]
-    % TODO This doesn't work.
+    so
+    \[
+      \mu\lr{\bigcup_{j=1}^{n}F_j} = \mu\lr{F_n\cup\bigcup_{j=1}^{n-1}F_j} = \mu(F_n)+\sum_{j=1}^{n-1}\mu(F_j) - \mu\lr{F_n\cap\bigcup_{j=1}^{n-1}F_j} = \sum_{j=1}^{n}\mu(F_j).
+    \]
+    By induction, the claim holds for all $n\in\N$. \\
+
+    Observe that, for all $n\in\N$,
+
+    \[
+      \mu\lr{\bigcup_{j=1}^{\infty}F_j} \geq \mu\lr{\bigcup_{j=1}^{n}F_j} = \sum_{j=1}^{n}\mu(F_j) \geq n\cdot b.
+    \]
+    Hence $\mu\lr{\bigcup_{j=1}^{\infty}F_j} = +\infty$, contradicting the fact that $\mu(X_k)<+\infty$.
+
   \end{proof}
+
+  \textbf{(ii)} Let $(\Omega, \rho)$ be the metric space defined in Problem 12 of Chapter 1 of Folland. For $E\in\Sigma$, let $[E]$ be its equivalence class in $\Omega$. Show that
+  \[
+    \{[E]:E\sub X \text{ is an atom}\},
+  \]
+  is countable.
+
+  \begin{proof}
+    Let $\sim$ be the equivalence relation $E\sim F\iff \mu(E\Delta F) = 0$. Let $\mc{E} = \{ E:E\sub X \text{ is an atom}\}$. Let $\pi:\mc{E}\to\mc{E}/\sim$ be the canonical surjection. By the axiom of choice, there exists a section $s:\mc{E}/\sim\to \mc{E}$ such that $\pi\circ s = id_{\mc{E}/\sim}$. Take $E\neq F\in s(\mc{E}/\sim)$. Then, as $s$ is injective, $[E] \neq [F]$, so $\mu(E_i\Delta E_j)>0 0$. \\
+
+    Suppose, without loss of generality, that $\mu(E_i\setminus E_j)>0$. Then, as $E_i$ is an atom, $\mu(E_i\setminus E_j) = \mu(E_i)$. Hence
+    \[
+      \mu(E_i) = \mu(E_i\setminus E_j) + \mu(E_i\cap E_j) = \mu(E_i) + \mu(E_i\cap E_j) \implies \mu(E_i\cap E_j) = 0
+    \]
+    Hence, $s(\mc{E}/\sim)$ has the properties of the collection in part (i), so $s(\mc{E}/\sim)$ is countable whence injectivity implies that $\mc{E}/\sim$ is countable.
+  \end{proof}
+
 \end{homeworkProblem}
 
 \begin{homeworkProblem}[4]
