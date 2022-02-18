@@ -1,0 +1,278 @@
+\documentclass[12pt,letterpaper]{article}
+
+%--------Packages--------
+\usepackage{amsmath, amsthm, amssymb}
+\usepackage{xspace}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{array}
+\usepackage{braket}
+\usepackage{multicol}
+\usepackage{mathtools}
+\usepackage{enumerate}
+\usepackage{delarray}
+\usepackage{mathtools}
+\usepackage{fullpage}
+\usepackage{faktor} % For quotients
+\usepackage{mathrsfs}
+
+% \usepackage{quiver}
+\usepackage[linguistics]{forest}
+
+
+
+
+%--------Page Setup--------
+
+\pagestyle{empty}%
+
+\setlength{\hoffset}{-1.54cm}
+\setlength{\voffset}{-1.54cm}
+
+\setlength{\topmargin}{0pt}
+\setlength{\headsep}{0pt}
+\setlength{\headheight}{0pt}
+
+\setlength{\oddsidemargin}{0pt}
+
+\setlength{\textwidth}{195mm}
+\setlength{\textheight}{250mm}
+
+
+%--------Macros--------
+
+\newcommand{\sub}{\subseteq}
+\newcommand{\lcm}{\text{lcm}}
+\newcommand{\ms}[1]{\mathscr{#1}}
+\newcommand{\mc}[1]{\mathcal{#1}}
+\newcommand{\mf}[1]{\mathfrak{#1}}
+\newcommand{\sO}{\mathcal{O}}
+\newcommand{\cyclic}[1]{\langle#1\rangle}
+\newcommand{\units}[1]{#1 ^{\times}}
+\newcommand{\la}{\langle}
+\newcommand{\ra}{\rangle}
+\newcommand{\lr}[1]{\left(#1\right)}
+%----Switch phi and varphi
+\let\temp\phi
+\let\phi\varphi
+\let\varphi\temp
+
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\N}{\mathbb{N}\xspace}
+\newcommand{\I}{\mathbb{I}\xspace}
+\newcommand{\R}{\mathbb{R}\xspace}
+\newcommand{\Z}{\mathbb{Z}\xspace}
+\newcommand{\Q}{\mathbb{Q}\xspace}
+\newcommand{\G}{\mathbb{G}\xspace}
+\DeclareMathOperator{\Spec}{Spec}
+\DeclareMathOperator{\res}{res}
+\DeclareMathOperator{\Tr}{Tr}
+\DeclareMathOperator{\ord}{ord}
+\DeclareMathOperator{\Sym}{Sym}
+\DeclareMathOperator{\dv}{div}
+\DeclareMathOperator{\alb}{alb}
+\DeclareMathOperator{\img}{Im}
+\DeclareMathOperator{\et}{et}
+\DeclareMathOperator{\ck}{coker}
+\DeclareMathOperator{\Reg}{Reg}
+\DeclareMathOperator{\Cor}{Cor}
+\DeclareMathOperator{\Ac}{at}
+\DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\Pic}{Pic}
+\DeclareMathOperator{\Gal}{Gal}
+\DeclareMathOperator{\fc}{frac}
+\DeclareMathOperator{\Ann}{Ann}
+\DeclareMathOperator{\Mod}{Mod}
+\DeclareMathOperator{\Cone}{Cone}
+\DeclareMathOperator{\FI}{FI}
+\DeclareMathOperator{\End}{End}
+\DeclareMathOperator{\Alb}{Alb}
+\DeclareMathOperator{\Ext}{Ext}
+\DeclareMathOperator{\ab}{ab}
+\DeclareMathOperator{\Jac}{Jac}
+\DeclareMathOperator{\coker}{coker}
+\DeclareMathOperator{\fr}{frac}
+\DeclareMathOperator{\spn}{span}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\rk}{rk}
+
+
+%----Analysis
+\newcommand{\dd}[2][]{\frac{\partial^{#1}}{\partial {#2}^{#1}}}
+\newcommand{\summ}{\sum\limits}
+\newcommand{\norm}[1]{\left \vert \left \vert #1 \right \vert \right \vert}
+\newcommand{\thicc}{\bigg}
+\newcommand{\eps}{\varepsilon}
+
+
+%--------Theorem environments--------
+\newtheorem{definition}{Definition}[]
+\newtheorem{lemma}{Lemma}[]
+\newtheorem{corollary}{Corollary}[]
+\newtheorem{theorem}{Theorem}[]
+\theoremstyle{remark}
+\newtheorem*{claim}{Claim}
+
+
+\newenvironment{solution}
+{\begin{proof}[Solution]}
+{\end{proof}}
+
+
+\makeatletter
+\newcolumntype{"}{@{\hskip\tabcolsep\vrule width 1pt\hskip\tabcolsep}}
+\makeatother
+
+% --------Problem environment--------
+\setlength\parindent{0pt}
+\setcounter{secnumdepth}{0}
+\newcounter{partCounter}
+\newcounter{homeworkProblemCounter}
+\setcounter{homeworkProblemCounter}{1}
+
+
+\newenvironment{homeworkProblem}[1][-1]{
+    \ifnum#1>0
+        \setcounter{homeworkProblemCounter}{#1}
+    \fi
+    \section{Problem \arabic{homeworkProblemCounter}}
+    \setcounter{partCounter}{1}
+    \stepcounter{homeworkProblemCounter}
+}
+
+
+%--------Metadata--------
+\title{MATH 7752 Homework 4}
+\author{James Harbour}
+
+
+\begin{document}
+\maketitle
+
+\begin{homeworkProblem}
+  Let $V$ and $W$ be finite dimensional vector spaces over a field $F$. Let $\{v_1,\ldots,v_n\}$, $\{w_1,\ldots,w_m\}$ be bases of $V,W$ respectively. Consider the $F$-linear transformation $\phi:V\otimes_F W\rightarrow M_{n\times m}(F)$ defined by $\phi(v_i\otimes w_j)=e_{ij}$, where $e_{ij}$ is the matrix with $1$ at the $(i,j)$-entry and $0$ elsewhere.\\
+
+  \textbf{(a)} Verify that such a linear transformation exists and is in fact an isomorphism of $F$-vector spaces. \\
+
+  \begin{proof}
+    Define a map $\Phi:V\times W\to M_{n\times m}(F)$ by $\Phi(v_i, w_j)= e_{ij}$ and extending bilinearly. Then, by construction, $\Phi$ is an F-bilinear map, so universality of tensor product implies that there exists an $F$-linear $\phi:V\otimes_F W\rightarrow M_{n\times m}(F)$ such that $\phi(v_i\otimes w_j) = \Phi(v_i,w_j) = e_{ij}$. As $\{v_i\otimes w_j\}_{i,j}$ is a basis for $V\otimes_F W$ which $\phi$ maps linearly to $\{ e_{ij}\}_{i,j}$, a basis for $M_{n\times m}(F)$, it follows that $\phi$ is an isomorphism.
+  \end{proof}
+
+  \textbf{(b)} Prove that for every $A\in M_{n\times m}(F)$ the following statements are equivalent:
+  \begin{enumerate}
+  [(i)]\item There exists some $v\in V, w\in W$ such that $A=\phi(v\otimes w)$ ($v,w$ need not be basis elements).
+  \item $\rk(A)\leq 1$.
+  \end{enumerate}
+
+  \begin{proof}\ \\
+    \underline{($i\implies ii$)}: Suppose that there exist some $v\in V$ and $w\in W$ such that $A=\phi(v\otimes w)$. If $v$ or $w$ is zero, then $A$ would be zero and thus have rank zero, so suppose $v,w \neq 0$. Write $v = \sum_{i=1}^{n}a_i v_i$ and $w= \sum_{j=1}^{m}b_j w_j$. Then
+    \[
+      A = \phi(v\otimes w) = \phi\lr{\sum_{i,j}a_i b_j v_i\otimes w_j} = \sum_{i,j}a_i b_j e_{ij}
+    \]
+    so each row has the form $\rho_r = (a_r b_1, a_r b_2, \ldots, a_r b_m) = a_r\cdot (b_1,\ldots, b_m)$. If all but one row is zero, then $\rk(A) = 1$. If $\rho_r,\rho_s$ are two nonzero rows with $r\neq s$, then $a_r,a_s\neq 0$ and $a_s\cdot\rho_r - a_r\cdot \rho_s = 0$, so the cardinality of a maximal linearly independent subset of the rows of $A$ is at most 1, whence $\rk(A)\leq 1$.\\
+
+
+    \underline{($ii\implies i$)}: Suppose that $\rk(A) = 1$. Then there exist bases $\{v_1',\ldots,v_n'\}$, $\{w_1',\ldots,w_m'\}$ of $V,W$ respectively such that the matrix of $A$ is equal to $e_{11}$. Take $v = v_1'$ and $w = w_1'$. Then $\phi(v\otimes w) = A$.
+  \end{proof}
+
+
+
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+  Let $R=\oplus_{n=0}^\infty R_n$ be a graded ring. Recall that an element $r\in R$ is called \textit{homogeneous} if $r\in R_n$, for some $n\geq 0$. Notice that every $r\in R$ can be written uniquely as $\displaystyle r=\sum_{n=0}^\infty r_n$, where $r_n\in R_n$ and all but finitely many $r_n$'s are equal to zero. The elements $\{r_n\}$ are called \textit{the homogeneous components} of $r$
+
+  \textbf{(a)} Let $I$ be an ideal of $R$. Prove that the following statements are equivalent:\\
+  \begin{enumerate}
+  [(i)]\item $I$ is a graded ideal, i.e. $\displaystyle I=\oplus_{n=0}^\infty(I\cap R_n)$.
+  \item For each $r\in I$, all homogeneous components of $r$ lie also in $I$.
+  \end{enumerate}
+
+  \begin{proof}\ \\
+    \underline{($i\implies ii$)}: Suppose $I$ is a graded ideal and let $r\in I$. Then, as $I$ is graded, there exist $r_k\in I\cap R_k$ for $k\geq 0$ such that $r = \sum_{k\geq 0}r_k$ with all but finitely many $r_k$ nonzero. On the other hand, since $R_k\cap I\sub R_k$ for all $k\geq 0$, the directness of the sum decomposition of $R$ into a grading implies by uniqueness that the $r_k$'s are precisely the homogenous components of $r$. \\
+
+    \underline{($ii\implies i$)}: Suppose that, for each $r\in I$, all homogenous components of $r$ lie also in $I$. Take $i\in I$. Using the decomposition of $R$ to write $i$ as $i=\sum_{k\geq 0}r_k$ for some $r_k\in R_k$. By assumption, $r_k\in I$ for $k\in \N$, so $i\in \sum_{k\geq0} I\cap R_k$. Hence $I\sub\sum_{k\geq0} I\cap R_k$. On the other hand, $\sum_{k\geq0} I\cap R_k\sub I$ as each summand is in $I$. Moreover, the sum $\sum_{k\geq0} I\cap R_k$ is in fact direct as each $I\cap R_k$ is inside $R_k$ and the sum decomposition for $R$ is direct. Thus $I = \oplus_{k\geq0} I\cap R_k$.
+  \end{proof}
+
+
+  \textbf{(b)} Let $I$ be an ideal of $R$ generated by homogeneous elements. Prove that $I$ is graded. \\
+
+  \begin{proof}
+    Let $\{ X\sub I\}$ be a set of homogenous elements which generate $I$. For $r\in I$, there exist $x_1,\ldots,x_n\in X$ such that $r = \sum_{i=1}^{n}x_i$ and each $x_i\in R_{k_i}$ for some $k_i\geq 0$. By uniqueness of direct sum decomposition, these $x_i$ are the homogenous components of $r$, so $x_i\in\{ X\}\sub I$ implies by part (a) that $I$ is a graded ideal.
+  \end{proof}
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+  \textbf{(a)} Let $R$ be a PID. Prove that $R$ is Noetherian. \\
+
+  \begin{proof}
+    Suppose $I_1\sub I_2\sub\cdots$ is an ascending chain of ideals in $R$. Then $I = \bigcup_{i=1}^{\infty} I_i$ is an ideal of $R$, so by PID there exists an $r\in R$ such that $I=(r)$. But then, as $r\in I$, there exists a $k\in \N$ such that $r\in I_k$. Hence $(r)\sub I_k \sub I_{k+1} \sub \cdots \sub I = (a)$, so $I_{k} = I_{k+1} = \cdots$ as desired.
+  \end{proof}
+
+  \textbf{(b)} Let $R$ be a commutative ring and $M$ be an $R$-module.
+  Recall that $M$ is called \textit{Noetherian} if every ascending chain $M_1\subset M_2\subset \cdots M_n\subset\cdots$ of submodules of $M$ eventually stabilizes.\\
+
+  \textbf{(i)} Let $N$ be a submodule of $M$. Prove that the following are equivalent:
+    \begin{enumerate}
+    \item $M$ is Noetherian.
+    \item $N$ and $M/N$ are both Noetherian.
+    \end{enumerate}
+
+    \begin{proof}
+      The forward direction is immediate as ascending chains in $N$ are ascending chains in $M$ and ascending chains in $M/N$ may be pulled back to chains in $M$ by the correspondence theorem. Hence, it suffices to prove the reverse direction.\\
+
+      Suppose that $M_1\sub M_2\sub M_3\sub \cdots$ is an ascending chain of submodules in $M$. Then  $\frac{M_1+N}{N} \sub \frac{M_2+N}{N} \sub \frac{M_3+N}{N} \sub \cdots$ and $M_1\cap N \sub M_2\cap N\sub \cdots$ stabilize at some $k,s\in\N$. Take $l = \max\{ k,s\}$. Then $M_l\cap N = M_{l+1}\cap N$ and $M_l+N = M_{l+1} + N$. Let $x\in M_{l+1}$. Then $x\in M_{l+1}+N = M_{l}+N$, so there exists some $m\in M_l$ and $n\in N$ such that $x = m+n$. Then $x-m\in M_{l+1}\cap N = M_l\cap N \sub M_l$, so $x=(x-m)+m\in M_l$. Thus $M_l = M_{l+1} = \cdots$.
+    \end{proof}
+
+    \textbf{(ii)} Let $R$ be a commutative Noetherian ring. Use (a) to prove that $R^n$ is Noetherian, for every $n\geq 1$.
+
+    \begin{proof}
+      We induct on $n\in\N$. The base case follows by assumption. Now fix $n\geq 2$ and suppose that $R^{n-1}$ is noetherian. Then $R^n/R\cong R^{n-1}$ is noetherian and $R$ is noetherian, so part (i) implies that $R^{n}$ is noetherian.
+    \end{proof}
+
+    \textbf{(iii)} Prove that if $R$ is Noetherian, then every submodule of a finitely generated $R$-module is finitely generated.
+
+    \begin{proof}
+      Since $M$ is finitely generated, there exists a surjective $R$-module homomorphism $R^n\rightarrowtail M$ for some $n\in\N$. Thus, $M\cong R^n/N$ where $N$ is the kernel of the aforementioned map. So, by parts (i) and (ii), $M$ is noetherian. As every submodule of a noetherian module is noetherian, it suffices to show that every noetherian module is finitely generated. So, let $M$ be any noetherian module. If $M=0$, then $M$ is generated by $0$ so we would be done, so suppose $M\neq0$. Take $m_1\in M\setminus\{ 0\}$. If $\cyclic{m_1} = M$, then done, otherwise, take $m_2\in M\setminus \cyclic{m_1}$. Continuing as such, we build an ascending chain
+      \[
+        \cyclic{m_1}\sub\cyclic{m_1, m_2}\sub \cyclic{m_1,m_2,m_3}\sub\cdots,
+      \]
+      so by the noetherian condition, there exists a $k\in\N$ such that this chain terminates at step $k$. Thus $M=\cyclic{m_1,\ldots,m_k}$, so $M$ is finitely generated.
+    \end{proof}
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+  Let $A$ be a ring (with $1$) and $B$ be a subring of $A$. The ring $B$ is called \textit{a retract} of $A$ if there exists a surjective ring homomorphism, $\varphi:A\rightarrow B$ such that $\phi|_{B}=1_B$.
+
+  Let $M$ and $N$ be $R$-modules. Prove that the tensor algebra $T(M)$ is (naturally isomorphic to) a subalgebra of $T(M\oplus N)$ and this subalgebra is a retract. Prove that the same is true for symmetric algebras.
+
+  \begin{homeworkProblem}
+    Let $i:M\to M\oplus N$ be the the natural injection and $j:M\oplus N \to T(M\oplus N)$ be the natural inclusion. By universality of $T(M)$, there exists a unique $R$-algebra homomorphism $\Phi: T(M)\to T(M\oplus N)$ such that $\Phi\vert_M = j\circ i$. On the other hand, let$\pi:M\oplus N\to M$ be the natural projection and $i':M\to T(M)$ the natural inclusion. By universality of $T(M\oplus N)$, there exists a unique $R$-algebra homorphism $\Psi:T(M\oplus N)\to T(M)$ such that $\Psi\vert_{M\oplus N} = i'\circ \pi$. \\
+
+    We claim that $\Psi\vert_{\im(\Phi)}$ and $\Phi$ are mutual inverses. It suffices to check this on the $R$-algebra generators of $T(M)$, i.e. $T^{1}(M) = M$. On one hand, suppose that $m\in M$. Then
+    \[
+      \Psi(\Phi(m)) = \Psi((m,0)) = m
+    \]
+    So $\Phi$ is injective, whence it is isomorphic to $\im{\Phi}$. Moreover, $\Psi$ gives that $\im{\Phi}$ this is a retract of $T(M\oplus N)$.
+
+  \end{homeworkProblem}
+
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+  Finish the proof we started in class. Namely: Let $V$ be a  $F$-vector space of dimension $n$, where $F$ is a field. Let $\phi:V\rightarrow V$ be a $F$-linear transformation. Consider the linear transformation $\Phi_{ext,n}:\wedge^n(V)\rightarrow\wedge^n(V)$ induced by $\varphi$. Prove that $\Phi_{ext,n}$ is given by scalar multiplication by $\det(\phi)$.
+
+  \begin{proof}
+    Let $\phi(e_i) = \sum_{j=1}^{n}a_{ij}e_j$ where $a_{ij}\in F$. Then, via the properties of wedge products,
+    \begin{align*}
+      \phi(e_1\wedge \cdots \wedge e_n) &= \phi(e_1)\wedge \cdots \wedge \phi(e_n) = \lr{\sum_{j=1}^{n}a_{1j}e_j}\wedge\cdots\wedge\lr{\sum_{j=1}^{n}a_{nj}e_j} \\&= \lr{\sum_{\sigma\in S_n}\text{sign}(\sigma)a_{1\sigma(1)}\cdots a_{n\sigma(n)}} e_1\wedge \cdots \wedge e_n = \det(\phi)e_1\wedge \cdots \wedge e_n
+    \end{align*}
+
+  \end{proof}
+\end{homeworkProblem}
+
+
+
+\end{document}

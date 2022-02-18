@@ -1,0 +1,219 @@
+\documentclass[12pt,
+psamsfonts]{amsart}
+
+%-------Packages---------
+\usepackage{amssymb,amsfonts,amsmath}
+\usepackage[all,arc]{xy}
+\usepackage{enumerate}
+\usepackage{mathrsfs}
+\usepackage{fullpage}
+\usepackage{xspace}
+\usepackage[margin=1.0in]{geometry}
+\usepackage{tcolorbox}
+\usepackage{tikz-cd}
+\usepackage{color}
+\usepackage{aliascnt}
+\usepackage[foot]{amsaddr}
+\usepackage{hyperref}
+
+
+%--------Theorem Environments--------
+%theoremstyle{plain} --- default
+\newtheorem{thm}{Theorem}[section]
+
+%----Theorem
+\newaliascnt{theo}{thm}
+\newtheorem{theo}[theo]{Theorem}
+\aliascntresetthe{theo}
+\newcommand{\theoautorefname}{Theorem}
+%----Corollary
+\newaliascnt{cor}{thm}
+\newtheorem{cor}[cor]{Corollary}
+\aliascntresetthe{cor}
+\newcommand{\corautorefname}{Corollary}
+%----Proposition
+\newaliascnt{prop}{thm}
+\newtheorem{prop}[prop]{Proposition}
+\aliascntresetthe{prop}
+\newcommand{\propautorefname}{Proposition}
+%----Lemma
+\newaliascnt{lem}{thm}
+\newtheorem{lem}[lem]{Lemma}
+\aliascntresetthe{lem}
+\newcommand{\lemautorefname}{Lemma}
+%----Conjecture
+\newaliascnt{conj}{thm}
+\newtheorem{conj}[conj]{Conjecture}
+\aliascntresetthe{conj}
+\newcommand{\conjautorefname}{Conjecture}
+%----Question
+\newaliascnt{que}{thm}
+\newtheorem{que}[que]{Question}
+\aliascntresetthe{que}
+\newcommand{\queautorefname}{Question}
+%----Assumption
+\newaliascnt{ass}{thm}
+\newtheorem{ass}[ass]{Assumption}
+\aliascntresetthe{ass}
+\newcommand{\assautorefname}{Assumption}
+%----Definition
+\newaliascnt{defn}{thm}
+\newtheorem{defn}[defn]{Definition}
+\aliascntresetthe{defn}
+\newcommand{\defnautorefname}{Definition}
+
+
+
+
+%Style
+\theoremstyle{remark}
+%----Remark
+\newaliascnt{rem}{thm}
+\newtheorem{rem}[rem]{Remark}
+\aliascntresetthe{rem}
+\newcommand{\remautorefname}{Remark}
+
+\newtheorem*{ack}{Acknowledgements}
+
+
+
+
+\newtheorem{Proof}{Proof}
+
+\theoremstyle{definition}
+%\newtheorem{defn}[thm]{Definition}
+\newtheorem{defns}[thm]{Definitions}
+\newtheorem{con}[thm]{Construction}
+\newtheorem{exmp}[thm]{Example}
+\newtheorem{exmps}[thm]{Examples}
+\newtheorem{notn}[thm]{Notation}
+\newtheorem{notns}[thm]{Notations}
+\newtheorem{addm}[thm]{Addendum}
+\newtheorem{exer}[thm]{Exercise}
+\newtheorem{conv}[thm]{Convention}
+
+\newtheorem{case}[thm]{Case}
+
+
+\newtheorem{rems}[thm]{Remarks}
+\newtheorem{warn}[thm]{Warning}
+%\newtheorem{sch}[thm]{Scholium}
+\newtheorem{notation}[thm]{Notation}
+\newtheorem{ex}[thm]{Examples}
+\newtheorem{note}[thm]{Note}
+
+
+
+\newcommand{\N}{\mathbb{N}\xspace}
+\newcommand{\I}{\mathbb{I}\xspace}
+\newcommand{\R}{\mathbb{R}\xspace}
+\newcommand{\Z}{\mathbb{Z}\xspace}
+\newcommand{\Q}{\mathbb{Q}\xspace}
+\newcommand{\C}{\mathbb{C}\xspace}
+\newcommand{\G}{\mathbb{G}\xspace}
+\DeclareMathOperator{\Spec}{Spec}
+\DeclareMathOperator{\res}{res}
+\DeclareMathOperator{\Tr}{Tr}
+\DeclareMathOperator{\ord}{ord}
+\DeclareMathOperator{\Sym}{Sym}
+\DeclareMathOperator{\dv}{div}
+\DeclareMathOperator{\alb}{alb}
+\DeclareMathOperator{\img}{Im}
+\DeclareMathOperator{\et}{et}
+\DeclareMathOperator{\ck}{coker}
+\DeclareMathOperator{\Reg}{Reg}
+\DeclareMathOperator{\Cor}{Cor}
+\DeclareMathOperator{\Ac}{at}
+\DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\Pic}{Pic}
+\DeclareMathOperator{\Gal}{Gal}
+\DeclareMathOperator{\fc}{frac}
+\DeclareMathOperator{\Ann}{Ann}
+\DeclareMathOperator{\Mod}{Mod}
+\DeclareMathOperator{\Cone}{Cone}
+\DeclareMathOperator{\FI}{FI}
+\DeclareMathOperator{\End}{End}
+\DeclareMathOperator{\rk}{rk}
+\DeclareMathOperator{\Ext}{Ext}
+\DeclareMathOperator{\ab}{ab}
+\DeclareMathOperator{\Jac}{Jac}
+\DeclareMathOperator{\coker}{coker}
+\DeclareMathOperator{\fr}{frac}
+\makeatletter
+\let\c@equation\c@theo
+\makeatother
+\numberwithin{equation}{section}
+
+\bibliographystyle{plain}
+%\newcommand{\textlatin }
+
+
+
+
+%--------Meta Data: Fill in your info------
+\title{Math 7752 - Homework 4\\
+Due Friday 02/18/22}
+
+\begin{document}
+
+\maketitle
+
+\begin{enumerate}
+ 
+% Give an example of a commutative domain $R$, and a finitely generated free $R$-module $M$ which has a submodule $N$ which is not free. 
+%\end{enumerate}
+%\medskip
+\item Let $V$ and $W$ be finite dimensional vector spaces over a field $F$. Let $\{v_1,\ldots,v_n\}$, $\{w_1,\ldots,w_m\}$ be bases of $V,W$ respectively. Consider the $F$-linear transformation $\varphi:V\otimes_F W\rightarrow M_{n\times m}(F)$ defined by $\varphi(v_i\otimes w_j)=e_{ij}$, where $e_{ij}$ is the matrix with $1$ at the $(i,j)$-entry and $0$ elsewhere. 
+\begin{enumerate}
+\item Verify that such a linear transformation exists and is in fact an isomorphism of $F$-vector spaces.
+\item Prove that for every $A\in M_{n\times m}(F)$ the following statements are equivalent:
+\begin{enumerate}
+[(i)]\item There exists some $v\in V, w\in W$ such that $A=\varphi(v\otimes w)$ ($v,w$ need not be basis elements).
+\item $\rk(A)\leq 1$. 
+\end{enumerate}
+\end{enumerate} 
+\medskip 
+\item  Let $R=\oplus_{n=0}^\infty R_n$ be a graded ring. Recall that an element $r\in R$ is called \textit{homogeneous} if $r\in R_n$, for some $n\geq 0$. Notice that every $r\in R$ can be written uniquely as $\displaystyle r=\sum_{n=0}^\infty r_n$, where $r_n\in R_n$ and all but finitely many $r_n$'s are equal to zero. The elements $\{r_n\}$ are called \textit{the homogeneous components} of $r$. 
+\begin{enumerate}
+\item Let $I$ be an ideal of $R$. Prove that the following statements are equivalent:
+\begin{enumerate}
+[(i)]\item $I$ is a graded ideal, i.e. $\displaystyle I=\oplus_{n=0}^\infty(I\cap R_n)$.
+\item For each $r\in I$, all homogeneous components of $r$ lie also in $I$.
+\end{enumerate}
+\item Let $I$ be an ideal of $R$ generated by homogeneous elements. Prove that $I$ is graded. 
+\end{enumerate}
+\medskip 
+\item
+\begin{enumerate}
+\item  Let $R$ be a PID. Prove that $R$ is Noetherian.
+\item Let $R$ be a commutative ring and $M$ be an $R$-module.
+Recall that $M$ is called \textit{Noetherian} if every ascending chain $M_1\subset M_2\subset \cdots M_n\subset\cdots$ of submodules of $M$ eventually stabilizes. 
+\begin{enumerate}[(i)]\item Let $N$ be a submodule of $M$. Prove that the following are equivalent: 
+ \begin{enumerate}
+ [(i)]\item $M$ is Noetherian.
+ \item $N$ and $M/N$ are both Noetherian. 
+ \end{enumerate}
+ \item Let $R$ be a commutative Noetherian ring. Use (a) to prove that $R^n$ is Noetherian, for every $n\geq 1$. 
+ \item Prove that if $R$ is Noetherian, then every submodule of a finitely generated $R$-module is finitely generated. 
+\end{enumerate}
+\end{enumerate} 
+\medskip 
+\item Let $A$ be a ring (with $1$) and $B$ be a subring of $A$. The ring $B$ is called \textit{a retract} of $A$ if there exists a surjective ring homomorphism, $\varphi:A\rightarrow B$ such that $\varphi|_{B}=1_B$. 
+
+Let $M$ and $N$ be $R$-modules. Prove that the tensor algebra $T(M)$ is (naturally isomorphic to) a subalgebra of $T(M\oplus N)$ and this subalgebra is a retract. Prove that the same is true for symmetric algebras. \\
+
+\item Finish the proof we started in class. Namely: Let $V$ be a  $F$-vector space of dimension $n$, where $F$ is a field. Let $\varphi:V\rightarrow V$ be a $F$-linear transformation. Consider the linear transformation $\Phi_{ext,n}:\wedge^n(V)\rightarrow\wedge^n(V)$ induced by $\varphi$. Prove that $\Phi_{ext,n}$ is given by scalar multiplication by $\det(\varphi)$. 
+
+%\item Let $M=\Z^3$ and $N$ be the $\Z$-submodule of $M$ generated by $(1,2,3)$, $(5,4,6)$ and $(7,8,9)$. 
+%\begin{enumerate}
+%\item 
+%\end{enumerate}
+
+\end{enumerate}
+
+
+
+
+
+\end{document}

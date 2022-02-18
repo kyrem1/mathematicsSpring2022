@@ -154,6 +154,39 @@
 \begin{document}
 \maketitle
 
+\begin{homeworkProblem}
+  Let $F$ be increasing and right continuous, and let $\mu_F$ be the associated measure. Then $\mu_F(\{a\}) = F(a)-F(a-)$, $\mu_F([a,b)) = F(b-)- F(a-)$, $\mu_F([a,b]) = F(b)- F(a-)$, and $\mu_F((a,b)) = F(b-)-F(a)$.
+
+  \begin{proof}
+    Let $a,b\in\R$ with $a<b$. Then, take $x<a$. Then by definition, as $(x,a]$ is an h-interval,
+    \[
+      \mu_F(\{a\})\leq F(a)-F(x) \implies F(x)\leq F(a)-\mu_F(\{a\}).
+    \]
+    Hence, taking the infimum over all such $x<a$, we have that
+    \[
+      F(a-)\leq F(a)-\mu_F(\{a\}) \implies \mu_F(\{a\}) \leq F(a)-F(a-).
+    \]
+    On the other hand, note that
+    \[
+      \mu_F(\{a\}) = \inf\lr{\sum_{i=1}^{\infty}\mu_F((a_i,b_i]): a\in\bigcup_{i=1}^{\infty}(a_i,b_i]} \leq \inf\lr{\sum_{i=1}^{\infty}\mu_F((a_i,a]): a\in\bigcup_{i=1}^{\infty}(a_i,a]} = \inf\{\mu_F((a_i,a]): a_i<a\} = F(a)-F(a-).
+    \]
+
+
+    Also, observe that
+    \begin{align*}
+      F(b)-F(a) = \mu_F((a,b]) &= \mu_F(([a,b)\setminus\{a\})\sqcup\{b\}) = \mu_F([a,b))-\mu_F(\{a\})+\mu_F(\{b\}) \\ &= \mu_F([a,b)) - F(a)+F(a-)+F(b)-F(b-) \implies \mu_F([a,b)) = F(b-)- F(a-)
+    \end{align*}
+
+    \begin{align*}
+      F(b)-F(a) = \mu_F((a,b]) &= \mu_F(([a,b]\setminus\{a\}) = \mu_F([a,b]) - F(a)+F(a-) \implies \mu_F([a,b]) = F(b)-F(a-)
+    \end{align*}
+
+    \begin{align*}
+      \mu_F((a,b)) = \mu((a,b]\setminus\{b\}) = F(b)-F(a) - F(b)+F(b-) = F(b-) - F(a).
+    \end{align*}
+  \end{proof}
+\end{homeworkProblem}
+
 \begin{homeworkProblem}[2]
   Let $(X,\Sigma,\mu)$ be a measure space. We say that $E\sub X$ is \emph{an atom} if
   \begin{itemize}
@@ -170,10 +203,31 @@
   If $\mu(\{ p\}) = 0$ for all $p\in X$, show that $\mu$ is diffuse.
 
   \begin{proof}
-    Suppose, for the sake of contradiction, that $\mu$ is not diffuse. Then there exists an atom $E\sub X$.
+    Note that, for all $p\in X$, by outer regularity we have that
+    \[
+      0 = \mu(\{ p\}) = \inf\{ \mu(U): U\supset \{p\} \text{ open}\}.
+    \]
+
+    Suppose, for the sake of contradiction, that $\mu$ is not diffuse. Then there exists an atom $E\sub X$. As $0<\mu(E) = \sup\{\mu(K):K\sub E\text{ compact}\}$ and $\{\mu(K):K\sub E\text{ compact}\} = \{0,\mu(E)\}$, there exists a $K\sub E$ compact such that $\mu(K) = \mu(E) > 0$. \\
+
+    For each $p\in K$, as $0 = \inf\{ \mu(U): U\supset \{p\} \text{ open}\}$, there exists an open $U_p$ such that $\mu(U_p)<\mu(K)$. Then $\{U_p: p\in K\}$ is an open cover for $K$, so there exist $p_1,\ldots, p_n\in K$ such that $\{ U_{p_1},\ldots,U_{p_n}\}$ covers $K$. Then, as $E$ is an atom, $\mu(U_p\cap K)\leq \mu(U_p)<\mu(K)\implies \mu(U_p\cap K) = 0$. But then, as $K = \bigcup_{i=1}^{n}U_{p_i}\cap K$,
+    \[
+      \mu(K) \leq \mu\lr{\bigcup_{i=1}^{n}U_{p_i}\cap K} \leq \sum_{i=1}^{n}\mu(U_{p_i}\cap K) = 0,
+    \]
+    contradicting that $\mu(K) > 0$.
   \end{proof}
 
   \textbf{(b)} Let $F:\R\to\R$ be an increasing, right-continuous function. Show that for $p\in\R$ we have that $\{ p\}$ is an atom of $\mu_F$ if and only if $F$ is discontinuous at $p$. Show that $\mu_F$ is diffuse if and only if $F$ is continuous.
+
+  \begin{proof}
+    Suppose that $\{ p\}$ is an atom of $\mu_F$. Then $\mu({p})>0$. By problem (1), $0 < \mu(\{ p\}) = F(p)-F(p-) \implies F(p) > F(p-)$, whence $F(p)\neq F(p-)$ so $F$ is discontinuous at $p$. \\
+
+    Coversely, suppose that $F$ is discontinuous at $p$. As $F$ is already right continous, it follows that $F(p) \neq F(p-)$, as otherwise $F$ would be continous at $p$. Then $\mu({p}) = F(p)-F(p-) > 0$ as \emph{a priori} $F(p)\geq F(p-)$, so $\{ p\}$ is an atom. \\
+
+    Now suppose that $\mu_F$ is diffuse. Then, for $p\in \R$, $\{ p\}$ is not an atom whence $\mu(\{ p\}) = 0$ so part (a) implies that $0 = \mu(\{ p\}) = F(p)-F(p-)$. Thus $F(p+)=F(p)=F(p-)$, so $F$ is continuous. \\
+
+    Conversely, suppose that $F$ is continuous. Then for all $p\in \R$, $\mu(\{ p\}) = F(p)-F(p-) = F(p)-F(p) = 0$. As $\mu_F$ is outer regular and inner regular with respect to compacts, by part (a) $\mu_F$ we have that is diffuse.
+  \end{proof}
 \end{homeworkProblem}
 
 
@@ -193,15 +247,6 @@
 
     Choose a countable sequence $(j_l)_{l=1}^{\infty}$ in $J_0$ such that $j_{l}\neq j_{s}$ for $l\neq s$. For $n\in\N$, set $F_n = E_j\cap X_k$. Note that, for $l\neq s$, we have that $\mu(F_l\cap F_s) = 0$. \\
 
-    % Define a new sequence of pairwise disjoint sets $(L_n)_{n=1}^{\infty}$ in $\Sigma$ by $L_1=F_1$ and
-    % \[
-    %   L_n = \left(\bigcup_{l=1}^{n} F_l\right) \setminus \left(\bigcup_{s=1}^{n-1}F_s\right) = .
-    % \]
-    % If $n>1$, then
-    % \[
-    %   L_n =
-    % \]
-    % % TODO This doesn't work.
 
     We claim that $\mu(\sum_{l=1}^{n}F_l) = \sum_{l=1}^{n}\mu(F_l)$ for all $n\in\N$ by induction. Observe that
     \[
@@ -233,7 +278,7 @@
   is countable.
 
   \begin{proof}
-    Let $\sim$ be the equivalence relation $E\sim F\iff \mu(E\Delta F) = 0$. Let $\mc{E} = \{ E:E\sub X \text{ is an atom}\}$. Let $\pi:\mc{E}\to\mc{E}/\sim$ be the canonical surjection. By the axiom of choice, there exists a section $s:\mc{E}/\sim\to \mc{E}$ such that $\pi\circ s = id_{\mc{E}/\sim}$. Take $E\neq F\in s(\mc{E}/\sim)$. Then, as $s$ is injective, $[E] \neq [F]$, so $\mu(E_i\Delta E_j)>0 0$. \\
+    Let $\sim$ be the equivalence relation $E\sim F\iff \mu(E\Delta F) = 0$. Let $\mc{E} = \{ E:E\sub X \text{ is an atom}\}$. Let $\pi:\mc{E}\to\mc{E}/\sim$ be the canonical surjection. By the axiom of choice, there exists a section $s:\mc{E}/\sim\to \mc{E}$ such that $\pi\circ s = id_{\mc{E}/\sim}$. Take $E\neq F\in s(\mc{E}/\sim)$. Then, as $s$ is injective, $[E] \neq [F]$, so $\mu(E_i\Delta E_j)>0$. \\
 
     Suppose, without loss of generality, that $\mu(E_i\setminus E_j)>0$. Then, as $E_i$ is an atom, $\mu(E_i\setminus E_j) = \mu(E_i)$. Hence
     \[
@@ -252,46 +297,113 @@
   Suggestions: Reduce to the finite case. It might be helpful to first show that for every $E\in\Sigma$ with $\mu(E)>0$, we have $0 = \inf\{ \mu(B): B\sub E\text{ and }\mu(B)>0\}$.
 
   \begin{proof}\ \\
-    (\emph{reduction to finite case}): Write $X = \bigcup_{i=1}^{\infty}X_i$ where $X_i\in\Sigma$ and $\mu(X_i) <+\infty$. \\
+    (\emph{reduction to finite case}): Suppose we have shown the claim for finite measure spaces. Write $X = \bigcup_{i=1}^{\infty}X_i$ where $X_i\in\Sigma$ and $\mu(X_i) <+\infty$, and without loss of generality the $X_i$'s are pairwise disjoint.  \\
 
-    Suppose that $E\in \Sigma$ with $\mu(E)>0$. Since $\mu$ is diffuse, there exists a $B_1\sub E$ such that $B_1\in \Sigma$ and $0<\mu(B_1)<\mu(E)$. Note that either $\mu(B_1)$ or $\mu(E\setminus B_1)$ is less than $2^{-1}\mu(E)$, so without loss of generality assume that $\mu(B_1)<2^{-1}\mu(E)$. Now, again as $\mu$ is diffuse, there exists a $B_2\sub B_1$ such that $B_2\in\Sigma$ and $0<\mu(B_2)<\mu(B_1) <\mu(E)$. Again, we may assume without loss of generality that $\mu(B_2)<2^{-1}\mu(B_1)<2^{-2}\mu(E)$. Continuing as such, we obtain a decreasing sequence of sets $E\supset B_1\supset B_2 \supset\cdots$ such that $0<\mu(B_n)<2^{-n}\mu(E)$. It follows that
+    If $\mu(E)<+\infty$, then we are done as we assumed that we have already shown the finite case. So, suppose that $\mu(E) = +\infty$. Then $E\sub E$ is a witness for $\mu(E) = +\infty$, so take $b\in (0,+\infty)$.
+
+    As
+    \[
+      +\infty = \mu(E) = \sum_{i=1}^{\infty}\mu(E\cap X_i),
+    \]
+    there exist $k,l\in\N$ such that $\sum_{i=k}^{l}\mu(E\cap X_i) > b$. Noting that $\mu(\bigsqcup_{i=k}^{l}E\cap X_i) = \sum_{i=k}^{l}\mu(E\cap X_i)<+\infty$, by the finite case there exists a $B\sub \bigsqcup_{i=k}^{l}E\cap X_i$ with $B\in\Sigma$ such that $\mu(B) = b$. \\
+
+    \vspace{0.5cm}
+    (\emph{finite case}): Suppose that $E\in \Sigma$ with $\mu(E)>0$. Since $\mu$ is diffuse, there exists a $B_1\sub E$ such that $B_1\in \Sigma$ and $0<\mu(B_1)<\mu(E)$. Note that either $\mu(B_1)$ or $\mu(E\setminus B_1)$ is less than $2^{-1}\mu(E)$, so without loss of generality assume that $\mu(B_1)<2^{-1}\mu(E)$. Now, again as $\mu$ is diffuse, there exists a $B_2\sub B_1$ such that $B_2\in\Sigma$ and $0<\mu(B_2)<\mu(B_1) <\mu(E)$. Again, we may assume without loss of generality that $\mu(B_2)<2^{-1}\mu(B_1)<2^{-2}\mu(E)$. Continuing as such, we obtain a decreasing sequence of sets $E\supset B_1\supset B_2 \supset\cdots$ such that $0<\mu(B_n)<2^{-n}\mu(E)$. It follows that
     \begin{equation}\label{eq:smallsets}
       0 = \inf\{ \mu(B): B\sub E\text{ and }\mu(B)>0\}.
     \end{equation}
 
-    % Observe that, given any $E\in\Sigma$ with $\mu(E)>0$, we can always find a $B\sub E$ with $B\in \Sigma$ such that $0<\mu(B)<\frac{\mu(E)}{2} \implies \frac{\mu(E)}{2}<\mu(E\setminus B)<\mu(E)$, i.e. we can always find sets $B,B'\in\Sigma$ with $B,B'\sub E$ such that $\mu(B)\in(0,\frac{\mu(E)}{2})$ and $\mu(B')\in (\frac{\mu(E)}{2},\mu(A))$. \\
-    % With this information, we mimic the binary search algorithm from computer science.\\
-
-    % Fix $\beta\in (0,\mu(A))$. Let $a_0 = 0$, $b_0=\mu(A)$, and $c_0 = \frac{\mu(A)}{2}$. Construct the sequences $a_n < b_n < c_n$ in $[0,\mu(A)]$ and $(B_n)$ in $\Sigma$ inductively as follows: given $a_j < c_j < b_j$ and $$, if $\beta\in(a_j,c_j]$ then set $a_{j+1} := a_j$, $b_{j+1} = c_j$, and $c_{j+1} = \frac{a_j+c_j}{2}$; otherwise set $a_{j+1} := c_j$, $b_{j+1} = b_j$, and $c_{j+1} = \frac{c_j+b_j}{2}$. Note that $(a_n)$ is nondecreasing and $(b_n)$ is nondecreasing. \\
-
-    % Zornification time. Consider the poset $(\ms{S},\preceq)$ where $\ms{S} = \{ B\sub A: B\in\Sigma, \mu(B)\leq\beta\}$ and
-    % \[
-    %   B\preceq B' \iff \mu(B\setminus B') = 0
-    % \]
-    % i.e. $B\sub B'$ $\mu$-almost everywhere. Let $\ms{C}$ be a chain in $\ms{S}$. Let $\alpha = \sub_{B\in\ms{C}}\mu(B)$. Then we may choose $B_1\preceq B_2\preceq B_3\preceq\cdots$ in $\mc{C}$ such that $\lim_{n\to\infty}\mu(B_n) = \alpha$
     Suppose, for the sake of contradiction, that the claim is false. Then there exists an $A\in\Sigma\setminus\{\emptyset\}$ and $b\in (0,\mu(A))$ such that $\mu(B)\neq b$ for all $B\sub A$ with $B\in\Sigma$.
 
-    We proceed via transfinite induction on following statement:
-    \begin{align*}
-      P(\alpha):\quad \exists\ (B_\eta)_{\eta\in\alpha}\text{ in } \Sigma \text{, pairwise disjoint subsets of } A, \text{ such that } \\ 0\not\in\mu(\{ B_\eta:\eta\in\alpha\}), \quad \bigsqcup_{\eta\in\alpha}B_\eta \in \Sigma, \text{ and } b - \mu\left(\bigsqcup_{\eta\in\alpha}B_\eta\right)>0
-    \end{align*}
+    We proceed via transfinite recursion.\\
 
 
-    First, note that we may choose $B_0$ such that $0<\mu(B_0)<b$, so $P(0)$ holds. Suppose now that $\alpha$ is an ordinal and $P(\alpha)$ is true. Then there is a collection of pairwise disjoint elements $(B_\eta)_{\eta\in\alpha}$ of $\Sigma$ which are subsets of $A$ such that $\mu(B_\eta)>0$ for all $\eta\in\alpha$, $\bigsqcup_{\eta\in\alpha}B_\eta \in \Sigma$, and $b - \mu\left(\bigsqcup_{\eta\in\alpha}B_\eta\right)>0$. By \eqref{eq:smallsets}, there exists a $B_\alpha\in \Sigma$ with $B_\alpha\sub A\setminus \bigsqcup_{\eta\in\alpha}B_\eta$ such that
+    First, note that we may choose $B_0$ such that $0<\mu(B_0)\leq b$. If $\mu(B_0) = b$ then stop; otherwise, we have that $0<\mu(B_0)<b$. Suppose now that $\alpha$ is an ordinal and we have constructed $(B_\eta)_{\eta<\alpha}$ pairwise disjoint elements of $\Sigma$ which are subsets of $A$ such that $\mu(B_\eta)>0$ for all $\eta\in\alpha$,
+    % $\bigsqcup_{\eta\in\alpha}B_\eta \in \Sigma$,
+    and $b - \sum_{\eta\in\alpha}\mu(B_\eta)>0$. By \eqref{eq:smallsets}, there exists a $B_\alpha\in \Sigma$ with $B_\alpha\sub A\setminus \bigsqcup_{\eta\in\alpha}B_\eta$ such that
     \[
-      0<\mu(B_\alpha)<b - \mu\left(\bigsqcup_{\eta\in\alpha}B_\eta\right) \implies b - \mu\left(\bigsqcup_{\eta\in{\alpha+1}}B_\eta\right) > 0
+      0<\mu(B_\alpha)\leq b - \sum_{\eta\in\alpha}\mu(B_\eta).
     \]
-    and $B_\alpha\sqcup\bigsqcup_{\eta\in\alpha}B_\eta \in \Sigma$. Hence, $P(\alpha+1)$ holds. \\
+    If $\mu(B_\alpha) = b - \sum_{\eta\in\alpha}\mu(B_\eta)$, stop; otherwise, we have $0<\sum_{\eta\leq\alpha}\mu(B_\eta) < b$.\\
 
-    Now, suppose that $\delta$ is a limit ordinal.
+
+    We claim that this recursion halts at some countable ordinal. Suppose, for the sake of contradiction, that this recursion does not halt at some countable ordinal. Then we reach $\omega_1$, so we have pairwise disjoint subsets $(B_\eta)_{\eta<\omega_1}$ of $A$ in $\Sigma$ such that $\mu(B_\eta)>0$ for all $\eta<\omega_1$. Noting that each $\mu(B_\eta)$ is finite, we have that
+    \[
+      \{\eta<\omega_1 : \mu(B_\eta) > 0\} = \bigcup_{n=1}^{\infty}\{\eta<\omega_1 : \frac{1}{n}\leq\mu(B_\eta)<\frac{1}{n-1}\}
+    \]
+    where $1/0:=+\infty$. By uncountability of $\omega_1$, there exists an $n\in\N$ such that $\{\eta<\omega_1 : \frac{1}{n}\leq\mu(B_\eta)<\frac{1}{n-1}\}$ is infinite. Take a countable sequence $\eta_1,\eta_2,\ldots$  in $\{\eta<\omega_1 : \frac{1}{n}\leq\mu(B_\eta)<\frac{1}{n-1}\}$ with $\eta_i\neq\eta_j$ for $i\neq j$. Then $\bigsqcup_{i=1}^{\infty}B_{\eta_i}\in \Sigma$, whence for all $N\in \N$,
+    \[
+      \mu\lr{\bigsqcup_{i=1}^{\infty}B_{\eta_i}} = \sum_{i=1}^{\infty}\mu(B_{\eta_i}) \geq \sum_{i=1}^{N}\mu(B_{\eta_i}) \geq \frac{N}{n}
+    \]
+    so $\mu(\bigsqcup_{i=1}^{\infty}B_{\eta_i})=+\infty$, contradicting that $\mu(A)<+\infty$. \\
+
+    Hence, the recursion halts at some countable ordinal $\alpha$. Then $\sum_{\eta\in\alpha}\mu(B_\eta) = \sum_{\eta<\alpha}\mu(B_\eta) = b$. Let $\phi:\N\to\alpha$ be a bijection. By nonnegativity, $b = \sum_{\eta\in\alpha}\mu_{B_\eta}=\sum_{i=1}^{\infty}\mu(B_{\phi(i)})$. Moreover, $\bigsqcup_{i=1}^{\infty}B_{\phi(i)}\in \Sigma$, so
+    \[
+      b = \sum_{i=1}^{\infty}\mu(B_{\phi(i)}) = \mu\lr{\bigsqcup_{i=1}^{\infty}B_{\phi(i)}}
+    \]
+    as desired.
   \end{proof}
 \end{homeworkProblem}
 
+\begin{homeworkProblem}[5]
+  Let $E$ be a Lebesgue measurable set.\\
+
+  % Definition of $N$: \\
+  % 
+  % Define an equivalence relation $\sim$ on $[0,1)$ by $x\sim y$ if and only if $x-y\in \Q$. Set $Y=[0,1]/\sim$ and let $\pi:[0,1]\to Y$ be the canonical projection. By the axiom of choice, there exists a section $s:Y\to[0,1]$ s.t. $\pi\circ s = id_{Y}$, so $[s([x])] =[x]$ for $[x]\in Y$. Moreover, $s$ is injective. Take $N = s(Y)$. For $a\in\Q$, as $[a] = [0,1]\cap \Q$, there exists a $q\in\Q$ such that $s([a]) = q$ for all $a\in$
+  % \[ x\sim s([x]) \implies s([x]) - x \in \Q\]
+  % Suppose $x\in N+q\cap N+q'$ with $q,q'\in\Q\cap [-1,1]$. Then $x-q\in N, x-q'\in N$, so there exist $c,c'\in Y$ such that $x-q = s(c)$ and $x-q'=s(c')$. Write $c = [a]$, $c'=[a']$ for some $a,b\in [0,1]$. The  $[x-q] = [s(c)] = c = [a]$ and\\
+  % \[[0,1] = \bigsqcup_{x\in N}[x],\quad \]
 
 
 
+  \textbf{(a)} Let $E\sub N$ where $N$ is the nonmeasurable set described in section 1.1. Prove that $m(E) = 0$. \\
+
+  \begin{proof}
+    As in class, we have that $\bigsqcup_{q\in [-1,1]\cap\Q}E+q \sub \bigsqcup_{q\in [-1,1]\cap\Q}N+q\sub [-2,3]$, so
+    \[
+      \sum_{q\in [-1,1]\cap\Q} m(E) = \sum_{q\in [-1,1]\cap\Q} m(E+q)  = m\lr{\bigsqcup_{q\in [-1,1]\cap\Q}E+q} \leq 5
+    \]
+    so $\sum_{q\in [-1,1]\cap\Q} m(E)$ is whence we must have that  $m(E) = 0$.
+  \end{proof}
+
+  \textbf{(b)} Prove that if $m(E)>0$, then $E$ contains a nonmeasurable set. \\
+
+  \begin{proof}
+    As $m(E)>0$, $E\neq\emptyset$ so there exists a $k\in\Z$ such $(E+k)\cap [0,1] \neq \emptyset$. \\
+
+    Performing the same construction of the Vitali set on $(E+k)\cap [0,1]$, we obtain a set $V\sub (E+k)\cap [0,1]$ which is non measurable. Hence, by translation invariance, $V-k$ is non-measurable.
+  \end{proof}
+
+\end{homeworkProblem}
 
 
+\begin{homeworkProblem}
+  \textbf{(a)} Let $\mc{E}_q$ be the family of $h$-intervals in $\R$ with rational endpoints. Show that $\mc{E}_q$ is an elementary family and that the $\sigma$-algebra generated by this elementary family is all Borel subsets of $\R$. \\
 
+  \begin{proof}
+    We have shown in previous homework that $\mc{E}_q$ is indeed an elementary family. \\
+
+    Take $(a,b]\in \mc{E}_q$. As $(a,b] = \bigcap_{n=1}^{\infty}(a, b+\frac{1}{n})$, $(a,b]\in \mc{B}_\R$. Thus $\Sigma(\mc{E}_q)\sub\mc{B}_\R$.\\
+
+    On the other hand, any  $(\alpha,\beta)\in\mc{B}_\R$ can be written as a countable union of open rational intervals, so $(\alpha,\beta)\in\Sigma(\mc{E}_q)$. Hence, as open intervals generate $\mc{B}_\R$, it follows that $\mc{B}_\R\sub \Sigma(\mc{E}_q)$.
+  \end{proof}
+
+  \textbf{(b)} Suppose that $\mu:\mc{B}_\R\to[0,\infty]$ is a measure such that $\mu(E+x) = \mu(E)$ for all $E\in\mc{B}_\R, x\in \R$. Assume that $0<\mu((0,1])<+\infty$. Show that $\mu(E)=\mu((0,1])m(E)$ for all $E\in\mc{B}_\R$.
+
+  \begin{proof}
+    First, suppose that $n\in \N$. Observe that
+    \[
+      \mu((0,1]) = \mu\lr{\bigsqcup_{j=0}^{n-1}(\frac{j}{n},\frac{j+1}{n}]} = \sum_{j=0}^{n-1}\mu((\frac{j}{n},\frac{j+1}{n}]) = n\cdot\mu((0,\frac{1}{n}])\implies \mu((0,\frac{1}{n}]) = \frac{1}{n}\mu((0,1]) = \mu((0,1])m((0,\frac{1}{n}])
+    \]
+    Now let $q=\frac{k}{n}\in\Q$. Then
+    \[
+      \mu((0,q]) = \sum_{j=0}^{k}\mu\lr{(\frac{k}{n},\frac{k+1}{n}]} = \sum_{j=0}^{k}\mu\lr{(0,\frac{1}{n}]} = k\cdot\mu\lr{(0,\frac{1}{n}]} = k\cdot\mu((0,1])\frac{1}{n} = \mu((0,1])m((0,q]).
+    \]
+    Consider the algebra $\mc{A}=\{\text{finite disjoint unions of elements of $E_q$}\}$. Note that, by part (a), $\Sigma(\mc{A}) = \mc{B}_\R$. Consider the measure $\nu:\mc{B}_{\R}\to[0,+\infty]$ given by $\nu(E)=\mu((0,1])\cdot m(E)$ for $E\in\mc{B}_\R$. \\
+
+    We have shown that $\mu\vert_{\mc{A}}=\nu\vert_{\mc{A}}$, whence $\mu = \nu$, as desired.
+  \end{proof}
+\end{homeworkProblem}
 
 \end{document}
