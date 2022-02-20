@@ -1,0 +1,250 @@
+\documentclass[12pt,letterpaper]{article}
+
+%--------Packages--------
+\usepackage{amsmath, amsthm, amssymb}
+\usepackage{xspace}
+\usepackage{graphicx}
+\usepackage{hhline}
+\usepackage{amssymb}
+\usepackage{array}
+\usepackage{braket}
+\usepackage{multicol}
+\usepackage{mathtools}
+\usepackage{enumerate}
+\usepackage{delarray}
+\usepackage{mathtools}
+\usepackage{fullpage}
+\usepackage{faktor} % For quotients
+\usepackage{mathrsfs}
+
+\usepackage[italicdiff]{physics} % For differentials
+\usepackage{bbm} % For indicator
+
+% \usepackage{quiver}
+\usepackage[linguistics]{forest}
+
+
+
+
+%--------Page Setup--------
+
+\pagestyle{empty}%
+
+\setlength{\hoffset}{-1.54cm}
+\setlength{\voffset}{-1.54cm}
+
+\setlength{\topmargin}{0pt}
+\setlength{\headsep}{0pt}
+\setlength{\headheight}{0pt}
+
+\setlength{\oddsidemargin}{0pt}
+
+\setlength{\textwidth}{195mm}
+\setlength{\textheight}{250mm}
+
+
+%--------Macros--------
+
+\newcommand{\sub}{\subseteq}
+\newcommand{\lcm}{\text{lcm}}
+\newcommand{\mc}[1]{\mathcal{#1}}
+\newcommand{\mf}[1]{\mathfrak{#1}}
+\newcommand{\ms}[1]{\mathscr{#1}}
+\newcommand{\sO}{\mathcal{O}}
+\newcommand{\cyclic}[1]{\langle#1\rangle}
+\newcommand{\units}[1]{#1 ^{\times}}
+\newcommand{\la}{\langle}
+\newcommand{\ra}{\rangle}
+\newcommand{\lr}[1]{\left(#1\right)}
+%----Switch phi and varphi
+% \let\temp\phi
+% \let\phi\varphi
+% \let\varphi\temp
+
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\N}{\mathbb{N}\xspace}
+\newcommand{\I}{\mathbb{I}\xspace}
+\newcommand{\R}{\mathbb{R}\xspace}
+\newcommand{\Z}{\mathbb{Z}\xspace}
+\newcommand{\Q}{\mathbb{Q}\xspace}
+\newcommand{\G}{\mathbb{G}\xspace}
+\DeclareMathOperator{\Spec}{Spec}
+\DeclareMathOperator{\res}{res}
+% \DeclareMathOperator{\Tr}{Tr}
+\DeclareMathOperator{\ord}{ord}
+\DeclareMathOperator{\Sym}{Sym}
+% \DeclareMathOperator{\dv}{div}
+\DeclareMathOperator{\alb}{alb}
+\DeclareMathOperator{\img}{Im}
+\DeclareMathOperator{\et}{et}
+\DeclareMathOperator{\ck}{coker}
+\DeclareMathOperator{\Reg}{Reg}
+\DeclareMathOperator{\Cor}{Cor}
+\DeclareMathOperator{\Ac}{at}
+\DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\Pic}{Pic}
+\DeclareMathOperator{\Gal}{Gal}
+\DeclareMathOperator{\fc}{frac}
+\DeclareMathOperator{\Ann}{Ann}
+\DeclareMathOperator{\Mod}{Mod}
+\DeclareMathOperator{\Cone}{Cone}
+\DeclareMathOperator{\FI}{FI}
+\DeclareMathOperator{\End}{End}
+\DeclareMathOperator{\Alb}{Alb}
+\DeclareMathOperator{\Ext}{Ext}
+\DeclareMathOperator{\ab}{ab}
+\DeclareMathOperator{\Jac}{Jac}
+\DeclareMathOperator{\coker}{coker}
+\DeclareMathOperator{\fr}{frac}
+\DeclareMathOperator{\Int}{Int}
+
+
+
+%----Analysis
+% \newcommand{\dd}[2][]{\frac{\partial^{#1}}{\partial {#2}^{#1}}}
+\newcommand{\summ}{\sum\limits}
+% \newcommand{\norm}[1]{\left \vert \left \vert #1 \right \vert \right \vert}
+\newcommand{\thicc}{\bigg}
+\newcommand{\eps}{\varepsilon}
+\newcommand*\cls[1]{\overline{#1}}
+\newcommand{\ind}{\mathbbm{1}}
+
+
+%--------Theorem environments--------
+\newtheorem{definition}{Definition}[]
+\newtheorem{lemma}{Lemma}[]
+\newtheorem{corollary}{Corollary}[]
+\newtheorem{theorem}{Theorem}[]
+\theoremstyle{remark}
+\newtheorem*{claim}{Claim}
+
+
+\newenvironment{solution}
+{\begin{proof}[Solution]}
+{\end{proof}}
+
+
+\makeatletter
+\newcommand{\thickhline}{%
+    \noalign {\ifnum 0=`}\fi \hrule height 1pt
+    \futurelet \reserved@a \@xhline
+}
+\newcolumntype{"}{@{\hskip\tabcolsep\vrule width 1pt\hskip\tabcolsep}}
+\makeatother
+
+% --------Problem environment--------
+\setlength\parindent{0pt}
+\setcounter{secnumdepth}{0}
+\newcounter{partCounter}
+\newcounter{homeworkProblemCounter}
+\setcounter{homeworkProblemCounter}{1}
+
+
+\newenvironment{homeworkProblem}[1][-1]{
+    \ifnum#1>0
+        \setcounter{homeworkProblemCounter}{#1}
+    \fi
+    \section{Problem \arabic{homeworkProblemCounter}}
+    \setcounter{partCounter}{1}
+    \stepcounter{homeworkProblemCounter}
+}
+
+
+%--------Metadata--------
+\title{MATH 7310 Homework 4}
+\author{James Harbour}
+
+\begin{document}
+\maketitle
+
+\begin{homeworkProblem}
+  \textbf{(i)}: Let $(X,\Sigma), (Y,\mc{F})$ be two measurable spaces and let $\phi:X\to Y$ be measurable. Given a measure $\nu$ on $\Sigma$, define $\phi_* (\nu):\mc{F}\to[0,+\infty]$ by $\phi_*(\nu)(E) = \nu(\phi^{-1}(E))$. Prove that $\phi_*(\nu)$ is a measure.\\
+
+  \textbf{(ii)}: If $x\in[0,1]$, a \emph{binary expansion} for $x$ is a sequence $(a_n)_{n=1}^{\infty}\in\{ 0,1\}^{\N}$ so that $x = \sum_{n=1}^{\infty}a_n 2^{-n}$. Let $N$ be the set of $x\in [0,1]$ whose binary expansion is not unique. Show that $N$ is a Borel set of measure $0$.
+
+  \begin{proof}
+    The set of all points in $[0,1]$ with nonunique binary expansion is precisely the set of all points of the form $2^{-n}$ for $n\in\N\cup\{0\}$. Thus, $N = \bigcup_{n=0}^{\infty}\{ 2^{-n}\}$ which is borel as singletons are borel. As $N$ is a countable set, it follows that $m(N) = 0$.
+  \end{proof}
+
+  \textbf{(iii)}: Let $C\sub [0,1]$ be the middle thirds Cantor set. For $k\in \N$, define \[\phi_k,\phi:[0,1]\setminus N\to \R\] by $\phi_k(\sum_{n=1}^{\infty}a_n 2^{-n}) = \sum_{n=1}^{k}2a_n 3^{-n}$ and $\phi(\sum_{n=1}^{\infty}a_n 2^{-n}) = = \sum_{n=1}^{\infty}2a_n 3^{-n}$ for all $(a_n)_{n=1}^{\infty}\in\{ 0,1\}^{\N}$. Show that $\phi_k$, $\phi$ are Borel and that $\phi_k([0,1]\setminus N)$ and $\phi([0,1]\setminus N)$ are subsets of $C$. \\
+
+  \textbf{(iv)}: Set $\mu=\phi_*(m)$, where $m$ is the Lebesgue measure on $[0,1]$. Show that $\mu(C^{c}) = 0$ and that there is a unique, increasing continuous function $f:[0,1]\to[0,1]$ so that $f(0)= 0$ and $\mu([a,b])=f(b)-f(a)$ for all $0\leq a< b\leq 1$. (In particular, $f(1) = 1$).\\
+
+  \textbf{(v)}: Show that $f(2\sum_{n=1}^{k}a_n 3^{-n}) = \sum_{n=1}^{k}a_n 2^{-n}$ for all $k\in\N$ and all $(a_n)_{n=1}^{k}\in\{ 0,1\} ^{k}$. If $(a,b)$ is an open interval disjoint from $C$, show that $f(b) = f(a)$.
+\end{homeworkProblem}
+
+\begin{homeworkProblem}[2]
+  Let $f:[0,1]\to[0,1]$ be the Cantor function, and let $g(x) = f(x)+x$.\\
+
+  \textbf{(a)}: Prove that $g$ is a bijection from $[0,1]$ to $[0,2]$ and $h=g^{-1}$ is a continuous map from $[0,2]$ to $[0,1]$.\\
+
+  \textbf{(b)}: If $C$ is any Cantor set, $m(g(C))=1$.\\
+
+  \textbf{(c)}: By exercise $29$ of chapter 1, $g(C)$ contains a Lebesgue nonmeasurable set $A$. Let $B = g^{-1}(A)$. Then $B$ is Lebesgue measurable but not Borel. \\
+
+  \textbf{(d)}: There exist a Lebesgue measurable function $F$ and a continuous function $G$ on $\R$ such that $F\circ G$ is not Lebesge measurable.
+
+\end{homeworkProblem}
+
+\begin{homeworkProblem}[3]
+  Prove that the following hold if and only if the measure $\mu$ is complete:\\
+
+  \textbf{(a)}: If $f$ is measurable and $f=g$ $\mu$-a.e., then $g$ is measurable. \\
+
+
+
+  \textbf{(b)}: If $f_n$ is measurable for $n\in\N$ and $f_n\to f$ $\mu$-a.e., then $f$ is measurable.
+
+
+\end{homeworkProblem}
+
+\begin{homeworkProblem}[4]
+  If $f\in L^+$ and $\int f \dd{\mu} < +\infty$, show that $\{ x:f(x) = \infty\}$ is a null set and that $\{ x: f(x)>0\}$ is $\sigma$-finite.
+
+  \begin{proof}
+    Suppose, for the sake of contradiction, that $\mc{N}:=\{ x:f(x)=\infty\} = f^{-1}(\{\infty\})\in\Sigma$ has positive measure. Let $ \{\phi_n\}_{n\in\N}$ be a sequence of simple functions (valued in $[0,+\infty]$) with $0\leq\phi_1\leq \phi_2 \leq \cdots \leq f$ such that $\phi_n\to f$ pointwise. For $n\in \N$, define a new simple function $\phi_n'$ by
+    \[
+      \phi_n' = \phi_n \ind_{X\setminus \mc{N}} + n\cdot \ind_{\mc{N}}.
+    \]
+  Note that, as $\phi_n \equiv  \phi_n'$ on $X\setminus \mc{N}$ and $\phi_n' \leq f$ on $
+  \mc{N}$, it follows that $0\leq \phi_1'\leq \phi_2'\leq \cdots \leq f$ as well. Moreover, for $n\in \N$, as $\phi_n'\geq n\cdot\ind_{\mc{N}}$, we have that
+  \[
+    \int f\dd{\mu} \geq \int \phi_n'\dd{\mu} \geq \int n\cdot \ind_{\mc{N}}\dd{\mu} = n\cdot \mu(\mc{N})\to \infty \text{ as }n\to\infty.
+  \]
+  Thus, $\int f \dd{\mu} = +\infty$, contradicting the assumption.\\
+
+  Let $X= \{x:f(x)>0\}$ and consider the sets $\{A_n\}_{n=0}^{\infty}$ given by $A_0 = f^{-1}(\{\infty\})$, $A_n = f^{-1}([\frac{1}{n}, \frac{1}{n-1}))$ for $n\geq1$. Then
+  \[
+    X = \bigsqcup_{n=0}^{\infty}A_n
+  \]
+  Suppose, for the sake of contradiction, that $X$ is not $\sigma$-finite. Then, as $\mu(A_0)=0$, some $A_k$ for $k\geq1$ must have infinite measure. As $f\geq f\cdot \ind_{A_k} \geq \frac{1}{n}\ind_{A_k}$, it follows that
+  \[
+    \int f\dd{\mu} \geq \int f\cdot \ind_{A_k}\dd{\mu} \geq \int  \frac{1}{n}\ind_{A_k} \dd{\mu} = \frac{1}{n}\mu(A_k) = \infty,
+  \]
+  contradicting the assumption that $\int f \dd{\mu} <\infty$.
+\end{proof}
+
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+  If $f\in L^{+}$, let $\lambda(E) = \int_E f\dd{\mu}$ for $E\in\Sigma$. Prove that $\lambda$ is a measure on $\Sigma$, and that for any $g\in L^{+}$, $\int g\dd{\lambda} = \int fg\dd{\mu}$.
+\end{homeworkProblem}
+
+\begin{homeworkProblem}[6]
+  If $f\in L^+$ and $\int f \dd{\mu}<\infty$, show that for every $\eps > 0$ there exists an $E\in\Sigma$ such that $\mu(E)<\infty$ and $\int_E f\dd{\mu} > (\int f \dd{\mu}) - \eps$.
+
+  \begin{proof}
+    Let $\eps > 0$. By definition, there exists a simple $\phi$ with $0\leq \phi \leq f$ such that $\int \phi\dd{\mu} > (\int f\dd{\mu}) -\eps $. Write $\phi$ as $\phi = \sum_{i=1}^{n} c_i \ind_{E_i}$ for some $E_i\in\Sigma$ and $c_i\in[0,\infty)$. Note that, as $\sum_{i=1}^{n}c_i\mu(E_i) = \int \phi \dd{\mu} \leq \int f \dd{\mu} < \infty$, we have that $\mu(E_i) < \infty$ for all $i$. Set $E= \bigcup_{i=1}^{n}E_i$. \\
+
+    Noting that $\phi = \phi \ind_{E} \leq f \ind_{E}$, it follows that
+    \[
+      \int_E f\dd{\mu}\geq \int f \ind_{E} \dd{\mu} \geq\int \phi\dd{\mu} > (\int f\dd{\mu}) -\eps
+    \]
+    with $\mu(E)\leq \sum_{i=1}^{n}\mu(E_i)<\infty$ as desired.
+  \end{proof}
+
+\end{homeworkProblem}
+
+\end{document}
