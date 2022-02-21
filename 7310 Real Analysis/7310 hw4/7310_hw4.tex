@@ -165,7 +165,7 @@
   \textbf{(ii)}: If $x\in[0,1]$, a \emph{binary expansion} for $x$ is a sequence $(a_n)_{n=1}^{\infty}\in\{ 0,1\}^{\N}$ so that $x = \sum_{n=1}^{\infty}a_n 2^{-n}$. Let $N$ be the set of $x\in [0,1]$ whose binary expansion is not unique. Show that $N$ is a Borel set of measure $0$.
 
   \begin{proof}
-    The set of all points in $[0,1]$ with nonunique binary expansion is precisely the set of all points of the form $2^{-n}$ for $n\in\N\cup\{0\}$. Thus, $N = \bigcup_{n=0}^{\infty}\{ 2^{-n}\}$ which is borel as singletons are borel. As $N$ is a countable set, it follows that $m(N) = 0$.
+    The set of all points in $[0,1]$ with nonunique binary expansion is precisely the set of all points of the form $2^{-n}$ for $n\in\N\cup\{0\}$. Thus, $N = \bigcup_{n=0}^{\infty}\{ 2^{-n}\}$ is Borel as singletons are Borel. As $N$ is a countable set, it follows that $m(N) = 0$.
   \end{proof}
 
   \textbf{(iii)}: Let $C\sub [0,1]$ be the middle thirds Cantor set. For $k\in \N$, define \[\phi_k,\phi:[0,1]\setminus N\to \R\] by $\phi_k(\sum_{n=1}^{\infty}a_n 2^{-n}) = \sum_{n=1}^{k}2a_n 3^{-n}$ and $\phi(\sum_{n=1}^{\infty}a_n 2^{-n}) = = \sum_{n=1}^{\infty}2a_n 3^{-n}$ for all $(a_n)_{n=1}^{\infty}\in\{ 0,1\}^{\N}$. Show that $\phi_k$, $\phi$ are Borel and that $\phi_k([0,1]\setminus N)$ and $\phi([0,1]\setminus N)$ are subsets of $C$. \\
@@ -192,6 +192,12 @@
   Prove that the following hold if and only if the measure $\mu$ is complete:\\
 
   \textbf{(a)}: If $f$ is measurable and $f=g$ $\mu$-a.e., then $g$ is measurable. \\
+
+  \begin{proof}\ \\
+    \underline{$\implies$}: Suppose that $\mu$ is complete. Let $f$ be measurable and suppose that $f=g$ almost everywhere.
+
+    \underline{$\impliedby$}: Suppose that $\mu$ is not complete. Then there exists a null set $N\in \Sigma$ and a subset $E\sub N$ such that $E\not\in\Sigma$.
+  \end{proof}
 
 
 
@@ -230,6 +236,26 @@
 
 \begin{homeworkProblem}
   If $f\in L^{+}$, let $\lambda(E) = \int_E f\dd{\mu}$ for $E\in\Sigma$. Prove that $\lambda$ is a measure on $\Sigma$, and that for any $g\in L^{+}$, $\int g\dd{\lambda} = \int fg\dd{\mu}$.
+
+  \begin{proof}
+    We first show that $\lambda$ is a measure. Note that $\ind_{\emptyset}$ is the zero function on $X$, so $\lambda(\emptyset) = \int_\emptyset f\dd{\mu} = \int f\ind_{\emptyset}\dd{\mu} = 0$. If $E,F\in \Sigma$ are such that $E\sub F$, then $\ind_E\leq \ind_F \implies f\ind_E \leq f\ind_F$, so by monotonicity,
+    \[
+      \lambda(E) = \int f\ind_E\dd{\mu} \leq \int f\ind_F\dd{\mu} = \lambda{F}.
+    \]
+    Lastly, suppose that $\{ A_n\}_{n\in\N}$ is a sequence of disjoint elements of $\Sigma$. Set $A=\bigsqcup_{i=1}^{\infty}A_i$. Let $f_n = f\cdot \ind_{\bigsqcup_{i=1}^{n}A_i}$. Then $0\leq f_1\leq f_2\leq \cdots \leq f\cdot \ind_{A}$ and $f_n\to f \ind_{A}$ pointwise. By the monotone convergence theorem,
+    \[
+      \lambda(A) = \int f\ind_{A}\dd{\mu} = \lim_{n\to\infty} \int f\ind_{\bigsqcup_{i=1}^{n}A_i}\dd{\mu} = \lim_{n\to\infty} \sum_{i=1}^{n}\int f\ind_{A_i}\dd{\mu} = \sum_{i=1}^{\infty}\lambda(A_i).
+    \]
+
+    Suppose that $g$ is a simple function. Write $g = \sum_{i=1}^{n}c_i\ind_{E_i}$ where $E_i\in\Sigma$ and $c_i\in[0,\infty)$. By definition,
+    \[
+      \int g\dd{\lambda} = \sum_{i=1}^{n}c_i \lambda(E_i) = \sum_{i=1}^{n}c_i \int f\ind_{E_i}\dd{\mu} = \int f\lr{\sum_{i=1}^{n} c_i\ind_{E_i}}\dd{\mu} = \int fg \dd{\mu}.
+    \]
+    Now suppose that $g\in L^+$ is arbitrary. Then there exist a sequence of simple functions $0\leq \phi_1\leq \phi_2\leq \cdots\leq g$ such that $\phi_n\to g$ pointwise. Then $0\leq f\phi_1\leq f\phi_2\leq \cdots \leq fg$ and $f\phi_n\to fg$ pointwise. By applying the monotone convergence theorem twice, we see that
+    \[
+      \int g\dd{\lambda} = \lim_{n\to\infty}\int \phi_n \dd{\lambda} = \lim_{n\to\infty}\int f\phi_n \dd{\mu} = \int fg \dd{\mu}.
+    \]
+  \end{proof}
 \end{homeworkProblem}
 
 \begin{homeworkProblem}[6]
