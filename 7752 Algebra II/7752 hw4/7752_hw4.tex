@@ -248,7 +248,7 @@
 
   Let $M$ and $N$ be $R$-modules. Prove that the tensor algebra $T(M)$ is (naturally isomorphic to) a subalgebra of $T(M\oplus N)$ and this subalgebra is a retract. Prove that the same is true for symmetric algebras.
 
-  \begin{homeworkProblem}
+  \begin{proof}
     Let $i:M\to M\oplus N$ be the the natural injection and $j:M\oplus N \to T(M\oplus N)$ be the natural inclusion. By universality of $T(M)$, there exists a unique $R$-algebra homomorphism $\Phi: T(M)\to T(M\oplus N)$ such that $\Phi\vert_M = j\circ i$. On the other hand, let$\pi:M\oplus N\to M$ be the natural projection and $i':M\to T(M)$ the natural inclusion. By universality of $T(M\oplus N)$, there exists a unique $R$-algebra homorphism $\Psi:T(M\oplus N)\to T(M)$ such that $\Psi\vert_{M\oplus N} = i'\circ \pi$. \\
 
     We claim that $\Psi\vert_{\im(\Phi)}$ and $\Phi$ are mutual inverses. It suffices to check this on the $R$-algebra generators of $T(M)$, i.e. $T^{1}(M) = M$. On one hand, suppose that $m\in M$. Then
@@ -257,7 +257,7 @@
     \]
     So $\Phi$ is injective, whence it is isomorphic to $\im{\Phi}$. Moreover, $\Psi$ gives that $\im{\Phi}$ this is a retract of $T(M\oplus N)$.
 
-  \end{homeworkProblem}
+  \end{proof}
 
 \end{homeworkProblem}
 

@@ -168,38 +168,93 @@
     The set of all points in $[0,1]$ with nonunique binary expansion is precisely the set of all points of the form $2^{-n}$ for $n\in\N\cup\{0\}$. Thus, $N = \bigcup_{n=0}^{\infty}\{ 2^{-n}\}$ is Borel as singletons are Borel. As $N$ is a countable set, it follows that $m(N) = 0$.
   \end{proof}
 
-  \textbf{(iii)}: Let $C\sub [0,1]$ be the middle thirds Cantor set. For $k\in \N$, define \[\phi_k,\phi:[0,1]\setminus N\to \R\] by $\phi_k(\sum_{n=1}^{\infty}a_n 2^{-n}) = \sum_{n=1}^{k}2a_n 3^{-n}$ and $\phi(\sum_{n=1}^{\infty}a_n 2^{-n}) = = \sum_{n=1}^{\infty}2a_n 3^{-n}$ for all $(a_n)_{n=1}^{\infty}\in\{ 0,1\}^{\N}$. Show that $\phi_k$, $\phi$ are Borel and that $\phi_k([0,1]\setminus N)$ and $\phi([0,1]\setminus N)$ are subsets of $C$. \\
+  \textbf{(iii)}: Let $C\sub [0,1]$ be the middle thirds Cantor set. For $k\in \N$, define \[\phi_k,\phi:[0,1]\setminus N\to \R\] by $\phi_k(\sum_{n=1}^{\infty}a_n 2^{-n}) = \sum_{n=1}^{k}2a_n 3^{-n}$ and $\phi(\sum_{n=1}^{\infty}a_n 2^{-n}) = \sum_{n=1}^{\infty}2a_n 3^{-n}$ for all $(a_n)_{n=1}^{\infty}\in\{ 0,1\}^{\N}$. Show that $\phi_k$, $\phi$ are Borel and that $\phi_k([0,1]\setminus N)$ and $\phi([0,1]\setminus N)$ are subsets of $C$.
 
-  \textbf{(iv)}: Set $\mu=\phi_*(m)$, where $m$ is the Lebesgue measure on $[0,1]$. Show that $\mu(C^{c}) = 0$ and that there is a unique, increasing continuous function $f:[0,1]\to[0,1]$ so that $f(0)= 0$ and $\mu([a,b])=f(b)-f(a)$ for all $0\leq a< b\leq 1$. (In particular, $f(1) = 1$).\\
+  \begin{proof}
+    Noting that $\phi = \sup_{k}\phi_k$, it suffices to show that each $\phi_k$ is Borel. We claim that $\phi_k$ is in fact a finite linear combination of step functions. For $(a_1,\ldots,a_k)\in \{0,1\}^{k}$ consider the set
+    \[
+      I_{(a_1,\ldots, a_k)} = \Set{ x\in [0,1]\setminus N: x=\sum_{n=1}^{k}a_k 2^{-k} + \sum_{j=k+1}^{\infty}b_j2^{-j} \text{ where }b_j\in\{0,1\}}
+    \]
+    Note that $\phi_k$ is constant on each $I_a$ for and is equal to $\sum_{n=1}^{k}a_n 2^{-n}$ for each $a\in \{ 0,1\}^{k}$, and each $x\in [0,1]\setminus N$ lies in some $I_k$, so
+    \[
+      \phi_k = \sum_{(a_1,\ldots, a_k)\in \{0,1\}^{k}} \lr{\sum_{n=1}^{k}a_n 2^{-n}}\ind_{I_{(a_1,\ldots, a_k)}}.
+    \]
+
+    Note that each element of the images of $\phi$ and $\phi_k$ have ternary decompositions with only 0s or 2s, so they clearly lie in the Cantor set.
+  \end{proof}
+
+  \textbf{(iv)}: Set $\mu=\phi_*(m)$, where $m$ is the Lebesgue measure on $[0,1]$. Show that $\mu(C^{c}) = 0$ and that there is a unique, increasing continuous function $f:[0,1]\to[0,1]$ so that $f(0)= 0$ and $\mu([a,b])=f(b)-f(a)$ for all $0\leq a< b\leq 1$. (In particular, $f(1) = 1$).
+
+  \begin{proof}
+    Note that $\mu(C^c) = m(\phi^{-1}(C^c)) = m(\emptyset) = 0$. Moreover, $\mu$ is a Borel measure which is finite on compact sets, so there exists an increasing right continuous function $f:[0,1]\to[0,1]$ such that $\mu = \mu_f$, namely, $f(x) = \mu((0,x])$. Then $f(0)=0$. As such $f$ is determined up to a constant and $f(0)$ has been specified, $f$ is unique. That $f$ is continuous follows from the previous homework and the fact that $\mu$ is diffuse.
+  \end{proof}
 
   \textbf{(v)}: Show that $f(2\sum_{n=1}^{k}a_n 3^{-n}) = \sum_{n=1}^{k}a_n 2^{-n}$ for all $k\in\N$ and all $(a_n)_{n=1}^{k}\in\{ 0,1\} ^{k}$. If $(a,b)$ is an open interval disjoint from $C$, show that $f(b) = f(a)$.
+
+  \begin{proof}
+    % TODO show trivial shit.
+    $(a,b)\sub C^c$, so $\mu((a,b))\leq \mu(C^c) = 0$.
+  \end{proof}
 \end{homeworkProblem}
 
 \begin{homeworkProblem}[2]
   Let $f:[0,1]\to[0,1]$ be the Cantor function, and let $g(x) = f(x)+x$.\\
 
-  \textbf{(a)}: Prove that $g$ is a bijection from $[0,1]$ to $[0,2]$ and $h=g^{-1}$ is a continuous map from $[0,2]$ to $[0,1]$.\\
+  \textbf{(a)}: Prove that $g$ is a bijection from $[0,1]$ to $[0,2]$ and $h=g^{-1}$ is a continuous map from $[0,2]$ to $[0,1]$.
 
-  \textbf{(b)}: If $C$ is any Cantor set, $m(g(C))=1$.\\
+  \begin{proof}
+    Note that $g$ is strictly monotone increasing and continuous, so $g$ is injective. As $g(1) = 2$, by the intermediate value theorem $g$ is surjective. Morover, as $g$ is a strictly monotone bijection between intervals, $g^{-1}$ is continous.
+  \end{proof}
 
-  \textbf{(c)}: By exercise $29$ of chapter 1, $g(C)$ contains a Lebesgue nonmeasurable set $A$. Let $B = g^{-1}(A)$. Then $B$ is Lebesgue measurable but not Borel. \\
+  \textbf{(b)}: If $C$ is the Cantor set, $m(g(C))=1$.
 
-  \textbf{(d)}: There exist a Lebesgue measurable function $F$ and a continuous function $G$ on $\R$ such that $F\circ G$ is not Lebesge measurable.
+  \begin{proof}
+    Write $C^c = \bigcup_{j=1}^{\infty}I_j$ where $I_j = (a_j,b_j)$ for some $a_j<b_j$. Note that, as $(a_j,b_j)\sub C^{c}$, so $f$ is constant on $(a_j,b_j)$. Moreover,
+    \[
+      g\vert_{I_j}(x) = f(x)+x = a_j+x \implies g(I_j) = I_j
+    \]
+    \[
+      m(g(C)) = 2 - m(g^(C^c)) = 2-\sum_{j=1}^{\infty} m(g(I_j)) = 2-\sum_{j=1}^{\infty} m(I_j) = 2-m(C^c) = 2-1 = 1
+    \]
 
+  \end{proof}
+
+  \textbf{(c)}: By exercise $29$ of chapter 1, $g(C)$ contains a Lebesgue nonmeasurable set $A$. Let $B = g^{-1}(A)$. Then $B$ is Lebesgue measurable but not Borel.
+
+  \begin{proof}
+    To see that $B$ is Lebesgue measurable, note that $B = g^{-1}(A)\sub g^{-1}(g(C)) = C$ and $m(C) = 0$, so by completeness, $B$ is Lebesgue measurable. As $g$ is a homeomorphism and $A = g(B)$, if $B$ were Borel then so would $A$ be, which is absurd as $A$ is non-measurable.
+  \end{proof}
+
+  \textbf{(d)}: There exist a Lebesgue measurable function $F$ and a continuous function $G$ on $\R$ such that $F\circ G$ is not Lebesgue measurable.
+
+  \begin{proof}
+    Take $F = \ind_B$. As $B$ is Lebesgue measurable, so is $\ind_B$. Take $G = g$. Then $(F\circ G)^{-1}(\{ 1\}) = (G^{-1}\circ F^{-1})(\{ 1\}) = g^{-1}(B) = A$, which is not measurable, so $F\circ G$ is not Lebesgue measurable.
+  \end{proof}
 \end{homeworkProblem}
 
 \begin{homeworkProblem}[3]
   Prove that the following hold if and only if the measure $\mu$ is complete:\\
 
-  \textbf{(a)}: If $f$ is measurable and $f=g$ $\mu$-a.e., then $g$ is measurable. \\
+  \textbf{(a)}: If $f$ is measurable and $f=g$ $\mu$-a.e., then $g$ is measurable.
 
   \begin{proof}\ \\
-    \underline{$\implies$}: Suppose that $\mu$ is complete. Let $f$ be measurable and suppose that $f=g$ almost everywhere.
+    \underline{$\implies$}: Suppose that $\mu$ is complete. Let $f$ be measurable and suppose that $f=g$ almost everywhere. Let $N=\{ x: f(x)\neq g(x)\}$. If $E\sub \C$ is measurable, then
+    \begin{align*}
+      g^{-1}(E)  = \{x: g(x)\in E\text{ and }f(x) = g(x)\} \cup \{x:g(x)\in E\text{ and }f(x) \neq g(x)\} = f^{-1}(E)\cup(g^{-1}(E)\cap N),
+    \end{align*}
+    which is measurable by completeness of $\mu$ and measurability of $f$. \\
 
-    \underline{$\impliedby$}: Suppose that $\mu$ is not complete. Then there exists a null set $N\in \Sigma$ and a subset $E\sub N$ such that $E\not\in\Sigma$.
+    \underline{$\impliedby$}: Let $N\in \Sigma$ with $\mu(N)=0$ and suppose that $F\sub N$. Then $\ind_{N} = \ind_{F}$ on $X\setminus N$, so $\ind_{N} = \ind_{F}$ $\mu$-a.e. whence by hypothesis $\ind_F$ is measurable so $F\in\Sigma$.
   \end{proof}
 
   \textbf{(b)}: If $f_n$ is measurable for $n\in\N$ and $f_n\to f$ $\mu$-a.e., then $f$ is measurable.
+
+  \begin{proof}\ \\
+    \underline{$\implies$}: Suppose $\mu$ is complete. Let $f_n$ is measurable for $n\in\N$ and $f_n\to f$ $\mu$-a.e. Let $N = \{ x: f_n(x)\not\to f(x)\}$. Then $f_n\ind_{X\setminus N}\to f\ind_{X\setminus N}$ pointwise. Thus, $f\ind_{X\setminus N}$ is measurable. But $f\ind_{X\setminus N} = f$ $\mu$-a.e., so by part (a), $f$ is measurable.\\
+
+    \underline{$\impliedby$}: Let $N\in\Sigma$ such that $\mu(N)=0$. Suppose that $E\in\Sigma$. Then there exist simple functions $\{\phi_n\}_{n=1}^{\infty}$ with $0\leq|\phi_1|\leq|\phi_2|\leq\cdots\leq |\ind_{N}|$ and $\phi_n\to \ind_N$ pointwise. On $X\setminus N$, $\phi_n \ind_N = \phi_n \ind_F$, so $\phi_n\ind_N = \phi_n \ind_F$ almost everywhere whence by part (a) $\phi_n \ind_F$ is measurable. On $X\setminus N$, $\phi_n \ind_F \to \ind_N\ind_F = \ind_N$, so $\phi_n\to \ind_F$ almost everywhere, whence by assumption $\ind_F$ is measurable i.e. $F$ is measurable.
+
+  \end{proof}
 
 
 \end{homeworkProblem}
