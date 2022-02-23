@@ -173,9 +173,9 @@
   \begin{proof}
     Noting that $\phi = \sup_{k}\phi_k$, it suffices to show that each $\phi_k$ is Borel. We claim that $\phi_k$ is in fact a finite linear combination of step functions. For $(a_1,\ldots,a_k)\in \{0,1\}^{k}$ consider the set
     \[
-      I_{(a_1,\ldots, a_k)} = \Set{ x\in [0,1]\setminus N: x=\sum_{n=1}^{k}a_k 2^{-k} + \sum_{j=k+1}^{\infty}b_j2^{-j} \text{ where }b_j\in\{0,1\}}
+      I_{(a_1,\ldots, a_k)} = \Set{ x\in [0,1]\setminus N: x=\sum_{n=1}^{k}a_k 2^{-k} + \sum_{j=k+1}^{\infty} b_j 2^{-j} \text{ where }b_j\in\{0,1\}}
     \]
-    Note that $\phi_k$ is constant on each $I_a$ for and is equal to $\sum_{n=1}^{k}a_n 2^{-n}$ for each $a\in \{ 0,1\}^{k}$, and each $x\in [0,1]\setminus N$ lies in some $I_k$, so
+    Note that $\phi_k$ is constant on each $I_a$ for and is equal to $\sum_{n=1}^{k}2a_n 3^{-n}$ for each $a\in \{ 0,1\}^{k}$, and each $x\in [0,1]\setminus N$ lies in some $I_k$, so
     \[
       \phi_k = \sum_{(a_1,\ldots, a_k)\in \{0,1\}^{k}} \lr{\sum_{n=1}^{k}a_n 2^{-n}}\ind_{I_{(a_1,\ldots, a_k)}}.
     \]
@@ -192,8 +192,12 @@
   \textbf{(v)}: Show that $f(2\sum_{n=1}^{k}a_n 3^{-n}) = \sum_{n=1}^{k}a_n 2^{-n}$ for all $k\in\N$ and all $(a_n)_{n=1}^{k}\in\{ 0,1\} ^{k}$. If $(a,b)$ is an open interval disjoint from $C$, show that $f(b) = f(a)$.
 
   \begin{proof}
-    % TODO show trivial shit.
-    $(a,b)\sub C^c$, so $\mu((a,b))\leq \mu(C^c) = 0$.
+    Observe that
+    \[
+      f\lr{2\sum_{n=1}^{k}a_n 3^{-n}} = m(\phi^{-1}(\left(0,\ 2\sum_{n=1}^{k}a_n 3^{-n}\right])) = m((\left(0,\ \sum_{n=1}^{k}a_n 2^{-n}\right])) = \sum_{n=1}^{k}a_n 2^{-n}.
+    \]
+
+    Suppose that $(a,b)\sub C^c$. Then $f(b)-f(a) = \mu((a,b))\leq \mu(C^c) = 0$ whence $f(a) = f(b)$.
   \end{proof}
 \end{homeworkProblem}
 
