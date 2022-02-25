@@ -15,7 +15,7 @@
 \usepackage{fullpage}
 \usepackage{faktor} % For quotients
 \usepackage{mathrsfs}
-\usepackage{quiver}
+% \usepackage{quiver}
 % \usepackage{tikz}
 
 % \usepackage{quiver}
@@ -99,6 +99,7 @@
 \DeclareMathOperator{\spn}{span}
 \DeclareMathOperator{\im}{im}
 \DeclareMathOperator{\rk}{rk}
+\DeclareMathOperator{\GL}{GL}
 
 
 %----Analysis
@@ -160,22 +161,23 @@
   \textbf{(1)} Find compatible bases for $F$ and $N$, that is, bases satisfying the submodule theorem 1.\\
 
   \begin{proof}
-    \[\begin{bmatrix} 1&2&3 \\ 4&5&6 \\ 7&8&9 \end{bmatrix} \xrightarrow{\mc{E}_{21}(-4),\, \mc{E}_{31}(-7)}
-    \begin{bmatrix}1&2&3 \\ 0&-3&-6 \\ 0&-6&-12 \end{bmatrix} \xrightarrow{\mc{E}_{32}(-2)}
-    \begin{bmatrix}1&2&3 \\ 0&-3&-6 \\ 0&0&0\end{bmatrix}
+    \[\begin{bmatrix} 1&2&3 \\ 5&4&6 \\ 7&8&9 \end{bmatrix} \xrightarrow{\mc{E}_{21}(-5),\, \mc{E}_{31}(-7)}
+    \begin{bmatrix}1&2&3 \\ 0&-6&-9 \\ 0&-6&-12 \end{bmatrix}
     \xrightarrow{\mc{E}_{21}'(-2),\;\mc{E}_{31}'(-3)}
-    \begin{bmatrix}1&0&0 \\ 0&-3&-6 \\ 0&0&0\end{bmatrix}
-    \xrightarrow{\mc{E}_{32}'(-2)}
-    \begin{bmatrix}1&0&0 \\ 0&-3&0 \\ 0&0&0\end{bmatrix}\]
+    \begin{bmatrix}1&0&0 \\ 0&-6&-9 \\ 0&-6&-12 \end{bmatrix}
+    \xrightarrow{\mc{E}_{32}(-1)}
+    \begin{bmatrix}1&0&0 \\ 0&-6&-9 \\ 0&0&-3 \end{bmatrix}
+    \xrightarrow{\mc{E}_{23}(-3)}
+    \begin{bmatrix}1&0&0 \\ 0&-6&0 \\ 0&0&-3\end{bmatrix}\]
     Then the desired matrix $B$ has the form
     \[
-      B=E_{23}(-2)^{-1}E_{12}(-2)^{-1}E_{13}(-3)^{-1}=E_{23}(2)E_{12}(2)E_{13}(3) = \begin{bmatrix}1&2&3 \\ 0&1&2 \\ 0&0&1\end{bmatrix}
+      B=E_{12}(-2)^{-1}E_{13}(-3)^{-1}=E_{12}(2)E_{13}(3) = \begin{bmatrix}1&2&3 \\ 0&1&0 \\ 0&0&1\end{bmatrix}
     \]
     so our new basis $\{y_1,y_2,y_3\}$ of $F$ is given by
     \[
-      \begin{bmatrix}y_1\\y_2\\y_3\end{bmatrix} = \begin{bmatrix}1&2&3 \\ 0&1&2 \\ 0&0&1\end{bmatrix} \begin{bmatrix}e_1\\e_2\\e_3\end{bmatrix}
+      \begin{bmatrix}y_1\\y_2\\y_3\end{bmatrix} = \begin{bmatrix}1&2&3 \\ 0&1&0 \\ 0&0&1\end{bmatrix} \begin{bmatrix}e_1\\e_2\\e_3\end{bmatrix}
     \]
-    and our new basis of $N$ is $\{y_1, -3y_2\}$.
+    and our new basis of $N$ is $\{y_1, -6y_2, -3y_3\}$.
   \end{proof}
 
   \textbf{(2)} Describe the quotient $F/N$ in the IF form.\\
@@ -183,13 +185,20 @@
   \begin{proof}
     The quotient is given by
     \[
-      F/N\cong (y_1\Z \oplus y_2\Z \oplus y_3\Z)/(y_1\Z\oplus -3y_2\Z) \cong \Z/3\Z \oplus \Z
+      F/N\cong (y_1\Z \oplus y_2\Z \oplus y_3\Z)/(y_1\Z\oplus -6y_2\Z \oplus -3\Z) \cong \Z/3\Z \oplus \Z/6\Z
     \]
   \end{proof}
 
   \textbf{(3)} Describe in IF form the abelian group given by the presentation
   \[\langle a,b,c\;|\;a+2b+3c=0,5a+4b+6c=0, 7a+8b+9c=0\rangle.\]
 
+  \begin{proof}
+    By definition,
+    \[
+      \langle a,b,c\;|\;a+2b+3c=0,5a+4b+6c=0, 7a+8b+9c=0\rangle = F/N
+    \]
+    as above, and $F/N$ has IF form $\Z/3\Z\oplus \Z/6\Z$.
+  \end{proof}
 
 \end{homeworkProblem}
 
@@ -223,6 +232,16 @@
   e_n
   \end{array}\right).\] Find a simple condition on the entries of $A$ which holds if and only if $\rk(F/N)=n$.
 
+  \begin{proof}
+    If any entry in $A$ is a unit, then we could apply row and column operations alongside flips to have the element appear in smith normal form, whence $\rk(F/N)\leq n-1 < n$, so we must first have that all entries of the matrix are nonunits.\\
+
+    We claim that the simple condition on $A$ is that every entry of $A$ is divisible by some nonunit $a\in R$. \\
+
+    \underline{$\implies$}: Write $A=CDB$ where $D$ is the SNF of $A$ and $B,C\in\GL_n(R)$. Then $D = C^{-1}A B^{-1}$, so each nonzero element in the SNF of $A$ is a linear combination of elements of $A$, and is thus divisible by $a$. Hence, each nonzero element of the SNF is a nonunit, so by part (a), the rank of $F/N$ is $m+(n-m) = n$.\\
+
+    \underline{$\impliedby$}: Suppose that $\rk(F/N)=n$. Then by the above comment, every entry of $A$ is a nonunit. As before, write $A= CDB$ where $D$ is the SNF of $A$. Let $a_1\in R$ be the first nonzero entry of $D$. Then $a_1$ divides every entry in $D$, and every entry of $A$ is a linear combination of entries of $D$ and are thus divisible by $a_1$. If $a_1$ were a unit, then part (a) would imply that $rk(F/N)\neq n$, so it follows that $a_1$ is a nonunit that divides every entry of $A$.
+  \end{proof}
+
 \end{homeworkProblem}
 
 \begin{homeworkProblem}
@@ -237,20 +256,20 @@
 
   \begin{proof}
 
-\[\begin{tikzcd}
-	&& F && {F=P\oplus Q} & {} & P \\
-	\\
-	M && N && M && N
-	\arrow["\phi", from=1-3, to=3-3]
-	\arrow["f", two heads, from=3-1, to=3-3]
-	\arrow["\exists\psi"', dashed, from=1-3, to=3-1]
-	\arrow["f", two heads, from=3-5, to=3-7]
-	\arrow[""{name=0, anchor=center, inner sep=0}, "\pi", shift left=1, from=1-5, to=1-7]
-	\arrow["\exists\psi"', dotted, from=1-5, to=3-5]
-	\arrow["\iota", shift left=1, from=1-7, to=1-5]
-	\arrow["\phi", from=1-7, to=3-7]
-	\arrow[shorten <=0pt, Rightarrow, from=0, to=1-6]
-\end{tikzcd}\]
+% \[\begin{tikzcd}
+% 	&& F && {F=P\oplus Q} & {} & P \\
+% 	\\
+% 	M && N && M && N
+% 	\arrow["\phi", from=1-3, to=3-3]
+% 	\arrow["f", two heads, from=3-1, to=3-3]
+% 	\arrow["\exists\psi"', dashed, from=1-3, to=3-1]
+% 	\arrow["f", two heads, from=3-5, to=3-7]
+% 	\arrow[""{name=0, anchor=center, inner sep=0}, "\pi", shift left=1, from=1-5, to=1-7]
+% 	\arrow["\exists\psi"', dotted, from=1-5, to=3-5]
+% 	\arrow["\iota", shift left=1, from=1-7, to=1-5]
+% 	\arrow["\phi", from=1-7, to=3-7]
+% 	\arrow[shorten <=0pt, Rightarrow, from=0, to=1-6]
+% \end{tikzcd}\]
 
   We first show that such $f_\star$ is surjective when $P=F$ is a free $R$-module. Suppose that $\phi\in\Hom_R(F,N)$. Let $F$ be free over some subset $X\sub F$. By surjectivity of $f$, for all $x\in X$, there exists an $m_x\in M$ such that $f(m_x) = \phi(x)$. Then, by the universal property of free modules, there exists a unique $\psi\in\Hom_R(P,M)$ such that $\psi(x) = m_x$ for all $x\in X$. It follows then that, for $x\in X$,
   \[
@@ -278,5 +297,26 @@
 \begin{homeworkProblem}
   Determine the number of possible RCF's of $8\times 8$ matrices $A$ over $\Q$ with $\chi_A(x)=x^8-x^4$. Explain your argument in detail.
 \end{homeworkProblem}
+
+\begin{proof}
+  The IF decomposition for $V_A$ is of the form
+  \[
+    V_A \cong \frac{\Q[x]}{(\alpha_1(x))} \oplus \cdots \oplus \frac{\Q[x]}{(\alpha_m(x))}
+  \]
+  where $\alpha_1\vert \alpha_2\vert\cdots \alpha_m$ are all monic polynomials in $\Q[x]$\\
+
+  We first factor the desired $\chi_A$ into irreducibles over $\Q$, i.e. $x^8 - x^4 = x^4(x^2+1)(x+1)(x-1)$. We require that $\alpha_m(x) = \mu_A(x)$, $\alpha_1(x)\cdots\alpha_m(x) = \chi_A(x) = x^4(x^2+1)(x+1)(x-1)$, and $\sum_{i}\deg(\alpha_i) = 8$.\\
+
+  First observe that, if any of the $x, (x^2+1)$, $(x+1)$, or $(x-1)$ are missing from $\mu_A(x)$, then it would be impossible to have $\alpha_1(x)\cdots\alpha_m(x) = \chi_A(x)$. Thus, $\mu_A(x) = x^k(x^2+1)(x+1)(x-1)$ for some $k\in\{1,\ldots,4\}$. Moreover, if any of the $\alpha_i$ for $i<m$ contain a factor of $(x^2+1)$, $(x+1)$, or $(x-1)$, then we would again violate $\alpha_1(x)\cdots\alpha_m(x) = \chi_A(x)$. Thus, every $\alpha_i$ must be a unit or a power of $x$. \\
+
+  \underline{k=1}: In this case, we are forced to take $m=4$ and $\alpha_i = x$ for $1\leq i <4$ as this is the only way to partition 8 with one 4 and remaining ones.\\
+
+  \underline{k=2}: In this case, we either have $m=2$ and $\alpha_1 = x^2$, or $m=3$ and $\alpha_1,\alpha_2 = x$. These are the only possible partitions of 8 given the restrictions.\\
+
+  \underline{k=3}: In this case, we are forced to take $m=2$ and $\alpha_1 = x$, this is clearly the only allowed partition.\\
+
+  \underline{k=4}: In this case, take $m=1$ and $\alpha_1 = \mu_A(x) = \chi_A(x)$.
+
+\end{proof}
 
 \end{document}
