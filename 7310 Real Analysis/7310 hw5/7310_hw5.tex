@@ -1,0 +1,270 @@
+\documentclass[12pt,letterpaper]{article}
+
+%--------Packages--------
+\usepackage{amsmath, amsthm, amssymb}
+\usepackage{xspace}
+\usepackage{graphicx}
+\usepackage{hhline}
+\usepackage{amssymb}
+\usepackage{array}
+\usepackage{braket}
+\usepackage{multicol}
+\usepackage{mathtools}
+\usepackage{enumerate}
+\usepackage{delarray}
+\usepackage{mathtools}
+\usepackage{fullpage}
+\usepackage{faktor} % For quotients
+\usepackage{mathrsfs}
+
+\usepackage[italicdiff]{physics} % For differentials
+\usepackage{bbm} % For indicator
+
+% \usepackage{quiver}
+\usepackage[linguistics]{forest}
+
+
+
+
+%--------Page Setup--------
+
+\pagestyle{empty}%
+
+\setlength{\hoffset}{-1.54cm}
+\setlength{\voffset}{-1.54cm}
+
+\setlength{\topmargin}{0pt}
+\setlength{\headsep}{0pt}
+\setlength{\headheight}{0pt}
+
+\setlength{\oddsidemargin}{0pt}
+
+\setlength{\textwidth}{195mm}
+\setlength{\textheight}{250mm}
+
+
+%--------Macros--------
+
+\newcommand{\sub}{\subseteq}
+\newcommand{\lcm}{\text{lcm}}
+\newcommand{\mc}[1]{\mathcal{#1}}
+\newcommand{\mf}[1]{\mathfrak{#1}}
+\newcommand{\ms}[1]{\mathscr{#1}}
+\newcommand{\sO}{\mathcal{O}}
+\newcommand{\cyclic}[1]{\langle#1\rangle}
+\newcommand{\units}[1]{#1 ^{\times}}
+\newcommand{\la}{\langle}
+\newcommand{\ra}{\rangle}
+\newcommand{\lr}[1]{\left(#1\right)}
+%----Switch phi and varphi
+% \let\temp\phi
+% \let\phi\varphi
+% \let\varphi\temp
+
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\N}{\mathbb{N}\xspace}
+\newcommand{\I}{\mathbb{I}\xspace}
+\newcommand{\R}{\mathbb{R}\xspace}
+\newcommand{\Z}{\mathbb{Z}\xspace}
+\newcommand{\Q}{\mathbb{Q}\xspace}
+\newcommand{\G}{\mathbb{G}\xspace}
+\DeclareMathOperator{\Spec}{Spec}
+\DeclareMathOperator{\res}{res}
+% \DeclareMathOperator{\Tr}{Tr}
+\DeclareMathOperator{\ord}{ord}
+\DeclareMathOperator{\Sym}{Sym}
+% \DeclareMathOperator{\dv}{div}
+\DeclareMathOperator{\alb}{alb}
+\DeclareMathOperator{\img}{Im}
+\DeclareMathOperator{\et}{et}
+\DeclareMathOperator{\ck}{coker}
+\DeclareMathOperator{\Reg}{Reg}
+\DeclareMathOperator{\Cor}{Cor}
+\DeclareMathOperator{\Ac}{at}
+\DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\Pic}{Pic}
+\DeclareMathOperator{\Gal}{Gal}
+\DeclareMathOperator{\fc}{frac}
+\DeclareMathOperator{\Ann}{Ann}
+\DeclareMathOperator{\Mod}{Mod}
+\DeclareMathOperator{\Cone}{Cone}
+\DeclareMathOperator{\FI}{FI}
+\DeclareMathOperator{\End}{End}
+\DeclareMathOperator{\Alb}{Alb}
+\DeclareMathOperator{\Ext}{Ext}
+\DeclareMathOperator{\ab}{ab}
+\DeclareMathOperator{\Jac}{Jac}
+\DeclareMathOperator{\coker}{coker}
+\DeclareMathOperator{\fr}{frac}
+\DeclareMathOperator{\Int}{Int}
+
+
+
+%----Analysis
+\newcommand{\summ}{\sum\limits}
+% \newcommand{\norm}[1]{\left \vert \left \vert #1 \right \vert \right \vert}
+\newcommand{\thicc}{\bigg}
+\newcommand{\eps}{\varepsilon}
+\newcommand*\cls[1]{\overline{#1}}
+\newcommand{\ind}{\mathbbm{1}}
+
+
+%--------Theorem environments--------
+\newtheorem{definition}{Definition}[]
+\newtheorem{lemma}{Lemma}[]
+\newtheorem{corollary}{Corollary}[]
+\newtheorem{theorem}{Theorem}[]
+\theoremstyle{remark}
+\newtheorem*{claim}{Claim}
+
+
+\newenvironment{solution}
+{\begin{proof}[Solution]}
+{\end{proof}}
+
+
+\makeatletter
+\newcommand{\thickhline}{%
+    \noalign {\ifnum 0=`}\fi \hrule height 1pt
+    \futurelet \reserved@a \@xhline
+}
+\newcolumntype{"}{@{\hskip\tabcolsep\vrule width 1pt\hskip\tabcolsep}}
+\makeatother
+
+% --------Problem environment--------
+\setlength\parindent{0pt}
+\setcounter{secnumdepth}{0}
+\newcounter{partCounter}
+\newcounter{homeworkProblemCounter}
+\setcounter{homeworkProblemCounter}{1}
+
+
+\newenvironment{homeworkProblem}[1][-1]{
+    \ifnum#1>0
+        \setcounter{homeworkProblemCounter}{#1}
+    \fi
+    \section{Problem \arabic{homeworkProblemCounter}}
+    \setcounter{partCounter}{1}
+    \stepcounter{homeworkProblemCounter}
+}
+
+
+%--------Metadata--------
+\title{MATH 7310 Homework 5}
+\author{James Harbour}
+
+\begin{document}
+
+\begin{homeworkProblem}
+  \textbf{(a)} Let $(X,\mu)$ be a measure space. For $f:X\to[0,+\infty]$ measurable, we define a measure $\nu$ by $\nu(E) = \int_E f\dd{\mu}$ where $E\sub X$ is measurable. If $g:X\to\C$ is measurable, show that $g\in L^{1}(X,\nu)$ if and only if $gf\in L^1(X,\mu)$ and that $\int g\dd{\nu} = \int fg\dd{\mu}$ for all $g\in L^1(X,\nu)$.
+
+  \begin{proof}\ \\
+    \underline{$\implies$}: Suppose $g\in L^1(X,\nu)$, so $\int |g| \dd{\nu}<+\infty$. Thus $|g|\in L^+(X,\nu)$, so by problem 5 on homework 4, $\int |g|\dd{\nu} = \int |g|f \dd{\mu} = \int |gf| \dd{\mu}$, so $gf\in L^1(X,\mu)$. \\
+
+    \underline{$\implies$}: Suppose $gf\in L^1(X,\mu)$. So $\int |g|\dd{\nu} = \int |g|f\dd{\mu}  = \int |gf|\dd{\mu}<+\infty$, whence $g\in L^{1}(X,\nu)$. \\
+
+    Now let $g\in L^1(X,\nu)$ and write $g = u + iv$ where $u = \Re(g)$ and $v = \Im(g)$. Let $u^+, u^-, v^+, v^-$ be the positive and negative parts of $u$ and $v$ respectively. As $g\in L^1(X,\nu)$, each of these functions are in $L^+(X,\nu)$. Then, using nonnegativity of these functions and problem 5 of homework 4,
+    \begin{align*}
+      \int g \dd{\nu} = \int u \dd{\nu} + i\int v \dd{\nu} &= \int u^+\dd{\nu} - \int u^- \dd{\nu} + i\int v \dd{\nu} - i\int v\dd{\nu}\\
+      &= \int u^+ f\dd{\mu} - \int u^- f\dd{\mu} + i\int v^+ f\dd{\mu} - i\int v^- f\dd{\mu} = \int g f\dd{\mu}.
+    \end{align*}
+  \end{proof}
+
+
+  \textbf{(b)} Let $(X,\Sigma),(Y,\mc{F})$ be measurable spaces and let $\mu:\Sigma\to[0,+\infty]$ be a measure. Let $\phi:X\to Y$ be measurable. If $f:Y\to\C$ is measurable, show that $f\in L^1(Y,\phi_*(\mu))$ if and only if $f\circ \phi\in L^{1}(X,\mu)$ and that $\int f\dd{(\phi_*(\mu))} = \int f\circ \phi\dd{\mu}$ for all $f\in L^1(Y,\phi_*(\mu))$.
+
+  \begin{proof}\ \\
+    \underline{$\implies$}: Suppose that $f\in L^1(Y,\phi_*(\mu))$. Then \[\int |f|\dd{(\phi_*(\mu))} < +\infty\]
+
+  \end{proof}
+\end{homeworkProblem}
+
+
+\begin{homeworkProblem}
+  Let $f(x) = x^{-1/2}$ if $0<x<1$, $f(x) = 0$ otherwise. Let $(r_n)_{n=1}^{\infty}$ be an enumeration of the rationals, and set $g(x) = \sum_{n=1}^{\infty}2^{-n}f(x-r_n)$. \\
+
+  \textbf{(a)} Show that $g\in L^{1}(m)$, and in particular that $g<\infty$ a.e. \\
+
+  \textbf{(b)} Prove that $g$ is discontinuous at every point and unbounded on every interval, and it remains so after any modification on a Lebesgue null set.\\
+
+  \textbf{(c)} Prove that $g^2<\infty$ almost everywhere, but $g^2$ is not integrable on any interval.
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+  Compute the following limits and justify the calculations:\\
+
+  \textbf{(a)} $\lim_{n\to\infty}\int_{0}^{\infty}(1+(x/n))^{-n}\sin(x/n)\dd{x}$.
+
+  \begin{proof}
+    Let $f_n(x) = (1+(x/n))^{-n}\sin(x/n)$ for $x\in [0,+\infty)$. Then for all $x\in[0,+\infty)$, $f(x):=\lim_{n\to\infty}f_n(x) = 0/e^{x} = 0$, so $\int f(x) \dd{x} = 0$. On the other hand, we estimate via cherrypicking terms in the binomial expansion that for $n\in\N\setminus\{ 1\}$,
+    \[
+      |f_n| = \frac{|\sin(\frac{x}{n})|}{(1+\frac{x}{n})^n} \leq \frac{1}{(1+\frac{x}{n})^n} \leq \frac{1}{1+\binom{n}{2}x^2}\leq \frac{1}{1+x^2}
+    \]
+    which is in $L^1$. Hence, by the dominated convergence theorem, $\lim_{n\to\infty}\int_{0}^{\infty}f_n(x)\dd{x} = \int_{0}^{\infty}f(x)\dd{x} = 0$.
+  \end{proof}
+
+  \textbf{(b)} $\lim_{n\to\infty}\int_{0}^{1}(1+nx^2)(1+x^2)^{-n}\dd{x}$.
+
+  \begin{proof}
+    Let $f_n(x) = (1+nx^2)(1+x^2)^{-n}$ on $[0,1]$. Let $f(x) = \lim_{n\to\infty}(1+nx^2)(1+x^2)^{-n} = $ By Bernoulli's inequality, for $n\in \N$
+
+    \[
+      |f_n| \leq (1+x^2)^{n}(1+x^2)^{-n} = 1
+    \]
+    which is in $L^{1}([0,1],m)$. Thus, by the dominated convergence theorem
+    \[
+      \lim_{n\to\infty}\int_{0}^{1}f_n(x)\dd{x} = \int_{0}^{1}\lim_{n\to\infty}(1+nx^2)(1+x^2)^{-n} = \int_{0}^{1}\lim_{n\to\infty}\frac{x^2}{(1+x^2)^n \ln{(1+x^2)}2x}\dd{x} = 0.
+    \]
+  \end{proof}
+
+  \textbf{(c)} $\lim_{n\to\infty}\int_{0}^{\infty}n\sin(x/n)[x(1+x^2)]^{-1}\dd{x}$\\
+
+  \begin{proof}
+    Let $f_n(x) = n\sin(x/n)[x(1+x^2)]^{-1}$ and $f(x) = \lim_{n\to\infty}f_n(x) = \lim_{n\to\infty}\frac{\cos(x/n)}{1+x^2} = \frac{1}{1+x^2}$. For $n\in \N$, note that
+    \[
+      |f_n|\leq \frac{1}{1+x^2}
+    \]
+    which is in $L^+$, so by the dominated convergence theorem $\lim_{n\to\infty}\int_{0}^{\infty}n\sin(x/n)[x(1+x^2)]^{-1}\dd{x} = \int_{0}^{\infty}\frac{1}{1+x^2}\dd{x} = \pi/2$.
+  \end{proof}
+
+  \textbf{(d)} $\lim_{n\to\infty}\int_{a}^{\infty}n(1+n^2 x^2)^{-1}\dd{x}$.
+
+  \begin{proof}
+    We compute
+    \begin{align*}
+      \int_{a}^{\infty}n(1+n^2 x^2)^{-1}\dd{x} = \int_{na}^{\infty} \frac{1}{1+x^2}\dd{x} = \frac{\pi}{2} - \arctan(na).
+    \end{align*}
+    If $a>0$, $\lim_{n\to\infty}\frac{\pi}{2} - \arctan(na) = 0$.\\
+    If $a=0$, $\lim_{n\to\infty}\frac{\pi}{2} = \frac{\pi}{2}$.\\
+    If $a<0$, $\lim_{n\to\infty}\frac{\pi}{2} - \arctan(na) = \frac{\pi}{2} - (-\frac{\pi}{2}) = \pi$.
+
+  \end{proof}
+
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+  \textbf{(a)} Suppose $\mu(X)<\infty$. If $f$ and $g$ are complex-valued measurable functions on $X$, define
+  \[
+    \rho(f,g) = \int \frac{|f-g|}{1+|f-g|}\dd{\mu}.
+  \]
+  Then $\rho$ is a metric on the space of measurable functions if we identify functions that are equal a.e., and $f_n\to f$ with respect to this metric if and only if $f_n\to f$ in measure.\\
+
+  \textbf{(b)} Suppose $(X,\mu)$ is a finite measure space. Let $\rho$ be the metric in (a). Show that a sequence of measurable functions $f_n:X\to \C$ is Cauchy in measure if and only if it is Cauchy with respect to $\rho$.
+\end{homeworkProblem}
+
+
+\begin{homeworkProblem}
+    Suppose that $|f_n|\leq g\in L^1 $ and $f_n\to f$ in measure.\\
+
+    \textbf{(a)} Prove that $\int f\dd{\mu} = \lim_{n\to\infty}\int f_n\dd{\mu}$.\\
+
+    \textbf{(b)} Prove that $f_n\to f$ in $L^1$.
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+  If $f:[a,b]\to \C$ is Lebesgue measurable and $\eps>0$, there is a compact set $E\sub [a,b]$ such that $\mu(E^c)<\eps$ and $f\vert_E$ is continuous. (\emph{Hint}: Use Egoroff's theorem and Theorem 2.26)
+\end{homeworkProblem}
+
+\end{document}
