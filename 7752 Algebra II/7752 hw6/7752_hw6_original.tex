@@ -1,0 +1,241 @@
+\documentclass[12pt,
+psamsfonts]{amsart}
+
+%-------Packages---------
+\usepackage{amssymb,amsfonts,amsmath}
+\usepackage[all,arc]{xy}
+\usepackage{enumerate}
+\usepackage{mathrsfs}
+\usepackage{fullpage}
+\usepackage{xspace}
+\usepackage[margin=1.0in]{geometry}
+\usepackage{tcolorbox}
+\usepackage{tikz-cd}
+\usepackage{color}
+\usepackage{aliascnt}
+\usepackage[foot]{amsaddr}
+\usepackage{hyperref}
+
+
+%--------Theorem Environments--------
+%theoremstyle{plain} --- default
+\newtheorem{thm}{Theorem}[section]
+
+%----Theorem
+\newaliascnt{theo}{thm}
+\newtheorem{theo}[theo]{Theorem}
+\aliascntresetthe{theo}
+\newcommand{\theoautorefname}{Theorem}
+%----Corollary
+\newaliascnt{cor}{thm}
+\newtheorem{cor}[cor]{Corollary}
+\aliascntresetthe{cor}
+\newcommand{\corautorefname}{Corollary}
+%----Proposition
+\newaliascnt{prop}{thm}
+\newtheorem{prop}[prop]{Proposition}
+\aliascntresetthe{prop}
+\newcommand{\propautorefname}{Proposition}
+%----Lemma
+\newaliascnt{lem}{thm}
+\newtheorem{lem}[lem]{Lemma}
+\aliascntresetthe{lem}
+\newcommand{\lemautorefname}{Lemma}
+%----Conjecture
+\newaliascnt{conj}{thm}
+\newtheorem{conj}[conj]{Conjecture}
+\aliascntresetthe{conj}
+\newcommand{\conjautorefname}{Conjecture}
+%----Question
+\newaliascnt{que}{thm}
+\newtheorem{que}[que]{Question}
+\aliascntresetthe{que}
+\newcommand{\queautorefname}{Question}
+%----Assumption
+\newaliascnt{ass}{thm}
+\newtheorem{ass}[ass]{Assumption}
+\aliascntresetthe{ass}
+\newcommand{\assautorefname}{Assumption}
+%----Definition
+\newaliascnt{defn}{thm}
+\newtheorem{defn}[defn]{Definition}
+\aliascntresetthe{defn}
+\newcommand{\defnautorefname}{Definition}
+
+
+
+
+%Style
+\theoremstyle{remark}
+%----Remark
+\newaliascnt{rem}{thm}
+\newtheorem{rem}[rem]{Remark}
+\aliascntresetthe{rem}
+\newcommand{\remautorefname}{Remark}
+
+\newtheorem*{ack}{Acknowledgements}
+
+
+
+
+\newtheorem{Proof}{Proof}
+
+\theoremstyle{definition}
+%\newtheorem{defn}[thm]{Definition}
+\newtheorem{defns}[thm]{Definitions}
+\newtheorem{con}[thm]{Construction}
+\newtheorem{exmp}[thm]{Example}
+\newtheorem{exmps}[thm]{Examples}
+\newtheorem{notn}[thm]{Notation}
+\newtheorem{notns}[thm]{Notations}
+\newtheorem{addm}[thm]{Addendum}
+\newtheorem{exer}[thm]{Exercise}
+\newtheorem{conv}[thm]{Convention}
+
+\newtheorem{case}[thm]{Case}
+
+
+\newtheorem{rems}[thm]{Remarks}
+\newtheorem{warn}[thm]{Warning}
+%\newtheorem{sch}[thm]{Scholium}
+\newtheorem{notation}[thm]{Notation}
+\newtheorem{ex}[thm]{Examples}
+\newtheorem{note}[thm]{Note}
+
+
+
+\newcommand{\N}{\mathbb{N}\xspace}
+\newcommand{\I}{\mathbb{I}\xspace}
+\newcommand{\R}{\mathbb{R}\xspace}
+\newcommand{\Z}{\mathbb{Z}\xspace}
+\newcommand{\Q}{\mathbb{Q}\xspace}
+\newcommand{\C}{\mathbb{C}\xspace}
+\newcommand{\G}{\mathbb{G}\xspace}
+\DeclareMathOperator{\Spec}{Spec}
+\DeclareMathOperator{\res}{res}
+\DeclareMathOperator{\Tr}{Tr}
+\DeclareMathOperator{\ord}{ord}
+\DeclareMathOperator{\Sym}{Sym}
+\DeclareMathOperator{\dv}{div}
+\DeclareMathOperator{\alb}{alb}
+\DeclareMathOperator{\img}{Im}
+\DeclareMathOperator{\et}{et}
+\DeclareMathOperator{\ck}{coker}
+\DeclareMathOperator{\Reg}{Reg}
+\DeclareMathOperator{\Cor}{Cor}
+\DeclareMathOperator{\Ac}{at}
+\DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\Pic}{Pic}
+\DeclareMathOperator{\Gal}{Gal}
+\DeclareMathOperator{\fc}{frac}
+\DeclareMathOperator{\Ann}{Ann}
+\DeclareMathOperator{\Mod}{Mod}
+\DeclareMathOperator{\Cone}{Cone}
+\DeclareMathOperator{\FI}{FI}
+\DeclareMathOperator{\End}{End}
+\DeclareMathOperator{\rk}{rk}
+\DeclareMathOperator{\Ext}{Ext}
+\DeclareMathOperator{\ab}{ab}
+\DeclareMathOperator{\Jac}{Jac}
+\DeclareMathOperator{\coker}{coker}
+\DeclareMathOperator{\fr}{frac}
+\makeatletter
+\let\c@equation\c@theo
+\makeatother
+\numberwithin{equation}{section}
+
+\bibliographystyle{plain}
+%\newcommand{\textlatin }
+
+
+
+
+%--------Meta Data: Fill in your info------
+\title{Math 7752 - Homework 6\\
+Due Friday 03/18/22 at 1 p.m.}
+
+\begin{document}
+
+\maketitle
+
+\begin{enumerate}
+\item \begin{enumerate}
+[(a)]\item Prove that two $3\times 3$ matrices over some field $F$ are similar if and only if they have the same minimal and characteristic polynomials. Is the same true for $4\times 4$ matrices? 
+\item A matrix $A$ is called idempotent if $A^2=A$. Prove that two idempotent $n\times n$ matrices are similar if and only if they have the same rank. \textbf{Hint:} What is the minimal polynomial of an idempotent matrix? How does rank relate to eigenvalue $0$? 
+\end{enumerate}
+\medskip
+\medskip
+%\item (\textbf{Optional for extra practice in case you haven't seen this before}) Solve Problem 6 from p. 488 of Dummit-Foote. \\
+%\item Solve Problem 9 from p. 489 of Dummit-Foote. It is enough to find the RCF of only the 3rd matrix. \\
+%\item\begin{enumerate}[(a)]
+%\item Determine the number of possible RCF's of $8\times 8$ matrices $A$ over $\Q$ with $\chi_A(x)=x^8-x^4$. Explain your argument in detail. 
+
+\item Let $F$ be an algebraically closed field and $V$ a finite dimensional $F$-vector space. 
+\begin{enumerate}[(a)]
+\item  Let $S,T\in\mathcal{L}(V)$ such that $ST=TS$. Let $\lambda$ be an eigenvalue of $S$ and $E_\lambda(S)\leq V$ be the corresponding eigenspace of $S$. Prove that $E_\lambda(S)$ is a $T$-invariant subspace. \\
+\item  Assume that $T\in\mathcal{L}(V)$ is diagonalizable and let $W\leq V$ be a $T$-invariant subspace. Prove that $T|_W\in\mathcal{L}(W)$ is also diagonalizable. \\
+\item  Assume again that $S,T\in\mathcal{L}(V)$ such that $ST=TS$. Prove that there exists a basis $\Omega$ of $V$ such that $[T]_\Omega$, and $[S]_\Omega$ are both diagonal. \\
+\item  Give an example of a vector space $V$ with $\dim_F(V)\geq 3$ and two commuting linear transformations $S,T\in\mathcal{L}(V)$ such that NO basis $\Omega$ of $V$ exists such that both $[T]_\Omega$, and $[S]_\Omega$ are in JCF. 
+\end{enumerate}
+%\item  Determine the number of possible RCF's of $10\times 10$ matrices over $\Q$ with $\mu_A(x)=x^6-x^2$. Do the same for matrices over $\C$. 
+%\end{enumerate} 
+\medskip
+\medskip
+\item  Find the number of distinct conjugacy classes in the group $GL_3(\Z/2\Z)$, and specify one element in each conjugacy class. \\
+
+\item Let $V$ be an $n$-dimensional vector space over an algebraically closed field and $T\in\mathcal{L}(V)$. Assume that $T$ has just one eigenvalue $\lambda$ and just one Jordan block. Let $S=T-\lambda I$. 
+\begin{enumerate}
+[(a)]\item Prove that $\rk(S^k)=n-k$, for all $0\leq k\leq n$. Deduce that $\img(S^k)=\ker(S^{n-k})$, for all $0\leq k\leq n$. 
+\item Let $v\in V$ be any vector which lies outside of $\img(S)=\ker(S^{n-1})$. Prove that $\{S^{n-1}v,\ldots, Sv, v\}$ is a Jordan basis for $T$. 
+\end{enumerate}
+\medskip
+\medskip
+\item Assume again that $V$ is an $n$-dimensional vector space over an algebraically closed field $F$ and $T\in\mathcal{L}(V)$. 
+\begin{enumerate}
+[(a)]\item Assume that $T$ has unique eigenvalue $0$ and two Jordan blocks: a $1\times 1$ block and a $2\times 2$ block (so $n=3$ in this case). Justify the following algorithm for computing a Jordan basis for $T$: Take any $v\in V\setminus \ker(T)$ and choose $w\in\ker(T)$ such that $\{w, Tv\}$ is a basis for $\ker(T)$ (why is this possible?); then $\{w, Tv, v\}$ is a Jordan basis for $T$. 
+\item Assume that $T$ has unique eigenvalue $0$ and two Jordan blocks, both of which are $2\times 2$ (so $n=4$). State an algorithm for finding a Jordan basis similar to the one in (a). 
+\item Assume that for each $\lambda\in\Spec(T)$ there is only one Jordan $\lambda$-block in $JCF(T)$. Describe an algorithm for computing a Jordan basis of $T$. \textbf{Hint:} You just need a minor generalization of the algorithm in the previous problem. 
+\end{enumerate}
+\medskip
+\medskip
+\item Compute the Jordan canonical form and a Jordan basis for each of the following matrices over $\Q$: 
+
+(a) $\left(\begin{array}{ccc}
+-1 & 3 & 0\\
+0 & 2 & 0 \\
+2 & 1 & -1
+\end{array}\right)$ \hspace{100 pt} (b)  $\left(\begin{array}{ccc}
+1 & -1 & 1\\
+1 & -1 & 1 \\
+1 & -1 & 0
+\end{array}\right)$. 
+\\
+\\
+\item Let $F=\mathbb{F}_3$ be the field with $3$ elements and let $A\in M_{12}(\mathbb{F}_3)$. Suppose that $A$ satisfies all the following assumptions: 
+\begin{itemize}
+\item $\rk(A)=10$, \hspace{20pt} $\rk(A^2)=9$, \hspace{20pt} $\rk(A^3)=9$. 
+\item $\rk(A-I)=12$. 
+\item $\rk(A-2I)=9$, \hspace{20pt} $\rk((A-2I)^2)=7$, \hspace{20pt} $\rk((A-2I)^3)=6$. 
+\end{itemize} 
+\begin{enumerate}
+\item Assume in addition that the characteristic polynomial $\chi_A(x)$ splits completely over $F$ (i.e. it splits into linear factors in $F[x]$). Find the Jordan canonical form of $A$. 
+\item Find all possible RCF's of matrices $A$ satisfying all the bullet assumptions, but not necessarily the extra assumption in (a). 
+\end{enumerate}
+\medskip 
+\medskip
+\item \textbf{(Optional)} Let $V=C^\infty(\R)$ be the space of all infinitely differentiable functions on the real line. (Observe that $V$ is an infinite dimensional $\R$-vector space). Consider the linear transformation $T=\frac{d}{dx}:V\rightarrow V$ that sends a function $f$ to its derivative. Find all eigenvalues of $T$ and the corresponding \textbf{generalized eigenspaces}. \textbf{Hint:} Start by computing the generalized eigenspaces corresponding to the eigenvalue $\lambda=0$.  
+
+
+
+
+
+
+
+\end{enumerate}
+
+
+
+
+
+\end{document}

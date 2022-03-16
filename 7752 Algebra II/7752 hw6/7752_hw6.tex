@@ -1,0 +1,282 @@
+\documentclass[12pt,letterpaper]{article}
+
+%--------Packages--------
+\usepackage{amsmath, amsthm, amssymb}
+\usepackage{xspace}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{array}
+\usepackage{braket}
+\usepackage{multicol}
+\usepackage{mathtools}
+\usepackage{enumerate}
+\usepackage{delarray}
+\usepackage{mathtools}
+\usepackage{fullpage}
+\usepackage{faktor} % For quotients
+\usepackage{mathrsfs}
+% \usepackage{quiver}
+% \usepackage{tikz}
+
+% \usepackage{quiver}
+\usepackage[linguistics]{forest}
+
+
+
+
+%--------Page Setup--------
+
+\pagestyle{empty}%
+
+\setlength{\hoffset}{-1.54cm}
+\setlength{\voffset}{-1.54cm}
+
+\setlength{\topmargin}{0pt}
+\setlength{\headsep}{0pt}
+\setlength{\headheight}{0pt}
+
+\setlength{\oddsidemargin}{0pt}
+
+\setlength{\textwidth}{195mm}
+\setlength{\textheight}{250mm}
+
+
+%--------Macros--------
+
+\newcommand{\sub}{\subseteq}
+\newcommand{\lcm}{\text{lcm}}
+\newcommand{\ms}[1]{\mathscr{#1}}
+\newcommand{\mc}[1]{\mathcal{#1}}
+\newcommand{\mf}[1]{\mathfrak{#1}}
+\newcommand{\sO}{\mathcal{O}}
+\newcommand{\cyclic}[1]{\langle#1\rangle}
+\newcommand{\units}[1]{#1 ^{\times}}
+\newcommand{\la}{\langle}
+\newcommand{\ra}{\rangle}
+\newcommand{\lr}[1]{\left(#1\right)}
+%----Switch phi and varphi
+\let\temp\phi
+\let\phi\varphi
+\let\varphi\temp
+
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\N}{\mathbb{N}\xspace}
+\newcommand{\I}{\mathbb{I}\xspace}
+\newcommand{\R}{\mathbb{R}\xspace}
+\newcommand{\Z}{\mathbb{Z}\xspace}
+\newcommand{\Q}{\mathbb{Q}\xspace}
+\newcommand{\G}{\mathbb{G}\xspace}
+\DeclareMathOperator{\Spec}{Spec}
+\DeclareMathOperator{\res}{res}
+\DeclareMathOperator{\Tr}{Tr}
+\DeclareMathOperator{\ord}{ord}
+\DeclareMathOperator{\Sym}{Sym}
+\DeclareMathOperator{\dv}{div}
+\DeclareMathOperator{\alb}{alb}
+\let\Im\relax
+\DeclareMathOperator{\Im}{Im}
+\DeclareMathOperator{\et}{et}
+\DeclareMathOperator{\ck}{coker}
+\DeclareMathOperator{\Reg}{Reg}
+\DeclareMathOperator{\Cor}{Cor}
+\DeclareMathOperator{\Ac}{at}
+\DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\Pic}{Pic}
+\DeclareMathOperator{\Gal}{Gal}
+\DeclareMathOperator{\fc}{frac}
+\DeclareMathOperator{\Ann}{Ann}
+\DeclareMathOperator{\Mod}{Mod}
+\DeclareMathOperator{\Cone}{Cone}
+\DeclareMathOperator{\FI}{FI}
+\DeclareMathOperator{\End}{End}
+\DeclareMathOperator{\Alb}{Alb}
+\DeclareMathOperator{\Ext}{Ext}
+\DeclareMathOperator{\ab}{ab}
+\DeclareMathOperator{\Jac}{Jac}
+\DeclareMathOperator{\coker}{coker}
+\DeclareMathOperator{\fr}{frac}
+\DeclareMathOperator{\spn}{span}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\rk}{rk}
+\DeclareMathOperator{\GL}{GL}
+
+
+%----Analysis
+\newcommand{\dd}[2][]{\frac{\partial^{#1}}{\partial {#2}^{#1}}}
+\newcommand{\summ}{\sum\limits}
+\newcommand{\norm}[1]{\left \vert \left \vert #1 \right \vert \right \vert}
+\newcommand{\thicc}{\bigg}
+\newcommand{\eps}{\varepsilon}
+
+
+%--------Theorem environments--------
+\newtheorem{definition}{Definition}[]
+\newtheorem{lemma}{Lemma}[]
+\newtheorem{corollary}{Corollary}[]
+\newtheorem{theorem}{Theorem}[]
+\theoremstyle{remark}
+\newtheorem*{claim}{Claim}
+
+
+\newenvironment{solution}
+{\begin{proof}[Solution]}
+{\end{proof}}
+
+
+\makeatletter
+\newcolumntype{"}{@{\hskip\tabcolsep\vrule width 1pt\hskip\tabcolsep}}
+\makeatother
+
+% --------Problem environment--------
+\setlength\parindent{0pt}
+\setcounter{secnumdepth}{0}
+\newcounter{partCounter}
+\newcounter{homeworkProblemCounter}
+\setcounter{homeworkProblemCounter}{1}
+
+
+\newenvironment{homeworkProblem}[1][-1]{
+    \ifnum#1>0
+        \setcounter{homeworkProblemCounter}{#1}
+    \fi
+    \section{Problem \arabic{homeworkProblemCounter}}
+    \setcounter{partCounter}{1}
+    \stepcounter{homeworkProblemCounter}
+}
+
+
+%--------Metadata--------
+\title{MATH 7752 Homework 6}
+\author{James Harbour}
+
+
+\begin{document}
+\maketitle
+
+
+\begin{homeworkProblem}
+  \textbf{(a)} Prove that two $3\times 3$ matrices over some field $F$ are similar if and only if they have the same minimal and characteristic polynomials. Is the same true for $4\times 4$ matrices? \\
+
+  \textbf{(b)} A matrix $A$ is called idempotent if $A^2=A$. Prove that two idempotent $n\times n$ matrices are similar if and only if they have the same rank. \textbf{Hint:} What is the minimal polynomial of an idempotent matrix? How does rank relate to eigenvalue $0$?
+\end{homeworkProblem}
+
+
+\begin{homeworkProblem}
+  Let $F$ be an algebraically closed field and $V$ a finite dimensional $F$-vector space. \\
+
+
+  \textbf{(a)} Let $S,T\in\mathcal{L}(V)$ such that $ST=TS$. Let $\lambda$ be an eigenvalue of $S$ and $E_\lambda(S)\leq V$ be the corresponding eigenspace of $S$. Prove that $E_\lambda(S)$ is a $T$-invariant subspace.
+
+  \begin{proof}
+    Let $v\in E_\lambda(S)$, so $Sv = \lambda v$. Then
+    \[
+      S(Tv) = (ST)(v) = (TS)(v) = T(Sv) = T(\lambda v) = \lambda\cdot (Tv)
+    \]
+    so $Tv\in E_\lambda(S)$. Thus $T(E_\lambda(S))\sub E_\lambda(S)$.
+  \end{proof}
+
+  \textbf{(b)} Assume that $T\in\mathcal{L}(V)$ is diagonalizable and let $W\leq V$ be a $T$-invariant subspace. Prove that $T|_W\in\mathcal{L}(W)$ is also diagonalizable.
+
+  \begin{proof}
+    Since $T$ is diagonalizable, $E_\lambda(T) = V_\lambda(T)$ for all $\lambda\in\Spec(T)$. Let $\lambda\in\Spec(T\vert_W)\sub\Spec(T)$ and $w\in W_\lambda(T\vert_W)$. Then, for some $k\in\N$, $(T-\lambda I)^k(w)=(T\vert_W - \lambda I\vert_W)^k(w) = 0$. Hence $w\in V_\lambda(T) = E_\lambda(T)$. But $w\in W$ so then $w\in E_\lambda(T\vert_W)$ whence $E_\lambda(T\vert_W) = W_\lambda(T\vert_W)$. So $T\vert_W$ is diagonalizable.
+  \end{proof}
+
+  \textbf{(c)} Assume again that $S,T\in\mathcal{L}(V)$ such that $ST=TS$. Prove that there exists a basis $\Omega$ of $V$ such that $[T]_\Omega$, and $[S]_\Omega$ are both diagonal.
+
+  \begin{proof}
+    I am quite sure that this claim is false as stated, so I will add the assumption that $S,T$ are both diagonalizable.\\
+
+    Then as $S$ is diagonalizable,
+    \[
+      V = \bigoplus_{\lambda\in\Spec(S)}V_\lambda(S) = \bigoplus_{\lambda\in\Spec(S)} E_\lambda(S).
+    \]
+
+    Fix $\lambda\in \Spec(S)$. By part (a), $E_\lambda(S)$ is $T$-invariant whence part (b) implies that $T\vert_{E_\lambda(S)}$ is diagonalizable. So
+    \[
+      E_\lambda(S) = \bigoplus_{\delta\in\Spec(T\vert_{E_\lambda(S)})}E_\delta(T\vert_{E_\lambda(S)}).
+    \]
+    Now we write
+    \[
+      V = \bigoplus_{\lambda\in\Spec(S)} \bigoplus_{\delta\in\Spec(T\vert_{E_\lambda(S)})}E_\delta(T\vert_{E_\lambda(S)}).
+    \]
+    Since this sum is direct, we may form a basis for $V$ from bases for $E_\delta(T\vert_{E\lambda(S)})$ over this double direct sum, whence this basis is both an eigenbasis for $T$ and $S$.
+  \end{proof}
+
+  \textbf{(d)} Give an example of a vector space $V$ with $\dim_F(V)\geq 3$ and two commuting linear transformations $S,T\in\mathcal{L}(V)$ such that NO basis $\Omega$ of $V$ exists such that both $[T]_\Omega$, and $[S]_\Omega$ are in JCF.
+
+\end{homeworkProblem}
+
+
+\begin{homeworkProblem}
+  Find the number of distinct conjugacy classes in the group $GL_3(\Z/2\Z)$, and specify one element in each conjugacy class. \\
+\end{homeworkProblem}
+
+
+\begin{homeworkProblem}
+  Let $V$ be an $n$-dimensional vector space over an algebraically closed field and $T\in\mathcal{L}(V)$. Assume that $T$ has just one eigenvalue $\lambda$ and just one Jordan block. Let $S=T-\lambda I$.\\
+
+  \textbf{(a)} Prove that $\rk(S^k)=n-k$, for all $0\leq k\leq n$. Deduce that $\Im(S^k)=\ker(S^{n-k})$, for all $0\leq k\leq n$.
+
+  \begin{proof}
+    Note that $n_T(k,\lambda) = 1$ for $0\leq k\leq n$ by assumption.\\
+
+    We induct on $0\leq k\leq n$. For $k=0$, $S^0 = I$ so $\rk(S^0) = n = n-0$.\\
+
+    Now suppose $0<k\leq n$ and that the claim holds for $k-1$. On one hand, by the induction hypothesis $\rk(S^{k-1}) = n-(k-1)$. On the other hand
+    \[
+      1 = n_T(k,\lambda) = \rk((T-\lambda I)^{k-1}) - \rk((T-\lambda I)^{k}) = \rk(S^{k-1}) - \rk(S^k) = n - k + 1 - \rk(S^k) \implies \rk(S^k) = n-k.
+    \]
+
+    To see that $\Im(S^k) = \ker(S^{n-k})$, note that by the rank nullity theorem we have \[\dim\ker(S^{n-k}) = n - \rk(S^{n-k}) = n - (n-(n-k)) = n-k = \rk(S^k) = \dim\Im(S^k),\] so it suffices to show that $\Im(S^k)\sub\ker(S^{n-k})$. \\
+
+    Take $w\in \Im(S^k)$. Then $w = S^k v$ for some $v\in V$. Noting that $\rk(S^n) = 0\implies S^n = \rm{O}$, we have that $S^{n-k}w = S^{n-k}(S^k v) = S^n v = \rm{O}v = 0$, so $w\in \ker(S^{n-k})$.
+  \end{proof}
+
+  \textbf{(b)} Let $v\in V$ be any vector which lies outside of $\Im(S)=\ker(S^{n-1})$. Prove that $\{S^{n-1}v,\ldots, Sv, v\}$ is a Jordan basis for $T$.
+\end{homeworkProblem}
+
+
+\begin{homeworkProblem}
+  Assume again that $V$ is an $n$-dimensional vector space over an algebraically closed field $F$ and $T\in\mathcal{L}(V)$. \\
+
+  \textbf{(a)} Assume that $T$ has unique eigenvalue $0$ and two Jordan blocks: a $1\times 1$ block and a $2\times 2$ block (so $n=3$ in this case). Justify the following algorithm for computing a Jordan basis for $T$: Take any $v\in V\setminus \ker(T)$ and choose $w\in\ker(T)$ such that $\{w, Tv\}$ is a basis for $\ker(T)$ (why is this possible?); then $\{w, Tv, v\}$ is a Jordan basis for $T$. \\
+
+  \textbf{(b)} Assume that $T$ has unique eigenvalue $0$ and two Jordan blocks, both of which are $2\times 2$ (so $n=4$). State an algorithm for finding a Jordan basis similar to the one in (a). \\
+
+  \textbf{(c)} Assume that for each $\lambda\in\Spec(T)$ there is only one Jordan $\lambda$-block in $JCF(T)$. Describe an algorithm for computing a Jordan basis of $T$. \textbf{Hint:} You just need a minor generalization of the algorithm in the previous problem.
+\end{homeworkProblem}
+
+
+\begin{homeworkProblem}
+  Compute the Jordan canonical form and a Jordan basis for each of the following matrices over $\Q$:
+
+  \hspace{60pt}(a) $\left(\begin{array}{ccc}
+  -1 & 3 & 0\\
+  0 & 2 & 0 \\
+  2 & 1 & -1
+  \end{array}\right)$ \hspace{100 pt} (b)  $\left(\begin{array}{ccc}
+  1 & -1 & 1\\
+  1 & -1 & 1 \\
+  1 & -1 & 0
+  \end{array}\right)$.
+  \\
+  \\
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+  Let $F=\mathbb{F}_3$ be the field with $3$ elements and let $A\in M_{12}(\mathbb{F}_3)$. Suppose that $A$ satisfies all the following assumptions:
+  \begin{itemize}
+    \item $\rk(A)=10$, \hspace{20pt} $\rk(A^2)=9$, \hspace{20pt} $\rk(A^3)=9$.
+    \item $\rk(A-I)=12$.
+    \item $\rk(A-2I)=9$, \hspace{20pt} $\rk((A-2I)^2)=7$, \hspace{20pt} $\rk((A-2I)^3)=6$.
+  \end{itemize}
+
+  \textbf{(a)} Assume in addition that the characteristic polynomial $\chi_A(x)$ splits completely over $F$ (i.e. it splits into linear factors in $F[x]$). Find the Jordan canonical form of $A$. \\
+
+  \textbf{(b)} Find all possible RCF's of matrices $A$ satisfying all the bullet assumptions, but not necessarily the extra assumption in (a).
+
+\end{homeworkProblem}
+
+\end{document}
