@@ -43,6 +43,9 @@
 
 %--------Macros--------
 
+\newcommand{\ilm}[1]{\begin{psmallmatrix} #1 \end{psmallmatrix}}
+\newcommand{\ilmb}[1]{\boxed{\begin{smallmatrix} #1 \end{smallmatrix}}}
+
 \newcommand{\sub}{\subseteq}
 \newcommand{\lcm}{\text{lcm}}
 \newcommand{\ms}[1]{\mathscr{#1}}
@@ -161,7 +164,20 @@
   \textbf{(a)} Prove that two $3\times 3$ matrices over some field $F$ are similar if and only if they have the same minimal and characteristic polynomials. Is the same true for $4\times 4$ matrices?
 
   \begin{proof}
-    The forward direction is clear, so suppose that $A,B\in M_3(F)$ such that $\mu_A=\mu_B$ and $\chi_A=\chi_B$.
+    The forward direction is clear and true for $n\times n$ matrices, so suppose that $A,B\in M_3(F)$ such that $\mu_A=\mu_B=\mu$ and $\chi_A=\chi_B=\chi$. Let $\alpha_1
+    |\cdots|\alpha_m$ and $\beta_1|\cdots|\beta_n$ be the invariant factors for $A$ and $B$ respectively. As $\sum\deg(\alpha_i) = 3$ and $\sum\deg(\beta_i) = 3$, it follows that $m,n\leq 3$. To show that $A$ and $B$ are similar, it suffices to show that their invariant factors are the same as then their RCFs would be the same.\\
+
+    Suppose, without loss of generality, that $m\geq n$. If $m=n=1$, then $\alpha_1 = \chi = \beta_1$. If $n=1$ and $m > 1$, then \[\alpha_1\cdots \alpha_{m-1}\mu = \chi = \beta_1 = \mu \implies \alpha_1\cdots \alpha_{m-1} = 1\] contradicting that the invariant factors are nonunits. \\
+
+    If $m=n=2$, then $\alpha_1\mu = \beta_1\mu \implies \alpha_1 = \beta_1$. \\
+
+    If $m=3$ and $n=2$, then all the $\alpha_i$'s are degree one monic whence successive divisibility forces them to be equal, say $\alpha_1 = \alpha_2=\alpha_3=\alpha$ with $\alpha$ monic of degree 1. But then $\alpha^2 = \alpha_1 \alpha_2 = \beta_1$, whence $\beta_1$ is degree 2 and $\beta_2$ is degree at least 2, contradicting that their degrees sum to 3.\\
+
+    If $m=n=3$, then each of the $\alpha_i$'s are equal to some linear $\alpha$ and each of the $\beta_i$'s are equal to some linear $\beta$. Moreover, $\alpha= \alpha_3 = \mu = \beta_3 = \beta$, so all of the invariant factors are the same.\\
+
+    The same is not true for $4\times 4$ matrices. Consider the matrices
+    \[A=\begin{pmatrix}1&1& &\\&1& &\\&&1&1\\&&&1 \end{pmatrix},\hspace{20pt} B=\begin{pmatrix}1&&&\\&1& &\\&&1&1\\&&&1 \end{pmatrix}\]
+    Then $\chi_A = (x-1)^4 = \chi_B$ and $\mu_A = (x-2)^2 = \mu_B$; however, $A$ and $B$ are already in RCF and not equal, so they are not similar.
   \end{proof}
 
   \textbf{(b)} A matrix $A$ is called idempotent if $A^2=A$. Prove that two idempotent $n\times n$ matrices are similar if and only if they have the same rank. \textbf{Hint:} What is the minimal polynomial of an idempotent matrix? How does rank relate to eigenvalue $0$?
@@ -169,7 +185,7 @@
   \begin{proof}
     Note that a matrix $M$ being idempotent implies that $x^2-x\in\Ann(M)$, so $\mu_M | x^2-x$ whence $\mu_M\in\{ x,x-1,x^2-x\}$. Let $A,B$ be two idempotent $n\times n$ matrices.\\
 
-    The forward direction is true in general, so it suffices to show the reverse direction. Suppose that $A$ and $B$ have the same rank $0\leq k\leq n$. If $k=0$, then $A=B=0$ whence $A,B$ are equal and thus similar, so suppose $k\neq 0$. By the rank-nullity theorem, $\dim(E_0(A)) = n - \rk(A) = n-k = n-\rk(B) = \dim(E_0(B))$. By idempotence, $\mu_A,\mu_B\in\{ x,x-1,x^2-x\}$. If either $\mu_A$ or $\mu_B$ is $x$, then the corresponding matrix is 0 whence $k=0$ contradicting that $k\neq 0$. Thus $\mu_A,\mu_B\in\{ x-1,x^2-x\}$. If either $\mu_A$ or $\mu_B$ is $x-1$ then the corresponding matrix is the identity whence it does not have 0 as an eigenvalue and thus $0=\dim(E_0(A))=\dim(E_0(B))$. Note that the other minimal polynomial cannot be $x^2-x$ as otherwise the eigenspace corresponding to zero would have positive dimension. Thus in this case both matrices are the identity and thus similar. Lastly, suppose that $\mu_A = x^2-x x(x-1)= \mu_B$. Then all Jordan blocks in the JCF of $A$,$B$ have size 1. As $A,B$ have the same dimensions of their 0-eigenspaces, it follows that they have the same number of 0 blocks. But then they have the same number of 1 blocks as this is the only other eigenvalue and all blocks have size 1. Thus, they have the same JCF and are similar.
+    The forward direction is true in general, so it suffices to show the reverse direction. Suppose that $A$ and $B$ have the same rank $0\leq k\leq n$. If $k=0$, then $A=B=0$ whence $A,B$ are equal and thus similar, so suppose $k\neq 0$. By the rank-nullity theorem, $\dim(E_0(A)) = n - \rk(A) = n-k = n-\rk(B) = \dim(E_0(B))$. By idempotence, $\mu_A,\mu_B\in\{ x,x-1,x^2-x\}$. If either $\mu_A$ or $\mu_B$ is $x$, then the corresponding matrix is 0 whence $k=0$ contradicting that $k\neq 0$. Thus $\mu_A,\mu_B\in\{ x-1,x^2-x\}$. If either $\mu_A$ or $\mu_B$ is $x-1$ then the corresponding matrix is the identity whence it does not have 0 as an eigenvalue and thus $0=\dim(E_0(A))=\dim(E_0(B))$. Note that the other minimal polynomial cannot be $x^2-x$ as otherwise the eigenspace corresponding to zero would have positive dimension. Thus in this case both matrices are the identity and thus similar. Lastly, suppose that $\mu_A = x^2-x = x(x-1)= \mu_B$. Then all Jordan blocks in the JCF of $A$,$B$ have size 1. As $A,B$ have the same dimensions of their 0-eigenspaces, it follows that they have the same number of 0 blocks. But then they have the same number of 1 blocks as this is the only other eigenvalue and all blocks have size 1. Thus, they have the same JCF and are similar.
   \end{proof}
 \end{homeworkProblem}
 
@@ -216,6 +232,18 @@
   \end{proof}
 
   \textbf{(d)} Give an example of a vector space $V$ with $\dim_F(V)\geq 3$ and two commuting linear transformations $S,T\in\mathcal{L}(V)$ such that NO basis $\Omega$ of $V$ exists such that both $[T]_\Omega$, and $[S]_\Omega$ are in JCF.
+
+  \begin{proof}
+    Consider the matrices
+    \[
+      S = \begin{pmatrix}
+        0&1&0\\0&0&0\\0&0&0
+      \end{pmatrix} \hspace{20pt} T = \begin{pmatrix}
+        0&0&0\\0&0&0\\0&1&0
+      \end{pmatrix}
+    \]
+    Note that $ST$ and $TS$ are both the zero matrix so these matrices commute. Moreover, $S$ is already in JCF and the JCF of $T$ is precisely $S$. Thus, if we pick a basis bringing $T$ into JCF, we would end up knocking $S$ out of JCF and vice versa.
+  \end{proof}
 
 \end{homeworkProblem}
 
@@ -282,18 +310,18 @@
 \end{homeworkProblem}
 
 
-\begin{homeworkProblem}
-  Assume again that $V$ is an $n$-dimensional vector space over an algebraically closed field $F$ and $T\in\mathcal{L}(V)$. \\
+% \begin{homeworkProblem}
+%   Assume again that $V$ is an $n$-dimensional vector space over an algebraically closed field $F$ and $T\in\mathcal{L}(V)$. \\
+%
+%   \textbf{(a)} Assume that $T$ has unique eigenvalue $0$ and two Jordan blocks: a $1\times 1$ block and a $2\times 2$ block (so $n=3$ in this case). Justify the following algorithm for computing a Jordan basis for $T$: Take any $v\in V\setminus \ker(T)$ and choose $w\in\ker(T)$ such that $\{w, Tv\}$ is a basis for $\ker(T)$ (why is this possible?); then $\{w, Tv, v\}$ is a Jordan basis for $T$. \\
+%
+%   \textbf{(b)} Assume that $T$ has unique eigenvalue $0$ and two Jordan blocks, both of which are $2\times 2$ (so $n=4$). State an algorithm for finding a Jordan basis similar to the one in (a). \\
+%
+%   \textbf{(c)} Assume that for each $\lambda\in\Spec(T)$ there is only one Jordan $\lambda$-block in $JCF(T)$. Describe an algorithm for computing a Jordan basis of $T$. \textbf{Hint:} You just need a minor generalization of the algorithm in the previous problem.
+% \end{homeworkProblem}
 
-  \textbf{(a)} Assume that $T$ has unique eigenvalue $0$ and two Jordan blocks: a $1\times 1$ block and a $2\times 2$ block (so $n=3$ in this case). Justify the following algorithm for computing a Jordan basis for $T$: Take any $v\in V\setminus \ker(T)$ and choose $w\in\ker(T)$ such that $\{w, Tv\}$ is a basis for $\ker(T)$ (why is this possible?); then $\{w, Tv, v\}$ is a Jordan basis for $T$. \\
 
-  \textbf{(b)} Assume that $T$ has unique eigenvalue $0$ and two Jordan blocks, both of which are $2\times 2$ (so $n=4$). State an algorithm for finding a Jordan basis similar to the one in (a). \\
-
-  \textbf{(c)} Assume that for each $\lambda\in\Spec(T)$ there is only one Jordan $\lambda$-block in $JCF(T)$. Describe an algorithm for computing a Jordan basis of $T$. \textbf{Hint:} You just need a minor generalization of the algorithm in the previous problem.
-\end{homeworkProblem}
-
-
-\begin{homeworkProblem}
+\begin{homeworkProblem}[6]
   Compute the Jordan canonical form and a Jordan basis for each of the following matrices over $\Q$:
 
   \hspace{60pt}(a) $\left(\begin{array}{ccc}
@@ -307,6 +335,50 @@
   \end{array}\right)$.
   \\
   \\
+
+  \textbf{(a)}:
+  \begin{proof}
+    First we compute the characteristic polynomial of $A$:
+    \[
+      \chi_A(x) = \det(xI-A) = (x-2)(x+1)^2
+    \]
+    so $\Spec(A) = \{ -1, 2\}$. Now we find the number of Jordan blocks corresponding to each eigenvalue via computing the corresponding eigenspaces and consequently their dimensions. \\
+
+    Note that $E_{-1}(A) = \ker(A+I) = \spn\{\ilm{ 0\\0\\1 }\}$ and $E_{2}(A) = \ker(A-2I) = \ilm{1\\1\\1}\}$. As $\dim(E_{-1}(A)) = 1$ and the power of $x+1$ in $\chi_A$ is 2 (the sum of the sizes of the blocks), it  follows that $JCF(A)$ has one $-1$-block of size 2 and thus we are forced to have
+    \[
+      JCF(A) = \begin{pmatrix}
+        -1 & 1 & 0 \\
+        0 &-1 & 0\\
+        0 & 0 & 2
+      \end{pmatrix}.
+    \]
+    To find a Jordan basis, note that $\dim V_{-1}(A) = 2$ as it is the sum of the sizes of all the $-1$-blocks in $JCF(A)$. To obtain a Jordan cycle, we solve for a $w$ such that $\ilm{0\\0\\1}=(A+I)w$. We compute that $w = \ilm{1/2\\0\\0}$ works as a solution, whence we obtain an actual basis for $V_{-1}(A)$ by dimensionality. Hence, our Jordan basis is
+    \[
+      \left\{\ilm{1/2\\0\\0}, \ilm{ 0\\0\\1 }, \ilm{1\\1\\1}\right\}.
+    \]
+
+  \end{proof}
+
+  \textbf{(b)}:
+
+  \begin{proof}
+    First we compute the characteristic polynomial of $B$:
+    \[
+      \chi_B(x) = \det\begin{pmatrix}
+        x-1 & 1 & -1 \\ -1 & x+1 & -1 \\ -1 & 1 & x
+      \end{pmatrix} = x^3
+    \]
+    so $\Spec(B) = \{ 0\}$. We now compute eigenspaces and generalized eigenspaces. We compute that $E_0(B) = \ker(B) = \spn\{ \ilm{1\\1\\0}\}$, so $\dim(E_0(B)) = 1$ whence there is one $0$-block and thus
+    \[
+      JCF(A) = \begin{pmatrix}
+        0 & 1 & 0 \\ 0 & 0 & 1 \\ 0 & 0 & 0
+      \end{pmatrix}
+    \]
+    Let $v_2 = \ilm{1\\1\\0}$. We seek nonzero $v_1,v_0\in V_0(B)$ such that $v_2 = A v_1$ and $v_1 = A v_0$. We compute that the choices $v_1 = \ilm{0\\0\\1}$ and $v_0 = \ilm{1\\0\\-1}$ possess the desired properties. Thus our Jordan basis is given by
+    \[
+      \left\{\ilm{1\\1\\0},\ \ilm{0\\0\\1},\ \ilm{1\\0\\-1}\right\}.
+    \]
+  \end{proof}
 \end{homeworkProblem}
 
 \begin{homeworkProblem}
@@ -340,7 +412,7 @@
     implying that we have one 2-block of size 1, one 2-block of size 2, and the remaining space given by a single 2-block of size $12-(2+1+2+1) = 6$.
     \setcounter{MaxMatrixCols}{20}
     \begin{equation}
-      \begin{bmatrix}
+      \begin{pmatrix}
       2 & 1 & 0 & 0 & 0 & 0 &  &  &  &  &  &  \\
       0 & 2 & 1 & 0 & 0 & 0 &  &  &  &  &  &  \\
       0 & 0 & 2 & 1 & 0 & 0 &  &  &  &  &  &  \\
@@ -353,24 +425,41 @@
        &  &  &  &  &  &  &  &  & 0 & 1 &  \\
        &  &  &  &  &  &  &  &  &  & 0 &  \\
        &  &  &  &  &  &  &  &  &  &  & 0
-      \end{bmatrix}
+     \end{pmatrix}
     \end{equation}
   \end{proof}
 
   \textbf{(b)} Find all possible RCF's of matrices $A$ satisfying all the bullet assumptions, but not necessarily the extra assumption in (a).
 
   \begin{proof}
-    Embedding $F$ inside its algebraic closure, we have that $RCF_{\cls{F}}(A) = RCF_{F}(A)$ and $RCF_{\cls{F}}(A)$ is similar to $JCF_{\cls{F}}(A)$ over $\cls{F}$. However, $B:=JCF_{\cls{F}}(A)$ is given above and is in fact inside $M_{12}(F)$, so $RCF_{F}(A)$ is similar to $B$ over $F$. Thus $\chi_A = \chi_{RCF(A)} = \chi_B = x^3(x-2)^9$ and $\mu_A = \mu_B = x^2 (x-2)^6$. Let $\alpha_1|\cdots|\alpha_m$ be the invariant factors for $A$. Then
+    % Embedding $F$ inside its algebraic closure, we have that $RCF_{\cls{F}}(A) = RCF_{F}(A)$ and $RCF_{\cls{F}}(A)$ is similar to $JCF_{\cls{F}}(A)$ over $\cls{F}$. However, $B:=JCF_{\cls{F}}(A)$ is given above and is in fact inside $M_{12}(F)$, so $RCF_{F}(A)$ is similar to $B$ over $F$. Thus $\chi_A = \chi_{RCF(A)} = \chi_B = x^3(x-2)^9$ and $\mu_A = \mu_B = x^2 (x-2)^6$. Let $\alpha_1|\cdots|\alpha_m$ be the invariant factors for $A$. Then
+    % \[
+    %   \alpha_1\cdots \alpha_{m-1} = \frac{x^3(x-2)^9}{x^2(x-2)^6} = x(x-2)^3
+    % \]
+    % Via the successive divisbility restriction, one factor of $x$ must appear in $\alpha_{m-1}$ but not in any lower factors. Moreover, we must have that $\alpha_{m-1}$ has at least one factor of $x-2$ as otherwise the product would not have a factor of $x-2$. Thus we may write $\alpha_{m-1} = x(x-2)^k$ with $1\leq k\leq 3$.\\
+    %
+    % \underline{$k=1$}: $\alpha_{m-1} = x(x-2)$. Successive divisibility forces $m=4$ and $\alpha_1 = \alpha_2 = x-2$.\\
+    %
+    % \underline{$k=2$}: $\alpha_{m-1} = x(x-2)^2$. Degree constraints force $m=3$ and $\alpha_1 = x-2$.\\
+    %
+    % \underline{$k=3$}: $\alpha_{m-1} = x(x-2)^3$. Then we have $m=2$ so $\alpha_1 = x(x-2)^3$ by assumption.
+    Write $V = \F_3^{12}$. Then, writing $V_A$ in invariant factor form:
     \[
-      \alpha_1\cdots \alpha_{m-1} = \frac{x^3(x-2)^9}{x^2(x-2)^6} = x(x-2)^3
+      V_A \cong \frac{F[x]}{(\alpha_1(x))} \oplus \frac{F[x]}{(\alpha_2(x))} \oplus\cdots\oplus \frac{F[x]}{(\alpha_m(x))}
     \]
-    Via the successive divisbility restriction, one factor of $x$ must appear in $\alpha_{m-1}$ but not in any lower factors. Moreover, we must have that $\alpha_{m-1}$ has at least one factor of $x-2$ as otherwise the product would not have a factor of $x-2$. Thus we may write $\alpha_{m-1} = x(x-2)^k$ with $1\leq k\leq 3$.\\
+    In elementary divisor form, this becomes
+    \[
+      V_A \cong \frac{F[x]}{(x)} \oplus \frac{F[x]}{(x^2)} \oplus \frac{F[x]}{((x-2))} \oplus \frac{F[x]}{((x-2)^2)} \oplus \frac{F[x]}{((x-2)^k)} \oplus \frac{F[x]}{(p(x))}
+    \]
+    where $p(x)\in\F_3[x]$, $k\geq3$, and there is no factor corresponding to $x-1$ as $\rk(A-I) = 12$ implies that $1$ is not an eigenvalue of $A$. Note that $\mu_A = x^2(x-2)^k p(x)$. As $12 = \sum \deg(\alpha_i) = 1 +2 +1 +2 +k +\deg(p) \implies k = 6-\deg(p) \leq 6$.\\
 
-    \underline{$k=1$}: $\alpha_{m-1} = x(x-2)$. Successive divisibility forces $m=4$ and $\alpha_1 = \alpha_2 = x-2$.\\
+    \underline{$k=3$}: Then $\deg(p) = 6-3 = 3$, whence $p$ must be irreducible as otherwise it would have a linear fact and thus contribute an eigenspace which we have already filled by rank restrictions. Hence, the RCFs appear in corresponding partitions of the factors $x^2(x-2)^3$ into lower $\alpha_i$'s with successive division and degrees summing to 12.\\
 
-    \underline{$k=2$}: $\alpha_{m-1} = x(x-2)^2$. Degree constraints force $m=3$ and $\alpha_1 = x-2$.\\
+    \underline{$k=4$}: The $\deg(p) = 6-4 = 2$, whence $p$ must be irreducible by the above logic. Hence, the RCFs appear in corresponding partitions of the factors $x^2(x-2)^4$ into lower $\alpha_i$'s with successive division and degrees summing to 12.\\
 
-    \underline{$k=3$}: $\alpha_{m-1} = x(x-2)^3$. Then we have $m=2$ so $\alpha_1 = x(x-2)^3$ by assumption.
+    \underline{$k=5$}: Then $\deg(p) = 1$, which is impossible as then we would get another addition to the already filled eigenspace.\\
+
+    \underline{$k=6$}: Then $\deg(p) = 0$, so $p = 1$. The RCFs appear then in corresponding partitions of the factors $x^2(x-2)^6$ in the lower $\alpha_i$'s to obtain total degree sum of 12.
   \end{proof}
 
 \end{homeworkProblem}
