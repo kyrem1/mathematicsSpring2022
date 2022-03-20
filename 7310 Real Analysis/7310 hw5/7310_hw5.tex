@@ -104,7 +104,7 @@
 
 %----Analysis
 \newcommand{\summ}{\sum\limits}
-% \newcommand{\norm}[1]{\left \vert \left \vert #1 \right \vert \right \vert}
+% \newcommand{\norm}[1]{\left\lVert#1\right\rVert}
 \newcommand{\thicc}{\bigg}
 \newcommand{\eps}{\varepsilon}
 \newcommand*\cls[1]{\overline{#1}}
@@ -163,7 +163,7 @@
   \begin{proof}\ \\
     \underline{$\implies$}: Suppose $g\in L^1(X,\nu)$, so $\int |g| \dd{\nu}<+\infty$. Thus $|g|\in L^+(X,\nu)$, so by problem 5 on homework 4, $\int |g|\dd{\nu} = \int |g|f \dd{\mu} = \int |gf| \dd{\mu}$, so $gf\in L^1(X,\mu)$. \\
 
-    \underline{$\implies$}: Suppose $gf\in L^1(X,\mu)$. So $\int |g|\dd{\nu} = \int |g|f\dd{\mu}  = \int |gf|\dd{\mu}<+\infty$, whence $g\in L^{1}(X,\nu)$. \\
+    \underline{$\impliedby$}: Suppose $gf\in L^1(X,\mu)$. So $\int |g|\dd{\nu} = \int |g|f\dd{\mu}  = \int |gf|\dd{\mu}<+\infty$, whence $g\in L^{1}(X,\nu)$. \\
 
     Now let $g\in L^1(X,\nu)$ and write $g = u + iv$ where $u = \Re(g)$ and $v = \Im(g)$. Let $u^+, u^-, v^+, v^-$ be the positive and negative parts of $u$ and $v$ respectively. As $g\in L^1(X,\nu)$, each of these functions are in $L^+(X,\nu)$. Then, using nonnegativity of these functions and problem 5 of homework 4,
     \begin{align*}
@@ -176,7 +176,28 @@
   \textbf{(b)} Let $(X,\Sigma),(Y,\mc{F})$ be measurable spaces and let $\mu:\Sigma\to[0,+\infty]$ be a measure. Let $\phi:X\to Y$ be measurable. If $f:Y\to\C$ is measurable, show that $f\in L^1(Y,\phi_*(\mu))$ if and only if $f\circ \phi\in L^{1}(X,\mu)$ and that $\int f\dd{(\phi_*(\mu))} = \int f\circ \phi\dd{\mu}$ for all $f\in L^1(Y,\phi_*(\mu))$.
 
   \begin{proof}\ \\
-    \underline{$\implies$}: Suppose that $f\in L^1(Y,\phi_*(\mu))$. Then \[\int |f|\dd{(\phi_*(\mu))} < +\infty\]
+    Observe that, for $E\in\mc{F}$,
+    \[
+      \ind_{\phi^{-1}(E)}(x) = 1\iff \ind_{E} (\phi(x)) = 1
+    \]
+
+    Suppose first that $f=\ind_E$ for some $E\in \mc{F}$. Then,
+    \[
+      \int \ind_{E}\dd{\phi_*(\mu)} = \phi_*(\mu)(E) = \mu(\phi^{-1}(E)) = \int \ind_{\phi^{-1}(E)}\dd{\mu} = \int \ind_E\circ\phi\dd{\mu}
+    \]
+    Hence, the claim is true for indicator functions of measurable sets in $Y$. By linearity, the claim is true for simple functions on $Y$. Now, let $f\in Y\to[0,+\infty]$ measurable. Chose simple $(\phi_n)_{n=1}^{\infty}$ such that $0\leq \phi_1\leq\phi_2\leq\cdots\leq f$ and $\phi_n\to f$ pointwise. By the monotone convergence theorem,
+    \[
+      \int f \dd{(\phi_*(\mu))} = \lim_{n\to\infty}\int \phi_k \dd{(\phi_*(\mu))} = \sup_{n\to\infty}\int \phi_k\circ\phi\dd{\mu} = \int f\circ \phi\dd{\mu}.
+    \]
+    Now suppose $f:Y\to \R$ is measurable. Write $f = f^+ - f^-$ with $f^+, f^-$ nonnegative and measurable. Then
+    \[
+      \int f \dd{(\phi_*(\mu))} = \int f^+ \dd{(\phi_*(\mu))} - \int f^- \dd{(\phi_*(\mu))} =  \int f^+ \circ \phi\dd{\mu} - \int f^-\circ \phi\dd{\mu} = \int f\circ\phi\dd{\mu}
+    \]
+    Lastly, suppose $f:Y\to\C$ is measurable. Write $f = u+iv$ with $u,v$ the real and imaginary parts of $f$. Then
+    \[
+      \int f \dd{(\phi_*(\mu))} = \int u \dd{(\phi_*(\mu))} + i \int v \dd{(\phi_*(\mu))} = \int u\circ \phi\dd{\mu} + i \int v \circ \phi\dd{\mu} = \int f \circ \phi\dd{\mu}.
+    \]
+    The biconditional follows by these established equalities.
 
   \end{proof}
 \end{homeworkProblem}
@@ -188,12 +209,29 @@
   \textbf{(a)} Show that $g\in L^{1}(m)$, and in particular that $g<\infty$ a.e. \\
 
   \begin{proof}
-
+    Note that, for $n\in \N$, \[\int_{-\infty}^{\infty}2^{-n}f(x-r_n)\dd{x} = \int_{r_n}^{r_n+1}2^{-n}f(x-r_n)\dd{x} = 2^{-n}\int_{0}^{1}x^{-1/2}\dd{x} = 2^{1-n}\]
+    whence $2^{-n}f(x-r_n)\in L^1(m)$. Moreover, $\sum_{n=1}^{\infty}\int |2^{-n}f(x-r_n)|\dd{x} = \sum_{n=1}^{\infty} 2^{1-n} = 2 <+\infty$, so $g\in L^1(m)$ by the dominated convergence theorem.
   \end{proof}
 
-  \textbf{(b)} Prove that $g$ is discontinuous at every point and unbounded on every interval, and it remains so after any modification on a Lebesgue null set.\\
+  \textbf{(b)} Prove that $g$ is discontinuous at every point and unbounded on every interval, and it remains so after any modification on a Lebesgue null set.
+
+  \begin{proof}
+    We show that that $g$ is unbounded on every interval whence it is clearly discontinuous at every point. Let $I=(a,b)$ with $a<b$. Then by density of $\Q$ in $\R$, there exists an $n\in\N$ such that $a<r_n<b$. As $\lim_{x\to r_n+} f(x-r_n) = +\infty$, it follows that $f(x-r_n)$ is unbounded in $[a,b]$ whence $g(x)$ is unbounded on $(a,b)$. Thus $g$ is unbounded on every interval, whence it is discontinuous everywhere.\\
+
+    Even after modification on a Lebesgue null set, we may still choose a sequence $x_m$ converging to $r_n$ such that each point lies outside of this modified set as the intervals $(r_n, r_n+\frac{1}{m})$ still have positive after removal of the Lebesgue null set in question. Hence we would still obtain $g$ unbounded on every interval and thus discontinuous everywhere.
+  \end{proof}
 
   \textbf{(c)} Prove that $g^2<\infty$ almost everywhere, but $g^2$ is not integrable on any interval.
+
+  \begin{proof}
+    Since $g\in L^1(m)$, it follows that $g<\infty$ almost everywhere whence $g^2<\infty$ almost everywhere as $g(x)^2 = \infty \implies g(x) = \infty$. \\
+
+    Now let $a<b$ in $\R$. Choose $n\in\N$ such that $r_n\in (a,b)$. Then
+    \[
+      \int_{(a,b)} (2^{-n}f(x-r_n))^2 \dd{m} = 2^{-2n}\int_{r_n}^{\min\{b,r_n+1\}}\frac{1}{x-r_n} \dd{x} = \infty
+    \]
+    As $f^2\leq g^2$, this implies that $\infty = \int_{(a,b)}f^2\leq \int_{(a,b)}g^2$, so $g^2$ is not integrable.
+  \end{proof}
 \end{homeworkProblem}
 
 \begin{homeworkProblem}
@@ -253,22 +291,91 @@
   \[
     \rho(f,g) = \int \frac{|f-g|}{1+|f-g|}\dd{\mu}.
   \]
-  Then $\rho$ is a metric on the space of measurable functions if we identify functions that are equal a.e., and $f_n\to f$ with respect to this metric if and only if $f_n\to f$ in measure.\\
+  Then $\rho$ is a metric on the space of measurable functions if we identify functions that are equal a.e., and $f_n\to f$ with respect to this metric if and only if $f_n\to f$ in measure.
+
+  \begin{proof}
+    Let $\Omega$ be the quotient of the space of measurable functions by the equivalence relation that two functions are equivalent if they are equal almost everywhere. We abuse notation and write functions as elements of $\Omega$ instead of their equivalence classes. We wish to show that $(\Omega,\rho)$ is a metric space. Fix $f,g,h\in\Omega$. \\
+
+    Note that $\rho(f,g)\in [0,+\infty)$ as for any measurable $p:X\to\C$,
+    \[
+      \frac{|p|}{1+|p|}\leq 1\implies \int \frac{|p|}{1+|p|}\dd{\mu}\leq \int 1 \dd{\mu} = \mu(X)<+\infty.
+    \]
+
+    It is clear that $\rho(f,f) = 0$ and $\rho(f,g) = \rho(g,f)$. Suppose that $\rho(f,g) = 0$. Then $\frac{|f-g|}{1+|f-g|} = 0$ almost everywhere, but $\frac{|f-g|}{1+|f-g|} = 0$ if and only if $|f-g| = 0$, so $f = g$ almost everywhere, whence $f$ and $g$ are equal in the quotient $\Omega$.\\
+
+    Now it suffices to show the triangle inequality. A first course in elementary analysis shows that if $d$ is a metric then $\frac{d}{1+d}$ is also a metric. Hence we have the pointwise inequality
+    \[
+      \frac{|f-h|}{1+|f-h|} \leq \frac{|f-g|}{1+|f-g|} + \frac{|g-h|}{1+|g-h|}.
+    \]
+    Moreover, each term is in $L^1(X)$, so we may integrate throughout and obtain that
+    \[
+      \rho(f,h)\leq \rho(f,g) + \rho(g,h).
+    \]
+
+    \underline{$\implies$}: Suppose that $f_n\to f$ with respect to $\rho$, so
+    \[
+      \rho(f_n,f) = \int \frac{|f_n-f|}{1+|f_n-f|}\dd{\mu} \to 0
+    \]
+    % As $\frac{|f_n-f|}{1+|f_n-f|}\leq 1\in L^1(X,\mu)$ for all $n\in \N$, dominated convergence theorem implies that $\int \lim_{n\to\infty}\frac{|f_n-f|}{1+|f_n-f|}\dd{\mu} = 0$ whence $\lim_{n\to\infty}\frac{|f_n-f|}{1+|f_n-f|} = 0$ almost everywhere. Thus $\frac{|f_n-f|}{1+|f_n-f|}\to 0$ pointwise almost everywhere.
+
+    Suppose, for the sake of contradiction, that $f_n\not\to f$ in measure. Then there exists an $\eps>0$ such that $\mu(\{ x : |f_n(x) - f(x)|\geq \eps\}) \not\to 0$. Thus, there exists an $L>0$ and a subsequence $(f_{n_k})_{k=1}^{\infty}$ such that $\mu(\{ x : |f_{n_k}(x) - f(x)|\geq \eps\})\geq L$ for all $k\in\N$. Let $X_k = \{ x : |f_{n_k}(x) - f(x)|\geq \eps\}$. Then for all $k\in \N$
+    \[
+      \rho(f_{n_k},f) = \int \frac{|f_{n_k}-f|}{1+|f_{n_k}-f|}\dd{\mu} \geq \int_{X_k} \frac{|f_{n_k}-f|}{1+|f_{n_k}-f|}\dd{\mu} \geq \int_{X_k}\frac{\eps}{1+\eps}\dd{\mu} = \frac{\eps}{1+\eps}\mu(X_k)\geq L\frac{\eps}{1+\eps},
+    \]
+    contradicting that $\rho(f_n,f)\to 0$.\\
+
+    \underline{$\impliedby$}: Conversely, suppose that $f_n\to f$ in measure. Fix $\eps>0$ and let $E_n = \{ x: |f_n(x)-f(x)|\geq \eps\}$. Then $\mu(E_n)\to 0$ as $n\to\infty$, and, by finiteness of the measure space, $\mu(X\setminus E_n) = \mu(X)-\mu(E_n) \to \mu(X)$. We estimate,
+
+    \begin{align*}
+      \rho(f_n, f) &= \int_{E_n} \frac{|f_n-f|}{1+|f_n-f|}\dd{\mu} + \int_{X\setminus E_n} \frac{|f_n-f|}{1+|f_n-f|}\dd{\mu}\\
+      &\leq \int_{E_n} 1\dd{\mu} + \int_{X\setminus E_n} \frac{\eps}{1+\eps}\dd{\mu} = \underbrace{\mu(E_n)}_{\to 0} + \frac{\eps}{1+\eps}(\mu(X) - \underbrace{\mu(E_n)}_{\to 0}) \xrightarrow{n\to\infty} \frac{\eps}{1+\eps}\mu(X)\xrightarrow{\eps\to 0}0
+    \end{align*}
+    whence $f_n\to f$ with respect to $\rho$.
+  \end{proof}
 
   \textbf{(b)} Suppose $(X,\mu)$ is a finite measure space. Let $\rho$ be the metric in (a). Show that a sequence of measurable functions $f_n:X\to \C$ is Cauchy in measure if and only if it is Cauchy with respect to $\rho$.
+
+  \begin{proof}
+    \underline{$\implies$}: Suppose that $(f_n)_{n=1}^{\infty}$ is Cauchy in measure. Then there exists a measurable function $f$ such that $f_n\to f$ in measure. Now by part (a), $f_n\to f$ with respect to the metric $\rho$, so the sequence is most certainly Cauchy with respect to $\rho$.\\
+
+    \underline{$\impliedby$}: Suppose that $(f_n)_{n=1}^{\infty}$ is Cauchy with respect to $\rho$. Fix $\eps>0$ and let $E_{n,m} = \{ x: |f_n(x)-f_m(x)|\geq \eps\}$. Then we have that
+    \[
+        \mu(\{x: |f_n(x)-f_m(x)|\geq \eps\}) \leq \frac{\eps+1}{\eps}\int_{E_{n,m}}\frac{|f_n-f_m|}{1+|f_n-f_m|}\dd{\mu} \leq \lr{1+\frac{1}{\eps}}\rho(f_n,f_m) \xrightarrow{n,m\to \infty}0
+    \]
+  \end{proof}
 \end{homeworkProblem}
 
 
 \begin{homeworkProblem}
-    Suppose that $|f_n|\leq g\in L^1 $ and $f_n\to f$ in measure.\\
+  Suppose that $|f_n|\leq g\in L^1 $ and $f_n\to f$ in measure.\\
 
-    \textbf{(a)} Prove that $\int f\dd{\mu} = \lim_{n\to\infty}\int f_n\dd{\mu}$.\\
+  \textbf{(a)} Prove that $\int f\dd{\mu} = \lim_{n\to\infty}\int f_n\dd{\mu}$.
 
-    \textbf{(b)} Prove that $f_n\to f$ in $L^1$.
+  \begin{proof}
+    Since $f_n\to f$ in measure, there exists a subsequence $(f_{n_s})_{k=1}^{\infty}$ such that $f_{n_s}\to f$ pointwise a.e. so by dominated convergence theorem, $f\in L^1$.\\
+
+    Suppose, for the sake of contradiction, that $\int f\dd{\mu} \neq \lim_{n\to\infty}\int f_n\dd{\mu}$. So $\lim_{n\to\infty}\int f-f_n\dd{\mu}\not\to 0$, whence $\norm{f-f_n}_1\not\to 0$. Hence, there exists an $\eps>0$ and a subsequence $(f_{n_k})_{k=1}^{\infty}$ such that $\norm{f-f_{n_k}}_1\geq\eps$ for all $k\in\N$. As $f_{n_k}\to f$ in measure, there exists a subsequence $(f_{n_{k_j}})_{j=1}^{\infty}$ such that $f_{n_{k_j}}\to f$ pointwise a.e., whence by the dominated convergence theorem $\lVert f_{n_{k_j}}-f\rVert_1 \to 0$ which is absurd.
+  \end{proof}
+
+  \textbf{(b)} Prove that $f_n\to f$ in $L^1$.
+
+  \begin{proof}
+    Let $(f_{n_k})_{k=1}^{\infty}$ be an arbitrary subsequence. As $f_{n_k}\to f$ in measure, there exists a further subsequence $(f_{n_{k_j}})_{j=1}^{\infty}$ such that $f_{n_{k_j}}\to f$ pointwise almost everywhere. Then $|f|\leq g$ and $|f_{n_{k_j}} - f|\leq 2g$, so by the dominated convergence theorem
+    \[
+      \lim_{n\to \infty}\int|f_{n_{k_j}}-f|\dd{\mu} = \int\lim_{n\to\infty}|f_{n_{k_j}}-f|\dd{\mu} = 0
+    \]
+    so $f_{n_{k_j}}\to f$ in $L^1$. Thus we have shown that every subsequence of the original sequence has a further subsequence that converges to $f$ in $L^1$, whence the original sequence converges to $f$ in $L^1$.
+  \end{proof}
 \end{homeworkProblem}
 
 \begin{homeworkProblem}
   If $f:[a,b]\to \C$ is Lebesgue measurable and $\eps>0$, there is a compact set $E\sub [a,b]$ such that $\mu(E^c)<\eps$ and $f\vert_E$ is continuous. (\emph{Hint}: Use Egoroff's theorem and Theorem 2.26)
+
+  \begin{proof}
+    By theorem 2.26, for each $n\in \N$ there exists an $f_n\in C_c([a,b])$ such that $\norm{f_n - f}_1 = \int_{[a,b]}|f_n-f|\dd{\mu} < 2^{-n}$. Then $f_n\to f$ in $L^1([a,b])$. Hence, there exists a subsequence $(f_{n_k})_{k=1}^{\infty}$ such that $f_{n_k}\to f$ pointwise a.e. Now, by Egoroff's theorem there exists an $E\sub[a,b]$ such that $\mu(E)<\frac{\eps}{2}$ and $f_{n_k}\to f$ uniformly on $E^c$. \\
+
+    Now, by sharp inner regularity, there exists a compact $K\sub E^c$ such that $\mu(E^c)-\frac{\eps}{2}<\mu(K)$. Then $\mu(K^c) = \mu(K^c\cap E) + \mu(K^c\setminus E) = \mu(E) + \mu(K^c) - \mu(E) < \eps$ and $f$ is the uniform limit of continuous $f_{n_k}$'s on $K$, whence $f$ is continuous on $K$.
+  \end{proof}
 \end{homeworkProblem}
 
 \end{document}

@@ -1,0 +1,240 @@
+\documentclass[12pt,letterpaper]{article}
+
+%--------Packages--------
+\usepackage{amsmath, amsthm, amssymb}
+\usepackage{xspace}
+\usepackage{graphicx}
+\usepackage{hhline}
+\usepackage{amssymb}
+\usepackage{array}
+\usepackage{braket}
+\usepackage{multicol}
+\usepackage{mathtools}
+\usepackage{enumerate}
+\usepackage{delarray}
+\usepackage{mathtools}
+\usepackage{fullpage}
+\usepackage{faktor} % For quotients
+\usepackage{mathrsfs}
+
+\usepackage[italicdiff]{physics} % For differentials
+\usepackage{bbm} % For indicator
+
+% \usepackage{quiver}
+\usepackage[linguistics]{forest}
+
+
+
+
+%--------Page Setup--------
+
+\pagestyle{empty}%
+
+\setlength{\hoffset}{-1.54cm}
+\setlength{\voffset}{-1.54cm}
+
+\setlength{\topmargin}{0pt}
+\setlength{\headsep}{0pt}
+\setlength{\headheight}{0pt}
+
+\setlength{\oddsidemargin}{0pt}
+
+\setlength{\textwidth}{195mm}
+\setlength{\textheight}{250mm}
+
+
+%--------Macros--------
+
+\newcommand{\sub}{\subseteq}
+\newcommand{\lcm}{\text{lcm}}
+\newcommand{\mc}[1]{\mathcal{#1}}
+\newcommand{\mf}[1]{\mathfrak{#1}}
+\newcommand{\ms}[1]{\mathscr{#1}}
+\newcommand{\sO}{\mathcal{O}}
+\newcommand{\cyclic}[1]{\langle#1\rangle}
+\newcommand{\units}[1]{#1 ^{\times}}
+\newcommand{\la}{\langle}
+\newcommand{\ra}{\rangle}
+\newcommand{\lr}[1]{\left(#1\right)}
+%----Switch phi and varphi
+% \let\temp\phi
+% \let\phi\varphi
+% \let\varphi\temp
+
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\N}{\mathbb{N}\xspace}
+\newcommand{\I}{\mathbb{I}\xspace}
+\newcommand{\R}{\mathbb{R}\xspace}
+\newcommand{\Z}{\mathbb{Z}\xspace}
+\newcommand{\Q}{\mathbb{Q}\xspace}
+\newcommand{\G}{\mathbb{G}\xspace}
+\DeclareMathOperator{\Spec}{Spec}
+\DeclareMathOperator{\res}{res}
+% \DeclareMathOperator{\Tr}{Tr}
+\DeclareMathOperator{\ord}{ord}
+\DeclareMathOperator{\Sym}{Sym}
+% \DeclareMathOperator{\dv}{div}
+\DeclareMathOperator{\alb}{alb}
+\DeclareMathOperator{\img}{Im}
+\DeclareMathOperator{\et}{et}
+\DeclareMathOperator{\ck}{coker}
+\DeclareMathOperator{\Reg}{Reg}
+\DeclareMathOperator{\Cor}{Cor}
+\DeclareMathOperator{\Ac}{at}
+\DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\Pic}{Pic}
+\DeclareMathOperator{\Gal}{Gal}
+\DeclareMathOperator{\fc}{frac}
+\DeclareMathOperator{\Ann}{Ann}
+\DeclareMathOperator{\Mod}{Mod}
+\DeclareMathOperator{\Cone}{Cone}
+\DeclareMathOperator{\FI}{FI}
+\DeclareMathOperator{\End}{End}
+\DeclareMathOperator{\Alb}{Alb}
+\DeclareMathOperator{\Ext}{Ext}
+\DeclareMathOperator{\ab}{ab}
+\DeclareMathOperator{\Jac}{Jac}
+\DeclareMathOperator{\coker}{coker}
+\DeclareMathOperator{\fr}{frac}
+\DeclareMathOperator{\Int}{Int}
+
+
+
+%----Analysis
+\newcommand{\summ}{\sum\limits}
+% \newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\thicc}{\bigg}
+\newcommand{\eps}{\varepsilon}
+\newcommand*\cls[1]{\overline{#1}}
+\newcommand{\ind}{\mathbbm{1}}
+
+
+%--------Theorem environments--------
+\newtheorem{definition}{Definition}[]
+\newtheorem{lemma}{Lemma}[]
+\newtheorem{corollary}{Corollary}[]
+\newtheorem{theorem}{Theorem}[]
+\theoremstyle{remark}
+\newtheorem*{claim}{Claim}
+
+
+\newenvironment{solution}
+{\begin{proof}[Solution]}
+{\end{proof}}
+
+
+\makeatletter
+\newcommand{\thickhline}{%
+    \noalign {\ifnum 0=`}\fi \hrule height 1pt
+    \futurelet \reserved@a \@xhline
+}
+\newcolumntype{"}{@{\hskip\tabcolsep\vrule width 1pt\hskip\tabcolsep}}
+\makeatother
+
+% --------Problem environment--------
+\setlength\parindent{0pt}
+\setcounter{secnumdepth}{0}
+\newcounter{partCounter}
+\newcounter{homeworkProblemCounter}
+\setcounter{homeworkProblemCounter}{1}
+
+
+\newenvironment{homeworkProblem}[1][-1]{
+    \ifnum#1>0
+        \setcounter{homeworkProblemCounter}{#1}
+    \fi
+    \section{Problem \arabic{homeworkProblemCounter}}
+    \setcounter{partCounter}{1}
+    \stepcounter{homeworkProblemCounter}
+}
+
+
+%--------Metadata--------
+\title{MATH 7310 Homework 6}
+\author{James Harbour}
+
+\begin{document}
+
+\begin{homeworkProblem}
+  Let $X=Y$ be an uncountable linearly ordered set such that for each $x\in X$, $\{y\in X: y<x\}$ is  countable. Let $\mc{M}=\mc{N}$ be the $\sigma$-algebra of countable or co-countable sets, and let $\mu=\nu$ be defined on $\mc{M}$ by $\mu(A)=0$ if $A$ is countable and $\mu(A)=1$ if $A$ is co-countable. Let $E = \{ (x,y)\in X\times X: y<x\}$. Prove that $E_x$ and $E^y$ are measurable for all $x,y$, and that $\int\int \ind_E \dd{\mu}\dd{\nu}$ and $\int\int\ind_E \dd{\nu}\dd{\mu}$ exist but are not equal.
+\end{homeworkProblem}
+
+
+\begin{homeworkProblem}[3]
+    \textbf{(a)}: Suppose $(X,\Sigma,\mu)$ is a $\sigma$-finite measure space and $f\in L^+(X)$. Let
+    \[
+      G_f = \{(x,y)\in X\times[0,+\infty] : y\leq f(x)\}.
+    \]
+    Show that $G_f$ is $\Sigma\times \mc{B}_\R$-measurable and $\mu\times m(G_f) = \int f\dd{\mu}$. Show also that the same is true if the inequality in the definition of $G_f$ is made strict.\\
+
+    \textbf{(b)}: Let $(X,\mu)$ be a $\sigma$-finite measure space. Fix $p\in[1,+\infty)$. Show that if $f\in L^p(X,\mu)$, then
+    \[
+      \norm{f}_p^{p} = p\int_{0}^{\infty} t^{p-1}\mu(\{x:f(x)>t\})\dd{t}.
+    \]
+
+    \textbf{(c)}: Let $(X,\mu)$ be a $\sigma$-finite measure space. Show that if $f,g\in L^1(X,\mu)$ with $0\leq f,g$ a.e., then
+    \[
+      \norm{f-g}_1 = \int_0^{\infty} \mu(\{x:f(x)>t\}\Delta\{x:g(x)>t\})\dd{t}.
+    \]
+
+
+    Suggestion: it might be helpful to first show that for $a,b\in[0,+\infty)$ we have
+    \[
+      |a-b| = \int_0^{\infty} |\ind_{(t,\infty)}(a) - \ind_{(t,\infty)}(b)|\dd{t}
+    \]
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+  If $f$ is Lebesgue integrable on $(0,a)$ and $g(x) = \int_{x}^a t^{-1}f(t)\dd{t}$, then $g$ is integrable on $(0,a)$ and $\int_0 ^{a} g(x)\dd{x} = \int_0 ^{a} f(x)\dd{x}$
+\end{homeworkProblem}
+
+
+\begin{homeworkProblem}
+  Let $\mc{E}_q$ be the set of products of the form $\Pi_{j=1}^d I_j$ where each $I_j$ is an $h$-interval with the property that all of its finite endpoints are rational. \\
+
+  \textbf{(a)}: Show that $\mc{E}_q$ is an elementary family which generates the Borel sets. \\
+
+  \textbf{(b)}: Suppose that $\mu$ is a Borel measure on $\R^d$ with $0<\mu((0,1]^d)<+\infty$. If $\mu(E+x) = \mu(E)$ for every $x\in\R^d$, show that $\mu(E) = \mu((0,1]^d)m(E)$ for every Borel $E\sub\R^d$.
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+  Fix $d\in\N$.\\
+
+  \textbf{(a)}: Let $s:\R^d\times \R^d \to\R^d$ be the map $s(x,y) = x+y$. Let $\mu,\nu$ be finite, Borel measures on $\R^d$. Define $\mu*\nu = s_*(\mu\otimes\nu)$. Show that for every Borel $E\sub\R^d$ we have
+  \[
+    \mu*\nu(E) = \int\int \ind_E(x+y)\dd{\mu(x)}\dd{\nu(y)}
+  \]
+  and
+  \[
+    \int\mu(E-y)\dd{\nu(y)} = \mu*\nu(E) = \int\nu(E-x)\dd{\mu(x)}.
+  \]
+  Show as a consequence that
+  \[
+    \mu*\nu(X) = \mu(X)\nu(X).
+  \]
+
+  \textbf{(b)}: Show that for finite, Borel measures $\mu,\nu,\eta$ on $\R^d$ we have
+  \[
+    (\mu*\nu)*\eta = \mu*(\nu*\eta).
+  \]
+
+  \textbf{(c)}: For $f,g\in L^1(\R^d)$ show that
+  \[
+    \int_{\R^d}\int_{\R^d} |f(y)g(x-y)|\dd{x}\dd{y} = \norm{f}_1 \norm{y}_1.
+  \]
+  Explain why this implies that $y\mapsto f(y)g(x-y)$ is in $L^1(\R^d)$ for almost every $x\in\R^d$ and why if we set $f*g(x) = \int_{\R^d}f(y)g(x-y)\dd{y}$ then we have that $f*g\in L^1(\R^d)$ and
+  \[
+    \norm{f*g}_1 \leq \norm{f}_1 \norm{g}_1.
+  \]
+
+  \textbf{(d)}: Adopt notation as in Problem 1 of HW5. Show that if $f,g\in L^1(R^d)$ are nonnegative than $(f\dd{m})*(g\dd{m}) = f*g\dd{m}$ with $m$ being the Lebesgue measure.\\
+
+  \textbf{(e)}: Show that for $f,g,k\in L^1(\R^d)$ we have that
+  \[(f*g)*k = f*(g*k) \text{ almost everywhere.}\]
+\end{homeworkProblem}
+
+
+
+\end{document}
