@@ -156,7 +156,7 @@
 \author{James Harbour}
 
 \begin{document}
-
+\maketitle
 \begin{homeworkProblem}
   Let $X=Y$ be an uncountable linearly ordered set such that for each $x\in X$, $\{y\in X: y<x\}$ is  countable. Let $\mc{M}=\mc{N}$ be the $\sigma$-algebra of countable or co-countable sets, and let $\mu=\nu$ be defined on $\mc{M}$ by $\mu(A)=0$ if $A$ is countable and $\mu(A)=1$ if $A$ is co-countable. Let $E = \{ (x,y)\in X\times X: y<x\}$. Prove that $E_x$ and $E^y$ are measurable for all $x,y$, and that $\int\int \ind_E \dd{\mu}\dd{\nu}$ and $\int\int\ind_E \dd{\nu}\dd{\mu}$ exist but are not equal.
 \end{homeworkProblem}
@@ -222,7 +222,7 @@
 
   \textbf{(c)}: For $f,g\in L^1(\R^d)$ show that
   \[
-    \int_{\R^d}\int_{\R^d} |f(y)g(x-y)|\dd{x}\dd{y} = \norm{f}_1 \norm{y}_1.
+    \int_{\R^d}\int_{\R^d} |f(y)g(x-y)|\dd{x}\dd{y} = \norm{f}_1 \norm{g}_1.
   \]
   Explain why this implies that $y\mapsto f(y)g(x-y)$ is in $L^1(\R^d)$ for almost every $x\in\R^d$ and why if we set $f*g(x) = \int_{\R^d}f(y)g(x-y)\dd{y}$ then we have that $f*g\in L^1(\R^d)$ and
   \[

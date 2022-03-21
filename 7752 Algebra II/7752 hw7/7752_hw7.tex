@@ -1,0 +1,210 @@
+\documentclass[12pt,letterpaper]{article}
+
+%--------Packages--------
+\usepackage{amsmath, amsthm, amssymb}
+\usepackage{xspace}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{array}
+\usepackage{braket}
+\usepackage{multicol}
+\usepackage{mathtools}
+\usepackage{enumerate}
+\usepackage{delarray}
+\usepackage{mathtools}
+\usepackage{fullpage}
+\usepackage{faktor} % For quotients
+\usepackage{mathrsfs}
+% \usepackage{quiver}
+% \usepackage{tikz}
+
+% \usepackage{quiver}
+\usepackage[linguistics]{forest}
+
+
+
+
+%--------Page Setup--------
+
+\pagestyle{empty}%
+
+\setlength{\hoffset}{-1.54cm}
+\setlength{\voffset}{-1.54cm}
+
+\setlength{\topmargin}{0pt}
+\setlength{\headsep}{0pt}
+\setlength{\headheight}{0pt}
+
+\setlength{\oddsidemargin}{0pt}
+
+\setlength{\textwidth}{195mm}
+\setlength{\textheight}{250mm}
+
+
+%--------Macros--------
+
+\newcommand{\ilm}[1]{\begin{psmallmatrix} #1 \end{psmallmatrix}}
+\newcommand{\ilmb}[1]{\boxed{\begin{smallmatrix} #1 \end{smallmatrix}}}
+
+\newcommand{\sub}{\subseteq}
+\newcommand{\lcm}{\text{lcm}}
+\newcommand{\ms}[1]{\mathscr{#1}}
+\newcommand{\mc}[1]{\mathcal{#1}}
+\newcommand{\mf}[1]{\mathfrak{#1}}
+\newcommand{\sO}{\mathcal{O}}
+\newcommand{\cyclic}[1]{\langle#1\rangle}
+\newcommand{\units}[1]{#1 ^{\times}}
+\newcommand{\la}{\langle}
+\newcommand{\ra}{\rangle}
+\newcommand{\lr}[1]{\left(#1\right)}
+%----Switch phi and varphi
+\let\temp\phi
+\let\phi\varphi
+\let\varphi\temp
+
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\N}{\mathbb{N}\xspace}
+\newcommand{\I}{\mathbb{I}\xspace}
+\newcommand{\R}{\mathbb{R}\xspace}
+\newcommand{\Z}{\mathbb{Z}\xspace}
+\newcommand{\Q}{\mathbb{Q}\xspace}
+\newcommand{\G}{\mathbb{G}\xspace}
+\DeclareMathOperator{\Spec}{Spec}
+\DeclareMathOperator{\res}{res}
+\DeclareMathOperator{\Tr}{Tr}
+\DeclareMathOperator{\ord}{ord}
+\DeclareMathOperator{\Sym}{Sym}
+\DeclareMathOperator{\dv}{div}
+\DeclareMathOperator{\alb}{alb}
+\let\Im\relax
+\DeclareMathOperator{\Im}{Im}
+\DeclareMathOperator{\et}{et}
+\DeclareMathOperator{\ck}{coker}
+\DeclareMathOperator{\Reg}{Reg}
+\DeclareMathOperator{\Cor}{Cor}
+\DeclareMathOperator{\Ac}{at}
+\DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\Pic}{Pic}
+\DeclareMathOperator{\Gal}{Gal}
+\DeclareMathOperator{\fc}{frac}
+\DeclareMathOperator{\Ann}{Ann}
+\DeclareMathOperator{\Mod}{Mod}
+\DeclareMathOperator{\Cone}{Cone}
+\DeclareMathOperator{\FI}{FI}
+\DeclareMathOperator{\End}{End}
+\DeclareMathOperator{\Alb}{Alb}
+\DeclareMathOperator{\Ext}{Ext}
+\DeclareMathOperator{\ab}{ab}
+\DeclareMathOperator{\Jac}{Jac}
+\DeclareMathOperator{\coker}{coker}
+\DeclareMathOperator{\fr}{frac}
+\DeclareMathOperator{\spn}{span}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\rk}{rk}
+\DeclareMathOperator{\GL}{GL}
+
+
+%----Analysis
+\newcommand{\dd}[2][]{\frac{\partial^{#1}}{\partial {#2}^{#1}}}
+\newcommand{\summ}{\sum\limits}
+\newcommand{\norm}[1]{\left \vert \left \vert #1 \right \vert \right \vert}
+\newcommand{\thicc}{\bigg}
+\newcommand{\eps}{\varepsilon}
+\newcommand*\cls[1]{\overline{#1}}
+
+
+%--------Theorem environments--------
+\newtheorem{definition}{Definition}[]
+\newtheorem{lemma}{Lemma}[]
+\newtheorem{corollary}{Corollary}[]
+\newtheorem{theorem}{Theorem}[]
+\theoremstyle{remark}
+\newtheorem*{claim}{Claim}
+
+
+\newenvironment{solution}
+{\begin{proof}[Solution]}
+{\end{proof}}
+
+
+\makeatletter
+\newcolumntype{"}{@{\hskip\tabcolsep\vrule width 1pt\hskip\tabcolsep}}
+\makeatother
+
+% --------Problem environment--------
+\setlength\parindent{0pt}
+\setcounter{secnumdepth}{0}
+\newcounter{partCounter}
+\newcounter{homeworkProblemCounter}
+\setcounter{homeworkProblemCounter}{1}
+
+
+\newenvironment{homeworkProblem}[1][-1]{
+    \ifnum#1>0
+        \setcounter{homeworkProblemCounter}{#1}
+    \fi
+    \section{Problem \arabic{homeworkProblemCounter}}
+    \setcounter{partCounter}{1}
+    \stepcounter{homeworkProblemCounter}
+}
+
+
+%--------Metadata--------
+\title{MATH 7752 Homework 7}
+\author{James Harbour}
+
+
+\begin{document}
+\maketitle
+
+\begin{homeworkProblem}
+  \textbf{(a)}: Consider the field $K=\Q(\sqrt{2},\sqrt{3})$. Prove that $[K:\Q]=4$. \\
+
+  \textbf{(b)}: Let $L=\Q(\sqrt{2}+\sqrt{3})$. Show that $L=K$. \\
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+  Let $S=\{n_1,\ldots, n_r\}$ be a finite set of positive integers with $n_i\geq 2$. For each $j\in\{1,\ldots,r\}$ let $\Q_j=\Q(\sqrt{n_1},\ldots,\sqrt{n_j})$. Moreover, set $\Q_0=\Q$. \\
+
+  \textbf{(a)}: Prove that $[\Q_r:\Q]=2^m$ for some integer $0\leq m\leq r$. Moreover, show that the following set spans $\Q_r$ over $\Q$, \[P(S)=\{1\}\cup\{\sqrt{n}:n\text{ is a product of distinct elements from }S\}.\]
+
+  \textbf{(b)}: Prove that $[\Q_r:\Q]<2^r$ if and only if $n_1$ is a complete square, or there exists $2\leq j\leq r$ such that $\sqrt{n_j}=\alpha+\beta\sqrt{n_{j-1}}$, for some $\alpha,\beta\in\Q_{j-2}$.\\
+
+  \textbf{(c)}: Suppose that the integers $n_1,\ldots, n_r$ are square-free and pairwise relatively prime. Prove that $[\Q_r:\Q]=2^r$. Conclude that the extension $L=\Q(T)$, where $T=\{\sqrt{n}:n\in\N, n \text{ square free}\}$ is an infinite algebraic extension of $\Q$. \\
+\end{homeworkProblem}
+
+
+\begin{homeworkProblem}
+  Let $F$ be a field and $\alpha$ an algebraic element of odd degree over $F$ (i.e. the degree $[F(\alpha):F]$ is odd). Show that $F(\alpha^2)=F(\alpha)$. \\
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+  Let $K/F$ be an algebraic extension. \\
+
+  \textbf{(a)}: Let $F\subset R\subset K$ where $R$ is a subring of $K$. Prove that $R$ must be a subfield. \\
+
+  \textbf{(b)}: Show that (a) would be false if we dropped the assumption that $K/F$ is algebraic. \\
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+  Let $K/F$ be a finite field extension, $n=[K:F]$, and fix some basis $\Omega=\{\alpha_1,\ldots,\alpha_n\}$ of $K$ over $F$. For any $\alpha\in K$ define $T_\alpha:K\rightarrow K$ by $\beta\mapsto\alpha\beta$. Note that $T_\alpha\in\End_F(K)$.  Let $A_\alpha=[T_\alpha]_\Omega\in M_n(F)$ be the matrix of $T_\alpha$ with respect to $\Omega$.  \\
+
+  \textbf{(a)}: Prove that the map $K\xrightarrow{\rho} M_n(F)$ given by $\alpha\mapsto A_\alpha$ is an injective ring homomorphism. \\
+
+  \textbf{(b)}: Prove that the minimal polynomial of $\alpha$ over $F$ and the minimal polynomial of $A_\alpha$ coincide.
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+  Let $K/F$ be an extension of fields and let $F\subseteq K_1\subseteq K$ and $F\subseteq K_2\subseteq K$ be two subextensions of $K/F$. The \textit{compositum} of $K_1$ and $K_2$ is the smallest subfield of $K$ that contains both $K_1$ and $K_2$. \textbf{Notation:} We denote the compositum by $K_1 K_2$. \\
+
+  \textbf{(a)}: Consider the $F$-algebra $K_1\otimes_F K_2$. Show that there exists a unique $F$-algebra homomorphism $\Phi:K_1\otimes_F K_2\rightarrow K_1 K_2$ such that $\Phi(a\otimes b)=ab$. Conclude that $[K_1 K_2:F]\leq [K_1:F][K_2:F]$. \\
+
+  \textbf{(b)}: Show that $K_1\otimes_F K_2$ is a field if and only if the above $\leq$ becomes an equality.\\
+  
+  \textbf{(c)}: Suppose that $K_1\cap K_2\neq F$. Prove that $K_1\otimes_F K_2$ is not a field. \\
+\end{homeworkProblem}
+
+
+\end{document}

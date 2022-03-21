@@ -1,0 +1,216 @@
+\documentclass[12pt,
+psamsfonts]{amsart}
+
+%-------Packages---------
+\usepackage{amssymb,amsfonts,amsmath}
+\usepackage[all,arc]{xy}
+\usepackage{enumerate}
+\usepackage{mathrsfs}
+\usepackage{fullpage}
+\usepackage{xspace}
+\usepackage[margin=1.0in]{geometry}
+\usepackage{tcolorbox}
+\usepackage{tikz-cd}
+\usepackage{color}
+\usepackage{aliascnt}
+\usepackage[foot]{amsaddr}
+\usepackage{hyperref}
+
+
+%--------Theorem Environments--------
+%theoremstyle{plain} --- default
+\newtheorem{thm}{Theorem}[section]
+
+%----Theorem
+\newaliascnt{theo}{thm}
+\newtheorem{theo}[theo]{Theorem}
+\aliascntresetthe{theo}
+\newcommand{\theoautorefname}{Theorem}
+%----Corollary
+\newaliascnt{cor}{thm}
+\newtheorem{cor}[cor]{Corollary}
+\aliascntresetthe{cor}
+\newcommand{\corautorefname}{Corollary}
+%----Proposition
+\newaliascnt{prop}{thm}
+\newtheorem{prop}[prop]{Proposition}
+\aliascntresetthe{prop}
+\newcommand{\propautorefname}{Proposition}
+%----Lemma
+\newaliascnt{lem}{thm}
+\newtheorem{lem}[lem]{Lemma}
+\aliascntresetthe{lem}
+\newcommand{\lemautorefname}{Lemma}
+%----Conjecture
+\newaliascnt{conj}{thm}
+\newtheorem{conj}[conj]{Conjecture}
+\aliascntresetthe{conj}
+\newcommand{\conjautorefname}{Conjecture}
+%----Question
+\newaliascnt{que}{thm}
+\newtheorem{que}[que]{Question}
+\aliascntresetthe{que}
+\newcommand{\queautorefname}{Question}
+%----Assumption
+\newaliascnt{ass}{thm}
+\newtheorem{ass}[ass]{Assumption}
+\aliascntresetthe{ass}
+\newcommand{\assautorefname}{Assumption}
+%----Definition
+\newaliascnt{defn}{thm}
+\newtheorem{defn}[defn]{Definition}
+\aliascntresetthe{defn}
+\newcommand{\defnautorefname}{Definition}
+
+
+
+
+%Style
+\theoremstyle{remark}
+%----Remark
+\newaliascnt{rem}{thm}
+\newtheorem{rem}[rem]{Remark}
+\aliascntresetthe{rem}
+\newcommand{\remautorefname}{Remark}
+
+\newtheorem*{ack}{Acknowledgements}
+
+
+
+
+\newtheorem{Proof}{Proof}
+
+\theoremstyle{definition}
+%\newtheorem{defn}[thm]{Definition}
+\newtheorem{defns}[thm]{Definitions}
+\newtheorem{con}[thm]{Construction}
+\newtheorem{exmp}[thm]{Example}
+\newtheorem{exmps}[thm]{Examples}
+\newtheorem{notn}[thm]{Notation}
+\newtheorem{notns}[thm]{Notations}
+\newtheorem{addm}[thm]{Addendum}
+\newtheorem{exer}[thm]{Exercise}
+\newtheorem{conv}[thm]{Convention}
+
+\newtheorem{case}[thm]{Case}
+
+
+\newtheorem{rems}[thm]{Remarks}
+\newtheorem{warn}[thm]{Warning}
+%\newtheorem{sch}[thm]{Scholium}
+\newtheorem{notation}[thm]{Notation}
+\newtheorem{ex}[thm]{Examples}
+\newtheorem{note}[thm]{Note}
+
+
+
+\newcommand{\N}{\mathbb{N}\xspace}
+\newcommand{\I}{\mathbb{I}\xspace}
+\newcommand{\R}{\mathbb{R}\xspace}
+\newcommand{\Z}{\mathbb{Z}\xspace}
+\newcommand{\Q}{\mathbb{Q}\xspace}
+\newcommand{\C}{\mathbb{C}\xspace}
+\newcommand{\G}{\mathbb{G}\xspace}
+\DeclareMathOperator{\Spec}{Spec}
+\DeclareMathOperator{\res}{res}
+\DeclareMathOperator{\Tr}{Tr}
+\DeclareMathOperator{\ord}{ord}
+\DeclareMathOperator{\Sym}{Sym}
+\DeclareMathOperator{\dv}{div}
+\DeclareMathOperator{\alb}{alb}
+\DeclareMathOperator{\img}{Im}
+\DeclareMathOperator{\et}{et}
+\DeclareMathOperator{\ck}{coker}
+\DeclareMathOperator{\Reg}{Reg}
+\DeclareMathOperator{\Cor}{Cor}
+\DeclareMathOperator{\Ac}{at}
+\DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\Pic}{Pic}
+\DeclareMathOperator{\Gal}{Gal}
+\DeclareMathOperator{\fc}{frac}
+\DeclareMathOperator{\Ann}{Ann}
+\DeclareMathOperator{\Mod}{Mod}
+\DeclareMathOperator{\Cone}{Cone}
+\DeclareMathOperator{\FI}{FI}
+\DeclareMathOperator{\End}{End}
+\DeclareMathOperator{\rk}{rk}
+\DeclareMathOperator{\Ext}{Ext}
+\DeclareMathOperator{\ab}{ab}
+
+\DeclareMathOperator{\coker}{coker}
+\DeclareMathOperator{\fr}{frac}
+\makeatletter
+\let\c@equation\c@theo
+\makeatother
+\numberwithin{equation}{section}
+
+\bibliographystyle{plain}
+%\newcommand{\textlatin }
+
+
+
+
+%--------Meta Data: Fill in your info------
+\title{Math 7752 - Homework 7\\
+Due Friday 03/25/22}
+
+\begin{document}
+
+\maketitle
+
+%\textbf{Reminders:} If $K/F$ and $L/K$ are finite extensions, then
+%$L/F$ is finite and \[[L:F]=[L:K][K:F].\] In particular, both $[K:F]$ and $[L:K]$ divide $[L:F]$.
+%\\
+
+\begin{enumerate}
+\item
+\begin{enumerate}
+\item Consider the field $K=\Q(\sqrt{2},\sqrt{3})$. Prove that $[K:\Q]=4$.
+\item Let $L=\Q(\sqrt{2}+\sqrt{3})$. Show that $L=K$.
+\end{enumerate}
+\medskip
+\item Let $S=\{n_1,\ldots, n_r\}$ be a finite set of positive integers with $n_i\geq 2$. For each $j\in\{1,\ldots,r\}$ let $\Q_j=\Q(\sqrt{n_1},\ldots,\sqrt{n_j})$. Moreover, set $\Q_0=\Q$.
+ \begin{enumerate}
+[(a)]\item Prove that $[\Q_r:\Q]=2^m$ for some integer $0\leq m\leq r$. Moreover, show that the following set spans $\Q_r$ over $\Q$, \[P(S)=\{1\}\cup\{\sqrt{n}:n\text{ is a product of distinct elements from }S\}.\]
+\item Prove that $[\Q_r:\Q]<2^r$ if and only if $n_1$ is a complete square, or there exists $2\leq j\leq r$ such that $\sqrt{n_j}=\alpha+\beta\sqrt{n_{j-1}}$, for some $\alpha,\beta\in\Q_{j-2}$.
+\item Suppose that the integers $n_1,\ldots, n_r$ are square-free and pairwise relatively prime. Prove that $[\Q_r:\Q]=2^r$. Conclude that the extension $L=\Q(T)$, where $T=\{\sqrt{n}:n\in\N, n \text{ square free}\}$ is an infinite algebraic extension of $\Q$.
+\end{enumerate}
+\medskip
+\item Let $F$ be a field and $\alpha$ an algebraic element of odd degree over $F$ (i.e. the degree $[F(\alpha):F]$ is odd). Show that $F(\alpha^2)=F(\alpha)$. \\
+
+\item  Let $K/F$ be an algebraic extension.
+\begin{enumerate}
+\item Let $F\subset R\subset K$ where $R$ is a subring of $K$. Prove that $R$ must be a subfield.
+\item Show that (a) would be false if we dropped the assumption that $K/F$ is algebraic.
+\end{enumerate}
+\medskip
+\item Let $K/F$ be a finite field extension, $n=[K:F]$, and fix some basis $\Omega=\{\alpha_1,\ldots,\alpha_n\}$ of $K$ over $F$. For any $\alpha\in K$ define $T_\alpha:K\rightarrow K$ by $\beta\mapsto\alpha\beta$. Note that $T_\alpha\in\End_F(K)$.  Let $A_\alpha=[T_\alpha]_\Omega\in M_n(F)$ be the matrix of $T_\alpha$ with respect to $\Omega$.
+\begin{enumerate}
+[(a)]\item Prove that the map $K\xrightarrow{\rho} M_n(F)$ given by $\alpha\mapsto A_\alpha$ is an injective ring homomorphism.
+\item Prove that the minimal polynomial of $\alpha$ over $F$ and the minimal polynomial of $A_\alpha$ coincide.
+%\item (Optional) Find the minimal polynomial of the matrix
+%\[A=\left(\begin{array}{cccc}
+%0 & 3 & 5 & 0\\
+%1 & 0 & 0 & 5\\
+%1 & 0 & 0 & 3 \\
+%0 & 1 & 1 & 0
+%\end{array}\right)\] without doing extensive computations. \textbf{Hint:} Find an extension $K/\Q$ of degree $4$, a basis for $K$ over $\Q$ and an element $\alpha\in K$ such that $A=A_\alpha$.
+\end{enumerate}
+\medskip
+\item Let $K/F$ be an extension of fields and let $F\subseteq K_1\subseteq K$ and $F\subseteq K_2\subseteq K$ be two subextensions of $K/F$. The \textit{compositum} of $K_1$ and $K_2$ is the smallest subfield of $K$ that contains both $K_1$ and $K_2$. \textbf{Notation:} We denote the compositum by $K_1 K_2$.
+\begin{enumerate}
+[(a)]\item Consider the $F$-algebra $K_1\otimes_F K_2$. Show that there exists a unique $F$-algebra homomorphism $\Phi:K_1\otimes_F K_2\rightarrow K_1 K_2$ such that $\Phi(a\otimes b)=ab$. Conclude that $[K_1 K_2:F]\leq [K_1:F][K_2:F]$. 
+\item Show that $K_1\otimes_F K_2$ is a field if and only if the above $\leq$ becomes an equality.
+\item Suppose that $K_1\cap K_2\neq F$. Prove that $K_1\otimes_F K_2$ is not a field.
+\end{enumerate}
+
+
+
+\end{enumerate}
+
+
+
+
+
+\end{document}
