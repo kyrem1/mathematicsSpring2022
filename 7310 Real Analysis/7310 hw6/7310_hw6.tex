@@ -158,7 +158,34 @@
 \begin{document}
 \maketitle
 \begin{homeworkProblem}
-  Let $X=Y$ be an uncountable linearly ordered set such that for each $x\in X$, $\{y\in X: y<x\}$ is  countable. Let $\mc{M}=\mc{N}$ be the $\sigma$-algebra of countable or co-countable sets, and let $\mu=\nu$ be defined on $\mc{M}$ by $\mu(A)=0$ if $A$ is countable and $\mu(A)=1$ if $A$ is co-countable. Let $E = \{ (x,y)\in X\times X: y<x\}$. Prove that $E_x$ and $E^y$ are measurable for all $x,y$, and that $\int\int \ind_E \dd{\mu}\dd{\nu}$ and $\int\int\ind_E \dd{\nu}\dd{\mu}$ exist but are not equal.
+  Let $X=Y$ be an uncountable linearly ordered set such that for each $x\in X$, $\{ y\in X: y<x\}$ is  countable. Let $\mc{M}=\mc{N}$ be the $\sigma$-algebra of countable or co-countable sets, and let $\mu=\nu$ be defined on $\mc{M}$ by $\mu(A)=0$ if $A$ is countable and $\mu(A)=1$ if $A$ is co-countable. Let $E = \{ (x,y)\in X\times X: y<x\}$. Prove that $E_x$ and $E^y$ are measurable for all $x,y$, and that $\int\int \ind_E \dd{\mu}\dd{\nu}$ and $\int\int\ind_E \dd{\nu}\dd{\mu}$ exist but are not equal.
+
+  \begin{proof}
+    For $x\in X$, define the set $S(x)=\{ y\in X: y<x\}$. Observe that, for $x\in X$,
+    $E_x = \{ y\in X: (x,y)\in E\} = \{ y\in X: y < x\} = S(x)$ which is countable by assumption so $E_x$ is measurable. On the other hand, for $y\in X$, since the ordering on $X$ is total,
+    \[
+      X\setminus E^y= \{ x\in X : y\not\in S(x)\} = \{ x\in X : x = y \text{ or } x < y\} = \{y\}\cup S(y)
+    \]
+    which is countable by assumption, so $E^y$ is cocountable and thus measurable.\\
+
+    Thus, for $x,y\in X$, the $x$ and $y$-sections of $\ind_E$, i.e. $(\ind_E)^y = \ind_{E^y}$ and $(\ind)_x = \ind_{E_x}$, are measurable. Thus, the inner integrals in each of the iterated integrals exist. To see that both of the whole iterated integrals exist, we compute for fixed $y\in X$
+    \[
+      \int \ind_E (x,y)\dd{\mu(x)} = \int \ind_{E^y}(x)\dd{\mu(x)} = \mu(E^y) = 1
+    \]
+    and for fixed $x\in X$
+    \[
+      \int \ind_E (x,y)\dd{\nu(y)} = \int \ind_{E_x}(y)\dd{\nu(y)} = \nu(E_x) = 0
+    \]
+    which are both measurable functions as they are constant functions. Hence, both of the interated integrals exist and we compute on one hand that
+    \[
+      \int\int \ind_E(x,y) \dd{\mu(x)}\dd{\nu(y)} = \int \mu(E^y)\dd{\nu(y)} = \int 1\dd{\nu(y)} = \nu(X) = 1
+    \]
+    and on the other hand that
+    \[
+      \int\int \ind_E(x,y) \dd{\nu(y)}\dd{\mu(x)} = \int \nu(E_x)\dd{\mu(x)} = \int 0\dd{\mu(x)} = 0.
+    \]
+    Thus $\int\int \ind_E \dd{\mu}\dd{\nu}$ and $\int\int\ind_E \dd{\nu}\dd{\mu}$ exist but are not equal.
+  \end{proof}
 \end{homeworkProblem}
 
 
@@ -167,7 +194,16 @@
     \[
       G_f = \{(x,y)\in X\times[0,+\infty] : y\leq f(x)\}.
     \]
-    Show that $G_f$ is $\Sigma\times \mc{B}_\R$-measurable and $\mu\times m(G_f) = \int f\dd{\mu}$. Show also that the same is true if the inequality in the definition of $G_f$ is made strict.\\
+    Show that $G_f$ is $\Sigma\times \mc{B}_\R$-measurable and $\mu\times m(G_f) = \int f\dd{\mu}$. Show also that the same is true if the inequality in the definition of $G_f$ is made strict.
+
+    \begin{proof}
+      Let $\tilde f:X\times[0,+\infty]\to X\times [0,+\infty]$ be given by $(x,y)\mapsto(f(x),y)$ and $S:X\times [0,+\infty]\to [-\infty,+\infty]$ be given by $S(z,y) = z-y$ if $z,y$ not both $\pm\infty$ and $S(z,y) = 0$ if $z=y=\infty$. Then $S$ is measurable, and as $\pi_1 \circ \tilde f$ and $\pi_2\circ\tilde f$ are measurable, so is $\tilde f$. Hence, as intermediate codomain and domain match for the corresponding measure spaces, $S\circ\tilde f$ is measurable. Noting that $G_f = (S\circ \tilde f)^{-1}([0,+\infty])$, measurability of $S\circ \tilde f$ implies that $G_f$ is $\Sigma\times \mc{B}_\R$-measurable.\\
+
+      Observe that, for $x\in X$, $m((G_f)_x) = m([0,f(x)]) = f(x)$. As $G_f$ is measurable, by Theorem 2.36 in Folland, the function $x\mapsto m((G_f)_x)$ is measurable and
+      \[
+        \mu\times m(G_f) = \int m((G_f)_x)\dd{\mu(x)} = \int f(x)\dd{\mu(x)}.
+      \]
+    \end{proof}
 
     \textbf{(b)}: Let $(X,\mu)$ be a $\sigma$-finite measure space. Fix $p\in[1,+\infty)$. Show that if $f\in L^p(X,\mu)$, then
     \[
