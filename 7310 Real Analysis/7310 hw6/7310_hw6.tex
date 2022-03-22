@@ -207,23 +207,51 @@
 
     \textbf{(b)}: Let $(X,\mu)$ be a $\sigma$-finite measure space. Fix $p\in[1,+\infty)$. Show that if $f\in L^p(X,\mu)$, then
     \[
-      \norm{f}_p^{p} = p\int_{0}^{\infty} t^{p-1}\mu(\{x:f(x)>t\})\dd{t}.
+      \norm{f}_p^{p} = p\int_{0}^{\infty} t^{p-1}\mu(\{x:|f(x)|>t\})\dd{t}.
     \]
+
+    \begin{proof}
+      Observe that, by part (a),
+      \[
+        \norm{f}_p^{p} = \int_X |f|^p\dd{\mu} = (\mu\times m)(G_{|f|^p}) = \int_{X\times [0,+\infty]} \ind_{G_{|f|^p}}(x,t) \dd{(\mu\times m)}(x,t)
+      \]
+
+      As $\norm{f}_p^p < +\infty$, it follows that $\ind_{G_{|f|^p}}\in L^1(X\times[0,+\infty], \mu\times m)$ whence by Fubini's theorem $(\ind_{G_{|f|^p}})^t\in L^1 (X,\mu)$ for almost every $t\in[0,+\infty]$, the a.e. defined function $\int (\ind_{G_{|f|^p}})^t \dd{\mu}\in L^1([0,+\infty], m)$, and
+      \begin{align*}
+        \norm{f}_p^{p} = \int_{X\times [0,+\infty]}\ind_{G_{|f|^p}} \dd{(\mu\times m)} &= \int_{0}^{\infty}\left[\int_X (\ind_{G_{|f|^p}})^t(x)\dd{\mu(x)}\right]\dd{t} \\
+        &= \int_{0}^{\infty}\left[\int_X (\ind_{(G_{|f|^p})^t})(x)\dd{\mu(x)}\right]\dd{t} = \int_{0}^{\infty}\mu((G_{|f|^p})^t)\dd{t}\\
+        &= \int_{0}^{\infty}\mu(\{ x: |f(x)|^p<t\})\dd{t}
+      \end{align*}
+
+      Consider the functions $F:[0,+\infty]\to [0,\infty]$ and $\phi:[0,+\infty]\to[0,+\infty]$ given by $F(t) = \mu(\{ x: |f(x)|^p>t\})$ and $\phi(t) = t^p$. For $t$ nonnegative, observe that $\{ x:|f(x)|^p > t^p\} = \{x:|f(x)| > t\}$, so $(F\circ \phi)(t) = \mu(\{ x: |f(x)|^p>t\}) = \mu(\{ x:|f(x)| > t\})$. Lastly, noting that $F$ is measurable and $\phi$ is a $C^1$-diffeomorphism, it follows that
+      \[
+        \norm{f}_p^{p} = \int_{0}^{\infty} F(t)\dd{t} = \int_{0}^{\infty}(F\circ\phi)(t)|\det D_t\phi|\dd{t} = p\int_{0}^{\infty} t^{p-1}\mu(\{x:|f(x)|>t\})\dd{t}.
+      \]
+
+    \end{proof}
 
     \textbf{(c)}: Let $(X,\mu)$ be a $\sigma$-finite measure space. Show that if $f,g\in L^1(X,\mu)$ with $0\leq f,g$ a.e., then
     \[
       \norm{f-g}_1 = \int_0^{\infty} \mu(\{x:f(x)>t\}\Delta\{x:g(x)>t\})\dd{t}.
     \]
-
-
     Suggestion: it might be helpful to first show that for $a,b\in[0,+\infty)$ we have
     \[
       |a-b| = \int_0^{\infty} |\ind_{(t,\infty)}(a) - \ind_{(t,\infty)}(b)|\dd{t}
     \]
+
+    \begin{proof}
+      % TODO Prove lemma descirbed in the suggestion.
+      % TODO Justify change of order of integration.
+      \begin{align*}
+        \norm{f-g}_1 = \int_X |f-g|\dd{\mu} &= \int_X \int_0^{\infty}|\ind_{(t,+\infty)}(f(x)) - \ind_{(t,+\infty)}(g(x))|\dd{t}\dd{\mu(x)} \\
+        &=\int_0^{\infty}\left[\int_X |\ind_{f^{-1}((t,+\infty))}(x) - \ind_{g^{-1}((t,+\infty))}(x)|\right]\dd{\mu(x)}\dd{t}\\
+        &=\int_0^{\infty} \left[\int_X \ind_{f^{-1}((t,+\infty))\Delta g^{-1}((t,+\infty))}(x)\right]\dd{\mu(x)}\dd{t} \\&= \int_0^{\infty}\mu(\{x:f(x)>t\}\Delta\{x:g(x)>t\})\dd{t}
+      \end{align*}
+    \end{proof}
 \end{homeworkProblem}
 
 \begin{homeworkProblem}
-  If $f$ is Lebesgue integrable on $(0,a)$ and $g(x) = \int_{x}^a t^{-1}f(t)\dd{t}$, then $g$ is integrable on $(0,a)$ and $\int_0 ^{a} g(x)\dd{x} = \int_0 ^{a} f(x)\dd{x}$
+  If $f$ is Lebesgue integrable on $(0,a)$ and $g(x) = \int_{x}^a t^{-1}f(t)\dd{t}$, then $g$ is integrable on $(0,a)$ and $\int_0 ^{a} g(x)\dd{x} = \int_0 ^{a} f(x)\dd{x}$.
 \end{homeworkProblem}
 
 
@@ -251,6 +279,25 @@
     \mu*\nu(X) = \mu(X)\nu(X).
   \]
 
+  \begin{proof}
+    On one hand, by finiteness of the measures and measurability of $E$, we may apply Fubini's theorem to see that
+    \begin{align*}
+      \int\int\ind_E(s(x,y))\dd{\mu(x)}\dd{\nu(y)} &= \int\int\ind_{s^{-1}(E)}(x,y)\dd{\mu(x)}\dd{\nu(y)} = \int\int\ind_{s^{-1}(E)}\dd{(\mu\otimes\nu)} = \mu*\nu(E).
+    \end{align*}
+    Moreover, noting that $(s^{-1}(E))^y = E-y$ and $(s^{-1}(E))_x = E-x$, theorem 2.36 gives that
+    \[
+      \mu*\nu(E) = \mu\otimes\nu(s^{-1}(E)) = \int \nu(E-x)\dd{\mu(x)}
+    \]
+    and
+    \[
+      \mu*\nu(E) = \mu\otimes\nu(s^{-1}(E)) = \int \mu(E-y)\dd{\nu(y)}
+    \]
+    It follows that
+    \[
+      \mu*\nu(\R^d) = \int \mu(\R^d-y)\dd{\nu(y)} = \int \mu(R^d)\dd{\nu(y)} = \mu(R^d)\nu(R^d).
+    \]
+  \end{proof}
+
   \textbf{(b)}: Show that for finite, Borel measures $\mu,\nu,\eta$ on $\R^d$ we have
   \[
     (\mu*\nu)*\eta = \mu*(\nu*\eta).
@@ -264,6 +311,13 @@
   \[
     \norm{f*g}_1 \leq \norm{f}_1 \norm{g}_1.
   \]
+
+  \begin{proof}
+    % TODO Justify Fubini
+    \begin{align*}
+      \int_{\R^d}\int_{\R^d} |f(y)g(x-y)|\dd{x}\dd{y} = \int_{\R^d}|f(y)|\left[\int_{\R^d} |g(x-y)|\dd{x}\right]\dd{y} = \int_{\R^d}|f(y)|\left[\int_{\R^d} |g(x)|\dd{x}\right]\dd{y} = \norm{f}_1\norm{g}_1
+    \end{align*}
+  \end{proof}
 
   \textbf{(d)}: Adopt notation as in Problem 1 of HW5. Show that if $f,g\in L^1(R^d)$ are nonnegative than $(f\dd{m})*(g\dd{m}) = f*g\dd{m}$ with $m$ being the Lebesgue measure.\\
 
