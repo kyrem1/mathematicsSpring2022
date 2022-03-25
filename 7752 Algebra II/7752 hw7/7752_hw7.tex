@@ -192,12 +192,29 @@
     \underline{$\impliedby$}: If $n_1$ is a complete square then $[\Q_1: \Q_0] = 1$ whence $[\Q_r:\Q]\leq 2^{r-1}<2^r$, so suppose that $n_1$ is not a complete square and that there exists $2\leq j\leq r$ such that $\sqrt{n_j}=\alpha+\beta\sqrt{n_{j-1}}$, for some $\alpha,\beta\in\Q_{j-2}$. Then $\sqrt{n_j}\in \Q_{j-2}[\sqrt{n_{j-1}}] = \Q_{j-2}(\sqrt{n_{j-1}}) = \Q_{j-1}$, whence $[\Q_j:\Q_{j-1}] = 1$ and thus $[\Q_r:\Q]\leq 2^{r-1}<2^r$.
   \end{proof}
 
-  \textbf{(c)}: Suppose that the integers $n_1,\ldots, n_r$ are square-free and pairwise relatively prime. Prove that $[\Q_r:\Q]=2^r$. Conclude that the extension $L=\Q(T)$, where $T=\{\sqrt{n}:n\in\N, n \text{ square free}\}$ is an infinite algebraic extension of $\Q$. \\
+  \textbf{(c)}: Suppose that the integers $n_1,\ldots, n_r$ are square-free and pairwise relatively prime. Prove that $[\Q_r:\Q]=2^r$. Conclude that the extension $L=\Q(T)$, where $T=\{\sqrt{n}:n\in\N, n \text{ square free}\}$ is an infinite algebraic extension of $\Q$.
+
+  \begin{proof}
+    Suppose for the sake of contradiction, that $[\Q_r:\Q]<2^r$. As $n_1$ is square-free, part (b) implies that there exists $2\leq j\leq r$ such that $\sqrt{n_j} = \alpha +\beta\sqrt{n_{j-1}}$ for some $\alpha,\beta\in\Q_{j-2}$. \\
+
+    \underline{Case 1}: Suppose that $2\alpha\beta\sqrt{n_{j-1}}\in\units{\Q_{j-2}}$. Then
+    \[
+      \sqrt{n_{j-1}} = \frac{n_j - \alpha^2 + -\beta^2 n_{j-1}}{2\alpha\beta} \in \Q_{j-2}
+    \]
+    so there exist $\alpha',\beta'\in\Q_{j-3}$ such that $\sqrt{n_{j-1}} = \alpha'+\beta'\sqrt{n_{j-2}}$\\
+
+    \underline{Case 2}: Suppose that $2\alpha\beta\sqrt{n_{j-1}} = 0$. If $\beta = 0$, then $\alpha\neq0$ whence $\sqrt{n_j} = \alpha \in Q_{j-2}$ so there exist $\alpha',\beta'\in\Q_{j-3}$ such that $\sqrt{n_{j}} = \alpha'+\beta'\sqrt{n_{j-2}}$. If $\alpha = 0$, then $\sqrt{n_j} = \beta\sqrt{n_{j-1}}$. Write $\beta = a + b\sqrt{n_{j-2}}$ for some $a,b\in\Q_{j-3}$. Then
+    \[
+      n_j = (a^2+b^2 n_{j-2} +2ab\sqrt{n_{j-2}})\implies 2ab\sqrt{n_{j-2}}) = \frac{n_j}{n_{j-1}}-a^2-b^2 n_{j-2}\in \Q_{j-3}
+    \]
+
+    In each case, we decrement the degree that $\sqrt{n_j}$ lies in, whence we may repeat this process and obtain that $\sqrt{n_j}\in\Q$, which is absurd. Enumerate the square-free integers $n_1,n_2,\ldots$. Then $\Q_r\sub L$ for all $r\in\N$ implies that $[L:\Q] \geq [\Q_r:\Q] = 2^r$ for all $r\in\N$, whence $[L:\Q]=+\infty$.
+  \end{proof}
 \end{homeworkProblem}
 
 
 \begin{homeworkProblem}
-  Let $F$ be a field and $\alpha$ an algebraic element of odd degree over $F$ (i.e. the degree $[F(\alpha):F]$ is odd). Show that $F(\alpha^2)=F(\alpha)$. \\
+  Let $F$ be a field and $\alpha$ an algebraic element of odd degree over $F$ (i.e. the degree $[F(\alpha):F]$ is odd). Show that $F(\alpha^2)=F(\alpha)$.
 
   \begin{proof}
     Note that we have a tower of field extensions $F\sub F(\alpha^2)\sub F(\alpha)$. As $\alpha$ is a root of $x^2-\alpha^2\in F(\alpha^2)[x]$, it follows that $\mu_{\alpha,F(\alpha^2)}|x^2-\alpha^2$ and thus $[F(\alpha):F(\alpha^2)]\leq 2$. Suppose, for the sake of contradiction, that $F(\alpha^2)\neq F(\alpha)$. Then $[F(\alpha):F(\alpha^2)] = 2$, whence $[F(\alpha) : F] = [F(\alpha):F(\alpha^2)][F(\alpha^2):F] = 2[F(\alpha^2):F]$ is even, contradiction the assumption that $\alpha$ has odd degree over $F$.
@@ -276,7 +293,21 @@
 
   \textbf{(b)}: Assuming that $K_1,K_2$ are finite degree extensions over $F$, show that $K_1\otimes_F K_2$ is a field if and only if the above $\leq$ becomes an equality.
 
-  \textbf{(c)}: Suppose that $K_1\cap K_2\neq F$. Prove that $K_1\otimes_F K_2$ is not a field. \\
+  \begin{proof}\ \\
+    \underline{$\implies$}: Suppose that $K_1\otimes_F K_2$ is a field. Then $\ker(\Phi) = 0$ as $\Phi$ is surjective and $K_1 K_2\neq 0$, whence $\Phi$ is an $F$-algebra isomorphism and thus $[K_1 K_2 : F] = \dim_F(K_1 K_2) = \dim_F(K_1\otimes K_2) = [K_1 : F][K_2 : F]$.\\
+
+    \underline{$\impliedby$}: Suppose that $[K_1 K_2 : F] = \dim_F(K_1 K_2) = \dim_F(K_1\otimes K_2) = [K_1 : F][K_2 : F]$. By rank nullity theorem,
+    \[
+      \dim_F(K_1 K_2) = \dim_F(K_1\otimes_F K_2) = \dim_F(K_1 K_2) + \dim(\ker(\Phi))\implies \dim(\ker(\Phi)) = 0
+    \]
+    whence $\Phi$ is injective and is thus an $F$-algebra isomorphism (and thus a fortiori a ring isomorphism), so $K_1\otimes_F K_2$ is a field.
+  \end{proof}
+
+  \textbf{(c)}: Suppose that $K_1\cap K_2\neq F$. Prove that $K_1\otimes_F K_2$ is not a field.
+
+  \begin{proof}
+    We proceed by contraposition. Suppose that $K_1\otimes_F K_2$ is a field. Then $[K_1\otimes_F K_2 : F\otimes_F F] <+\infty$ and $K_1\otimes_F K_2$ is finitely generated so the extension $K_1\otimes_F K_2 / F\otimes_F F$ is algebraic. Moreover, $(K_1\cap K_2)\otimes_F (K_1\cap K_2)$ is a subring of $K_1\otimes_F K_2$, so by problem 4 part (a), the $F$-algebra $(K_1\cap K_2)\otimes_F (K_1\cap K_2)$ is a field. However, by midterm problem 2 part (c), this implies that $\dim_F(K_1\cap K_2) = 1$, whence $K_1\cap K_2 = F$.
+  \end{proof}
 \end{homeworkProblem}
 
 
