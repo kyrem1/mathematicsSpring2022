@@ -160,9 +160,19 @@
 \maketitle
 
 \begin{homeworkProblem}
-  \textbf{(a)}: Consider the field $K=\Q(\sqrt{2},\sqrt{3})$. Prove that $[K:\Q]=4$. \\
+  \textbf{(a)}: Consider the field $K=\Q(\sqrt{2},\sqrt{3})$. Prove that $[K:\Q]=4$.
 
-  \textbf{(b)}: Let $L=\Q(\sqrt{2}+\sqrt{3})$. Show that $L=K$. \\
+  \begin{proof}
+    As $[\Q(\sqrt{3}):\Q] = 2$, it follows that $[K:\Q(\sqrt{2})]\leq 2$. We claim that $\sqrt{3}\not\in Q(\sqrt{2})$. Suppose, for the sake of contradiction, that $\sqrt{3}\in \Q(\sqrt{2})$. Then there exist $a,b\in\Q$ such that $a+b\sqrt{2}= \sqrt{3}$. So $3=a^2+2ab\sqrt{2} + 2b^2$, whence $a$ or $b$ is $0$ as otherwise this would imply that $\sqrt{2}$ is rational which is absurd. If both are zero, the $3=0$ which is absurd, so at least one of them is nonzero. If $a=0, b\neq 0$, then $3=2b^2$, which is absurd as $3$ is odd. If $b=0, a\neq0$, then $3=a^2$ whence $a = \pm\sqrt{3}$ which is absurd as $a\in \Q$.\\
+
+    Thus, $\sqrt{3}\not\in \Q(\sqrt{2})$, so $[K:\Q(\sqrt{2})]= 2$ whence \[ [K:\Q] = [K:\Q(\sqrt{2})][\Q(\sqrt{2}): \Q] = 4\]
+  \end{proof}
+
+  \textbf{(b)}: Let $L=\Q(\sqrt{2}+\sqrt{3})$. Show that $L=K$.
+
+  \begin{proof}
+    Clearly $\Q(\sqrt{2}+\sqrt{3})\sub \Q(\sqrt{2},\sqrt{3})$, so it suffices to prove the reverse inclusion. Let $\alpha = \sqrt{2}+\sqrt{3}$. By rationalizing, we find that $\frac{1}{\alpha} = \sqrt{3}-\sqrt{2}$ whence $\sqrt{2} = \alpha-\frac{1}{\sqrt{\alpha}}\in\Q(\alpha)$ and $\sqrt{3} = \alpha+\frac{1}{\sqrt{\alpha}}\in\Q(\alpha)$, so $\Q(\sqrt{2},\sqrt{3})\sub \Q(\alpha)$.
+  \end{proof}
 \end{homeworkProblem}
 
 \begin{homeworkProblem}
@@ -170,7 +180,17 @@
 
   \textbf{(a)}: Prove that $[\Q_r:\Q]=2^m$ for some integer $0\leq m\leq r$. Moreover, show that the following set spans $\Q_r$ over $\Q$, \[P(S)=\{1\}\cup\{\sqrt{n}:n\text{ is a product of distinct elements from }S\}.\]
 
-  \textbf{(b)}: Prove that $[\Q_r:\Q]<2^r$ if and only if $n_1$ is a complete square, or there exists $2\leq j\leq r$ such that $\sqrt{n_j}=\alpha+\beta\sqrt{n_{j-1}}$, for some $\alpha,\beta\in\Q_{j-2}$.\\
+  \begin{proof}
+    For all $i$, as $\sqrt{n_i}^2-n_i = 0$, it follows that $\mu_{n_i,Q_{i-1}}|x^2-n_i$ so $[Q_i:Q_{i-1}]\in \{1,2\}$. Thus, \[[Q_r:Q] = [Q_r:Q_{r-1}]\cdots[Q_1:Q_0] = 2^m\]for some $m\leq r$. As $\sqrt{S}:=\{\sqrt{n}:n\in S\}\sub P(S)$ and every element of $\sqrt{S}$ is algebraic over $Q$, $\Q_r = Q(P(S)) = Q[P(S)]$ as desired.
+  \end{proof}
+
+  \textbf{(b)}: Prove that $[\Q_r:\Q]<2^r$ if and only if $n_1$ is a complete square, or there exists $2\leq j\leq r$ such that $\sqrt{n_j}=\alpha+\beta\sqrt{n_{j-1}}$, for some $\alpha,\beta\in\Q_{j-2}$.
+
+  \begin{proof}\ \\
+    \underline{$\implies$}: Suppose that $[\Q_r:\Q] < 2^r$. If $n_1$ is not a complete square, then $[Q_1:Q_0]=2$ whence there is at least one $j\in\{2,\ldots, r\}$ such that $[\Q_j:\Q_{j-1}] = 1$. Then $\sqrt{n_j}\in\Q_{j-1} = \Q_{j-2}(\sqrt{n_{j-1}}) = \Q_{j-2}[\sqrt{n_{j-1}}]$, so there exist $a,b\in Q_{j-2}$ such that $\sqrt{n_j} = a + b\sqrt{n_{j-1}}$.\\
+
+    \underline{$\impliedby$}: If $n_1$ is a complete square then $[\Q_1: \Q_0] = 1$ whence $[\Q_r:\Q]\leq 2^{r-1}<2^r$, so suppose that $n_1$ is not a complete square and that there exists $2\leq j\leq r$ such that $\sqrt{n_j}=\alpha+\beta\sqrt{n_{j-1}}$, for some $\alpha,\beta\in\Q_{j-2}$. Then $\sqrt{n_j}\in \Q_{j-2}[\sqrt{n_{j-1}}] = \Q_{j-2}(\sqrt{n_{j-1}}) = \Q_{j-1}$, whence $[\Q_j:\Q_{j-1}] = 1$ and thus $[\Q_r:\Q]\leq 2^{r-1}<2^r$.
+  \end{proof}
 
   \textbf{(c)}: Suppose that the integers $n_1,\ldots, n_r$ are square-free and pairwise relatively prime. Prove that $[\Q_r:\Q]=2^r$. Conclude that the extension $L=\Q(T)$, where $T=\{\sqrt{n}:n\in\N, n \text{ square free}\}$ is an infinite algebraic extension of $\Q$. \\
 \end{homeworkProblem}
@@ -178,31 +198,84 @@
 
 \begin{homeworkProblem}
   Let $F$ be a field and $\alpha$ an algebraic element of odd degree over $F$ (i.e. the degree $[F(\alpha):F]$ is odd). Show that $F(\alpha^2)=F(\alpha)$. \\
+
+  \begin{proof}
+    Note that we have a tower of field extensions $F\sub F(\alpha^2)\sub F(\alpha)$. As $\alpha$ is a root of $x^2-\alpha^2\in F(\alpha^2)[x]$, it follows that $\mu_{\alpha,F(\alpha^2)}|x^2-\alpha^2$ and thus $[F(\alpha):F(\alpha^2)]\leq 2$. Suppose, for the sake of contradiction, that $F(\alpha^2)\neq F(\alpha)$. Then $[F(\alpha):F(\alpha^2)] = 2$, whence $[F(\alpha) : F] = [F(\alpha):F(\alpha^2)][F(\alpha^2):F] = 2[F(\alpha^2):F]$ is even, contradiction the assumption that $\alpha$ has odd degree over $F$.
+  \end{proof}
 \end{homeworkProblem}
 
 \begin{homeworkProblem}
   Let $K/F$ be an algebraic extension. \\
 
-  \textbf{(a)}: Let $F\subset R\subset K$ where $R$ is a subring of $K$. Prove that $R$ must be a subfield. \\
+  \textbf{(a)}: Let $F\subset R\subset K$ where $R$ is a subring of $K$. Prove that $R$ must be a subfield.
 
-  \textbf{(b)}: Show that (a) would be false if we dropped the assumption that $K/F$ is algebraic. \\
+  \begin{proof}
+    Let $\alpha\in R\setminus \{ 0\}$. Then as $K/F$ is algebraic and $\alpha\in K$, so $\alpha$ is algebraic over $F$. Hence, $F(\alpha) = F[\alpha]\sub R$, whence $\alpha^{-1}\in R$, so $R$ is a field.
+  \end{proof}
+
+  \textbf{(b)}: Show that (a) would be false if we dropped the assumption that $K/F$ is algebraic.
+
+  \begin{proof}
+    Suppose that $K/F$ is not algebraic. Take $\alpha \in K\setminus \{ 0\}$ transcendental over $F$. Then $F[\alpha]$ is a subring of $K$. We claim that $\frac{1}{\alpha}\not\in F[\alpha]$. Suppose, for the sake of contradiction, that $\frac{1}{\alpha}\in F[\alpha]$. Then there exist $b_0,\cdots,b_n\in F$ such that $f(x) = b_n x^n +\cdots + b_0\in F[x]$ has $f(\frac{1}{\alpha})=0$. Then
+    \[ 0 = \alpha^n\cdot f\lr{\frac{1}{\alpha}} = \sum_{k=0}^{n}b_k\alpha^{n-k}\]
+    whence $\alpha$ is algebraic over $F$, contradicting that $\alpha$ is transcendental over $F$.
+  \end{proof}
 \end{homeworkProblem}
 
 \begin{homeworkProblem}
   Let $K/F$ be a finite field extension, $n=[K:F]$, and fix some basis $\Omega=\{\alpha_1,\ldots,\alpha_n\}$ of $K$ over $F$. For any $\alpha\in K$ define $T_\alpha:K\rightarrow K$ by $\beta\mapsto\alpha\beta$. Note that $T_\alpha\in\End_F(K)$.  Let $A_\alpha=[T_\alpha]_\Omega\in M_n(F)$ be the matrix of $T_\alpha$ with respect to $\Omega$.  \\
 
-  \textbf{(a)}: Prove that the map $K\xrightarrow{\rho} M_n(F)$ given by $\alpha\mapsto A_\alpha$ is an injective ring homomorphism. \\
+  \textbf{(a)}: Prove that the map $K\xrightarrow{\rho} M_n(F)$ given by $\alpha\mapsto A_\alpha$ is an injective ring homomorphism.
+
+  \begin{proof}
+    Note that, if $\alpha,\beta\in K$, then $(T_\alpha T_\beta) (\gamma) = T_\alpha (\beta\gamma) = \alpha\beta\gamma = T_{\alpha\beta}(\gamma)$ and $(T_\alpha+ T_\beta) (\gamma) = T_\alpha(\gamma) + T_\beta(\gamma) = (\alpha+\beta)\gamma = T_{\alpha+\beta}(\gamma)$ for all $\gamma\in K$, so $T_\alpha T_\beta = T_{\alpha\beta}$ and $T_\alpha + T_\beta = T_{\alpha+\beta}$. Thus
+    \begin{align*}
+      A_\alpha A_\beta &= [T_\alpha]_\Omega [T_\beta]_\Omega = [T_\alpha T_\beta]_\Omega = [T_{\alpha\beta}]_\Omega = A_{\alpha\beta}\\
+      A_\alpha + A_\beta &= [T_\alpha]_\Omega +[T_\beta]_\Omega = [T_\alpha +T_\beta]_\Omega = [T_{\alpha+\beta}]_\Omega = A_{\alpha+\beta},
+    \end{align*}
+    so the map $\alpha\mapsto A_\alpha$ is a ring homomorhpism. As $\ker(\rho)\sub K$ is an ideal of the field $K$, it follows that $\ker(\rho)\in\{ 0,K\}$. Thus, it suffices to show that $\rho$ is nonzero, whence it would follow that $\ker(\rho) \neq K$ and thus $\ker(\rho) = 0$. To see this, note that $1\neq 0$ in $K$ and $\rho(1) = [T_1]_{\Omega} = [id_K]_{\Omega} \neq 0$ as $id_K (\alpha_i) = \alpha_i \neq 0$.
+  \end{proof}
 
   \textbf{(b)}: Prove that the minimal polynomial of $\alpha$ over $F$ and the minimal polynomial of $A_\alpha$ coincide.
+
+  \begin{proof}
+    Let $\mu_\alpha = \sum_{k=0}^{s} c_k x^k\in F[x]$ be the minimal polynomial of $\alpha$ over $F$. Let $\{e_1,\cdots, e_n\}$ be the standard basis for $F^n$. On one hand, note that for $1\leq i\leq n$,
+    \[
+      \mu_{\alpha}(A_\alpha)(e_i) = \lr{\sum_{k=0}^{s}c_k A_{\alpha}^k} (e_i) = \sum_{k=0}^{s}c_k [T_\alpha ^k(\alpha_i)]  = \sum_{k=0}^{s}c_k \alpha^k\alpha_i = \mu_\alpha(\alpha)\alpha_i = 0
+    \]
+    whence $\mu_\alpha(A_\alpha) = 0$. Thus $\mu_\alpha\in \Ann(A_\alpha)$. \\
+
+    On the other hand, suppose that $f(x)\in \Ann(A_\alpha)$. Observe that, for $\beta\in K$
+    \[
+      f(T_\alpha)(\beta) = \lr{\sum_{k=0}^{s}b_k T_\alpha ^k }(\beta) = \sum_{k=0}^{s}b_k \alpha^k\beta = T_{f\alpha}(\beta),
+    \]
+    so $f(T_\alpha) = T_{f(\alpha)}$. Then
+    \[
+      0 = f(A_\alpha) = \sum_{k=0}^{s}b_k [T_\alpha]_\Omega ^k = \left[\sum_{k=0}^{s} b_k T_\alpha ^k\right] = [f(T_\alpha)]_\Omega = [T_{f(\alpha)}]_\Omega = A_{f(\alpha)} = \rho(f(\alpha)),
+    \]
+    whence by injectivity of $\rho$, $f(\alpha) = 0$, i.e. $f(x)\in(\mu_\alpha)$.\\
+
+    Thus $(\mu_\alpha) = \Ann(A_\alpha)$, so by uniqueness of the monic generators for each of these ideals, the minimal polynomial for $\alpha$ over $F$ and the minimal polynomial of $A_\alpha$ coincide.
+  \end{proof}
 \end{homeworkProblem}
 
 \begin{homeworkProblem}
   Let $K/F$ be an extension of fields and let $F\subseteq K_1\subseteq K$ and $F\subseteq K_2\subseteq K$ be two subextensions of $K/F$. The \textit{compositum} of $K_1$ and $K_2$ is the smallest subfield of $K$ that contains both $K_1$ and $K_2$. \textbf{Notation:} We denote the compositum by $K_1 K_2$. \\
 
-  \textbf{(a)}: Consider the $F$-algebra $K_1\otimes_F K_2$. Show that there exists a unique $F$-algebra homomorphism $\Phi:K_1\otimes_F K_2\rightarrow K_1 K_2$ such that $\Phi(a\otimes b)=ab$. Conclude that $[K_1 K_2:F]\leq [K_1:F][K_2:F]$. \\
+  \textbf{(a)}: Consider the $F$-algebra $K_1\otimes_F K_2$. Show that there exists a unique $F$-algebra homomorphism $\Phi:K_1\otimes_F K_2\rightarrow K_1 K_2$ such that $\Phi(a\otimes b)=ab$. Conclude that $[K_1 K_2:F]\leq [K_1:F][K_2:F]$.
 
-  \textbf{(b)}: Show that $K_1\otimes_F K_2$ is a field if and only if the above $\leq$ becomes an equality.\\
-  
+  \begin{proof}
+    Define a map $\phi:K_1\times K_2\to K_1 K_2$ by $\phi(a,b) = ab$. This map is clearly $F$-bilinear and $\phi(ac,bd) = acbd = abcd = \phi(a,b)\phi(c,d)$, so there exists a unique $F$-algebra homomorphism $\Phi:K_1\otimes_F K_2\rightarrow K_1 K_2$ such that $\Phi(a\otimes b)=ab$.
+
+    % TODO Show Phi is surjective.
+    If either $K_1$ or $K_2$ is infinite degree over $F$, then the inequality is trivially true, so assume $[K_1:F],[K_2:F]<+\infty$. Then, by rank nullity theorem,
+    \[
+      [K_1 K_2 : F] = \dim_F(K_1 K_2) \leq \dim_F(K_1\otimes K_2) = \dim_F(K_1)\dim_F(K_2) = [K_1:F][K_2:F].
+    \]
+  \end{proof}
+
+  \textbf{(b)}: Assuming that $K_1,K_2$ are finite degree extensions over $F$, show that $K_1\otimes_F K_2$ is a field if and only if the above $\leq$ becomes an equality.
+
   \textbf{(c)}: Suppose that $K_1\cap K_2\neq F$. Prove that $K_1\otimes_F K_2$ is not a field. \\
 \end{homeworkProblem}
 

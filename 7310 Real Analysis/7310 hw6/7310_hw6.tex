@@ -303,6 +303,14 @@
     (\mu*\nu)*\eta = \mu*(\nu*\eta).
   \]
 
+  \begin{proof}
+    Let $E\in\mc{B}_{\R^d}$. By the finiteness of the measures, we may apply Fubini freely, whence
+    \begin{align*}
+      ((\mu*\nu)*\eta)(E) &= \int (\mu*\nu)(E-z)\dd{\eta(z)} = \int\left[\int\nu(E-z-x)\dd{\mu(x)}\right]\dd{\eta(z)}\\
+      &=\int \left[\int\nu(E-x-z)\dd{\eta(z)}\right]\dd{\mu(x)} = \int (\nu*\eta)(E-x)\dd{\mu(x)} = (\mu*(\nu*\eta))(E).
+    \end{align*}
+  \end{proof}
+
   \textbf{(c)}: For $f,g\in L^1(\R^d)$ show that
   \[
     \int_{\R^d}\int_{\R^d} |f(y)g(x-y)|\dd{x}\dd{y} = \norm{f}_1 \norm{g}_1.
@@ -317,6 +325,11 @@
     \begin{align*}
       \int_{\R^d}\int_{\R^d} |f(y)g(x-y)|\dd{x}\dd{y} = \int_{\R^d}|f(y)|\left[\int_{\R^d} |g(x-y)|\dd{x}\right]\dd{y} = \int_{\R^d}|f(y)|\left[\int_{\R^d} |g(x)|\dd{x}\right]\dd{y} = \norm{f}_1\norm{g}_1
     \end{align*}
+    As $f,g\in L^1(\R^d)$, $\norm{f}_1 \norm{g}_1<+\infty$ the above equality and Fubini's theorem give that the function $x\mapsto \int|f(y)g(x-y)|\dd{y}$ is $L^1(\R^d)$ for almost every $x\in\R^d$. Hence, $\{x: \int|f(y)g(x-y)|\dd{y} = +\infty\}$ is a null set, so $y\mapsto f(y)g(x-y)$ is in $L^1(\R^d)$ for almost every $x\in \R^d$. Thus,
+    \[
+      \norm{f*g}_1 = \int \left|\int f(y)g(x-y)\dd{y}\right|\dd{x}\leq \int\int |f(y)g(x-y)|\dd{y}\dd{x} = \norm{f}_1 \norm{g}_1.
+    \]
+
   \end{proof}
 
   \textbf{(d)}: Adopt notation as in Problem 1 of HW5. Show that if $f,g\in L^1(R^d)$ are nonnegative than $(f\dd{m})*(g\dd{m}) = f*g\dd{m}$ with $m$ being the Lebesgue measure.\\
