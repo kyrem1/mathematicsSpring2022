@@ -257,6 +257,16 @@
   \end{proof}
 \end{homeworkProblem}
 
+\begin{homeworkProblem}
+  \textbf{(a)}: Let $(X,\Sigma,\mu)$, $(Y,\mc{F},\nu)$ be $\sigma$-finite measure spaces such that $L^2(\mu)$ and $L^2(\nu)$ are separable. If $\{f_m\}$ and $\{g_n\}$ are orthonormal bases for $L^2(\mu)$ and $L^2(\nu)$ and $h_{mn}(x,y) = f_m(x)g_n(y)$, then $\{h_{mn}\}$ is an orthonormal basis for $L^2(\mu\otimes\nu)$.\\
+
+  \textbf{(b)}: For $k\in\N$, and $n=(n_1,\ldots,n_k)\in\Z^k$, define $e_n\in L^2([0,1]^k)$ by
+  \[
+    e_n(x) = \prod_{j=1}^{k}e^{2\pi i n_j x}.
+  \]
+  Show that $\{e_n\}_{n\in\Z^k}$ is an orthonormal basis of $L^2([0,1]^k)$.
+\end{homeworkProblem}
+
 
 \begin{homeworkProblem}[4]
   \textbf{(a)}: Let $(X,\Sigma,\mu)$ be a $\sigma$-finite measure space, $\mc{F}$ a sub-$\sigma$-algebra of $\Sigma$, and $\nu = \mu\vert_{\mc{F}}$. If $f\in L^1(\mu)$, prove that there exists $g\in L^1(\nu)$ (thus $g$ is $\mc{F}$-measurable) such that $\int_E f \dd{\mu} = \int_E g\dd{\nu}$ for all $E\in \mc{F}$; also prove that if $g'$ is another such function then $g = g'$ $\nu$-a.e.
@@ -268,16 +278,39 @@
     \]
 
     % TODO tweak below argument as I think its not right. Conditon too weak.
-    Now suppose that $g'$ is another such function. Then, as $X\in\mc{F}$, $\int_X g\dd{\nu} = \int_X g'\dd{\nu}\implies \int_X g- g'\dd{\nu} = 0$ whence $g=g'$ $\nu$-a.e.
+    Now suppose that $g'$ is another such function.
+
+    % Then, as $X\in\mc{F}$, $\int_X g\dd{\nu} = \int_X g'\dd{\nu}\implies \int_X g- g'\dd{\nu} = 0$ whence $g=g'$ $\nu$-a.e.
+
+
   \end{proof}
 
   \textbf{(b)}: Show that $\int gh\dd{\nu} = \int fh \dd{\mu}$ for all $h\in L^1(\nu)$.
+
+  \begin{proof}
+    We have the following relation
+    \[
+      f\dd{\mu} = \dd{\lambda_f} = g\dd{\nu},
+    \]
+    so by homework 5 problem 1 part (a),
+    \[
+      \int fh\dd{\mu} = \int h \dd{\lambda_f} = \int gh\dd{\nu}.
+    \]
+  \end{proof}
 \end{homeworkProblem}
 
 \begin{homeworkProblem}
-  Let $(X,\Sigma,\mu)$ be a probability space. For a sub-$\sigma$-algebra $\mc{F}\sub \Sigma$, and $f\in :^1(X,\Sigma,\mu)$, let $\E_\mc{F}(f)$ be the conditional expectation of $f$ ont $\mc{F}$. \\
+  Let $(X,\Sigma,\mu)$ be a probability space. For a sub-$\sigma$-algebra $\mc{F}\sub \Sigma$, and $f\in L^1(X,\Sigma,\mu)$, let $\E_\mc{F}(f)$ be the conditional expectation of $f$ onto $\mc{F}$. \\
 
-  \textbf{(a)}: Show that $\E_\mc{F}(fg) = \E_\mc{F}(f)g$ for all $g\in L^\infty(X,\mc{F},\mu)$.\\
+  \textbf{(a)}: Show that $\E_\mc{F}(fg) = \E_\mc{F}(f)g$ for all $g\in L^\infty(X,\mc{F},\mu)$.
+
+  \begin{proof}
+    Noting that, for $E\in \mc{F}$, as $\mu(X)<+\infty$ and $g\in L^\infty(X,\mc{F},\mu\vert_{\mc{F}})$, we have that $g\cdot\ind_E\in L^1(X,\mc{F},\mu\vert_{\mc{F}})$ whence by problem 4 part (b)
+    \[
+      \int_E \E_\mc{F}(f)g\dd{\mu\vert_{\mc{F}}} = \int \E_\mc{F}(f)(g\ind_E)\dd{\mu\vert_{\mc{F}}} = \int fg\ind_E \dd{\mu} = \int_E fg\dd{\mu}.
+    \]
+    Thus, by the uniqueness of conditional expectation in problem 4, $\E_\mc{F}(fg) = \E_\mc{F}(f)g$.
+  \end{proof}
 
   \textbf{(b)}: If $f\in L^2(X,\Sigma,\mu)$, show that $\E_\mc{F}(f)$ is the orthogonal projection of $f$ onto $L^2(X,\mc{F},\mu)$ in the decomposition
   \[
