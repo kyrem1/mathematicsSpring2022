@@ -1,0 +1,293 @@
+\documentclass[12pt,letterpaper]{article}
+
+%--------Packages--------
+\usepackage{amsmath, amsthm, amssymb}
+\usepackage{xspace}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{array}
+\usepackage{braket}
+\usepackage{multicol}
+\usepackage{mathtools}
+\usepackage{enumerate}
+\usepackage{delarray}
+\usepackage{mathtools}
+\usepackage{fullpage}
+\usepackage{faktor} % For quotients
+\usepackage{mathrsfs}
+% \usepackage{quiver}
+% \usepackage{tikz}
+
+% \usepackage{quiver}
+\usepackage[linguistics]{forest}
+
+
+
+
+%--------Page Setup--------
+
+\pagestyle{empty}%
+
+\setlength{\hoffset}{-1.54cm}
+\setlength{\voffset}{-1.54cm}
+
+\setlength{\topmargin}{0pt}
+\setlength{\headsep}{0pt}
+\setlength{\headheight}{0pt}
+
+\setlength{\oddsidemargin}{0pt}
+
+\setlength{\textwidth}{195mm}
+\setlength{\textheight}{250mm}
+
+
+%--------Macros--------
+
+\newcommand{\ilm}[1]{\begin{psmallmatrix} #1 \end{psmallmatrix}}
+\newcommand{\ilmb}[1]{\boxed{\begin{smallmatrix} #1 \end{smallmatrix}}}
+
+\newcommand{\sub}{\subseteq}
+\newcommand{\lcm}{\text{lcm}}
+\newcommand{\ms}[1]{\mathscr{#1}}
+\newcommand{\mc}[1]{\mathcal{#1}}
+\newcommand{\mf}[1]{\mathfrak{#1}}
+\newcommand{\sO}{\mathcal{O}}
+\newcommand{\cyclic}[1]{\langle#1\rangle}
+\newcommand{\units}[1]{#1 ^{\times}}
+\newcommand{\la}{\langle}
+\newcommand{\ra}{\rangle}
+\newcommand{\lr}[1]{\left(#1\right)}
+%----Switch phi and varphi
+\let\temp\phi
+\let\phi\varphi
+\let\varphi\temp
+
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\N}{\mathbb{N}\xspace}
+\newcommand{\I}{\mathbb{I}\xspace}
+\newcommand{\R}{\mathbb{R}\xspace}
+\newcommand{\Z}{\mathbb{Z}\xspace}
+\newcommand{\Q}{\mathbb{Q}\xspace}
+\newcommand{\G}{\mathbb{G}\xspace}
+\DeclareMathOperator{\Spec}{Spec}
+\DeclareMathOperator{\res}{res}
+\DeclareMathOperator{\Tr}{Tr}
+\DeclareMathOperator{\ord}{ord}
+\DeclareMathOperator{\Sym}{Sym}
+\DeclareMathOperator{\dv}{div}
+\DeclareMathOperator{\alb}{alb}
+\let\Im\relax
+\DeclareMathOperator{\Im}{Im}
+\DeclareMathOperator{\et}{et}
+\DeclareMathOperator{\ck}{coker}
+\DeclareMathOperator{\Reg}{Reg}
+\DeclareMathOperator{\Cor}{Cor}
+\DeclareMathOperator{\Ac}{at}
+\DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\Pic}{Pic}
+\DeclareMathOperator{\Gal}{Gal}
+\DeclareMathOperator{\fc}{frac}
+\DeclareMathOperator{\Ann}{Ann}
+\DeclareMathOperator{\Mod}{Mod}
+\DeclareMathOperator{\Cone}{Cone}
+\DeclareMathOperator{\FI}{FI}
+\DeclareMathOperator{\End}{End}
+\DeclareMathOperator{\Alb}{Alb}
+\DeclareMathOperator{\Ext}{Ext}
+\DeclareMathOperator{\ab}{ab}
+\DeclareMathOperator{\Jac}{Jac}
+\DeclareMathOperator{\coker}{coker}
+\DeclareMathOperator{\fr}{frac}
+\DeclareMathOperator{\spn}{span}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\rk}{rk}
+\DeclareMathOperator{\GL}{GL}
+\DeclareMathOperator{\Aut}{Aut}
+\DeclareMathOperator{\ch}{char}
+\DeclareMathOperator{\Fix}{Fix}
+
+
+%----Analysis
+\newcommand{\dd}[2][]{\frac{\partial^{#1}}{\partial {#2}^{#1}}}
+\newcommand{\summ}{\sum\limits}
+\newcommand{\norm}[1]{\left \vert \left \vert #1 \right \vert \right \vert}
+\newcommand{\thicc}{\bigg}
+\newcommand{\eps}{\varepsilon}
+\newcommand*\cls[1]{\overline{#1}}
+
+
+%--------Theorem environments--------
+\newtheorem{definition}{Definition}[]
+\newtheorem{lemma}{Lemma}[]
+\newtheorem{corollary}{Corollary}[]
+\newtheorem{theorem}{Theorem}[]
+\theoremstyle{remark}
+\newtheorem*{claim}{Claim}
+
+
+\newenvironment{solution}
+{\begin{proof}[Solution]}
+{\end{proof}}
+
+
+\makeatletter
+\newcolumntype{"}{@{\hskip\tabcolsep\vrule width 1pt\hskip\tabcolsep}}
+\makeatother
+
+% --------Problem environment--------
+\setlength\parindent{0pt}
+\setcounter{secnumdepth}{0}
+\newcounter{partCounter}
+\newcounter{homeworkProblemCounter}
+\setcounter{homeworkProblemCounter}{1}
+
+
+\newenvironment{homeworkProblem}[1][-1]{
+    \ifnum#1>0
+        \setcounter{homeworkProblemCounter}{#1}
+    \fi
+    \section{Problem \arabic{homeworkProblemCounter}}
+    \setcounter{partCounter}{1}
+    \stepcounter{homeworkProblemCounter}
+}
+
+
+%--------Metadata--------
+\title{MATH 7752 Homework 8}
+\author{James Harbour}
+
+
+\begin{document}
+\maketitle
+
+
+
+\begin{homeworkProblem}
+  \textbf{Note:} Let $K/F$ be a field extension. Consider the set $\Aut_F(K)$ consisting of all $F$-isomorphisms $\sigma:K\to K$. Such isomorphisms are called $F$-\textit{automorphisms} of $K$. Note that $\Aut_F(K)$ forms a group under composition.\\
+  
+  \textbf{(a)}: Let $F$ be a field and let $\overline{F}$ be an algebraic closure of $F$. Let $\sigma:\overline{F}\to\overline{F}$ be an $F$-embedding. Prove that $\sigma(\overline{F})=\overline{F}$, and thus $\sigma$ is an automorphism of $\overline{F}$.
+
+  \begin{proof}
+    % Let $\widetilde\sigma$ be the endomorphism of $\overline{F}[x]$ induced by $\sigma$. If $f\in F[x]$ is nonconstant, then $\widetilde\sigma(f) = f$, so $f$ must have as many roots in $\sigma(\cls{F})$ as in $\cls{F}$.
+
+    Take $\alpha\in \cls{F}$. Then there exists a monic $f\in \cls{F}[x]$ such that $f(\alpha) = 0$. Since $\cls{F}$ is algebraically closed, there exist $\alpha_1\cdots,\alpha_n\in \cls{F}$ (WLOG $\alpha_1 = \alpha$) such that
+    \[
+      f(x) = (x-\alpha_1)\cdots (x-\alpha_n).
+    \]
+    But then
+    \[
+      (x-\sigma(\alpha_1))\cdots (x-\sigma(\alpha_n)) = \widetilde\sigma(f) = f = (x-\alpha_1)\cdots (x-\alpha_n)
+    \]
+    whence there exists some $i\in\{ 1, \ldots, n\}$ such that $\sigma(\alpha_i) = \alpha$.
+  \end{proof}
+
+  \textbf{(b)}: Prove that for any field $F$ any two algebraic closures of $F$ are $F$-isomorphic. \textbf{Hint:} Use the Main Extension Lemma.
+
+  \begin{proof}
+    Let $K_1/F,\, K_2/F$ be two algebraic closures of $F$. By the main extension lemma, there exist $F$-embeddings $\sigma:K_1\hookrightarrow K_2$ and $\sigma':K_2\hookrightarrow K_1$. Then $\sigma'\circ\sigma:K_1\hookrightarrow K_1$ and $\sigma\circ\sigma':K_2\hookrightarrow K_2$ are both $F$-embeddings, whence by part (a) they are $F$-automorphisms. Thus $\sigma$ and $\sigma'$ are bijective, so $K_1$ and $K_2$ are $F$-isomorphic.
+  \end{proof}
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+  For each of the following polynomials $f(x)\in\Q[x]$ let $K\subset \C$ be the splitting field of $f$ over $\Q$.
+   \begin{enumerate}
+  [(i)]\item $f(x)=x^n-1$, $n\geq 2$.
+  \item $f(x)=x^4+3x^3+4x^2+3x+3$.
+  \item  $f(x)=x^4-2$.
+  \end{enumerate} Find the degree $[K:\Q]$ and express $K$ in the form $\Q(\alpha)$, or $\Q(\alpha,\beta)$. \textbf{Hint:} For (i) you can take a look at [DF. Section 13.6].
+
+  \begin{solution}\ \\
+    \textbf{(i):} Let $\zeta_n$ be a primitive $n^{th}$ root of unity (e.g. $\zeta_n  = e^{\frac{2\pi i}{n}}$). We claim that $[K:\Q] = \phi(n)$ and $K = \Q(\zeta_n)$ where $\phi$ is Euler's totient function.\\
+
+    As $\zeta_n$ is primitive, the set $\cyclic{\zeta_n} = \{\zeta_n^k : 0\leq k <n\}\sub \Q(\zeta_n)$ has cardinality $n$ and are all roots of $f$, so $K\sub \Q(\zeta_n)$. On the other hand, $\zeta_n$ is a root of $f$, so $\Q(\zeta_n)\sub K$. Thus $K = \Q(\zeta_n)$. Defining the $n^{th}$ cyclotomic polynomial $\Phi_n(x)$ to be the product over all $(x-\eps)$ where $\eps\in\C$ is a primitive $n^{th}$ root of unity, it follows that $\deg(\Phi_n) = \phi(n)$. A result of Gauss (in DF Section 13.6) gives that $\Phi_n$ is in $\Z[x]$ and in fact irreducible, so $\mu_{\zeta_n,\Q} = \Phi_n$ whence $[K:\Q] = \deg(\mu_{\zeta_n,\Q}) = \deg(\Phi_n) = \phi(n)$.\\
+
+    \textbf{(ii)}: We claim that $K = \Q(i, \sqrt{3})$ and $[K:F] = 4$. Upon factoring $f(x) = (x^2+1)(x^2+3x+3)$, we note that \emph{a priori} $K = \Q(i,-i, -\frac{3}{2}+i\frac{\sqrt{3}}{2}, -\frac{3}{2}-i\frac{\sqrt{3}}{2})$. Let $\alpha_\pm = \pm i$ and $\beta_\pm = -\frac{3}{2}\pm i\frac{\sqrt{3}}{2}$. On one hand, it is clear that $K\sub \Q(i,\sqrt{3})$ as $\alpha_\pm,\beta_\pm\in\Q(i,\sqrt{3})$. On the other hand, we have that $i\in K$ so it suffices to show that $\sqrt{3}\in K$. Observe that
+    \[
+      \alpha_+ (2\beta_- + 3) = i\lr{2\lr{-\frac{3}{2} - i\frac{\sqrt{3}}{2}}+3} = \sqrt{3}
+    \]
+    so $K = \Q(i,\sqrt{3})$. Clearly $\mu_{\sqrt{3}, \Q(i)} = \mu_{\sqrt{3},\Q} = x^2 -3$, so $[K:\Q] = 4$.\\
+
+    \textbf{(iii)}: We claim that $K=\Q(i, \sqrt[4]{2})$ and $[K:F] = 8$. Note that $x^4 -2 = (x-\sqrt[4]{2})(x-i\sqrt[4]{2})(x+\sqrt[4]{2})(x+i\sqrt[4]{2})$, so \emph{a priori} $K = \Q(\pm \sqrt[4]{2}, \pm i\sqrt[4]{2})$. On one hand, it is clear that $K\sub \Q(i, \sqrt[4]{2})$. On the other hand, $\sqrt[4]{2}\in K$ and $i = \frac{i\sqrt[4]{2}}{\sqrt[4]{2}}\in K$, so $\Q(i, \sqrt[4]{2})\sub K$, whence $K = \Q(i, \sqrt[4]{2})$. Clearly $\mu_{\sqrt[4]{2}, \Q(i)} = \mu_{\sqrt[4]{2},\Q} = x^4 - 2$, so $[K:\Q] = 8$.\\
+  \end{solution}
+\end{homeworkProblem}
+
+
+\begin{homeworkProblem}
+  \textbf{(a)}: Let $F$ be a field. Prove that if $\ch(F)=0$, then there is an embedding $\Q\hookrightarrow F$, while if $\ch(F)=p$, then there exists an embedding $\F_p\hookrightarrow F$. \\
+  \textbf{Conclusion:} The fields $\Q,\F_p$ are the smallest in each characteristic and we call them \textit{prime fields}.
+
+  \begin{proof}
+    Let $1_F$ denote the multiplicative identity of $F$.\\
+
+    \underline{Case 1}: $\ch(F) = 0$. Let $\psi: \Z\to F$ be the ring homomorphism given by $\psi(n) = n\cdot 1_F$. As $\psi(\Z\setminus\{ 0\})\in \units{F}$, by the universal property of localization there exists a unique ring homomorphism $\sigma:\Q\to F$ such that $\sigma(\frac{n}{1}) = \psi(n) = n\cdot 1_F$ for all $n\in \Z$. As $\psi$ is injective, it follows that $\sigma$ is nonzero whence $\Q$ being a field implies that $\sigma$ is an embedding.\\
+
+    \underline{Case 2}: $\ch(F) = p$.  Define a map $\sigma:\F_p\to F$ by $\sigma(\cls{n}) = n\cdot 1_F$. To see that this map is well-defined, suppose that $\cls{n} = \cls{m}$, so $p|(n-m)$. Then $(n-m)\cdot 1_F = 0$, whence $n\cdot 1_F = m\cdot 1_F$. That this map is a ring homomorphism then follows from the fact that it is defined precisely by the $\Z$-module action on $F$. As $\sigma(\cls{1}) = 1_F \neq 0$, it follows that $\sigma$ is injective so $\sigma:\F_p\to F$ is an embedding.
+  \end{proof}
+
+  \textbf{(b)}: Let $F$ be a field. Prove that every automorphism $\sigma:F\to F$ of $F$ is an $F_0$-automorphism, where $F_0$ is the prime subfield of $F$.
+
+  \begin{proof}
+    Let $K= \Fix(\sigma) = \{\alpha\in F : \sigma(\alpha) = \alpha\}$ be the fixed field of $\sigma$. As $K \neq 0$ and $F_0$ is the unique minimal subfield of $F$, it follows that $F_0\sub K$, so $\sigma$ is an $F_0$-automorphism of $F$.
+  \end{proof}
+\end{homeworkProblem}
+
+
+\begin{homeworkProblem}
+  The purpose of this problem is to prove that the group $\Aut_\Q(\R)$ is trivial by following the suggested steps. Let $\sigma:\R\to\R$ be an automorphism of $\R$.
+  \begin{enumerate}
+  \item  Show that $\sigma$ is strictly increasing.
+  \item Use the density of $\Q$ in $\R$ to show that $\sigma$ is continuous at $x=0$.
+  \item Deduce that $\sigma$ is continuous on $\R$, and hence $\sigma(x)=x$.
+  \end{enumerate}
+
+  \begin{proof}
+    \emph{(1)}: Suppose that $\alpha > 0$ and set $\beta = \sqrt{\alpha}>0$. Then $\sigma(\beta)\neq0$ so $\sigma(\alpha) = \sigma(\beta\cdot\beta) = \sigma(\beta)\sigma(\beta) = \sigma(\beta)^2 >0$. Now, suppose that $x,y\in\R$ with $x<y$. Then $y-x>0$, so
+    \[
+      \sigma(y) = \sigma(y-x) + \sigma(x) > \sigma(x),
+    \]
+    whence $\sigma$ is strictly increasing.\\
+
+    \emph{(2)}: Let $(x_n)_{n=1}^{\infty}$ be a sequence in $\R$ such that $x_n\to 0$. By density of $\Q$ in $\R$, we may choose sequences $(a_n)_{n=1}^{\infty},(b_n)_{n=1}^{\infty}$ in $\Q$ such that $a_n<x_n<b_n$ for all $n\in \N$, $a_n \to 0^-$, and $b_n\to 0^+$. As $\sigma$ is strictily increasing, it follows that
+    \[
+      a_n = \sigma(a_n) < \sigma(x_n) < \sigma(b_n) = b_n
+    \]
+     for all $n\in \N$, whence by squeeze theorem $\sigma(x_n)\to 0 = \sigma(0)$. Thus $\sigma$ is continuous at $x=0$. \\
+
+    \emph{(3)}: Suppose that $x\in \R$ and let $(x_n)_{n=1}^{\infty}$ be a sequence in $\R$ such that $x_n\to x$. Then $x_n-x\to 0$, whence $\sigma(x-n)-\sigma(x) = \sigma(x_n-x)\to 0$ so $\sigma(x_n)\to \sigma(x)$. It follows that $\sigma$  is continuous. Thus, $\sigma$ is a strictly increasing, countinuous bijection of $\R$, so $\sigma$ must be the identity.
+  \end{proof}
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+  \textbf{(a)}: Let $K/F$ be an algebraic extension. Prove that $K/F$ is normal if and only if for any algebraic extension $L/K$ and any $F$-automorphism $\sigma\in\Aut_F(L)$ we have $\sigma(K)=K$.
+
+  \begin{proof}\ \\
+    \underline{$\implies$}: Suppose that $K/F$ is normal. Let $L/K$ be an algebraic extension and $\sigma\in \Aut_F(L)$. Take $\alpha\in K$ and set $f = \mu_{\alpha,F}\in F[x]$. By normality of $K/F$, $f$ splits over $K$ so we may write
+    \[
+      f(x) = \prod_{i=1}^{n} (x-\alpha_i)
+    \]
+    where $\alpha_i\in K$ and without loss of generality we take $\alpha_1 = \alpha$. Note that, as $\sigma\vert_F = id_F$, we have that
+    \[
+      0 = \sigma(f(\alpha)) = f(\sigma(\alpha)) = \prod_{i=1}^{n}(\sigma(\alpha) - \alpha_i),
+    \]
+    so $\sigma(\alpha) = \alpha_i$ for some $i\in \{ 1,\ldots, n\}$. Thus $\sigma(K) = K$. \\
+
+    \underline{$\impliedby$}: Suppose that, for any algebraic extension $L/K$ and any $F$-automorphism $\sigma\in\Aut_F(L)$, we have $\sigma(K)=K$. Let $\beta\in K$ and let $f = \mu_{\beta, F}\in F[x]$. Fix an algebraic closure $\cls{F}$ such that $K\sub \cls{F}$. Then we may write
+    \[
+      f(x) = \prod_{i=1}^{n} (x-\beta_i)
+    \]
+    where $\beta_i\in \cls{F}$ and without loss of generality we take $\beta_1 = \beta \in K$. By the simple extension lemma, there exists for each $i$ an $F$-isomorphism $\sigma_i: F(\beta)\to F(\beta_i)$ such that $\sigma(\beta) = \beta_i$. Extend this map to an embedding $K\hookrightarrow \cls{F}$, we note that by assumption the image of this embedding is in fact $K$, so $\beta_i\in K$ for all $i$, whence $\mu_{\beta,F}$ splits over $K$.
+
+  \end{proof}
+
+  \textbf{(b)}: Let $K/F$ be a field extension, and let $K_1$ and $K_2$ be subfields of $K$ containing $F$ such that the extensions $K_1/F$ and $K_2/F$ are normal. Prove that the extensions $K_1K_2/F$ and $K_1\cap K_2/F$ are also normal.
+
+  \begin{proof}
+    Let $L/K_1 K_2$ be an algebraic extension and $\sigma\in \Aut_F(K_1 K_2)$. Then by normality of $K_1/F,K_2/F$ and part (a), $\sigma(K_1 K_2) = \sigma(K_1)\sigma(K_2) = K_1 K_2$. Thus, part (a) implies that $K_1 K_2/F$ is normal.\\
+
+    In a similar vein, let $L/K_1 \cap K_2$ be an algebraic extension. Then by normality of $K_1/F,K_2/F$ and part (a), $\sigma(K_1\cap K_2) = \sigma(K_1)\cap \sigma(K_2) = K_1 \cap K_2$. Thus, part (a) implies that $K_1\cap K_2/F$ is normal.\\
+  \end{proof}
+\end{homeworkProblem}
+
+\end{document}

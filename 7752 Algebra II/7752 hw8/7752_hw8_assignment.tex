@@ -1,0 +1,222 @@
+\documentclass[12pt,
+psamsfonts]{amsart}
+
+%-------Packages---------
+\usepackage{amssymb,amsfonts,amsmath}
+\usepackage[all,arc]{xy}
+\usepackage{enumerate}
+\usepackage{mathrsfs}
+\usepackage{fullpage}
+\usepackage{xspace}
+\usepackage[margin=1.0in]{geometry}
+\usepackage{tcolorbox}
+\usepackage{tikz-cd}
+\usepackage{color}
+\usepackage{aliascnt}
+\usepackage[foot]{amsaddr}
+\usepackage{hyperref}
+
+
+%--------Theorem Environments--------
+%theoremstyle{plain} --- default
+\newtheorem{thm}{Theorem}[section]
+
+%----Theorem
+\newaliascnt{theo}{thm}
+\newtheorem{theo}[theo]{Theorem}
+\aliascntresetthe{theo}
+\newcommand{\theoautorefname}{Theorem}
+%----Corollary
+\newaliascnt{cor}{thm}
+\newtheorem{cor}[cor]{Corollary}
+\aliascntresetthe{cor}
+\newcommand{\corautorefname}{Corollary}
+%----Proposition
+\newaliascnt{prop}{thm}
+\newtheorem{prop}[prop]{Proposition}
+\aliascntresetthe{prop}
+\newcommand{\propautorefname}{Proposition}
+%----Lemma
+\newaliascnt{lem}{thm}
+\newtheorem{lem}[lem]{Lemma}
+\aliascntresetthe{lem}
+\newcommand{\lemautorefname}{Lemma}
+%----Conjecture
+\newaliascnt{conj}{thm}
+\newtheorem{conj}[conj]{Conjecture}
+\aliascntresetthe{conj}
+\newcommand{\conjautorefname}{Conjecture}
+%----Question
+\newaliascnt{que}{thm}
+\newtheorem{que}[que]{Question}
+\aliascntresetthe{que}
+\newcommand{\queautorefname}{Question}
+%----Assumption
+\newaliascnt{ass}{thm}
+\newtheorem{ass}[ass]{Assumption}
+\aliascntresetthe{ass}
+\newcommand{\assautorefname}{Assumption}
+%----Definition
+\newaliascnt{defn}{thm}
+\newtheorem{defn}[defn]{Definition}
+\aliascntresetthe{defn}
+\newcommand{\defnautorefname}{Definition}
+
+
+
+
+%Style
+\theoremstyle{remark}
+%----Remark
+\newaliascnt{rem}{thm}
+\newtheorem{rem}[rem]{Remark}
+\aliascntresetthe{rem}
+\newcommand{\remautorefname}{Remark}
+
+\newtheorem*{ack}{Acknowledgements}
+
+
+
+
+\newtheorem{Proof}{Proof}
+
+\theoremstyle{definition}
+%\newtheorem{defn}[thm]{Definition}
+\newtheorem{defns}[thm]{Definitions}
+\newtheorem{con}[thm]{Construction}
+\newtheorem{exmp}[thm]{Example}
+\newtheorem{exmps}[thm]{Examples}
+\newtheorem{notn}[thm]{Notation}
+\newtheorem{notns}[thm]{Notations}
+\newtheorem{addm}[thm]{Addendum}
+\newtheorem{exer}[thm]{Exercise}
+\newtheorem{conv}[thm]{Convention}
+
+\newtheorem{case}[thm]{Case}
+
+
+\newtheorem{rems}[thm]{Remarks}
+\newtheorem{warn}[thm]{Warning}
+%\newtheorem{sch}[thm]{Scholium}
+\newtheorem{notation}[thm]{Notation}
+\newtheorem{ex}[thm]{Examples}
+\newtheorem{note}[thm]{Note}
+
+
+
+\newcommand{\N}{\mathbb{N}\xspace}
+\newcommand{\I}{\mathbb{I}\xspace}
+\newcommand{\R}{\mathbb{R}\xspace}
+\newcommand{\Z}{\mathbb{Z}\xspace}
+\newcommand{\Q}{\mathbb{Q}\xspace}
+\newcommand{\C}{\mathbb{C}\xspace}
+\newcommand{\G}{\mathbb{G}\xspace}
+\newcommand{\F}{\mathbb{F}\xspace}
+\DeclareMathOperator{\Spec}{Spec}
+\DeclareMathOperator{\res}{res}
+\DeclareMathOperator{\Tr}{Tr}
+\DeclareMathOperator{\ord}{ord}
+\DeclareMathOperator{\Sym}{Sym}
+\DeclareMathOperator{\dv}{div}
+\DeclareMathOperator{\alb}{alb}
+\DeclareMathOperator{\img}{Im}
+\DeclareMathOperator{\et}{et}
+\DeclareMathOperator{\ck}{coker}
+\DeclareMathOperator{\Reg}{Reg}
+\DeclareMathOperator{\Cor}{Cor}
+\DeclareMathOperator{\ch}{char}
+\DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\Aut}{Aut}
+\DeclareMathOperator{\Gal}{Gal}
+\DeclareMathOperator{\fc}{frac}
+\DeclareMathOperator{\Ann}{Ann}
+\DeclareMathOperator{\Mod}{Mod}
+\DeclareMathOperator{\Cone}{Cone}
+\DeclareMathOperator{\FI}{FI}
+\DeclareMathOperator{\End}{End}
+\DeclareMathOperator{\rk}{rk}
+\DeclareMathOperator{\Ext}{Ext}
+\DeclareMathOperator{\ab}{ab}
+
+\DeclareMathOperator{\coker}{coker}
+\DeclareMathOperator{\fr}{frac}
+\makeatletter
+\let\c@equation\c@theo
+\makeatother
+\numberwithin{equation}{section}
+
+\bibliographystyle{plain}
+%\newcommand{\textlatin }
+
+
+
+
+%--------Meta Data: Fill in your info------
+\title{Math 7752 - Homework 8\\
+Due Friday 04/01/22}
+
+\begin{document}
+
+\maketitle
+
+%\textbf{Reminders:} If $K/F$ and $L/K$ are finite extensions, then 
+%$L/F$ is finite and \[[L:F]=[L:K][K:F].\] In particular, both $[K:F]$ and $[L:K]$ divide $[L:F]$. 
+%\\
+
+\textbf{Note:} Let $K/F$ be a field extension. Consider the set $\Aut_F(K)$ consisting of all $F$-isomorphisms $\sigma:K\to K$. Such isomorphisms are called $F$-\textit{automorphisms} of $K$. Note that $\Aut_F(K)$ forms a group under composition. 
+\\
+\begin{enumerate}
+\item  
+\begin{enumerate}
+\item Let $F$ be a field and let $\overline{F}$ be an algebraic closure of $F$. Let $\sigma:\overline{F}\to\overline{F}$ be an $F$-embedding. Prove that $\sigma(\overline{F})=\overline{F}$, and thus $\sigma$ is an automorphism of $\overline{F}$.  
+\item Prove that for any field $F$ any two algebraic closures of $F$ are $F$-isomorphic. \textbf{Hint:} Use the Main Extension Lemma. 
+\end{enumerate} 
+\medskip 
+\item For each of the following polynomials $f(x)\in\Q[x]$ let $K\subset \C$ be the splitting field of $f$ over $\Q$. 
+ \begin{enumerate}
+[(i)]\item $f(x)=x^n-1$, $n\geq 2$.
+\item $f(x)=x^4+3x^3+4x^2+3x+3$.
+\item  $f(x)=x^4-2$.
+%\item Suppose that the integers $n_1,\ldots, n_r$ are square-free and pairwise relatively prime. Prove that $[\Q_r:\Q]=2^r$. Conclude that the extension $L=\Q(T)$, where $T=\{\sqrt{n}:n\in\N, n \text{ square free}\}$ is an infinite algebraic extension of $\Q$. 
+\end{enumerate} Find the degree $[K:\Q]$ and express $K$ in the form $\Q(\alpha)$, or $\Q(\alpha,\beta)$. \textbf{Hint:} For (i) you can take a look at [DF. Section 13.6].
+\medskip
+\item 
+\begin{enumerate}
+%\item Let $R$ be a domain. Show that the characteristic of $R$ is either $0$ or a prime $p$.
+\item Let $F$ be a field. Prove that if $\ch(F)=0$, then there is an embedding $\Q\hookrightarrow F$, while if $\ch(F)=p$, then there exists an embedding $\F_p\hookrightarrow F$. \\
+\textbf{Conclusion:} The fields $\Q,\F_p$ are the smallest in each characteristic and we call them \textit{prime fields}. 
+\item Let $F$ be a field. Prove that every automorphism $\sigma:F\to F$ of $F$ is an $F_0$-automorphism, where $F_0$ is the prime subfield of $F$. 
+\end{enumerate}
+\medskip
+%\item Let $n\geq 1$. Consider the finite field $\F_{p^n}=\{\alpha\in\overline{\F}_p: \alpha^{p^n}=\alpha\}$. Consider the Frobenius endomorphism $\varphi:\F_{p^n}\to\F_{p^n}$ given by $x\mapsto x^{p}$.  
+%\begin{enumerate}
+%\item Prove that $\varphi$ is an isomorphism of $\F_{p^n}$ to itself (and hence an automorphism). 
+%\item  Determine the rational canonical form of the $\F_p$-linear transformation $\varphi$. 
+%\end{enumerate}
+%\medskip
+
+\item  The purpose of this problem is to prove that the group $\Aut_\Q(\R)$ is trivial by following the suggested steps. Let $\sigma:\R\to\R$ be an automorphism of $\R$.
+\begin{enumerate}
+\item  Show that $\sigma$ is strictly increasing. 
+\item Use the density of $\Q$ in $\R$ to show that $\sigma$ is continuous at $x=0$. 
+\item Deduce that $\sigma$ is continuous on $\R$, and hence $\sigma(x)=x$.  
+\end{enumerate}
+
+\medskip
+\item \begin{enumerate}
+\item Let $K/F$ be an algebraic extension. Prove that $K/F$ is normal if and only if for any algebraic extension $L/K$ and any $F$-automorphism $\sigma\in\Aut_F(L)$ we have $\sigma(K)=K$. 
+\item Let $K/F$ be a field extension, and let $K_1$ and $K_2$ be subfields of $K$ containing $F$ such that the extensions $K_1/F$ and $K_2/F$ are normal. Prove that the extensions $K_1K_2/F$ and $K_1\cap K_2/F$ are also normal. \\
+\end{enumerate} 
+\item \textbf{(Optional only for practice)} Let $F$ be a field and $p(x)\in F[x]$ be a non-constant polynomial. Show that $p(x)$ is separable if and only if $\gcd(p(x),p'(x))=1$.\\
+
+
+
+
+\end{enumerate}
+
+
+
+
+
+\end{document}

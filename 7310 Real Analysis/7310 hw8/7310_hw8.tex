@@ -1,0 +1,313 @@
+\documentclass[12pt,letterpaper]{article}
+
+%--------Packages--------
+\usepackage{amsmath, amsthm, amssymb}
+\usepackage{xspace}
+\usepackage{graphicx}
+\usepackage{hhline}
+\usepackage{amssymb}
+\usepackage{array}
+\usepackage{braket}
+\usepackage{multicol}
+\usepackage{mathtools}
+\usepackage{enumerate}
+\usepackage{delarray}
+\usepackage{mathtools}
+\usepackage{fullpage}
+\usepackage{faktor} % For quotients
+\usepackage{mathrsfs}
+
+\usepackage[italicdiff]{physics} % For differentials
+\usepackage{bbm} % For indicator
+
+% \usepackage{quiver}
+\usepackage[linguistics]{forest}
+
+
+
+
+%--------Page Setup--------
+
+\pagestyle{empty}%
+
+\setlength{\hoffset}{-1.54cm}
+\setlength{\voffset}{-1.54cm}
+
+\setlength{\topmargin}{0pt}
+\setlength{\headsep}{0pt}
+\setlength{\headheight}{0pt}
+
+\setlength{\oddsidemargin}{0pt}
+
+\setlength{\textwidth}{195mm}
+\setlength{\textheight}{250mm}
+
+
+%--------Macros--------
+
+\newcommand{\sub}{\subseteq}
+\newcommand{\lcm}{\text{lcm}}
+\newcommand{\mc}[1]{\mathcal{#1}}
+\newcommand{\mf}[1]{\mathfrak{#1}}
+\newcommand{\ms}[1]{\mathscr{#1}}
+\newcommand{\sO}{\mathcal{O}}
+\newcommand{\cyclic}[1]{\langle#1\rangle}
+\newcommand{\units}[1]{#1 ^{\times}}
+\newcommand{\la}{\langle}
+\newcommand{\ra}{\rangle}
+\newcommand{\lr}[1]{\left(#1\right)}
+
+\DeclarePairedDelimiterX{\inp}[2]{\langle}{\rangle}{#1, #2}
+
+%----Switch phi and varphi
+% \let\temp\phi
+% \let\phi\varphi
+% \let\varphi\temp
+
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\N}{\mathbb{N}\xspace}
+\newcommand{\I}{\mathbb{I}\xspace}
+\newcommand{\R}{\mathbb{R}\xspace}
+\newcommand{\Z}{\mathbb{Z}\xspace}
+\newcommand{\Q}{\mathbb{Q}\xspace}
+\newcommand{\G}{\mathbb{G}\xspace}
+
+\DeclareMathOperator{\Spec}{Spec}
+\DeclareMathOperator{\res}{res}
+% \DeclareMathOperator{\Tr}{Tr}
+\DeclareMathOperator{\ord}{ord}
+\DeclareMathOperator{\Sym}{Sym}
+% \DeclareMathOperator{\dv}{div}
+\DeclareMathOperator{\alb}{alb}
+\DeclareMathOperator{\img}{Im}
+\DeclareMathOperator{\et}{et}
+\DeclareMathOperator{\ck}{coker}
+\DeclareMathOperator{\Reg}{Reg}
+\DeclareMathOperator{\Cor}{Cor}
+\DeclareMathOperator{\Ac}{at}
+\DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\Pic}{Pic}
+\DeclareMathOperator{\Gal}{Gal}
+\DeclareMathOperator{\fc}{frac}
+\DeclareMathOperator{\Ann}{Ann}
+\DeclareMathOperator{\Mod}{Mod}
+\DeclareMathOperator{\Cone}{Cone}
+\DeclareMathOperator{\FI}{FI}
+\DeclareMathOperator{\End}{End}
+\DeclareMathOperator{\Alb}{Alb}
+\DeclareMathOperator{\Ext}{Ext}
+\DeclareMathOperator{\ab}{ab}
+\DeclareMathOperator{\Jac}{Jac}
+\DeclareMathOperator{\coker}{coker}
+\DeclareMathOperator{\fr}{frac}
+\DeclareMathOperator{\Int}{Int}
+\let\Span\relax
+\DeclareMathOperator{\Span}{Span}
+
+
+
+%----Analysis
+\newcommand{\summ}{\sum\limits}
+% \newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\thicc}{\bigg}
+\newcommand{\eps}{\varepsilon}
+\newcommand*\cls[1]{\overline{#1}}
+\newcommand{\ind}{\mathbbm{1}}
+
+
+%--------Theorem environments--------
+\newtheorem{definition}{Definition}[]
+\newtheorem{lemma}{Lemma}[]
+\newtheorem{corollary}{Corollary}[]
+\newtheorem{theorem}{Theorem}[]
+\theoremstyle{remark}
+\newtheorem*{claim}{Claim}
+
+
+\newenvironment{solution}
+{\begin{proof}[Solution]}
+{\end{proof}}
+
+
+\makeatletter
+\newcommand{\thickhline}{%
+    \noalign {\ifnum 0=`}\fi \hrule height 1pt
+    \futurelet \reserved@a \@xhline
+}
+\newcolumntype{"}{@{\hskip\tabcolsep\vrule width 1pt\hskip\tabcolsep}}
+\makeatother
+
+% --------Problem environment--------
+\setlength\parindent{0pt}
+\setcounter{secnumdepth}{0}
+\newcounter{partCounter}
+\newcounter{homeworkProblemCounter}
+\setcounter{homeworkProblemCounter}{1}
+
+
+\newenvironment{homeworkProblem}[1][-1]{
+    \ifnum#1>0
+        \setcounter{homeworkProblemCounter}{#1}
+    \fi
+    \section{Problem \arabic{homeworkProblemCounter}}
+    \setcounter{partCounter}{1}
+    \stepcounter{homeworkProblemCounter}
+}
+
+
+%--------Metadata--------
+\title{MATH 7310 Homework 8}
+\author{James Harbour}
+
+\begin{document}
+\maketitle
+
+\begin{homeworkProblem}
+  Let $\mc{H}$ be a Hilbert space. \\
+
+  \textbf{(a)}: Prove that, for any $x,y\in \mc{H}$,
+  \[
+    \inp{x}{y} = \frac{1}{4}(\norm{x+y}^2 - \norm{x-y}^2 + i\norm{x+iy}^2 - i\norm{x-iy}^2)
+  \]
+
+  \begin{proof}
+    \begin{align*}
+      \norm{x\pm y}^2 &= \norm{x}^2 + \norm{y}^2 \pm 2\Re(\inp{x}{y}) \\
+      \norm{x\pm iy}^2 &= \norm{x}^2 + \norm{y}^2 \pm 2\Re(\inp{x}{iy}) = \norm{x}^2 + \norm{y}^2 \pm 2\Im(\inp{x}{y}).
+    \end{align*}
+    We compute that
+    \begin{align*}
+      \frac{1}{4}(\norm{x+y}^2 - \norm{x-y}^2) = \Re(\inp{x}{y})\\
+      \frac{1}{4}(\norm{x+iy}^2 - \norm{x-iy}^2) = \Im(\inp{x}{y})
+    \end{align*}
+    whence the identity follows by noting $\inp{x}{y} = \Re{\inp{x}{y}} + i \Im(\inp{x}{y})$.
+  \end{proof}
+
+  \textbf{(b)}: If $\mc{H}'$ is another Hilbert space, prove that a linear map from $\mc{H}$ to $\mc{H}'$ is unitary if and only if it is isometric and surjective.
+
+  \begin{proof}\ \\
+    \underline{$\implies$}: Suppose that $T:\mc{H}\to\mc{H}'$ is unitary. Then $T$ is surjective by definition. Moreover, for $x\in \mc{H}$, $\norm{x} =\inp{x}{x} = \inp{Tx}{Tx} = \norm{Tx}$, whence $T$ is an isometry by linearity.\\
+
+    \underline{$\impliedby$}: Suppose that $T:\mc{H}\to\mc{H}'$ is isometric and surjective. Then
+    \begin{align*}
+      \inp{Tx}{Ty} &= \frac{1}{4}(\norm{T(x)+T(y)}^2 - \norm{T(x)-T(y)}^2 + i\norm{T(x)+T(iy)}^2 - i\norm{T(x)-T(iy)}^2) \\
+      &= \frac{1}{4}(\norm{T(x+y)}^2 - \norm{T(x-y)}^2 + i\norm{T(x+iy)}^2 - i\norm{T(x-iy)}^2) \\
+      &=\frac{1}{4}(\norm{x+y}^2 - \norm{x-y}^2 + i\norm{x+iy}^2 - i\norm{x-iy}^2) = \inp{x}{y},
+    \end{align*}
+    so $T$ is an isometry. Now suppose that $T(x) = 0$. Then $0 = \inp{Tx}{Tx} = \inp{x}{x}$ whence $x = 0$, so $T$ is also injective and thus unitary.
+  \end{proof}
+\end{homeworkProblem}
+
+\begin{homeworkProblem}[2]
+  For $n\in\Z$, define $e_n:[0,1]\to\C$ by $e_n(t) = e^{2\pi int}$.\\
+
+  \textbf{(a)}: Show that $\{e_n\}_{n\in\Z}$ is an orthonormal set in $L^2([0,1])$.
+
+  \begin{proof}
+    Observe that, for $n,m\in\Z$ with $n\neq m$
+    \[
+      \inp{e_n}{e_m} = \int_{0}^{1} e^{2\pi i n t}\cls{e^{2\pi i m t}}\dd{t} = \int_{0}^{1} e^{2\pi i(n - m)t}\dd{t} = \left[\frac{1}{2\pi i (n-m)}e^{2\pi i (n-m)t}\right]_{t=0}^{t=1} = \frac{1}{2\pi i (n-m)}(e^{2\pi i (n-m) - 1}) = 0.
+    \]
+    On the other hand, for $\in\Z$,
+    \[
+      \inp{e_n}{e_n} = \int_{0}^{1} e^{2\pi i n t}\cls{e^{2\pi i n t}}\dd{t} = \int_{0}^{1} 1 \dd{t} = 1
+    \]
+    so $\{e_n\}_{n\in\Z}$ is an orthonormal set in $L^2([0,1])$.
+  \end{proof}
+
+  \textbf{(b)}: Show that $\{ f\in C([0,1]) : f(1) = f(0)\} = \{g\circ e_1 : g\in C(S^1)\}$, where $S^1 = \{ z\in \C : |z| = 1\}$.
+
+  \begin{proof}
+    Noting that $e_1$ is just the composition of the canonical projection map $[0,1]\to [0,1]/(0\sim 1)$ with the homeomorphism $[0,1]/(0\sim 1) \cong S^1$ given by the same formula (where well-definedness follows from the quotiented set), the claim follows from the universal property of the quotient topology.
+  \end{proof}
+
+  \textbf{(c)}: The Stone-Weierstrass theorem says that if $(X,d)$ is a compact metric space and $A\sub C(X)$ is a linear subspace so that:
+  \begin{itemize}
+    \item $1\in A$,
+    \item $f\in A$ implies $\cls{f}\in A$,
+    \item $f,g\in A$ implies that $fg\in A$,
+    \item If $x\in X$, then there are $f,g\in A$ with $f(x)\neq g(x)$,
+  \end{itemize}
+  then $A$ is dense in $C(X)$ for the uniform norm $\norm{f}_u = \sup_{x\in X} |f(x)|$. Use the Stone-Weierstrass theorem to show that $\cls{\Span}^{\norm{\cdot}_u}\{e_n: n\in \Z\} = \{ f\in C([0,1]): f(1) = f(0)\}$.
+
+  \begin{proof}
+    For $n\in \Z$, define $p_n:S^1\to \C$ by $p_n(x) = x^n$ and set $A = \Span\{ p_n : n\in \Z\}\sub C(S^1)$. Note that $\cls{p_n} = p_{-n}$, $p_n p_m = p_{nm}$, $1 = p_0$, whence by linearity the first three properties above hold for $A$. \\
+
+    To see that the last property holds for $A$, take arbitrary $x\in S^1$. If $x^n\neq 1$ for all $n\in \Z\setminus\{0\}$, then $p_1(x) = x\neq x^2 = p_2(x)$. Suppose that $x^n = 1$ for some $n\in \Z\setminus\{0\}$. Then $x^{-n} = 1$, so we may assume without loss of generality that $n\in \N$. If $x = 1$, then $p_1(x) = 1 \neq 0 = 0(x)$ and $p_1, 0\in A$. Otherwise, let $m\geq 2$ be the smallest such $m\in \N$ such that $x^m = 1$. Then $p_m(x) = x^m\neq x^{m-1} = p_{m-1}(x)$, as desired.\\
+
+    Thus, by the Stone-Weierstrass theorem, $\cls{A}^{\norm{\cdot}_u} = C(S^1)$. Now take $f\in\{ f\in C([0,1]): f(1) = f(0)\}$. Then by part (b) there exists a $g\in C(S^1)$ such that $f = g\circ e_1$. Now take a sequence $(a_n)_{n=1}^{\infty}$ in $A$ such that $a_n\to g$ with respect to $\norm{\cdot}_u$. \\
+
+    % TODO Justify
+    Then $a_n\circ e_1\to g\circ e_1$ with respect to $\norm{\cdot}_u$. Lastly, noting that $a_n\circ e_n\in \Span\{e_n: n\in \Z\}$, it follows that $f\in\cls{\Span}^{\norm{\cdot}_u}\{e_n: n\in \Z\}$.
+  \end{proof}
+
+  \textbf{(d)}: Show that $\Span\{e_n : n\in \Z\}$ is dense in $L^2([0,1])$ and use this to show that $\{e_n\}_{n\in\Z}$ is an orthonormal basis for $L^2([0,1])$.
+
+  \begin{proof}
+    Observe that, for any measurable $f:[0,1]\to \C$, by H\"{o}lder's inequality applied twice we have
+    \[
+      \norm{f}_2 \leq \norm{f}_1 \leq \norm{f}_{\infty}\norm{1}_{1} = \norm{f}_{\infty}m([0,1]) = \norm{f}_{\infty}\leq \norm{f}_u.
+    \]
+    Now suppose that $f\in C([0,1])$ such that $f(0) = f(1)$. Then there exists $f_n\in \Span\{e_n : n\in \Z\}$ such that $\norm{f_n-f}_u\to 0$. Then $\norm{f_n-f}_2\leq \norm{f_n-f}_u\to 0$, so $\cls{\Span}^{\norm{\cdot}_2}\{e_n: n\in \Z\} = \{ f\in C([0,1]): f(1) = f(0)\}$ which equals $C([0,1])$ modulo almost-everywhere equality. Moreover, the closure of $C([0,1])$ in the $L^2$-norm contains equivalence classes of the indicator functions of intervals via the hill approximation, so it it in fact is all of $L^2$. Thus by transitivity of topological density, $\Span\{e_n: n\in \Z\}$ is dense in $L^2([0,1])$.\\
+
+    As $\{e_n: n\in\Z\}$ is orthonormal and the $L^2$-norm-closure of its span is in fact all of $L^2([0,1])$, it follows that $\{e_n\}_{n\in\Z}$ is an orthonormal basis for $L^2([0,1])$.
+  \end{proof}
+\end{homeworkProblem}
+
+
+\begin{homeworkProblem}[4]
+  \textbf{(a)}: Let $(X,\Sigma,\mu)$ be a $\sigma$-finite measure space, $\mc{F}$ a sub-$\sigma$-algebra of $\Sigma$, and $\nu = \mu\vert_{\mc{F}}$. If $f\in L^1(\mu)$, prove that there exists $g\in L^1(\nu)$ (thus $g$ is $\mc{F}$-measurable) such that $\int_E f \dd{\mu} = \int_E g\dd{\nu}$ for all $E\in \mc{F}$; also prove that if $g'$ is another such function then $g = g'$ $\nu$-a.e.
+
+  \begin{proof}
+    Define a new measure $\lambda$ by $\lambda(E) = \int_E f\dd{\mu}$ for all $E\in \Sigma$. If $E\in \mc{F}$ with $\mu\vert_{\mc{F}}(E) = \nu(E) = 0$, then $\lambda(E) = \int_E f\dd{\mu} = 0$, so $\lambda\vert_{\mc{F}}\ll\nu$. Let $g = \frac{\dd{\lambda\vert_{\mc{F}}}}{\dd{\nu}}\in L^1(\nu)$, so $\dd{\lambda\vert_{\mc{F}}} = g\dd{\nu}$. Then, for all $E\in\mc{F}$,
+    \[
+      \int_E g\dd{\nu} = \lambda(E) = \int_E f\dd{\mu}.
+    \]
+
+    % TODO tweak below argument as I think its not right. Conditon too weak.
+    Now suppose that $g'$ is another such function. Then, as $X\in\mc{F}$, $\int_X g\dd{\nu} = \int_X g'\dd{\nu}\implies \int_X g- g'\dd{\nu} = 0$ whence $g=g'$ $\nu$-a.e.
+  \end{proof}
+
+  \textbf{(b)}: Show that $\int gh\dd{\nu} = \int fh \dd{\mu}$ for all $h\in L^1(\nu)$.
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+  Let $(X,\Sigma,\mu)$ be a probability space. For a sub-$\sigma$-algebra $\mc{F}\sub \Sigma$, and $f\in :^1(X,\Sigma,\mu)$, let $\E_\mc{F}(f)$ be the conditional expectation of $f$ ont $\mc{F}$. \\
+
+  \textbf{(a)}: Show that $\E_\mc{F}(fg) = \E_\mc{F}(f)g$ for all $g\in L^\infty(X,\mc{F},\mu)$.\\
+
+  \textbf{(b)}: If $f\in L^2(X,\Sigma,\mu)$, show that $\E_\mc{F}(f)$ is the orthogonal projection of $f$ onto $L^2(X,\mc{F},\mu)$ in the decomposition
+  \[
+    L^2(X,\Sigma,\mu) = L^2(X,\mc{F},\mu) + L^2(X,\mc{F},\mu)^\perp.
+  \]
+
+  Note: one difficulty you'll a priori face is that we do not yet know that $f\in L^2$ implies that $\E_\mc{F}(f)\in L^2$. However, one can note that you can characterize the orthogonal projection $g$ of $f$ onto $L^2(X,\mc{F},\mu)$ by $\inp{f}{h} = \inp{g}{h}$ for all $h\in L^2(X,\mc{F}, \mu)$ (you should prove this if you use it), and this can be used to show that this projection is the conditional expectation.
+\end{homeworkProblem}
+
+\begin{homeworkProblem}[6]
+  Show that if $\nu$ is a signed measure, then $E$ is $\nu$-null if and only if $|\nu|(E) = 0$. Also, prove that if $\mu$ and $\nu$ are signed measures, then $\nu\perp\mu$ if and only if $\nu^+ \perp \mu$ and $\nu^- \perp \mu$.
+
+  \begin{proof}\ \\
+    \underline{$\implies$}: Suppose that $E$ is $\nu$-null. Let $(P,N)$ be a $Hahn$ decomposition for $\nu$ and consider positive measures $\nu^+$, $\nu^-$ such that $\nu = \nu^+ - \nu^-$. By uniqueness of these positive measures, $\nu^+(E) = \nu(E\cap P)$ and $\nu^-(E) = - \nu(E\cap N)$. Nullity of $E$ for $\nu$ then implies that $\nu^+(E) = \nu(E\cap P) = 0$ and $\nu^-(E) = - \nu(E\cap N) = 0$. Thus $|\nu|(E) = \nu^+(E) + \nu^-(E) = 0$. \\
+
+    \underline{$\impliedby$}: Suppose that $|\nu|(E) = 0$. Let $F\sub E$ such that $F\in\Sigma$. As $|\nu|$ is a positive measure on $\Sigma$, $|\nu|(F) = 0$, whence $\nu^+(F) = 0 = \nu^-(F)$. It follows that $\nu(F) = \nu^+(F)-\nu^-(F) = 0$, so $E$ is $\nu$-null.\\
+
+    \underline{$\implies$}: Suppose that $\nu\perp\mu$. So there exist $E,F\in\Sigma$ such that $E$ is $\mu$-null and $F$ is $\nu$-null, $E\cap F = \emptyset$, and $E\cup F = X$. Then by the previously proven equivalence, $|\nu|(F) = 0$ whence $\nu^+(F) = 0 = \nu^-(F)$. As $\nu^+$, $\nu^-$ are positive measures, this implies that $F$ is $\nu^+$-null and $\nu^-$-null, so the initial decomposition of $X$ giving singularity of $\nu$ and $\mu$ also gives $\nu^+\perp\mu$ and $\nu^-\perp\mu$.\\
+
+    \underline{$\impliedby$}: Suppose that $\nu^+\perp\mu$ and $\nu^-\perp\mu$. Then there exist $E^+,F^+, E^-,F^-\in\Sigma$ such that $E^\pm  \cap F^\pm = \emptyset$, $E^\pm  \cup F^\pm = X$, $E^\pm$ is $\mu$-null, and $F^\pm$ is $\nu^\pm$-null. Consider the sets $A = E^+\cup E^-$ and $B = F^+\cap F^-$. Note that $A$ is a union of $\mu$-null sets and is thus $\mu$-null, whilst $\nu^+(B) = 0 = \nu^-(B)$ implies that $|\nu|(B) = 0$, so $B$ is $\nu$-null. $A$ and $B$ are clearly disjoint and
+    \[
+      X\setminus A = X\setminus (E^+\cup E^-) = (X\setminus E^+)\cap (X\setminus E^-) = F^+\cap F^- = B \implies A\cup B = X.
+    \]
+  \end{proof}
+\end{homeworkProblem}
+
+
+
+
+
+
+
+\end{document}
