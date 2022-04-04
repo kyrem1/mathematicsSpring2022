@@ -258,7 +258,24 @@
 \end{homeworkProblem}
 
 \begin{homeworkProblem}
-  \textbf{(a)}: Let $(X,\Sigma,\mu)$, $(Y,\mc{F},\nu)$ be $\sigma$-finite measure spaces such that $L^2(\mu)$ and $L^2(\nu)$ are separable. If $\{f_m\}$ and $\{g_n\}$ are orthonormal bases for $L^2(\mu)$ and $L^2(\nu)$ and $h_{mn}(x,y) = f_m(x)g_n(y)$, then $\{h_{mn}\}$ is an orthonormal basis for $L^2(\mu\otimes\nu)$.\\
+  \textbf{(a)}: Let $(X,\Sigma,\mu)$, $(Y,\mc{F},\nu)$ be $\sigma$-finite measure spaces such that $L^2(\mu)$ and $L^2(\nu)$ are separable. If $\{f_m\}$ and $\{g_n\}$ are orthonormal bases for $L^2(\mu)$ and $L^2(\nu)$ and $h_{mn}(x,y) = f_m(x)g_n(y)$, then $\{h_{mn}\}$ is an orthonormal basis for $L^2(\mu\otimes\nu)$.
+
+  \begin{proof}
+    \[
+      \cls{\Span}^{\norm{\cdot}_2}\{f_m:m\in\Z\} = L^2(\mu)\hspace{20pt}\cls{\Span}^{\norm{\cdot}_2}\{g_m:m\in\Z\} = L^2(\nu)
+    \]
+    By Fubini-Tonelli,
+    \begin{align*}
+      \inp{f_m\otimes g_n}{f_k\otimes g_l} &= \int_{X\times Y} f_m\otimes g_n\,\cls{f_k\otimes g_l} \dd{(\mu\otimes\nu)} = \int_{X\times Y} h_{mn}\,\cls{h_{nl}} \dd{(\mu\otimes\nu)} \\
+      &= \int_X f_m(x)\cls{f_k(x)}\int_Y g_n(y)\,\cls{g_l(y)}\dd{\nu(y)}\dd{\mu(x)} = \int_X f_m(x)\cls{f_k(y)}\delta_{nl}\dd{\mu(x)} = \delta_{mk}\delta_{nl} = \delta_{(m,n),(k,l)}
+    \end{align*}
+    so $\{h_{mn}\}$ is an orthonormal set in $L^2(\mu\otimes\nu)$. By homework 7 problem 1 part (d), as $\cls{\Span}^{\norm{\cdot}_2}\{f_m:m\in\Z\} = L^2(\mu)$ and $\cls{\Span}^{\norm{\cdot}_2}\{g_m:m\in\Z\} = L^2(\nu)$, it follows that
+    \[
+      \cls{\Span}^{\norm{\cdot}_2}\{h_{mn}:m,n\in\Z\} = \cls{\Span}^{\norm{\cdot}_2}\{f_m\otimes g_n:m,n\in\Z\} = L^2(\mu\otimes\nu)
+    \]
+    so $\{h_{mn}\}$ is in fact an orthonormal basis for $L^2(\mu\otimes\nu)$.
+
+  \end{proof}
 
   \textbf{(b)}: For $k\in\N$, and $n=(n_1,\ldots,n_k)\in\Z^k$, define $e_n\in L^2([0,1]^k)$ by
   \[
