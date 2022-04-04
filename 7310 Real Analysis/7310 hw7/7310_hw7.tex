@@ -1,0 +1,228 @@
+\documentclass[12pt,letterpaper]{article}
+
+%--------Packages--------
+\usepackage{amsmath, amsthm, amssymb}
+\usepackage{xspace}
+\usepackage{graphicx}
+\usepackage{hhline}
+\usepackage{amssymb}
+\usepackage{array}
+\usepackage{braket}
+\usepackage{multicol}
+\usepackage{mathtools}
+\usepackage{enumerate}
+\usepackage{delarray}
+\usepackage{mathtools}
+\usepackage{fullpage}
+\usepackage{faktor} % For quotients
+\usepackage{mathrsfs}
+
+\usepackage[italicdiff]{physics} % For differentials
+\usepackage{bbm} % For indicator
+
+% \usepackage{quiver}
+\usepackage[linguistics]{forest}
+
+
+
+
+%--------Page Setup--------
+
+\pagestyle{empty}%
+
+\setlength{\hoffset}{-1.54cm}
+\setlength{\voffset}{-1.54cm}
+
+\setlength{\topmargin}{0pt}
+\setlength{\headsep}{0pt}
+\setlength{\headheight}{0pt}
+
+\setlength{\oddsidemargin}{0pt}
+
+\setlength{\textwidth}{195mm}
+\setlength{\textheight}{250mm}
+
+
+%--------Macros--------
+
+\newcommand{\sub}{\subseteq}
+\newcommand{\lcm}{\text{lcm}}
+\newcommand{\mc}[1]{\mathcal{#1}}
+\newcommand{\mf}[1]{\mathfrak{#1}}
+\newcommand{\ms}[1]{\mathscr{#1}}
+\newcommand{\sO}{\mathcal{O}}
+\newcommand{\cyclic}[1]{\langle#1\rangle}
+\newcommand{\units}[1]{#1 ^{\times}}
+\newcommand{\la}{\langle}
+\newcommand{\ra}{\rangle}
+\newcommand{\lr}[1]{\left(#1\right)}
+%----Switch phi and varphi
+% \let\temp\phi
+% \let\phi\varphi
+% \let\varphi\temp
+
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\N}{\mathbb{N}\xspace}
+\newcommand{\I}{\mathbb{I}\xspace}
+\newcommand{\R}{\mathbb{R}\xspace}
+\newcommand{\Z}{\mathbb{Z}\xspace}
+\newcommand{\Q}{\mathbb{Q}\xspace}
+\newcommand{\G}{\mathbb{G}\xspace}
+\DeclareMathOperator{\Spec}{Spec}
+\DeclareMathOperator{\res}{res}
+% \DeclareMathOperator{\Tr}{Tr}
+\DeclareMathOperator{\ord}{ord}
+\DeclareMathOperator{\Sym}{Sym}
+% \DeclareMathOperator{\dv}{div}
+\DeclareMathOperator{\alb}{alb}
+\DeclareMathOperator{\img}{Im}
+\DeclareMathOperator{\et}{et}
+\DeclareMathOperator{\ck}{coker}
+\DeclareMathOperator{\Reg}{Reg}
+\DeclareMathOperator{\Cor}{Cor}
+\DeclareMathOperator{\Ac}{at}
+\DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\Pic}{Pic}
+\DeclareMathOperator{\Gal}{Gal}
+\DeclareMathOperator{\fc}{frac}
+\DeclareMathOperator{\Ann}{Ann}
+\DeclareMathOperator{\Mod}{Mod}
+\DeclareMathOperator{\Cone}{Cone}
+\DeclareMathOperator{\FI}{FI}
+\DeclareMathOperator{\End}{End}
+\DeclareMathOperator{\Alb}{Alb}
+\DeclareMathOperator{\Ext}{Ext}
+\DeclareMathOperator{\ab}{ab}
+\DeclareMathOperator{\Jac}{Jac}
+\DeclareMathOperator{\coker}{coker}
+\DeclareMathOperator{\fr}{frac}
+\DeclareMathOperator{\Int}{Int}
+
+
+
+%----Analysis
+\newcommand{\summ}{\sum\limits}
+% \newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\thicc}{\bigg}
+\newcommand{\eps}{\varepsilon}
+\newcommand*\cls[1]{\overline{#1}}
+\newcommand{\ind}{\mathbbm{1}}
+\DeclareMathOperator{\Span}{Span}
+
+%--------Theorem environments--------
+\newtheorem{definition}{Definition}[]
+\newtheorem{lemma}{Lemma}[]
+\newtheorem{corollary}{Corollary}[]
+\newtheorem{theorem}{Theorem}[]
+\theoremstyle{remark}
+\newtheorem*{claim}{Claim}
+
+
+\newenvironment{solution}
+{\begin{proof}[Solution]}
+{\end{proof}}
+
+
+\makeatletter
+\newcommand{\thickhline}{%
+    \noalign {\ifnum 0=`}\fi \hrule height 1pt
+    \futurelet \reserved@a \@xhline
+}
+\newcolumntype{"}{@{\hskip\tabcolsep\vrule width 1pt\hskip\tabcolsep}}
+\makeatother
+
+% --------Problem environment--------
+\setlength\parindent{0pt}
+\setcounter{secnumdepth}{0}
+\newcounter{partCounter}
+\newcounter{homeworkProblemCounter}
+\setcounter{homeworkProblemCounter}{1}
+
+
+\newenvironment{homeworkProblem}[1][-1]{
+    \ifnum#1>0
+        \setcounter{homeworkProblemCounter}{#1}
+    \fi
+    \section{Problem \arabic{homeworkProblemCounter}}
+    \setcounter{partCounter}{1}
+    \stepcounter{homeworkProblemCounter}
+}
+
+
+%--------Metadata--------
+\title{MATH 7310 Homework 7}
+\author{James Harbour}
+
+\begin{document}
+\maketitle
+
+\begin{homeworkProblem}[2]
+  If $X,Y$ are sets, and $f:X\to\C$, $g:Y\to\C$, we define $f\otimes g:X\times Y\to\C$ by $(f\otimes g)(x,y) = f(x)g(y)$. Fix $1\leq p<+\infty$.\\
+
+  \textbf{(a)}: Let $(X,\Sigma,\mu),(Y,\mc{F},\nu)$ be $\sigma$-finite measure spaces. Show that if $f\in L^p(X,\mu),g\in L^p(Y,\nu)$, then $\norm{f\otimes g}_p = \norm{f}_p \norm{g}_p$.\\
+
+  \textbf{(b)}: Let $(Z,\mc{O},\zeta)$ be a finite measure space. Suppose that $\mc{A}\sub\mc{O}$ is an algebra which generates the $\sigma$-algebra of $\mc{O}$. Use the monotone class lemma to show that $\{\ind_A:A\in\mc{A}\}$ is dense in $\{\ind_E:E\in\mc{O}\}$ in the $L^p$-norm for all $1\leq p <+\infty$.\\
+
+  \textbf{(c)}: Let $(X,\Sigma,\mu),(Y,\mc{F},\nu)$ be finite measure spaces. Use the previous part to show that $\{\ind_E : E\in \Sigma\otimes\mc{F}\}\sub\cls{\Span}^{\norm{\cdot}_p}\{\ind_E\otimes\ind_F:E\in\Sigma,F\in\mc{F}\}$. Use this to show that $\cls{\Span}^{\norm{\cdot}_p}\{\ind_E\otimes\ind_F:E\in\Sigma,F\in\mc{F}\} = L^p(X\times Y,\mu\otimes\nu)$.\\
+
+  \textbf{(d)}: Let $(X,\Sigma,\mu),(Y,\mc{F},\nu)$ be $\sigma$-finite measure spaces. Suppose that $D_X\sub L^p(X,\mu)$, $D_Y\sub L^p(Y,\nu)$ and that
+  \[
+    \cls{\Span}^{\norm{\cdot}_p}(D_X) = L^1(X,\mu),\hspace{10pt}\cls{\Span}^{\norm{\cdot}_p}(D_Y) = L^1(Y,\nu).
+  \]
+  Show that $\cls{\Span}^{\norm{\cdot}_p}(\{f\otimes g: f\in D_X,g\in D_Y\}) = L^p(X\times Y,\mu\otimes\nu)$.
+
+\end{homeworkProblem}
+
+
+\begin{homeworkProblem}
+  Suppose that $f\in L^p\, \cap\, L^\infty$ for some $p<+\infty$ so that $f\in L^q$ for all $q>p$. Prove that then $\norm{f}_\infty = \lim_{q\to\infty}\norm{f}_q$.
+\end{homeworkProblem}
+
+
+\begin{homeworkProblem}
+  If $f$ is a measurable function on $X$, define the \emph{essential range} $R_f$ of $f$ to be the set of all $z\in\C$ such that $\{x: |f(x)-z|<\eps\}$ has positive measure for all $\eps > 0$.\\
+
+  \textbf{(a)}: Prove that $R_f$ is closed.
+
+  \begin{proof}
+    Let $z\in \cls{R_f}$. Then there exists a sequence $(z_n)_{n=1}^{\infty}$ in $R_f$ such that $z_n\to z$. Fix $\eps>0$. There is some $N\in\N$ such that $n\geq N\implies B_{\eps/2}(z_n)\sub B_\eps(z)$. Then $f^{-1}(B_{\eps/2}(z_n))\sub f^{-1}(B_\eps(z))$, whence $0<\mu(f^{-1}(B_{\eps/2}(z_n)))\leq \mu(f^{-1}(B_\eps(z)))$. Hence $z\in R_f$, so $R_f$ is closed.
+  \end{proof}
+
+  \textbf{(b)}: Prove that if $f\in L^\infty$, then $R_f$ is compact and $\norm{f}_\infty = \max\{|z|: z\in R_f\}$.
+
+
+\end{homeworkProblem}
+
+
+\begin{homeworkProblem}
+  Suppose that $1\leq p < +\infty$ and $(f_n)_{n=1}^{\infty}$ in $L^p$. Prove that $(f_n)_{n=1}^{\infty}$ is Cauchy in the $L^p$-norm if an only if the following three conditions hold:
+  \begin{enumerate}
+    \item $(f_n)$ is Cauchy in measure;
+    \item the sequence $(|f_n|^p)_{n=1}^{\infty}$ is uniformly integrable
+    \item for every $\eps>0$ there exists $E\sub X$ such that $\mu(E) < +\infty$ and $\int_{E^c}|f_n|^p\dd{\mu}<\eps$ for all $n\in\N$.
+  \end{enumerate}
+\end{homeworkProblem}
+
+
+\begin{homeworkProblem}
+    Prove that if $E$ is a subset of a Hilbert space $\mc{H}$, then $(E^\perp)^\perp$ is the smallest closed subspace of $\mc{H}$ containing $E$.
+
+    \begin{claim}
+      If $M$ is a closed linear subspace of $\mc{H}$, then $(M^\perp)^\perp = M$.
+    \end{claim}
+
+    \begin{proof}[Proof of Claim]
+      Note that we have $\mc{H} = M\oplus M^\perp$. Let $y\in (M^\perp)^\perp$. Then there exist unique $x\in M$, $x^\perp\in    M^\perp$ such that $y = x + x^\perp$. Noting that $M\sub (M^\perp)^\perp$, we have that $x^\perp = y-x \in M^\perp\cap (M^\perp)^\perp = \{0\}$, whence $x^\perp = 0$ and $y=x\in M$. Thus $M = (M^\perp)^\perp$.
+    \end{proof}
+
+    \begin{proof}
+      On one hand, note that $E\sub \cls{\Span(E)}\implies (E^\perp)^\perp\sub (\cls{\Span(E)}^\perp)^\perp \overset{\text{claim}}{=}\cls{\Span(E)}$. On the other hand, as $(E^\perp)^\perp$ is a closed linear subspace of $\mc{H}$ and $E\sub(E^\perp)^\perp$, it follows that $\cls{\Span(E)}\sub (E^\perp)^\perp$.
+    \end{proof}
+
+    % TODO Show E^\perp is a closed linear subspace of $\mc{H}$.
+\end{homeworkProblem}
+
+
+\end{document}
