@@ -106,6 +106,7 @@
 \DeclareMathOperator{\Int}{Int}
 \let\Span\relax
 \DeclareMathOperator{\Span}{Span}
+\DeclareMathOperator{\Ran}{Ran}
 
 
 
@@ -282,6 +283,10 @@
     e_n(x) = \prod_{j=1}^{k}e^{2\pi i n_j x}.
   \]
   Show that $\{e_n\}_{n\in\Z^k}$ is an orthonormal basis of $L^2([0,1]^k)$.
+
+  \begin{proof}
+    We induct on $k\in\N$. Note that we have already shown the base case $k=1$ in problem 2. Now suppose $k>1$ and that the claim is true for $k-1$. Then $\{e_n\}_{n\in\Z^{k-1}}$ is an orthonormal basis of $L^2([0,1]^{k-1})$. By part (a), $\{e_n e_m\}_{n\in\Z^{k-1}, m\in \Z} =\{e_n\}_{n\in\Z^{k}}$ is an orthonormal basis for $L^2([0,1]^{k-1}\times [0,1]) = L^2([0,1]^k)$, and thus we are done.
+  \end{proof}
 \end{homeworkProblem}
 
 
@@ -295,7 +300,7 @@
     \]
 
     % TODO tweak below argument as I think its not right. Conditon too weak.
-    Now suppose that $g'$ is another such function.
+    Now suppose that $g'$ is another such function. Then $g' = \frac{\dd{\lambda\vert_{\mc{F}}}}{\dd{\nu}}$ $\nu$-a.e. by the uniqueness portion of the Radon-Nikodym theorem, and thus $g=g'$ $\nu$-a.e.
 
     % Then, as $X\in\mc{F}$, $\int_X g\dd{\nu} = \int_X g'\dd{\nu}\implies \int_X g- g'\dd{\nu} = 0$ whence $g=g'$ $\nu$-a.e.
 
@@ -335,6 +340,14 @@
   \]
 
   Note: one difficulty you'll a priori face is that we do not yet know that $f\in L^2$ implies that $\E_\mc{F}(f)\in L^2$. However, one can note that you can characterize the orthogonal projection $g$ of $f$ onto $L^2(X,\mc{F},\mu)$ by $\inp{f}{h} = \inp{g}{h}$ for all $h\in L^2(X,\mc{F}, \mu)$ (you should prove this if you use it), and this can be used to show that this projection is the conditional expectation.
+
+  \begin{proof}
+    For $h\in L^2(X,\mc{F}, \mu)$, observe that
+    \[
+      \inp{f-\E_\mc{F}(f)}{h} = \int (f-\E_\mc{F}(f))\cls{h}\dd{\mu} = \int f\cls{h}\dd{\mu}-\int \E_\mc{F}(f)\cls{h}\dd{(\mu\vert_\mc{F})} = \int f\cls{h}\dd{\mu}-\int f\cls{h}\dd{(\mu\vert_\mc{F})} = 0
+    \]
+    so $\inp{f}{h} = \inp{g}{h}$ for all $h\in L^2(X,\mc{F}, \mu)$. Noting that $M=L^2(X,\mc{F}, \mu)$ is a closed linear subspace of $\mc{H} = L^2(X,\Sigma,\mu)$, consider the decomposition $\mc{H} = M\oplus M^\perp$. For $x\in \mc{H}$ with unique decomposition $x = x^\parallel+x^\perp$ with $x^\parallel\in M$ and $x^\perp\in M^\perp$, we claim that if $g\in M$ is such that $\inp{x}{h} = \inp{g}{h}$ for all $h\in M$, then $g = x^\parallel$. This is in fact clear as then $x-g\in M^\perp$ and $x = g+(x-g)$, so by uniqueness $g = x^\perp$. Thus, projection is the conditional expectation.
+  \end{proof}
 \end{homeworkProblem}
 
 \begin{homeworkProblem}[6]
