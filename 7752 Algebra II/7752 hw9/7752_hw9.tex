@@ -1,0 +1,287 @@
+\documentclass[12pt,letterpaper]{article}
+
+%--------Packages--------
+\usepackage{amsmath, amsthm, amssymb}
+\usepackage{xspace}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{array}
+\usepackage{braket}
+\usepackage{multicol}
+\usepackage{mathtools}
+\usepackage{enumerate}
+\usepackage{delarray}
+\usepackage{mathtools}
+\usepackage{fullpage}
+\usepackage{faktor} % For quotients
+\usepackage{mathrsfs}
+% \usepackage{quiver}
+% \usepackage{tikz}
+
+% \usepackage{quiver}
+\usepackage[linguistics]{forest}
+
+
+
+
+%--------Page Setup--------
+
+\pagestyle{empty}%
+
+\setlength{\hoffset}{-1.54cm}
+\setlength{\voffset}{-1.54cm}
+
+\setlength{\topmargin}{0pt}
+\setlength{\headsep}{0pt}
+\setlength{\headheight}{0pt}
+
+\setlength{\oddsidemargin}{0pt}
+
+\setlength{\textwidth}{195mm}
+\setlength{\textheight}{250mm}
+
+
+%--------Macros--------
+
+\newcommand{\ilm}[1]{\begin{psmallmatrix} #1 \end{psmallmatrix}}
+\newcommand{\ilmb}[1]{\boxed{\begin{smallmatrix} #1 \end{smallmatrix}}}
+
+\newcommand{\sub}{\subseteq}
+\newcommand{\lcm}{\text{lcm}}
+\newcommand{\ms}[1]{\mathscr{#1}}
+\newcommand{\mc}[1]{\mathcal{#1}}
+\newcommand{\mf}[1]{\mathfrak{#1}}
+\newcommand{\sO}{\mathcal{O}}
+\newcommand{\cyclic}[1]{\langle#1\rangle}
+\newcommand{\units}[1]{#1 ^{\times}}
+\newcommand{\la}{\langle}
+\newcommand{\ra}{\rangle}
+\newcommand{\lr}[1]{\left(#1\right)}
+%----Switch phi and varphi
+\let\temp\phi
+\let\phi\varphi
+\let\varphi\temp
+
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\N}{\mathbb{N}\xspace}
+\newcommand{\I}{\mathbb{I}\xspace}
+\newcommand{\R}{\mathbb{R}\xspace}
+\newcommand{\Z}{\mathbb{Z}\xspace}
+\newcommand{\Q}{\mathbb{Q}\xspace}
+\newcommand{\G}{\mathbb{G}\xspace}
+\DeclareMathOperator{\Spec}{Spec}
+\DeclareMathOperator{\res}{res}
+\DeclareMathOperator{\Tr}{Tr}
+\DeclareMathOperator{\ord}{ord}
+\DeclareMathOperator{\Sym}{Sym}
+\DeclareMathOperator{\dv}{div}
+\DeclareMathOperator{\alb}{alb}
+\let\Im\relax
+\DeclareMathOperator{\Im}{Im}
+\DeclareMathOperator{\et}{et}
+\DeclareMathOperator{\ck}{coker}
+\DeclareMathOperator{\Reg}{Reg}
+\DeclareMathOperator{\Cor}{Cor}
+\DeclareMathOperator{\Ac}{at}
+\DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\Pic}{Pic}
+\DeclareMathOperator{\Gal}{Gal}
+\DeclareMathOperator{\fc}{frac}
+\DeclareMathOperator{\Ann}{Ann}
+\DeclareMathOperator{\Mod}{Mod}
+\DeclareMathOperator{\Cone}{Cone}
+\DeclareMathOperator{\FI}{FI}
+\DeclareMathOperator{\End}{End}
+\DeclareMathOperator{\Alb}{Alb}
+\DeclareMathOperator{\Ext}{Ext}
+\DeclareMathOperator{\ab}{ab}
+\DeclareMathOperator{\Jac}{Jac}
+\DeclareMathOperator{\coker}{coker}
+\DeclareMathOperator{\fr}{frac}
+\DeclareMathOperator{\spn}{span}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\rk}{rk}
+\DeclareMathOperator{\GL}{GL}
+\DeclareMathOperator{\Aut}{Aut}
+\DeclareMathOperator{\ch}{char}
+\DeclareMathOperator{\Fix}{Fix}
+
+
+%----Analysis
+\newcommand{\dd}[2][]{\frac{\partial^{#1}}{\partial {#2}^{#1}}}
+\newcommand{\summ}{\sum\limits}
+\newcommand{\norm}[1]{\left \vert \left \vert #1 \right \vert \right \vert}
+\newcommand{\thicc}{\bigg}
+\newcommand{\eps}{\varepsilon}
+\newcommand*\cls[1]{\overline{#1}}
+
+
+%--------Theorem environments--------
+\newtheorem{definition}{Definition}[]
+\newtheorem{lemma}{Lemma}[]
+\newtheorem{corollary}{Corollary}[]
+\newtheorem{theorem}{Theorem}[]
+\theoremstyle{remark}
+\newtheorem*{claim}{Claim}
+
+
+\newenvironment{solution}
+{\begin{proof}[Solution]}
+{\end{proof}}
+
+
+\makeatletter
+\newcolumntype{"}{@{\hskip\tabcolsep\vrule width 1pt\hskip\tabcolsep}}
+\makeatother
+
+% --------Problem environment--------
+\setlength\parindent{0pt}
+\setcounter{secnumdepth}{0}
+\newcounter{partCounter}
+\newcounter{homeworkProblemCounter}
+\setcounter{homeworkProblemCounter}{1}
+
+
+\newenvironment{homeworkProblem}[1][-1]{
+    \ifnum#1>0
+        \setcounter{homeworkProblemCounter}{#1}
+    \fi
+    \section{Problem \arabic{homeworkProblemCounter}}
+    \setcounter{partCounter}{1}
+    \stepcounter{homeworkProblemCounter}
+}
+
+
+%--------Metadata--------
+\title{MATH 7752 Homework 9}
+\author{James Harbour}
+
+
+\begin{document}
+\maketitle
+
+
+\begin{homeworkProblem}
+  Let $K/L/F$ be a tower of algebraic extensions. Show that $K/F$ is separable if and only if $K/L$ and $L/F$ are separable.
+
+  \begin{proof}\ \\
+    \underline{$\implies$}: Suppose that $K/F$ is separable. Let $\alpha\in K$. As $\mu_{\alpha,L}\vert\mu_{\alpha,F}$, it follows that $\mu_{\alpha,L}$ is separable so $K/L$ is separable. As $L\sub K$ and every element of $K$ is separable over $F$, it follows that $L/F$ is also separable. \\
+
+    \underline{$\impliedby$}: Assume that $K/L$ and $L/F$ are separable and
+    suppose, for the sake of contradiction, that $\alpha\in K\setminus L$ is inseparable. As $\mu_{\alpha,L}\vert \mu_{\alpha,F}$, there exists some $p(x)\in L[x]$ and $k\geq 1$ such that $\mu_{\alpha,F}(x) = (\mu_{\alpha,L}(x))^k p(x)$ and $\gcd(\mu_{\alpha,L},p)=1$. As $\mu_{\alpha,F}$ is inseparable,
+    \[
+      0 = \mu_{\alpha,F}' = \mu_{\alpha,L}^{k-1}(k\mu_{\alpha,L}' p + \mu_{\alpha,L}p') \implies -k\mu_{\alpha,L}'p = \mu_{\alpha,L}'p,
+    \]
+    contradicting that $\gcd(\mu_{\alpha,L},p)=1$.
+  \end{proof}
+
+\end{homeworkProblem}
+
+
+\begin{homeworkProblem}
+  Let $K/F$ be a finite separable extension. Show that there is a finite number of fields $L$ such that $F\subseteq L\subseteq K$.
+
+  \begin{proof}
+    By the primitive element theorem, there exists an $\alpha\in K$ such that $K = F(\alpha)$. Let $n = \deg(\mu_{\alpha,F})$, so $[K:F]\leq n$. Consider a splitting field $E$ of $\mu_{\alpha,F}$. \\
+
+
+    By induction over the number of roots of $\mu_{\alpha,F}$, it follows that $E/F$ is finite of degree at most $n!$.\\
+
+    Moreover, $E/F$ is Galois and $|\Gal(E/F)| = [E:F]\leq n!$, and intermediate fields $L$ with $F\sub L\sub E$ correspond precisely to subgroups of $\Gal(E/F)$, of which there are finitely many, so there are \emph{a fortiori} finitely many intermediate fields $L$ with $F\sub L\sub F(\alpha)\sub E$.
+  \end{proof}
+
+\end{homeworkProblem}
+
+
+\begin{homeworkProblem}
+  Let $F$ be a field of $\ch(F)=p>0.$ Show that $F$ admits a finite inseparable extension $K/F$ if and only if $F$ is not perfect.
+
+  \begin{proof}\ \\
+    \underline{$\impliedby$}: Suppose that $F$ is not perfect. Take $\alpha\in F\setminus\phi(F)$. We claim first that the polynomial $f(x) = x^p-\alpha\in F[x]$ is irreducible. Fix an algebraic closure $\cls{F}$ of $F$ and identify $F$ with its copy inside $\cls{F}$. Let $\beta\in\cls{F}$ be a root of $f$. Then $\beta^p = \alpha$, so $x^p-\alpha = x^p-\beta^p = (x-\beta)^p\in\cls{F}[x]$, so if $f = gh$ for some $g,h\in F[x]$ then $g = (x-\beta)^n$ with $n<p$, whence $(x-\beta)^n = x^n -n\cdot\beta x^{n-1}+\cdots \not\in F[x]$ as $\beta\not\in F$.\\
+
+    Now, consider the field $K = F[x]/(x^p-\alpha)$ and identify $F$ inside $K$. Then $[K:F] = p$ and $y^p-\alpha\in F[y]$ has a root $\cls{x}\in K$, whence $y^p-\alpha = y^p-\cls{x}^p = (y-\cls{x})^p$ and is thus not separable.\\
+
+    \underline{$\implies$}: We proceed by contraposition. Suppose that $F$ is perfect. Let $K/F$ be a finite extension and suppose that $\alpha\in K$. Let $f(x) = \mu_{\alpha,F}\in F[x]$. By the argument in problem 5 part (a)'s proof, there exists a separable $g(x)\in F[x]$ and $n\geq 0$ such that $f(x) = g(x^{p^n})$. Consider the polynomial $g(x^{p^{n-1}})$. As $\phi$ is surjective, each of its coefficients have $p^{th}$ roots, so let $h(x^{p^{n-1}})\in F[x]$ be the polynomial obtained by replaceing every coefficient in $g(x^{p^{n-1}})$ with its $p^{th}$ root. Then $f(x) = g(x^{p^n}) = h(x^{p^{n-1}})^p$, whence irreduciblity of $f$ implies that $n=0$, and thus $f = g$ is separable, so $K/F$ is separable.
+  \end{proof}
+
+\end{homeworkProblem}
+
+
+\begin{homeworkProblem}
+  Let $F$ be a field of characteristic $p>0$ and let $K/F$ be an extension. \\
+
+  \textbf{(a)}: Let $E=\{\alpha\in K:\alpha^{p^n}\in F,\text{ for some }n\geq 1\}$. Prove that $E$ is a subfield of $K$.
+
+  \begin{proof}
+    It is clear that $0,1\in E$. Suppose that $\alpha,\beta\in E$. Then there exist $n,m\in\N$ such that $\alpha^{p^n},\beta^{p^m}\in F$, whence
+    \[
+      (\alpha+\beta)^{p^{mn}} = (\alpha^{p^n})^m + (\beta^{p^m})^n \in F
+    \]
+    so $\alpha+\beta\in E$. Also $(-\alpha)^{p^n} = (-1)^{p^n}\alpha^{p^n}$, so $-\alpha\in E$, and $(\alpha\beta)^{p^{mn}}=(\alpha^{p^n})^m (\beta^{p^m})^n \in F$ so $\alpha\beta\in F$. Lastly, $(\frac{1}{\alpha})^{p^n} = \frac{1}{\alpha^{p^n}}\in F$, so $\frac{1}{\alpha}\in E$.
+  \end{proof}
+
+  \textbf{(b)}: Show that every $F$-automorphism of $K$ is automatically an $E$-automorphism.
+
+  \begin{proof}
+    Let $\sigma\in\Aut(K/F)$. Suppose that $\alpha\in E$, so there is some $n\in\N$ such that $\alpha^{p^n}\in F$. Then
+    \[
+      \sigma(\alpha)^{p^n} = \sigma(\alpha^{p^n}) = \alpha^{p^n}\implies (\sigma(\alpha)-\alpha)^{p^n} = 0
+    \]
+    so $\sigma(\alpha)=\alpha$.
+  \end{proof}
+
+\end{homeworkProblem}
+
+
+\begin{homeworkProblem}
+  Let $F$ be a field of characteristic $p>0$ and let $K/F$ be a finite extension. \\
+
+  \textbf{(a)}: Let $\alpha\in K$. Show that either $\alpha^{p^n}\in F$ for some $n\geq 1$, or there exists some $m\geq 1$ such that $\alpha^{p^m}\not\in F$ and the element $\alpha^{p^m}$ is separable over $F$.
+
+  \begin{proof}
+    Suppose that $\alpha^{p^n}\not\in F$ for all $n\in \N$. Consider $f(x) = \mu_{\alpha,F}(x)$. If $f$ is separable, then we are done. Otherwise, $f'=0$, so there exists some $h\in F[x]$ with $\deg(h)<\deg(f)$ such that $f = h(x^p)$. Continuing in this way until decreasing degree forces us to stop, we find some $g\in F[x]$ and $n\in\N$ such that $f(x) = g(x^{p^n})$ and such that $g$ is separable, so $\alpha^{p^n}$ is separable.
+  \end{proof}
+
+
+  \textbf{(b)} Suppose that no element of $K\setminus F$ is separable over $F$. (Such extensions are called \textit{purely inseparable}). Deduce that for every $\alpha\in K$ there exists some $n\geq 1$ (depending on $\alpha$) such that $\alpha^{p^n}\in F$.
+
+  \begin{proof}
+    Let $\alpha\in K\setminus F$ and suppose for the sake of contradiction that $\alpha^{p^n}\not\in F$ for all $n\in \N$. Then by part (a), there is some $m\in \N$ such that $\alpha^{p^m}\not\in F$ and $\alpha^{p^m}$ is separable over $F$, contradicting the assumption that $K/F$ is purely inseparable.
+  \end{proof}
+
+\end{homeworkProblem}
+
+
+\begin{homeworkProblem}
+  The purpose of this problem is to show that the primitive element theorem is not true for inseparable extensions. Let $p$ be a prime number. Let $t$ be a transcendental element over $\F_p$ and let $F=\F_p(t)$. Let $s$ be a transcendental element over $F$ and let $K=F(s)$. Consider the polynomial $f(x)=(x^p-t)(x^p-s)\in K[x]$ and let $L$ be its splitting field.\\
+
+  \textbf{(1)}: Prove that $[L:K]=p^2$.
+  \begin{proof}
+    Let $\alpha,\beta\in L$ such that $\alpha^p = t$ and $\beta^p = s$. Then $f(x) = (x-\alpha)^p(x-\beta)^p$, so $L = K(\alpha,\beta)$. By the same argument as in problem 3, these polynomials are irreducible, so $\mu_{\alpha,K} = x^p - t$ and $\mu_{\alpha,K} = x^p-s$. We claim that $\beta\not \in K(\alpha)$. Suppose, for the sake of contradiction, that there exist $p(x),q(x)\in K[x]$ such that $\beta = \frac{p(\alpha)}{q(\alpha)}$. Moreover, there exist $\tilde p,\tilde q \in K[x]$ such that $p(x)^p = \tilde p(x^p)$ and $q(x)^p = \tilde q(x^p)$. Then,
+    \[
+      \beta^p = \frac{p(\alpha)^p}{q(\alpha)^p} = \frac{\tilde p(t)}{\tilde q(t)} \implies s \cdot\tilde q(t) - \tilde p(t) = 0
+    \]
+    contradicting that $s$ is transcendental over $K$. Thus $[K(\alpha,\beta):K(\alpha)] = p$, so $[L:K] = p^2$.
+  \end{proof}
+
+  \textbf{(2)}: Show that for every $\gamma\in L$, it follows that $\gamma^p\in K$.
+
+  \begin{proof}
+    Let $\gamma\in L = K(\alpha,\beta)$. Then there exist $p(x,y),q(x,y)\in K[x,y]$ such that $\gamma = \frac{p(\alpha,\beta)}{q(\alpha,\beta)}$. Moreover, there are $u(x,y),v(x,y)\in K[x,y]$ such that $p(x,y)^p = u(x^p,y^p)$ and $q(x,y)^p = v(x^p,y^p)$. Then
+    \[
+      \gamma^p = \frac{p(\alpha,\beta)^p}{q(\alpha,\beta)^p} = \frac{u(t,s)}{v(t,s)}\in K.
+    \]
+
+  \end{proof}
+
+  \textbf{(3)}: Show that the extension $L/K$ is not simple.
+
+  \begin{proof}
+    Suppose, for the sake of contradiction, that $L/K$ is simple. Then there exists some $\gamma\in L$ such that $L = K(\gamma)$. As $\gamma^p\in K$, it follows that $[L:K]\leq p$, contradicting that $[L:K] = p^2$.
+  \end{proof}
+
+\end{homeworkProblem}
+
+\end{document}
