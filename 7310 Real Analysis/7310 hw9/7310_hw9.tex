@@ -1,0 +1,210 @@
+\documentclass[12pt,letterpaper]{article}
+
+%--------Packages--------
+\usepackage{amsmath, amsthm, amssymb}
+\usepackage{xspace}
+\usepackage{graphicx}
+\usepackage{hhline}
+\usepackage{amssymb}
+\usepackage{array}
+\usepackage{braket}
+\usepackage{multicol}
+\usepackage{mathtools}
+\usepackage{enumerate}
+\usepackage{delarray}
+\usepackage{mathtools}
+\usepackage{fullpage}
+\usepackage{faktor} % For quotients
+\usepackage{mathrsfs}
+
+\usepackage[italicdiff]{physics} % For differentials
+\usepackage{bbm} % For indicator
+
+% \usepackage{quiver}
+\usepackage[linguistics]{forest}
+
+
+
+
+%--------Page Setup--------
+
+\pagestyle{empty}%
+
+\setlength{\hoffset}{-1.54cm}
+\setlength{\voffset}{-1.54cm}
+
+\setlength{\topmargin}{0pt}
+\setlength{\headsep}{0pt}
+\setlength{\headheight}{0pt}
+
+\setlength{\oddsidemargin}{0pt}
+
+\setlength{\textwidth}{195mm}
+\setlength{\textheight}{250mm}
+
+
+%--------Macros--------
+
+\newcommand{\sub}{\subseteq}
+\newcommand{\lcm}{\text{lcm}}
+\newcommand{\mc}[1]{\mathcal{#1}}
+\newcommand{\mf}[1]{\mathfrak{#1}}
+\newcommand{\ms}[1]{\mathscr{#1}}
+\newcommand{\sO}{\mathcal{O}}
+\newcommand{\cyclic}[1]{\langle#1\rangle}
+\newcommand{\units}[1]{#1 ^{\times}}
+\newcommand{\la}{\langle}
+\newcommand{\ra}{\rangle}
+\newcommand{\lr}[1]{\left(#1\right)}
+
+\DeclarePairedDelimiterX{\inp}[2]{\langle}{\rangle}{#1, #2}
+
+%----Switch phi and varphi
+% \let\temp\phi
+% \let\phi\varphi
+% \let\varphi\temp
+
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\N}{\mathbb{N}\xspace}
+\newcommand{\I}{\mathbb{I}\xspace}
+\newcommand{\R}{\mathbb{R}\xspace}
+\newcommand{\Z}{\mathbb{Z}\xspace}
+\newcommand{\Q}{\mathbb{Q}\xspace}
+\newcommand{\G}{\mathbb{G}\xspace}
+
+\DeclareMathOperator{\Spec}{Spec}
+\DeclareMathOperator{\res}{res}
+% \DeclareMathOperator{\Tr}{Tr}
+\DeclareMathOperator{\ord}{ord}
+\DeclareMathOperator{\Sym}{Sym}
+% \DeclareMathOperator{\dv}{div}
+\DeclareMathOperator{\alb}{alb}
+\DeclareMathOperator{\img}{Im}
+\DeclareMathOperator{\et}{et}
+\DeclareMathOperator{\ck}{coker}
+\DeclareMathOperator{\Reg}{Reg}
+\DeclareMathOperator{\Cor}{Cor}
+\DeclareMathOperator{\Ac}{at}
+\DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\Pic}{Pic}
+\DeclareMathOperator{\Gal}{Gal}
+\DeclareMathOperator{\fc}{frac}
+\DeclareMathOperator{\Ann}{Ann}
+\DeclareMathOperator{\Mod}{Mod}
+\DeclareMathOperator{\Cone}{Cone}
+\DeclareMathOperator{\FI}{FI}
+\DeclareMathOperator{\End}{End}
+\DeclareMathOperator{\Alb}{Alb}
+\DeclareMathOperator{\Ext}{Ext}
+\DeclareMathOperator{\ab}{ab}
+\DeclareMathOperator{\Jac}{Jac}
+\DeclareMathOperator{\coker}{coker}
+\DeclareMathOperator{\fr}{frac}
+\DeclareMathOperator{\Int}{Int}
+\let\Span\relax
+\DeclareMathOperator{\Span}{Span}
+\DeclareMathOperator{\Ran}{Ran}
+
+
+
+%----Analysis
+\newcommand{\summ}{\sum\limits}
+% \newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\thicc}{\bigg}
+\newcommand{\eps}{\varepsilon}
+\newcommand*\cls[1]{\overline{#1}}
+\newcommand{\ind}{\mathbbm{1}}
+
+
+%--------Theorem environments--------
+\newtheorem{definition}{Definition}[]
+\newtheorem{lemma}{Lemma}[]
+\newtheorem{corollary}{Corollary}[]
+\newtheorem{theorem}{Theorem}[]
+\theoremstyle{remark}
+\newtheorem*{claim}{Claim}
+
+
+\newenvironment{solution}
+{\begin{proof}[Solution]}
+{\end{proof}}
+
+
+\makeatletter
+\newcommand{\thickhline}{%
+    \noalign {\ifnum 0=`}\fi \hrule height 1pt
+    \futurelet \reserved@a \@xhline
+}
+\newcolumntype{"}{@{\hskip\tabcolsep\vrule width 1pt\hskip\tabcolsep}}
+\makeatother
+
+% --------Problem environment--------
+\setlength\parindent{0pt}
+\setcounter{secnumdepth}{0}
+\newcounter{partCounter}
+\newcounter{homeworkProblemCounter}
+\setcounter{homeworkProblemCounter}{1}
+
+
+\newenvironment{homeworkProblem}[1][-1]{
+    \ifnum#1>0
+        \setcounter{homeworkProblemCounter}{#1}
+    \fi
+    \section{Problem \arabic{homeworkProblemCounter}}
+    \setcounter{partCounter}{1}
+    \stepcounter{homeworkProblemCounter}
+}
+
+
+%--------Metadata--------
+\title{MATH 7310 Homework 9}
+\author{James Harbour}
+
+\begin{document}
+\maketitle
+
+
+\begin{homeworkProblem}[3]
+  \textbf{(a)}: Let $(X,\Sigma)$ be a measurable space. Let $M(\Sigma)$ be the vector space of complex measures on $\Sigma$ with the total variation norm $\norm{\mu} = |\mu|(X)$. Show that $M(\Sigma)$ is a Banach space. \\
+  \hspace{10pt}Suggestion: it may be helpful to use that for $\mu\in M(\Sigma)$ we ahve
+  \[
+    \sum_{n=1}^{\infty}|\mu(E_n)|\leq\norm{\mu}
+  \]
+  where $(E_n)_{n=1}^
+  \infty$ is a sequence of pairwise disjoint elements of $\Sigma$ (this is a consequence of a prior problem on this homework).\\
+
+  \textbf{(b)}: Fix a positive, $\sigma$-finite measure $\mu$ on $\Sigma$. Show that the map $J : L^1(X,\mu)\to M(\Sigma)$ given by $J(f) = f\dd{\mu}$ is a linear isometry with closed image.
+
+  \begin{proof}
+    Let  We wish to show that for $f,g\in L^1(X,\mu)$ and $\alpha\in\C$, $J(\alpha f+g) = \alpha J(f)+J(g)$, after which showing that $\norm{J(f)}_{M(\Sigma)} = \norm{f}_{L^1(\mu)}$ would imply that $J$ is a linear isometry. \\
+
+    % TODO Linearity
+
+    Let $f\in L^1(X,\mu)$. We compute
+    \[
+      \norm{J(f)}_{M(\Sigma)} = |J(f)|(X) = J(f)(X) = \int_{X}f\dd{\mu} = \norm{f}_{L^1(\mu)}.
+    \]
+
+    % TODO image is closed.
+
+    Suppose that $(J(f_n))_{n=1}^{\infty}$ converges to $\nu$ in $M(\Sigma)$ where $(f_n)_{n=1}^{\infty}$ is in $L^1(X,\mu)$. So
+    \[
+      \norm{J(f_n)-\nu}_{M(\Sigma)}\xrightarrow{n\to \infty}0
+    \]
+  \end{proof}
+
+  \textbf{(c)}: Suppose that $\mu,\nu\in M(\Sigma)$, and let $\dd{\nu} = f\dd{\mu}+\dd{\lambda}$ with $\lambda\perp\mu$ be the Lebesgue-Radon-Nikodym decomposition. Show that
+  \[
+    \norm{\mu-\nu} = \norm{1-f}_{L^1(\mu)}+\norm{\lambda}.
+  \]
+\end{homeworkProblem}
+
+
+\begin{homeworkProblem}[5]
+  Let $\psi:\R\to\R$ be given as $\psi = \ind_{[0,1/2)}-\ind_{[1/2,1]}$. For $n,k\in\Z$ define $h_{n,k}(t) = 2^{n/2}\psi(2^n t-k)$. Show that $\mc{E} = \{ 1\}\cup\{h_{n,k}:n\in \N\cup\{ 0\{,\, 0\leq k<2^n \}$ is an orthonormal basis for $L^2([0,1])$.
+\end{homeworkProblem}
+
+\end{document}
