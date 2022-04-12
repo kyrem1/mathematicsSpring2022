@@ -194,12 +194,46 @@
     \[
       \norm{J(f_n)-\nu}_{M(\Sigma)}\xrightarrow{n\to \infty}0
     \]
+    Suppose that $E\in\Sigma$ is null. Then as $J(f_n)\ll \mu$, $|J(f_n)|(E) = 0$ for all $n\in\N$. So by problem 2,
+    \[
+      |\nu|(E) \leq |J(f_n)(E-\nu(E))| + |J(f_n)(E)| \leq \norm{J(f_n)-\nu}_{M(\Sigma)}\xrightarrow{n\to \infty}0
+    \]
+    whence $|\nu|(E) = 0$ i.e. $E$ is null for $\nu$. Thus $\nu\ll \mu$. By the Lebesgue-Radon-Nikodym theorem, there exists some $f\in L^1(X,\mu)$ such that $\nu = f\dd{\mu} = J(f)$, so $\nu$ is in the image of $J$.
   \end{proof}
 
   \textbf{(c)}: Suppose that $\mu,\nu\in M(\Sigma)$, and let $\dd{\nu} = f\dd{\mu}+\dd{\lambda}$ with $\lambda\perp\mu$ be the Lebesgue-Radon-Nikodym decomposition. Show that
   \[
     \norm{\mu-\nu} = \norm{1-f}_{L^1(\mu)}+\norm{\lambda}.
   \]
+
+  \begin{proof}
+    Observe that
+  \end{proof}
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+  If $E$ is a Borel set in $\R^n$, the density $D_E(x)$ of $E$ at $x$ is defined as
+  \[
+    D_E(x) = \lim_{r\to0}\frac{m(E\cap B_r(x))}{m(B_r(x))},
+  \]
+  whenever the limit exists.\\
+
+  \textbf{(a)}: Show that $D_E(x) = 1$ for a.e. $x\in E$ and $D_E(x) = 0$ for a.e. $x\in E^c$.
+
+  \begin{proof}
+    Define a new Borel measure $\nu$ by $\nu(F) = \mu(E\cap F)$ for Borel $F$. Then $\nu\ll m$ and observe that, for Borel sets $F$,
+    \[
+      \nu(F) = \int \ind_{E\cap F}\dd{m} = \int \ind_E \ind_F\dd{m} = \int_F \ind_E\dd{m},
+    \]
+    so $\frac{\dd{\nu}}{\dd{m}} = \ind_E$ $m$-a.e. by uniqueness in Lebesgue-Radon-Nikodym theorem. Moreover, as $\nu(F)\leq m(F)$ for all Borel $F$, it follows that $\nu$ is finite on compacts and thus regular, so by the Lebesgue differentiation theorem, the following limit exists for $m$-a.e. $x$ and is equal to
+    \[
+      D_E(x) = \lim_{r\to 0}\frac{\nu(B_r(x))}{m(B_r(x))} = \ind_E(x),
+    \]
+    whence the claim follows.
+  \end{proof}
+
+  \textbf{(b)}: Find examples of $E$ and $x$ such that $D_E(x)$ is a given number $\alpha\in (0,1)$, or such that $D_E(x)$ does not exist. \\
+
 \end{homeworkProblem}
 
 
