@@ -1,0 +1,316 @@
+\documentclass[12pt,letterpaper]{article}
+
+%--------Packages--------
+\usepackage{amsmath, amsthm, amssymb}
+\usepackage{xspace}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{array}
+\usepackage{braket}
+\usepackage{multicol}
+\usepackage{mathtools}
+\usepackage{enumerate}
+\usepackage{delarray}
+\usepackage{mathtools}
+\usepackage{fullpage}
+\usepackage{faktor} % For quotients
+\usepackage{mathrsfs}
+\usepackage{quiver}
+\usepackage{tikz}
+
+\usepackage[linguistics]{forest}
+
+
+
+
+%--------Page Setup--------
+
+\pagestyle{empty}%
+
+\setlength{\hoffset}{-1.54cm}
+\setlength{\voffset}{-1.54cm}
+
+\setlength{\topmargin}{0pt}
+\setlength{\headsep}{0pt}
+\setlength{\headheight}{0pt}
+
+\setlength{\oddsidemargin}{0pt}
+
+\setlength{\textwidth}{195mm}
+\setlength{\textheight}{250mm}
+
+
+%--------Macros--------
+
+\newcommand{\ilm}[1]{\begin{psmallmatrix} #1 \end{psmallmatrix}}
+\newcommand{\ilmb}[1]{\boxed{\begin{smallmatrix} #1 \end{smallmatrix}}}
+
+\newcommand{\sub}{\subseteq}
+\newcommand{\lcm}{\text{lcm}}
+\newcommand{\ms}[1]{\mathscr{#1}}
+\newcommand{\mc}[1]{\mathcal{#1}}
+\newcommand{\mf}[1]{\mathfrak{#1}}
+\newcommand{\sO}{\mathcal{O}}
+\newcommand{\cyclic}[1]{\langle#1\rangle}
+\newcommand{\units}[1]{#1 ^{\times}}
+\newcommand{\la}{\langle}
+\newcommand{\ra}{\rangle}
+\newcommand{\lr}[1]{\left(#1\right)}
+\newcommand{\divides}{\bigm|}
+%----Switch phi and varphi
+\let\temp\phi
+\let\phi\varphi
+\let\varphi\temp
+
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\N}{\mathbb{N}\xspace}
+\newcommand{\I}{\mathbb{I}\xspace}
+\newcommand{\R}{\mathbb{R}\xspace}
+\newcommand{\Z}{\mathbb{Z}\xspace}
+\newcommand{\Q}{\mathbb{Q}\xspace}
+\newcommand{\G}{\mathbb{G}\xspace}
+\DeclareMathOperator{\Spec}{Spec}
+\DeclareMathOperator{\res}{res}
+\DeclareMathOperator{\Tr}{Tr}
+\DeclareMathOperator{\ord}{ord}
+\DeclareMathOperator{\Sym}{Sym}
+\DeclareMathOperator{\dv}{div}
+\DeclareMathOperator{\alb}{alb}
+\let\Im\relax
+\DeclareMathOperator{\Im}{Im}
+\DeclareMathOperator{\et}{et}
+\DeclareMathOperator{\ck}{coker}
+\DeclareMathOperator{\Reg}{Reg}
+\DeclareMathOperator{\Cor}{Cor}
+\DeclareMathOperator{\Ac}{at}
+\DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\Pic}{Pic}
+\DeclareMathOperator{\Gal}{Gal}
+\DeclareMathOperator{\fc}{frac}
+\DeclareMathOperator{\Ann}{Ann}
+\DeclareMathOperator{\Mod}{Mod}
+\DeclareMathOperator{\Cone}{Cone}
+\DeclareMathOperator{\FI}{FI}
+\DeclareMathOperator{\End}{End}
+\DeclareMathOperator{\Alb}{Alb}
+\DeclareMathOperator{\Ext}{Ext}
+\DeclareMathOperator{\ab}{ab}
+\DeclareMathOperator{\Jac}{Jac}
+\DeclareMathOperator{\coker}{coker}
+\DeclareMathOperator{\fr}{frac}
+\DeclareMathOperator{\spn}{span}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\rk}{rk}
+\DeclareMathOperator{\GL}{GL}
+\DeclareMathOperator{\Aut}{Aut}
+\DeclareMathOperator{\ch}{char}
+\DeclareMathOperator{\Fix}{Fix}
+
+
+%----Analysis
+\newcommand{\dd}[2][]{\frac{\partial^{#1}}{\partial {#2}^{#1}}}
+\newcommand{\summ}{\sum\limits}
+\newcommand{\norm}[1]{\left \vert \left \vert #1 \right \vert \right \vert}
+\newcommand{\thicc}{\bigg}
+\newcommand{\eps}{\varepsilon}
+\newcommand*\cls[1]{\overline{#1}}
+
+
+%--------Theorem environments--------
+\newtheorem{definition}{Definition}[]
+\newtheorem{lemma}{Lemma}[]
+\newtheorem{corollary}{Corollary}[]
+\newtheorem{theorem}{Theorem}[]
+\theoremstyle{remark}
+\newtheorem*{claim}{Claim}
+
+
+\newenvironment{solution}
+{\begin{proof}[Solution]}
+{\end{proof}}
+
+
+\makeatletter
+\newcolumntype{"}{@{\hskip\tabcolsep\vrule width 1pt\hskip\tabcolsep}}
+\makeatother
+
+% --------Problem environment--------
+\setlength\parindent{0pt}
+\setcounter{secnumdepth}{0}
+\newcounter{partCounter}
+\newcounter{homeworkProblemCounter}
+\setcounter{homeworkProblemCounter}{1}
+
+
+\newenvironment{homeworkProblem}[1][-1]{
+    \ifnum#1>0
+        \setcounter{homeworkProblemCounter}{#1}
+    \fi
+    \section{Problem \arabic{homeworkProblemCounter}}
+    \setcounter{partCounter}{1}
+    \stepcounter{homeworkProblemCounter}
+}
+
+
+%--------Metadata--------
+\title{MATH 7752 Homework 10}
+\author{James Harbour}
+
+
+\begin{document}
+\maketitle
+
+\begin{homeworkProblem}
+  Let $F$ be a field, $f(x)\in F[x]$ be an irreducible separable polynomial over $F$ of degree $n$ and let $K$ be a splitting field of $f(x)$.\\
+
+  \textbf{(a)}: Prove that $|\Gal(K/F)|$ is a multiple of $n$ and divides $n!$.
+
+  \begin{proof}
+    By separability, $[K:F] = |\Gal(K/F)|$. Let $\alpha\in K$ be a root of $f$. By irreducibility of $f$, $f = \mu_{\alpha,F}$ whence
+    \[
+      |\Gal(K/F)| = [K:F] = [K: F(\alpha)][F(\alpha): F] = [K:F(\alpha)]\deg(\mu_{\alpha,F}) = [K:F(\alpha)]\cdot n,
+    \]
+    so $n\divides |\Gal(K/F)|$.\\
+
+    To see that $|Gal(K/F)|$ divides $n!$, note as $K$ is the splitting field of irreducible $f$ of degree $n$, we have an injective group homomorphism $\rho:\Gal(K/F)\hookrightarrow S_n$ induced by a labeling of the roots of $f$.
+  \end{proof}
+
+  \textbf{(b)}: Let $n=3$. Prove that $\Gal(K/F)$ is isomorphic to either $\Z/3\Z$ or $S_3$.
+
+  \begin{proof}
+    Let $G = \Gal(K/F)$. By part (a), $3\divides |G| = |\rho(G)|$ so by Sylow's existence theorem there is some subgroup $H\sub \rho(G)$ such that $|H| = 3$. Hence, there is some $3$-cycle $\sigma\in H$ such that $H = \cyclic{\sigma}$. \\
+
+
+    If $\rho(G) = H$, then $G\cong \Z/3\Z$ and we would be done. \\
+
+    Otherwise, suppose that $\rho(G)\neq H$. Then there exists some $\tau\in \rho(G)\setminus H$. This $\tau$ must be a $2$-cycle by noting that $H$ contains the identity and all of the $3$-cycles in $S_3$. Noting that $\sigma$ is a $3$-cycle, $\tau$ is a transposition, and $3$ is prime, it follows by elementary group theory that $S_3$ is generated by $\sigma$ and $\tau$. Thus $\rho(G) = S_3$, so $G\cong S_3$.
+  \end{proof}
+
+  \textbf{(c)}: Let $n=4$ and assume that $|\Gal(K/F)|=8$. Determine the isomorphism class of $\Gal(K/F)$.
+
+  \begin{proof}
+    Noting that $|\rho(G)|=8= 2^3$, it follows that $\rho(G)$ is a Sylow $2$-subgroup of $S_4$. As all Sylow subgroups for a fixed prime are isomorphic via conjugation (by Sylow's conjugate theorem), it suffices to determine the isomorphism class of one Sylow $2$-subgroup of $S_4$. Noting that the natural embedding of $D_8$ into $S_4$ induced by a labeling of the vertices of the square upon which $D_8$ acts, it follows that the identified copy of $D_8$ inside $S_4$ is a Sylow $2$-subgroup of $S_4$. Thus, all Sylow $2$-subgroups of $S_4$ are isomorphic to $D_8$, whence $\Gal(K/F)\cong D_8$.
+  \end{proof}
+
+\end{homeworkProblem}
+
+
+\begin{homeworkProblem}
+  Let $f(x)\in\Q[x]$ be an irreducible polynomial of degree $n$, and let $K$ be a splitting field of $f(x)$ contained in $\C$. Label the roots of $f(x)$ by $\alpha_1,\ldots, \alpha_n$ (in some order), and let $\rho:\Gal(K/\Q)\hookrightarrow S_n$ be the associated embedding.
+
+  \textbf{(a)}: Assume that $f(x)$ has at least one non-real root. Prove that the complex conjugation gives an element $\tau$ of $\Gal(K/\Q)$ of order $2$. What can you say about $\tau$ if $f(x)$ has precisely two non-real roots?
+
+  \begin{proof}
+    Consider the $\Q$-embedding $\tau:K\hookrightarrow\cls{Q}\sub\C$ given by complex conjugation. By normality of $K/\Q$, it follows that $\tau(K) = K$, so $\tau\in \Gal(K/\Q)$. As $f$ has a non-real root, it follows that $\tau\neq id_K$. Thus, noting that $\tau^2 = id_K$, $\tau$ has order 2.\\
+
+    If $f$ has precisely two non-real roots, as $\Gal(K/\Q)$ acts transitively on the set of roots of $f$ and fixes all of the real roots it follows that the two non-real roots say $\alpha_1$ and $\alpha_2$ are complex conjugates of each other. In this case, $\rho(\tau)$ is in fact a single transposition.
+  \end{proof}
+
+  \textbf{(b)}: Suppose that the degree $n$ of $f(x)$ is a  prime number, and that $f(x)$ has precisely two non-real roots. Prove that $\Gal(K/\Q)$ is isomorphic to $S_n$. \textbf{Hint:} You might need to recall some facts from Algebra I about generators of $S_n$.
+
+  \begin{proof}
+    Let $p = n$ be a prime number. Let $G = \Gal(K/\Q)$. By problem 1 part (a), $p\divides |\rho(G)| \divides p!$, whence by Sylow's theorem there exists a subgroup $H\sub\rho(G)$ such that $|H| = p$. This subgroup is cyclic of order $p$, so there exists a $p$-cycle $\sigma\in H$ such that $H=\cyclic{\sigma}$. Let $\tau\in\rho(G)$ be as in part (a). Then $\tau\not\in H$ as all elements of $H$ are either the identity or have order $p$. \\
+
+    As $\tau$ is a transposition, $\sigma$ is a $p$-cycle, and $p$ is prime, it follows that $\S_p = \cyclic{\sigma,\tau}\sub \rho(G)$ whence $\rho(G) = S_p$, so $G\cong S_p$.
+  \end{proof}
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+  Let $K$ be the splitting field of $f(x)=x^4-2\in\Q[x]$.\\
+
+  \textbf{(a)}:  Choose an order on the set of roots of $f(x)$ and describe the associated embedding $\Gal(K/\Q)\hookrightarrow S_4$. (You can use the information you obtained in Homework 8).
+
+  \begin{proof}
+    Let $\zeta = e^{2\pi i/4} = i$ and $\alpha_j = \zeta^{j-1}\sqrt[4]{2}$ for $1\leq j \leq 4$. Then $f(x) = (x-\alpha_1)\cdots(x-\alpha_4)$ and $K = F(\alpha_1,\ldots,\alpha_4) = F(\sqrt[4]{2},i)$.\\
+
+    As $\deg_{\Q(\sqrt[4]{2})}(i) = \deg_{\Q}(i)$, it follows by the explicit description of Galois groups that there exist $\sigma,\tau\in\Gal(K/\Q)$ such that
+    \begin{align*}
+      \sigma(\sqrt[4]{2}) &= \zeta \sqrt[4]{2} &\tau(\sqrt[4]{2}) &= \sqrt[4]{2}\\
+      \sigma(\zeta) &= \zeta &\tau(\zeta) &= \zeta^3.
+    \end{align*}
+    Letting $\rho:\Gal(K/\Q)\hookrightarrow S_4$ be the embedding associated to the aforementioned labeling of the roots of $f$, it follows that $\rho(\sigma) = (1234)$ and $\rho(\tau) = (24)$. The subgroup of $S_4$ generated by these two elements is an isomorphic copy of $D_8$, so it follows from the fact that $[K:\Q] = 8$ that $\Gal(K/\Q) = \cyclic{\sigma,\tau}$, whence these values of $\rho$ completely determine the embedding.
+  \end{proof}
+
+  \textbf{(b)}: Describe all subgroups of $\Gal(K/\Q)$ and the corresponding subfields of $K$.
+
+  \begin{proof}
+    For the subfield diagram, we have
+    \[\begin{tikzcd}
+    	&& {\langle \sigma,\tau\rangle} \\
+    	& {\langle \sigma^2,\sigma\tau\rangle} & {\langle \sigma\rangle} & {\langle \sigma^2,\tau\rangle} \\
+    	{\langle \sigma\tau\rangle} & {\langle \sigma^3\tau\rangle} & {\langle \sigma^2\rangle} & {\langle \sigma^2\tau\rangle} & {\langle \tau\rangle} \\
+    	&& {\{e\}}
+    	\arrow[no head, from=3-1, to=4-3]
+    	\arrow[no head, from=3-2, to=4-3]
+    	\arrow[no head, from=3-3, to=4-3]
+    	\arrow[no head, from=3-4, to=4-3]
+    	\arrow[no head, from=3-5, to=4-3]
+    	\arrow[no head, from=2-2, to=3-2]
+    	\arrow[no head, from=2-2, to=3-1]
+    	\arrow[no head, from=2-2, to=3-3]
+    	\arrow[no head, from=2-3, to=3-3]
+    	\arrow[no head, from=2-4, to=3-3]
+    	\arrow[no head, from=2-4, to=3-4]
+    	\arrow[no head, from=2-4, to=3-5]
+    	\arrow[no head, from=1-3, to=2-3]
+    	\arrow[no head, from=1-3, to=2-2]
+    	\arrow[no head, from=1-3, to=2-4]
+    \end{tikzcd}\]
+
+    with its corresponding subfield diagram
+
+    \[\begin{tikzcd}
+    	&& {\mathbb{Q}(\sqrt[4]{2},i)} \\
+    	{\mathbb{Q}((1+i)\sqrt[4]{2})} & {\mathbb{Q}((1-i)\sqrt[4]{2})} & {\mathbb{Q}(\sqrt{2},i)} & {\mathbb{Q}(i\sqrt[4]{2})} & {\mathbb{Q}(\sqrt[4]{2})} \\
+    	& {\mathbb{Q}(i\sqrt{2})} & {\mathbb{Q}(i)} & {\mathbb{Q}(\sqrt{2})} \\
+    	&& {\mathbb{Q}}
+    	\arrow[no head, from=2-1, to=3-2]
+    	\arrow[no head, from=2-2, to=3-2]
+    	\arrow[no head, from=2-3, to=3-3]
+    	\arrow[no head, from=2-3, to=3-2]
+    	\arrow[no head, from=2-3, to=3-4]
+    	\arrow[no head, from=2-4, to=3-4]
+    	\arrow[no head, from=2-5, to=3-4]
+    	\arrow[no head, from=3-2, to=4-3]
+    	\arrow[no head, from=3-3, to=4-3]
+    	\arrow[no head, from=3-4, to=4-3]
+    	\arrow[no head, from=2-1, to=1-3]
+    	\arrow[no head, from=2-2, to=1-3]
+    	\arrow[no head, from=1-3, to=2-3]
+    	\arrow[no head, from=1-3, to=2-4]
+    	\arrow[no head, from=1-3, to=2-5]
+    \end{tikzcd}\]
+
+    where correspondence between subgroups and subfields is depicted via vertically flipping one of the diagrams. The majority of these fields were found via direct computation of fixed fields; however, those corresponding to $\cyclic{\sigma\tau}$ and $\cyclic{\sigma^3\tau}$ require more work.\\
+
+    First, we compute that $\rho(\sigma\tau) = (12)(34)$ and $\rho(\sigma^3\tau) = (14)(23)$. Thus, $\alpha_1+\alpha_2\in K^{\cyclic{\sigma\tau}}$ and $\alpha_1+\alpha_4\in K^{\cyclic{\sigma^3\tau}}$. We claim that in fact $K^{\cyclic{\sigma\tau}} = \Q(\alpha_1+\alpha_2)$ and $K^{\cyclic{\sigma^3\tau}} = \Q(\alpha_1+\alpha_4)$. Noting that $\alpha_1+\alpha_2$ and $\alpha_1+\alpha_4$ are both roots of the irreducible polynomial $x^4+8$, it follows that
+    \[
+      [K:\Q(\alpha_1+\alpha_2)] = 2 = |\cyclic{\sigma\tau}| = [K:K^{\cyclic{\sigma\tau}}]
+    \]
+    and
+    \[
+      [K:\Q(\alpha_1+\alpha_4)] = 2 = |\cyclic{\sigma^3\tau}| = [K:K^{\cyclic{\sigma^3\tau}}]
+    \]
+    whence the claim follows by the inclusions.
+
+  \end{proof}
+
+\end{homeworkProblem}
+
+
+\begin{homeworkProblem}
+  Let $K/F$ and $L/F$ be field extensions.
+  \begin{enumerate}
+    \item Assume that $L/F$ is finite Galois. Show that $KL/K$ is also  Galois.
+    \item Suppose that both $K/F$ and $L/F$ are Galois extensions.
+    \begin{enumerate}
+      \item Prove that the extension $KL/F$ is also Galois and there is a natural embedding $\iota:\Gal(KL/F)\rightarrow\Gal(K/F)\times \Gal(L/F)$.
+      \item Assume now that $K/F$ and $L/F$ are both finite. Prove that the map $\iota$ in part (i) is an isomorphism if and only if $K\cap L=F$.
+    \end{enumerate}
+  \end{enumerate}
+\end{homeworkProblem}
+
+
+\end{document}

@@ -266,7 +266,7 @@
   \begin{proof}
     Define a set $E = \{(x,t)\in (0,a)^2:x<t\}$. This set is measurable. Then, for fixed $x\in(0,a)$, $\ind_{(x,a)}(t)=\ind_{E_x}(t) = (\ind_E)_x(t)$. Then we compute,
     \begin{align*}
-      \int_{(0,a)}|g(x)|\dd{x} &= \int_{(0,a)}\left|\int_{(0,a)}t^{-1}f(t)\ind_E(x,t)\right|\dd{t}\dd{x} \leq \int_{(0,a)}\int_{(0,a)}| t^{-1}f(t)|\ind_{E^t}(x)\dd{x}\dd{t}\\ &= \int_{(0,a)} t^{-1}|f(t)| m(E^t)\dd{t} = \int_{(0,a)}|f(t)|\dd{t}<+\infty
+      \int_{(0,a)}|g(x)|\dd{x} &= \int_{(0,a)}\left|\int_{(0,a)}t^{-1}f(t)\ind_E(x,t)\dd{t}\right|\dd{x} \leq \int_{(0,a)}\int_{(0,a)}| t^{-1}f(t)|\ind_{E^t}(x)\dd{x}\dd{t}\\ &= \int_{(0,a)} t^{-1}|f(t)| m(E^t)\dd{t} = \int_{(0,a)}|f(t)|\dd{t}<+\infty
     \end{align*}
     whence by Tonelli's theorem $g$ is measurable. So, we may apply Fubini's theorem.
     \begin{align*}
@@ -354,7 +354,7 @@
 
   \end{proof}
 
-  \textbf{(d)}: Adopt notation as in Problem 1 of HW5. Show that if $f,g\in L^1(R^d)$ are nonnegative than $(f\dd{m})*(g\dd{m}) = f*g\dd{m}$ with $m$ being the Lebesgue measure.\\
+  \textbf{(d)}: Adopt notation as in Problem 1 of HW5. Show that if $f,g\in L^1(R^d)$ are nonnegative than $(f\dd{m})*(g\dd{m}) = f*g\dd{m}$ with $m$ being the Lebesgue measure. \\
 
   \textbf{(e)}: Show that for $f,g,k\in L^1(\R^d)$ we have that
   \[(f*g)*k = f*(g*k) \text{ almost everywhere.}\]
