@@ -198,7 +198,7 @@
 
 
 \begin{homeworkProblem}
-  Let $f(x)\in\Q[x]$ be an irreducible polynomial of degree $n$, and let $K$ be a splitting field of $f(x)$ contained in $\C$. Label the roots of $f(x)$ by $\alpha_1,\ldots, \alpha_n$ (in some order), and let $\rho:\Gal(K/\Q)\hookrightarrow S_n$ be the associated embedding.
+  Let $f(x)\in\Q[x]$ be an irreducible polynomial of degree $n$, and let $K$ be a splitting field of $f(x)$ contained in $\C$. Label the roots of $f(x)$ by $\alpha_1,\ldots, \alpha_n$ (in some order), and let $\rho:\Gal(K/\Q)\hookrightarrow S_n$ be the associated embedding.\\
 
   \textbf{(a)}: Assume that $f(x)$ has at least one non-real root. Prove that the complex conjugation gives an element $\tau$ of $\Gal(K/\Q)$ of order $2$. What can you say about $\tau$ if $f(x)$ has precisely two non-real roots?
 
@@ -236,7 +236,7 @@
   \textbf{(b)}: Describe all subgroups of $\Gal(K/\Q)$ and the corresponding subfields of $K$.
 
   \begin{proof}
-    For the subfield diagram, we have
+    For the subgroup diagram, we have
     \[\begin{tikzcd}
     	&& {\langle \sigma,\tau\rangle} \\
     	& {\langle \sigma^2,\sigma\tau\rangle} & {\langle \sigma\rangle} & {\langle \sigma^2,\tau\rangle} \\
@@ -302,14 +302,46 @@
 
 \begin{homeworkProblem}
   Let $K/F$ and $L/F$ be field extensions.
-  \begin{enumerate}
-    \item Assume that $L/F$ is finite Galois. Show that $KL/K$ is also  Galois.
-    \item Suppose that both $K/F$ and $L/F$ are Galois extensions.
-    \begin{enumerate}
-      \item Prove that the extension $KL/F$ is also Galois and there is a natural embedding $\iota:\Gal(KL/F)\rightarrow\Gal(K/F)\times \Gal(L/F)$.
-      \item Assume now that $K/F$ and $L/F$ are both finite. Prove that the map $\iota$ in part (i) is an isomorphism if and only if $K\cap L=F$.
-    \end{enumerate}
-  \end{enumerate}
+
+  \textbf{(a)}: Assume that $L/F$ is finite Galois. Show that $KL/K$ is also Galois.
+
+  \begin{proof}
+    As $L/F$ is finite Galois, there is some separable $f\in F[x]$ such that $L$ is a splitting field for $f$. Note that $f$ is separable in $K[x]$. We claim that $KL$ is a splitting field for $f$ over $K$. As $f$ splits over $L$, it splits over $KL$. Now suppose that $f$ splits over some field $E$ with $K\sub E$. Then, since $L$ is a splitting field for $f$ over $F$ in $KL$, we have by minimality that $L\sub E$. Then by minimality of $KL$, as $K,L\sub E$, it follows that $KL\sub E$. Thus $KL$ is a splitting field for a separable polynomial $f$ over $K$, whence $KL/K$ is Galois.
+  \end{proof}
+
+  Now suppose that both $K/F$ and $L/F$ are Galois extensions.\\
+
+  \textbf{(b)}: Prove that the extension $KL/F$ is also Galois and there is a natural embedding $\iota:\Gal(KL/F)\rightarrow\Gal(K/F)\times \Gal(L/F)$.
+
+  \begin{proof}
+    Fix an algebraic closure $\cls{F}$ of $F$. Suppose that $\sigma:KL\hookrightarrow \cls{F}$ is an embedding. Then by normality of $K/F$ and $L/F$, it follows that $\sigma\vert_{K}(K) = K$ and $\sigma\vert_{L}(L) = L$, whence $\sigma(KL) = \sigma(K)\sigma(L) = KL$, so $KL/F$ is normal. \\
+
+    Noting that $K,L$ are separable over $F$ and $KL = F(K\cup L)$, it follows that $KL$ is separable over $F$, so the extension $KL/F$ is Galois.\\
+
+    Define an embedding $\iota:\Gal(KL/F)\hookrightarrow\Gal(K/F)\times\Gal(L/F)$ by $\iota(\sigma) = (\sigma\vert_K,\sigma\vert_L)$. This mapping is well-defined as the normality of $K/F$ and $L/F$ forces $\sigma\vert_{K}(K) = K$ and $\sigma\vert_{L}(L) = L$. Compositiong is clearly respected, so this map is a group homomorphism. Lastly, if $\iota(\sigma) = (id_K,id_L)$, then $\sigma\vert_K = id_K$ and $\sigma\vert_L = id_L$ whence $\sigma = id$, so $\iota$ is indeed an embedding.
+  \end{proof}
+
+
+  \textbf{(c)}: Assume now that $K/F$ and $L/F$ are both finite. Prove that the map $\iota$ in part (i) is an isomorphism if and only if $K\cap L=F$.
+
+  \begin{proof}\ \\
+    \underline{$\implies$}: Suppose that $\iota$ is an isomorphism. Then,
+    \[
+      [KL : F] = |\Gal(KL/F)| = |\Gal(K/F)|\cdot|\Gal(L/F)| = [K:F][L:F].
+    \]
+    Now, by homework 7 problem 6 part (b), we have that $K\otimes_F L$ is a field. Thus, the contrapositive of homework 7 problem 6 part (c) gives that $K\cap L = F$.\\
+
+    % \underline{$\impliedby$}: Suppose that $K\cap L = F$. As $K/F$ and $L/F$ are Galois, there exist separable $f,g\in F[x]$ such that $K$ is a splitting field for $f$ and $L$ is a splitting field for $g$. Then $fg$ splits over $KL$, and if $E$ is any field such that $F\sub E$ and $fg$ splits over $E$, then $f$ splits over $E$ and $g$ splits over $E$ whence by minimality $K,L\sub E$, so $KL\sub E$. Thus, $KL$ is a splitting field for $fg$ over $F$.\\
+    %
+    % \underline{$\impliedby$}: We proceed by contraposition. Suppose that $\iota$ is not an isomorphism. By finiteness and the fact that $\iota$ is already injective, it follows that $[KL : F] \neq [K:F][L:F]$. Thus, by homework 7 problem 6 part (a), we have that $[KL:F] < [K:F][L:F]$. Then, appealing to homework 7 problem 6 part (b), $K\otimes_F L$ is not a field.
+
+    \underline{$\impliedby$}: Suppose that $K\cap L = F$. By the theorem of natural irrationalities, $\Gal(KL/K)\cong\Gal(L/K\cap L) = \Gal(L/F)$. Thus,
+    \[
+      |\Gal(KL/F)| = [KL:F] = [KL:K][K:F] = [L:F][K:F] = |\Gal(K/F)|\cdot|\Gal(L/F)|
+    \]
+    so finiteness gives that $\iota$ is surjective.
+  \end{proof}
+
 \end{homeworkProblem}
 
 
