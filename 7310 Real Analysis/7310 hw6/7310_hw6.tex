@@ -354,10 +354,32 @@
 
   \end{proof}
 
-  \textbf{(d)}: Adopt notation as in Problem 1 of HW5. Show that if $f,g\in L^1(R^d)$ are nonnegative than $(f\dd{m})*(g\dd{m}) = f*g\dd{m}$ with $m$ being the Lebesgue measure. \\
+  \textbf{(d)}: Adopt notation as in Problem 1 of HW5. Show that if $f,g\in L^1(R^d)$ are nonnegative than $(f\dd{m})*(g\dd{m}) = f*g\dd{m}$ with $m$ being the Lebesgue measure.
+
+  \begin{proof}
+    Let $E\sub \R^d$ be measurable and let $\dd{\mu} = f\dd{m}$, $\dd{\nu} = g\dd{m}$, and $\dd{\lambda} = f*g\dd{m}$. On one hand, we compute that
+    \begin{align*}
+      \lambda(E) = \int_E (f*g)(y)\dd{y} = \int_{\R^d}\ind_E(y)\left[\int_{\R^d}f(x)g(y-x)\dd{x}\right]\dd{y}.
+    \end{align*}
+    On the other hand, by part (a), we have that
+    \begin{align*}
+      \mu*\nu(E) &= \int_{\R^d}\nu(E-x)\dd{\mu(x)} = \int_{\R^d}f(x)\left[\int_{E-x}g(y)\dd{y}\right]\dd{x} \\
+      &= \int_{\R^d}\left[\int_{E}f(x)g(y-x)\dd{y}\right]\dd{x} =\int_{\R^d}f(x)\int_{\R^d}\ind_{E}(y)f(x)g(y-x)\dd{y}\dd{x},
+    \end{align*}
+    which by nonnegativity and applying Tonelli's theorem, it follows that these two computed quantities are in fact equal.
+  \end{proof}
 
   \textbf{(e)}: Show that for $f,g,k\in L^1(\R^d)$ we have that
   \[(f*g)*k = f*(g*k) \text{ almost everywhere.}\]
+
+  \begin{proof}
+    Applying associativity from part (b) and expanding using part (d), we observe that
+    \begin{align*}
+      (f*g)*k\dd{m} &= (f*g\dd{m})*k\dd{m} = (f\dd{m}*g\dd{m})*k\dd{m} = f\dd{m}*(g\dd{m}*k\dd{m}) \\
+      &= f\dd{m}*(g*k)\dd{m} = f*(g*k)\dd{m}.
+    \end{align*}
+    By uniqueness of Radon-Nikodym derivatives, it follows that $(f*g)*k = f*(g*k)$ almost everywhere.
+  \end{proof}
 \end{homeworkProblem}
 
 
