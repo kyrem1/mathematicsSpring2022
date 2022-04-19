@@ -192,10 +192,32 @@
 \begin{homeworkProblem}
   Prove Theorem 2.39 by using Theorem 2.37 and proposition 2.12 together with the following lemmas:
   \begin{enumerate}
-    [(a)]\item If $E\in \mc{M}\times\mc{N}$ and $\mu\times\nu(E) = 0$, then $\nu(E_x) = \mu(E^y) = 0$ for a.e. $x$ and $y$.
-    \item If $f$ is Lebesgue measurable and $f=0$ Lebesgue almost everywhere, then $f_x$ and $f^y$ are integrable for a.e. $x$ and $y$, and $\int f_x \dd{\nu}$=0 and $\int f^y \dd{\mu}$ for a.e. $x$ and $y$.
+    [(a)]\item If $E\in \mc{M}\otimes\mc{N}$ and $\mu\otimes\nu(E) = 0$, then $\nu(E_x) = \mu(E^y) = 0$ for a.e. $x$ and $y$.
+    \item If $f$ is $\ms{L}$-measurable and $f=0$ $\lambda$-a.e., then $f_x$ and $f^y$ are integrable for a.e. $x$ and $y$, and $\int f_x \dd{\nu}$=0 and $\int f^y \dd{\mu}=0$ for a.e. $x$ and $y$. (This uses completeness of $\mu$ and $\nu$.)
   \end{enumerate}
 
+  Suppose that $(X,\mc{M},\mu)$ and $(Y,\mc{N},\nu)$ are complete, $\sigma$-finite measure spaces, and let $(X\times Y,\ms{L}, \lambda)$ be the completion of $(X\times Y,\mc{M}\otimes\mc{N},\mu\otimes\nu)$. If $f$ is $\ms{L}$-measurable and either (a) $f\geq 0$ or (b) $f\in L^1(\lambda)$, then $f_x$ is $\mc{N}$-measurable for a.e. $x$ and $f^y$ is $\mc{M}$-measurable for a.e. $y$, and in case (b) $f_x$ and $f^y$ are also integrable for a.e. $x$ and $y$. Moreover, $x\mapsto \int f_x \dd{\nu}$ and $y\mapsto \int f^y\dd{\mu}$ are measurable, and in case (b) also integrable, and
+  \[
+    \int f\dd{\lambda} = \int\int f(x,y) \dd{\mu(x)}\dd{\nu(y)} = \int\int f(x,y)\dd{\nu(y)}\dd{\mu(x)}.
+  \]
+
+  \begin{proof}[Proof of Lemma (a)]
+    By theorem 2.36, the functions $x\mapsto \nu(E_x)$ and $y\mapsto \mu(E^y)$ are measurable and
+    \[
+      0 = \mu\otimes\nu(E) = \int \nu(E_x)\dd{\mu(x)} = \int\mu(E^y)\dd{\nu(y)},
+    \]
+    whence by nonnegativity $\nu(E_x) = 0$ for a.e. $x$ and $\mu(E^y) = 0$ for a.e. $y$.
+  \end{proof}
+
+  \begin{proof}[Proof of Lemma (b)]
+    Consider the set $E = \{(x,y): f(x,y)\neq 0\}$. Then, by definition, there exists an $F\in\mc{M}\otimes\mc{N}$ such that $E\sub F$ and $\mu\otimes\nu(F) = 0$. Then, for all $x\in X$ and $y\in Y$, $F_x\in\mc{N}$ and $F^y\in\mc{M}$. As $E_x\sub F_x$ and $E^y\in F^y$, the completeness of $\mu$ and $\nu$ gives that $E_x\in \mc{N}$ and $E^y\in \mc{M}$. Combining this with lemma (a), we find that $\nu(E_x) = 0$ and $\mu(E^y) = 0$. Now, for $x\in X$, $f_x = 0$ on $Y\setminus E_x$ whence $f_x = 0$ $\nu$-a.e. and for $y\in Y$, $f^y = 0$ on $X\setminus E^y$ whence $f^y = 0$ $\mu$-a.e. Thus $f^y$ and $f_x$ are integrable and both integrate to zero.
+  \end{proof}
+
+  \begin{proof}[Proof of Theorem 2.39]
+    Suppose that $f$ is $\ms{L}$-measurable. By proposition 2.12, there exists an $\mc{M}\otimes\mc{N}$-measurable function $g$ such that $f = g$ $\lambda$-a.e. As $\ms{L}\supseteq \mc{M}\otimes\mc{N}$, it follows that $g$ is $\ms{L}$-measurable so $f-g$ is $\ms{L}$-measurable and equal to $0$ $\lambda$-a.e.\\
+
+    By lemma (b), $f_x-g_x$ and $f^y-g^y$ are integrable for a.e. $x$ and $y$ and $\int f_x-g_x\dd{\nu} = 0$ and $\int f^y-g^y\dd{\mu} = 0$ for a.e. $x$ and $y$. Now the claims for parts (a) and (b) of the theorem follow from their corresponding parts in Theorem 2.37.
+  \end{proof}
 \end{homeworkProblem}
 
 
@@ -280,10 +302,23 @@
 \begin{homeworkProblem}
   Let $\mc{E}_q$ be the set of products of the form $\Pi_{j=1}^d I_j$ where each $I_j$ is an $h$-interval with the property that all of its finite endpoints are rational. \\
 
-  \textbf{(a)}: Show that $\mc{E}_q$ is an elementary family which generates the Borel sets. \\
+  \textbf{(a)}: Show that $\mc{E}_q$ is an elementary family which generates the Borel sets.
 
-  \textbf{(b)}: Suppose that $\mu$ is a Borel measure on $\R^d$ with $0<\mu((0,1]^d)<+\infty$. If $\mu(E+x) = \mu(E)$ for every $x\in\R^d$, show that $\mu(E) = \mu((0,1]^d)m(E)$ for every Borel $E\sub\R^d$.
+  \begin{proof}
+    Intersections of rational intervals are rational intervals and intersections of products of sets are componentwise intersections, so $\mc{E}_q$ is closed under intersections.\\
+
+    The complement of an element of $\mc{E}_q$ is a a disjoint union of finitely many boxes. Thus, $\mc{E}_q$ is an elementary family.\\
+
+    Any $h$-box in $\R^d$ can be written as a countable union of elements of $\mc{E}_q$, so $\mc{E}_q$ generates the Borel sets in $\R^d$.
+  \end{proof}
+
+  \textbf{(b)}: Suppose that $\mu$ is a Borel measure on $\R^d$ with $0<\mu((0,1]^d)<+\infty$. If $\mu(E+x) = \mu(E)$ for every $x\in\R^d$, show that $\mu(E) = \mu((0,1])^d m(E)$ for every Borel $E\sub\R^d$.
+
+  \begin{proof}
+    
+  \end{proof}
 \end{homeworkProblem}
+
 
 \begin{homeworkProblem}
   Fix $d\in\N$.\\
@@ -343,7 +378,6 @@
   \]
 
   \begin{proof}
-    % TODO Justify Fubini
     \begin{align*}
       \int_{\R^d}\int_{\R^d} |f(y)g(x-y)|\dd{x}\dd{y} = \int_{\R^d}|f(y)|\left[\int_{\R^d} |g(x-y)|\dd{x}\right]\dd{y} = \int_{\R^d}|f(y)|\left[\int_{\R^d} |g(x)|\dd{x}\right]\dd{y} = \norm{f}_1\norm{g}_1
     \end{align*}

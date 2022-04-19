@@ -156,6 +156,7 @@
 \author{James Harbour}
 
 \begin{document}
+
 \maketitle
 
 \begin{homeworkProblem}
@@ -207,12 +208,62 @@
 
 
 \begin{homeworkProblem}
-  Suppose that $1\leq p < +\infty$ and $(f_n)_{n=1}^{\infty}$ in $L^p$. Prove that $(f_n)_{n=1}^{\infty}$ is Cauchy in the $L^p$-norm if an only if the following three conditions hold:
+  Suppose that $1\leq p < +\infty$ and $(f_n)_{n=1}^{\infty}$ in $L^p$. Prove that $(f_n)_{n=1}^{\infty}$ is Cauchy in the $L^p$-norm if and only if the following three conditions hold:
   \begin{enumerate}
     \item $(f_n)$ is Cauchy in measure;
     \item the sequence $(|f_n|^p)_{n=1}^{\infty}$ is uniformly integrable
     \item for every $\eps>0$ there exists $E\sub X$ such that $\mu(E) < +\infty$ and $\int_{E^c}|f_n|^p\dd{\mu}<\eps$ for all $n\in\N$.
   \end{enumerate}
+
+  \begin{lemma}
+    Any finite subset $\{f_k\}_{k=1}^{n}\sub L^1(\mu)$ is uniformly integrable.
+  \end{lemma}
+  \begin{proof}[Proof of Lemma 1]
+    We show first that $f\in L^1(\mu)$ is uniformly integrable. Note that, if $f\in L^1(\mu)$, then $|f|\ind_{\{|f|> m\}}\searrow 0$ pointwise a.e. as $\{|f| = +\infty\} = \bigcap_{M\in\N}\{|f|> M\}$ implies that $\lim_{M\to\infty}\mu({|f|>M})=\mu(\{|f| = +\infty\}) = 0$. Moreover, for all $M\in\N$, $|f\ind_{|f|>M}|\leq |f|\in L^1(\mu)$, so by the dominated convergence theorem
+    \begin{equation}
+      \lim_{M\to\infty}\int_{\{|f|>M\}} |f|\dd{\mu} = 0.
+    \end{equation}
+    For any $E\sub X$ measurable and $M\in\N$, we have that
+    \begin{equation}
+      \int_E |f|\dd{\mu} = \int_{E\,\cap\{ |f|\leq M\}} |f|\dd{\mu} + \int_{E\,\cap\{ |f|> M\}} |f|\dd{\mu} \leq M\cdot\mu(E) + \int_{\{ |f|> M\}} |f|\dd{\mu}.
+    \end{equation}
+    Fix $\eps > 0$. By (1), there exists some $N\in \N$ such that $\int_{\{|f|>N\}} |f|\dd{\mu}<\frac{\eps}{2}$. Choose $\delta = \frac{\eps}{2N}$. Then, for any $E\sub X$ measurable such that $\mu(E)<\delta$, we have by (2) that
+    \[
+      \left\lvert\int_E f\dd{\mu}\right\rvert\leq \int_E |f|\dd{\mu} < N\cdot\delta + \frac{\eps}{2} = \eps.
+    \]
+
+    Now suppose that $\{f_k\}_{k=1}^{n}\sub L^1(\mu)$ is a finite subset of $L^1(\mu)$. Fix $\eps > 0$. By uniform integrability of each of the singletons, for each $k\in \{1,\ldots,n\}$ there exists a $\delta_k>0$ such that $\mu(E)<\delta_k\implies |\int_{E} f_k|<\eps$. Choosing $\delta = \min\{\delta_1,\ldots,\delta_n\}>0$, the claim follows.
+  \end{proof}
+
+  \begin{lemma}
+    Suppose $(f_n)_{n=1}^{\infty}$ is a sequence in $L^1(\mu)$ and $f\in L^1(\mu)$ such that $\norm{f_n-f}_1 \xrightarrow{n\to\infty} 0$. Then $\{f_n\}_{n=1}^{\infty}$ is uniformly integrable.
+  \end{lemma}
+  \begin{proof}[Proof of Lemma 2]
+    Observe that, for any measurable $E\sub X$ and $n\in \N$,
+    \[
+      \int_E |f_n|\dd{\mu} \leq \int_E |f|\dd{\mu} + \int_E |f_n - f|\dd{\mu} \leq \int_E |f|\dd{\mu} + \norm{f_n-f}_1.
+    \]
+    Fix $\eps > 0$ and choose $N\in\N$ such that for $n\geq N$ we have $\norm{f_n-f}_1 < \frac{\eps}{2}$. By Lemma 1, $\{ f\}$ is uniformly integrable, so there is some $\delta'>0$ such that $\mu(E)<\delta'$ implies that $\int_E |f|\dd{\mu} < \frac{\eps}{2}$. \\
+
+    Again by Lemma 1, $\{ f_k\}_{k=1}^{N-1}$ is uniformly integrable, so there is some $\delta''>0$ such that $\mu(E)<\delta''$ implies $\int_E |f_k|\dd{\mu} < \eps$ for all $k\in\{1,\ldots,N-1\}$. Setting $\delta = \min\{\delta',\delta''\}$, the claim follows.
+  \end{proof}
+
+  \begin{proof}[Proof of Theorem]\ \\
+    \underline{$\implies$}: Suppose that $(f_n)_{n=1}^{\infty}$ is Cuachy in the $L^p$-norm. Then by completeness, there is some $f\in L^p(\mu)$ such $\norm{f-f_n}_p \xrightarrow{n\to\infty} 0$. For $\eps>0$, noting that $\{ |f_n-f|\geq\eps\} = \{|f_n-f|^p / \eps^p\geq 1\}$, we have that
+    \[
+      \mu(\{|f_n-f|\geq\eps\}) = \int_{\{|f_n-f|\geq\eps\}}\frac{|f_n-f|^p}{\eps^p}\dd{\mu} \leq\frac{1}{\eps^p}\norm{f_n-f}_p^p \xrightarrow{n\to\infty} 0.
+    \]
+
+    Thus $f_n\to f$ in measure, whence $(f_n)_{n=1}^{\infty}$ is Cauchy in measure. \\
+
+    By the reverse triangle inequality,
+    \[
+      \left\lvert\norm{f_n}_p - \norm{f}_p\right\rvert \leq \norm{f_n-f}_p\xrightarrow{n\to\infty}0,
+    \]
+    so $\norm{|f_n|^p}_1\xrightarrow{n\to\infty}\norm{|f|^p}_1\in L^1(\mu)$. Now by Lemma 2, $(|f_n|^p)_{n=1}^{\infty}$ is uniformly integrable.
+
+
+  \end{proof}
 \end{homeworkProblem}
 
 
