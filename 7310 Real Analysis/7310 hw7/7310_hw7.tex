@@ -248,8 +248,49 @@
     Again by Lemma 1, $\{ f_k\}_{k=1}^{N-1}$ is uniformly integrable, so there is some $\delta''>0$ such that $\mu(E)<\delta''$ implies $\int_E |f_k|\dd{\mu} < \eps$ for all $k\in\{1,\ldots,N-1\}$. Setting $\delta = \min\{\delta',\delta''\}$, the claim follows.
   \end{proof}
 
+  \begin{lemma}[Lemma 3]
+    Condition (3) holds for any finite subset $\{f_k\}_{k=1}^{n}\sub L^1(\mu)$.
+  \end{lemma}
+
+  \begin{proof}[Proof of Lemma 3]
+    We show first that the claim holds for just one function $f\in L^1(\mu)$. Suppose first that $f$ is nonnegative and let $\eps>0$. Then by definition of the integral, there exists a simple function $0\leq g\leq f$ such that
+    \[
+      \int f\dd{\mu} - \int g \dd{\mu} < \eps.
+    \]
+    By monotonicity of the integral, $\int g\leq \int f <+\infty$, whence it follows that the set $E = \{x : g(x)>0\}$ has finite measure (as $g$ takes finitely many values). Then
+    \[
+      \int_{E^c} f\dd{\mu} = \int_{E^c}f-g \dd{\mu} \leq \int f-g \dd{\mu} < \eps.
+    \]
+
+    Now suppose that $f$ is real-valued and let $f^\pm$ be the positive and negative parts of $f$. Fix $\eps>0$. Then by the previous case there exist measurable $E^\pm\sub X$ with $\mu(E^\pm)<+\infty$ and $\int_{(E^\pm)^c}f^\pm \dd{\mu} <\frac{\eps}{2}$. Letting $E = E^+ \cup E^-$, it follows that $\mu(E)<+\infty$ and
+    \[
+      \int_{E^c} |f|\dd{\mu} = \int_{(E^+)^c\cap (E^-)^c}f^+ + f^-\dd{\mu}\leq \int_{(E^+)^c}f^+ \dd{\mu} + \int_{(E^-)^c}f^- \dd{\mu} < \eps.
+    \]
+    Finally, suppose that $f$ is complex-valued. Let $u = \Re(f)$ and $v = \Im(f)$. The claim then follows from applying the previous case to $u,v$ and using the inequality $|f|\leq |u|+|v|$.\\
+
+    Now suppose that we have a finite subset $\{f_k\}_{k=1}^{n}\sub L^1(\mu)$ and fix $\eps>0$. Then for $1\leq k\leq n$ there exists $E_k\sub X$ with $\mu(E_k)<+\infty$ and $\int_{E_k^c}|f_k|\dd{\mu}<\eps$. Let $E = E_1\cup\cdots\cup E_n$. Then $\mu(E)<+\infty$ and for $1\leq k\leq n$ we have
+    \[
+      \int_{E^c} |f_k|\dd{\mu} = \int_{\bigcap_{j=1}^{n}E_j^c}|f_k|\dd{\mu} \leq \int_{E_k^c}|f_k|\dd{\mu} < \eps.
+    \]
+  \end{proof}
+
+  \begin{lemma}[Lemma 4]
+    Suppose $(f_n)_{n=1}^{\infty}$ is a sequence in $L^1(\mu)$ and $f\in L^1(\mu)$ such that $\norm{f_n-f}_1 \xrightarrow{n\to\infty} 0$. Then $\{f_n\}_{n=1}^{\infty}$ satisfies condition (3).
+  \end{lemma}
+
+  \begin{proof}[Proof of Lemma 4]
+    As in the proof of Lemma 2, we utilize that for any measurable $E\sub X$ and $n\in\N$,
+    \[
+      \int_{E^c}|f_n|\dd{\mu}\leq \int_{E^c}|f|\dd{\mu} + \norm{f_n-f}_1.
+    \]
+    Fix $\eps>0$ and choose $N\in\N$ such that for $n\geq N$ we have $\norm{f_n-f}_1 < \frac{\eps}{2}$. By Lemma 3, $\{f_k\}_{k=1}^{N-1}$ satisfies condition (3), so there is some $E_1\sub X$ with $\mu(E_1)<+\infty$ such that $\int_{E_1^c}|f_k|\dd{\mu}<\eps$ for all $k\in\{1,\ldots,N-1\}$. The singleton $\{f\}$ also satisfies condition 3, so there is some $E_2\sub X$ with $\mu(E_2)<+\infty$ and $\int_{E_2^c}|f|\dd{\mu}< \frac{\eps}{2}$. Setting $E = E_1 \cup E_2$, it follows that $\mu(E) < +\infty$, $\int_{E^c}|f_k|\dd{\mu}\leq\int_{E_1^c}|f_k|\dd{\mu}<\eps$ for $k\in\{1,\ldots,N-1\}$, and for all $n\geq N$
+    \[
+      \int_{E^c}|f_n|\dd{\mu}\leq \int_{E^c}|f|\dd{\mu} + \norm{f_n-f}_1 < \int_{E_2^c}|f|\dd{\mu} +\frac{\eps}{2} < \eps.
+    \]
+  \end{proof}
+
   \begin{proof}[Proof of Theorem]\ \\
-    \underline{$\implies$}: Suppose that $(f_n)_{n=1}^{\infty}$ is Cuachy in the $L^p$-norm. Then by completeness, there is some $f\in L^p(\mu)$ such $\norm{f-f_n}_p \xrightarrow{n\to\infty} 0$. For $\eps>0$, noting that $\{ |f_n-f|\geq\eps\} = \{|f_n-f|^p / \eps^p\geq 1\}$, we have that
+    \underline{$\implies$}: Suppose that $(f_n)_{n=1}^{\infty}$ is Cauchy in the $L^p$-norm. Then by completeness, there is some $f\in L^p(\mu)$ such $\norm{f-f_n}_p \xrightarrow{n\to\infty} 0$. For $\eps>0$, noting that $\{ |f_n-f|\geq\eps\} = \{|f_n-f|^p / \eps^p\geq 1\}$, we have that
     \[
       \mu(\{|f_n-f|\geq\eps\}) = \int_{\{|f_n-f|\geq\eps\}}\frac{|f_n-f|^p}{\eps^p}\dd{\mu} \leq\frac{1}{\eps^p}\norm{f_n-f}_p^p \xrightarrow{n\to\infty} 0.
     \]
@@ -260,7 +301,29 @@
     \[
       \left\lvert\norm{f_n}_p - \norm{f}_p\right\rvert \leq \norm{f_n-f}_p\xrightarrow{n\to\infty}0,
     \]
-    so $\norm{|f_n|^p}_1\xrightarrow{n\to\infty}\norm{|f|^p}_1\in L^1(\mu)$. Now by Lemma 2, $(|f_n|^p)_{n=1}^{\infty}$ is uniformly integrable.
+    so $\norm{|f_n|^p}_1\xrightarrow{n\to\infty}\norm{|f|^p}_1\in L^1(\mu)$. Now by Lemma 2, $(|f_n|^p)_{n=1}^{\infty}$ is uniformly integrable. Also by Lemma 4, condition (3) holds for $(|f_n|^p)_{n=1}^{\infty}$.\\
+
+    \underline{$\impliedby$}: Suppose that $(f_n)_{n=1}^{\infty}$ in $L^p(\mu)$ satisfies the three listed conditions. Fix $\eps>0$ and let $E\sub X$ be as in condition (3). Set $A_{mn} = \{x: |f_m(x)-f_n(x)|\geq\eps\}$ and let $\delta >0$ be as in condition (2). \\
+
+    % (\emph{Hint}: The integrals of $|f_n-f_m|^p$ over $E\setminus A_{mn}$, $A_{mn}$, and $E^c$ are small when $n$ and $m$ are large\,\textemdash\, for three different reasons.)
+    By construction, observe that
+    \[
+      \int_{E\setminus A_{mn}} |f_m-f_n|^p\dd{\mu} \leq \int_{E\setminus A_{mn}} \eps^p \dd{\mu} \leq \mu(E)\eps^p
+    \]
+    As $(f_n)_{n=1}^{\infty}$ is Cauchy in measure, there exists some $N\in\N$ such that for $m,n\geq N$, we have $\mu(A_{mn})<\delta$. It follows by condition (2) that for $m,n\geq N$,
+    \[
+      \int_{A_{mn}} |f_m-f_n|^p\dd{\mu} \leq \int_{A_{mn}}2^{p-1}(|f_m|^p+|f_n|^p)\dd{\mu} <2^p\eps.
+    \]
+    Lastly, by condition (3), for all $m,n\in\N$,
+    \[
+      \int_{E^c} |f_m-f_n|^p\dd{\mu} \leq \int_{A_{mn}}2^{p-1}(|f_m|^p+|f_n|^p)\dd{\mu} <2^p\eps.
+    \]
+    So, for $m,n\geq N$, we have that
+    \[
+      \norm{f_m-f_n}_p^p\leq \mu(E)\eps^p + 2^p\eps + 2^p\eps,
+    \]
+    so $(f_n)_{n=1}^{\infty}$ is Cauchy in the $L^p$-norm.
+
 
 
   \end{proof}
