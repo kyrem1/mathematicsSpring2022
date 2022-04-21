@@ -312,10 +312,23 @@
     Any $h$-box in $\R^d$ can be written as a countable union of elements of $\mc{E}_q$, so $\mc{E}_q$ generates the Borel sets in $\R^d$.
   \end{proof}
 
-  \textbf{(b)}: Suppose that $\mu$ is a Borel measure on $\R^d$ with $0<\mu((0,1]^d)<+\infty$. If $\mu(E+x) = \mu(E)$ for every $x\in\R^d$, show that $\mu(E) = \mu((0,1])^d m(E)$ for every Borel $E\sub\R^d$.
+  \textbf{(b)}: Suppose that $\mu$ is a Borel measure on $\R^d$ with $0<\mu((0,1]^d)<+\infty$. If $\mu(E+x) = \mu(E)$ for every $x\in\R^d$, show that $\mu(E) = \mu((0,1]^d) m(E)$ for every Borel $E\sub\R^d$.
 
   \begin{proof}
-    
+    As in the one dimensional case, we may disjointly cover $(0,1]^d$ by $n^d$ translates of the box $(0,\frac{1}{n}]^d$, whence
+    \[
+      \mu((0,\frac{1}{n}]^d) = \mu((0,1]^d)\frac{1}{n^d} = \mu((0,1]^d)m((0,\frac{1}{n}]^d).
+    \]
+    For $n,q\in\N$, we may disjointly cover $(0,\frac{q}{n}]^d$ by $q^d$ many translates of the box $(0,\frac{1}{n}]^d$, whence
+    \[
+      \mu((0,\frac{q}{n}]^d) = q^d\mu((0,\frac{1}{n}]^d) = \mu((0,1]^d)\frac{q^d}{n^d} = \mu((0,1]^d)m((0,\frac{q}{n}]^d).
+    \]
+    Now, any rational box may be filled and computed as such from disjoint coverings of translates of boxes of the form $(0,\frac{q}{n}]^d$ and thus obtaining the corresponding formula.\\
+
+
+    Consider the algebra $\mc{A}=\{\text{finite disjoint unions of elements of $\mc{E}_q$}\}$. Note that, by part (a), $\Sigma(\mc{A}) = \mc{B}_{\R^d}$. Consider the measure $\nu:\mc{B}_{\R^d}\to[0,+\infty]$ given by $\nu(E)=\mu((0,1]^d)\cdot m(E)$ for $E\in\mc{B}_{\R^d}$. \\
+
+    We have shown that $\mu\vert_{\mc{A}}=\nu\vert_{\mc{A}}$, whence $\mu = \nu$, as desired.
   \end{proof}
 \end{homeworkProblem}
 

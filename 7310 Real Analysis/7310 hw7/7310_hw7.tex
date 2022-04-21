@@ -160,13 +160,39 @@
 \maketitle
 
 \begin{homeworkProblem}
-  Let $(X,\Sigma,\mu)$ be a measure space.
+  Let $(X,\Sigma,\mu)$ be a measure space. \\
 
-  \textbf{(i)}: Prove that if $\mu(E_n)<+\infty$ for $n\in\N$ and $\ind_{E_n}\to f$ in $L^1$, then $f$ is (a.e. equal to) the characteristic function of a measurable set.\\
+  \textbf{(i)}: Prove that if $\mu(E_n)<+\infty$ for $n\in\N$ and $\ind_{E_n}\to f$ in $L^1$, then $f$ is (a.e. equal to) the characteristic function of a measurable set.
 
-  \textbf{(ii)}: Let $\Sigma_f = \{ E\in\Sigma: \mu(E)<+\infty\}$. Define an equivalence relation on $\Sigma_f$ by $E\sim F$ if $\mu(E\Delta F)=0$. Let $\Omega = \Sigma_f/\sim$, and define a metric $\rho$ on $\Omega$ be $\rho([E],[F]) = \mu(E\Delta F)$. Show that the map $\iota:\Omega\to L^1(X,\mu)$ given by $\iota([E]) = \ind_E$ is an isometry with closed image.\\
+  \begin{proof}
+    For $m\in\N$, let
+    \[
+      F_m = \{x: \min\{|1-f(x)|,|f(x)|\}>\frac{1}{m}\}.
+    \]
+    Then $(F_m)_{m=1}^{\infty}$ is an increasing sequence of sets with $F = \{ x:f(x)\not\in\{ 0,1\}\} = \bigcup_{n=1}^{\infty}A_n$.\\
+
+    Observe that, for fixed $m\in \N$,
+    \[
+      \norm{\ind_{E_n}-f}_1 \geq \int_{F_m}|\ind_{E_n}-f|\dd{\mu}\geq \int_{F_m}\frac{1}{m}\dd{\mu} = \frac{1}{m}\mu(F_m)
+    \]
+    for all $n\in \N$, whence sending $n\to\infty$ it follows that $\mu(F_m) = 0$. Thus, it follows that $\mu(F) = 0$. Thus, $f = \ind_{f^{-1}(\{1\})}$ almost everywhere.
+  \end{proof}
+
+  \textbf{(ii)}: Let $\Sigma_f = \{ E\in\Sigma: \mu(E)<+\infty\}$. Define an equivalence relation on $\Sigma_f$ by $E\sim F$ if $\mu(E\Delta F)=0$. Let $\Omega = \Sigma_f/\sim$, and define a metric $\rho$ on $\Omega$ be $\rho([E],[F]) = \mu(E\Delta F)$. Show that the map $\iota:\Omega\to L^1(X,\mu)$ given by $\iota([E]) = \ind_E$ is an isometry with closed image.
+
+  \begin{proof}
+    Observe that, if $E,F\in \Sigma_f$, then
+    \[
+      \rho(\iota(E),\iota(F)) = \mu(E\Delta F) = \int \ind_{E\Delta F}\dd{\mu} = \int |\ind_E - \ind_F|\dd{\mu},
+    \]
+    so $\iota$ is an isometry. Now suppose that $(f_n)_{n=1}^{\infty}$ is in $\iota(\Omega)$ and $f\in L^1(X,\mu)$ with $\norm{f_n-f}_1\xrightarrow{n\to\infty}0$. Then for $n\in\N$, there are $E_n\in\Sigma_f$ such that $f_n = \ind_{E_n}$, whence by part (i) there is some measurable $E\sub X$ such that $f = \ind_{E}$. As $\ind_E = f\in L^1(\mu)$, it follows that $\mu(E)<+\infty$ whence $[E]\in\Omega$ and thus $f = \iota([E])\in\iota(\Omega)$.
+  \end{proof}
 
   \textbf{(iii)}: Show that $(\Omega,\rho)$ is a complete metric space.
+
+  \begin{proof}
+    Let $([E_n])_{n=1}^{\infty}$ be a Cauchy sequence in $(\Omega,\rho)$. Then as $\iota$ is an isometry, it follows that $(\ind_{E_n})_{n=1}^{\infty}$ is a Cauchy sequence in $L^1(X,,\mu)$. By completeness of $L^1(X,\mu)$, there exists some $f\in L^1(X,\mu)$ such that $\norm{\ind_{E_n}-f}_1\xrightarrow{n\to\infty}0$. As the image of $\iota$ is closed, it follows that there is some $E\sub X$ with $\mu(E)<+\infty$ such that $f = \ind_{E} = \iota([E])$ almost everywhere. Then, $\iota$ being an isometry implies that $\rho([E_n],[E])\xrightarrow{n\to\infty}0$.
+  \end{proof}
 \end{homeworkProblem}
 
 \begin{homeworkProblem}[2]
@@ -189,6 +215,22 @@
 
 \begin{homeworkProblem}
   Suppose that $f\in L^p\, \cap\, L^\infty$ for some $p<+\infty$ so that $f\in L^q$ for all $q>p$. Prove that then $\norm{f}_\infty = \lim_{q\to\infty}\norm{f}_q$.
+
+  \begin{proof}
+    By Folland Proposition 6.10, we have that
+    \[
+      \norm{f}_q^{\frac{p}{q}}\leq \norm{f}_p^{\frac{p}{q}}\norm{f}_{\infty}^{\frac{p}{q}}
+    \]
+    whence $\limsup_{q\to\infty}\norm{f}_q \leq \norm{f}_{\infty}$. On the other hand, for $n\in\N$ let $E_n = \{x : |f(x)|>\norm{f}_\infty-\frac{1}{n}\}$. Then $(E_n)_{n=1}^{\infty}$ is a decreasing sequence of measurable sets with $E = \bigcap_{n=1}^{\infty}E_n = \{x: |f(x)|\geq \norm{f}_\infty\}$ having $\mu(E) = 0$ by definition of the $L^\infty$-norm. Observe that, for $n\in\N$ and $q>p$,
+    \[
+      \norm{f}_q \geq \lr{\int_{E_n}|f|^q\dd{\mu}}^{\frac{1}{q}} > (\norm{f}_\infty-\frac{1}{n})\mu(E_n)^{\frac{1}{q}}
+    \]
+    whence
+    \[
+      \liminf_{q\to\infty} \norm{f}_q \geq \norm{f}_\infty-\frac{1}{n}.
+    \]
+    As this holds for all $n\in \N$, it follows that $\liminf_{q\to\infty} \norm{f}_q \geq \norm{f}_\infty$ as desired.
+  \end{proof}
 \end{homeworkProblem}
 
 
@@ -202,6 +244,12 @@
   \end{proof}
 
   \textbf{(b)}: Prove that if $f\in L^\infty$, then $R_f$ is compact and $\norm{f}_\infty = \max\{|z|: z\in R_f\}$.
+
+  \begin{proof}
+    Fix $z\in R$ and let $M>0$ be such that $\mu(f^{-1}(X\setminus \cls{B_M(0))}) = 0$. Suppose, for the sake of contradiction, that $|z| > M$. Then we may choose $\eps>0$ such that $B_{\eps}(z)\sub X\setminus B_M(0)$. Then $f^{-1}(B_{\eps}(z))\sub f^{-1}(X\setminus B_M(0))$, whence $\mu(f^{-1}(B_{\eps}(z))) = 0$ contradicting that $z\in R_f$. Thus $|z|\leq M$. As $M>0$ was arbitrary for its condition, it follows that $|z|\leq \norm{f}_{\infty}$. As $z\in R_f$ was arbitrary, it follows that $\sup_{z\in R_f}|z|\leq \norm{f}_\infty < +\infty$. Hence $R_f$ is compact by part (a) and Heine-Borel. Let $z_{max}\in R_f$ such that $|z_{\max}| = \max_{z\in R_f}|z| = \sup_{z\in R_f}|z|$. \\
+
+    We show that in fact $\mu(f^{-1}(\C\setminus B_{|z_{\max}|}(0))) = 0$, whence it would follow that $\norm{f}_{\infty}\leq |z_{\max}|$ as desired. Let $N\in\N$ such that for all $n\geq N$ we have $|z_{\max}|<|z_{\max}|+\frac{1}{n}<\norm{f}_{\infty}$. Then for $n\geq N$, set $U_n = (\C\setminus \cls{B_{|z_{\max}|+\frac{1}{n}}(0)})\setminus (\C\setminus B_{\norm{f}_{\infty}}(0))$. We may cover $U_n$ by countably many balls $B_{r_j}(z_j)$ where $B_{r_j}(z_j)\sub U$, i.e. $U = \bigcup_{j=1}^{\infty}B_{r_j}(z_j)$. It follows then that $\mu(f^{-1}(B_{r_j}(z_j))) = 0$, whence $\mu(U_n) = 0$. As the $U_n$'s are a decreasing sequence of measure zero sets with intersection $(\C\setminus B_{|z_{\max}|(0)})\setminus(\C\setminus B_{\norm{f}_{\infty}}(0)))$, it follows that $\mu(f^{-1}((\C\setminus B_{|z_{\max}|(0)})\setminus(\C\setminus B_{\norm{f}_{\infty}}(0)))))=0$. Thus $\mu(f^{-1}(\C\setminus B_{|z_{\max}|}(0))) = 0$ as desired.
+  \end{proof}
 
 
 \end{homeworkProblem}
@@ -305,7 +353,6 @@
 
     \underline{$\impliedby$}: Suppose that $(f_n)_{n=1}^{\infty}$ in $L^p(\mu)$ satisfies the three listed conditions. Fix $\eps>0$ and let $E\sub X$ be as in condition (3). Set $A_{mn} = \{x: |f_m(x)-f_n(x)|\geq\eps\}$ and let $\delta >0$ be as in condition (2). \\
 
-    % (\emph{Hint}: The integrals of $|f_n-f_m|^p$ over $E\setminus A_{mn}$, $A_{mn}$, and $E^c$ are small when $n$ and $m$ are large\,\textemdash\, for three different reasons.)
     By construction, observe that
     \[
       \int_{E\setminus A_{mn}} |f_m-f_n|^p\dd{\mu} \leq \int_{E\setminus A_{mn}} \eps^p \dd{\mu} \leq \mu(E)\eps^p
