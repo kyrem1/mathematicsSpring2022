@@ -1,0 +1,244 @@
+\documentclass[12pt,letterpaper]{article}
+
+%--------Packages--------
+\usepackage{amsmath, amsthm, amssymb}
+\usepackage{xspace}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{array}
+\usepackage{braket}
+\usepackage{multicol}
+\usepackage{mathtools}
+\usepackage{enumerate}
+\usepackage{delarray}
+\usepackage{mathtools}
+\usepackage{fullpage}
+\usepackage{faktor} % For quotients
+\usepackage{mathrsfs}
+\usepackage{quiver}
+\usepackage{tikz}
+
+\usepackage[linguistics]{forest}
+
+
+
+
+%--------Page Setup--------
+
+\pagestyle{empty}%
+
+\setlength{\hoffset}{-1.54cm}
+\setlength{\voffset}{-1.54cm}
+
+\setlength{\topmargin}{0pt}
+\setlength{\headsep}{0pt}
+\setlength{\headheight}{0pt}
+
+\setlength{\oddsidemargin}{0pt}
+
+\setlength{\textwidth}{195mm}
+\setlength{\textheight}{250mm}
+
+
+%--------Macros--------
+
+\newcommand{\ilm}[1]{\begin{psmallmatrix} #1 \end{psmallmatrix}}
+\newcommand{\ilmb}[1]{\boxed{\begin{smallmatrix} #1 \end{smallmatrix}}}
+
+\newcommand{\sub}{\subseteq}
+\newcommand{\lcm}{\text{lcm}}
+\newcommand{\ms}[1]{\mathscr{#1}}
+\newcommand{\mc}[1]{\mathcal{#1}}
+\newcommand{\mf}[1]{\mathfrak{#1}}
+\newcommand{\sO}{\mathcal{O}}
+\newcommand{\cyclic}[1]{\langle#1\rangle}
+\newcommand{\units}[1]{#1 ^{\times}}
+\newcommand{\la}{\langle}
+\newcommand{\ra}{\rangle}
+\newcommand{\lr}[1]{\left(#1\right)}
+\newcommand{\divides}{\bigm|}
+%----Switch phi and varphi
+\let\temp\phi
+\let\phi\varphi
+\let\varphi\temp
+
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\N}{\mathbb{N}\xspace}
+\newcommand{\I}{\mathbb{I}\xspace}
+\newcommand{\R}{\mathbb{R}\xspace}
+\newcommand{\Z}{\mathbb{Z}\xspace}
+\newcommand{\Q}{\mathbb{Q}\xspace}
+\newcommand{\G}{\mathbb{G}\xspace}
+\DeclareMathOperator{\Spec}{Spec}
+\DeclareMathOperator{\res}{res}
+\DeclareMathOperator{\Tr}{Tr}
+\DeclareMathOperator{\ord}{ord}
+\DeclareMathOperator{\Sym}{Sym}
+\DeclareMathOperator{\dv}{div}
+\DeclareMathOperator{\alb}{alb}
+\let\Im\relax
+\DeclareMathOperator{\Im}{Im}
+\DeclareMathOperator{\et}{et}
+\DeclareMathOperator{\ck}{coker}
+\DeclareMathOperator{\Reg}{Reg}
+\DeclareMathOperator{\Cor}{Cor}
+\DeclareMathOperator{\Ac}{at}
+\DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\Pic}{Pic}
+\DeclareMathOperator{\Gal}{Gal}
+\DeclareMathOperator{\fc}{frac}
+\DeclareMathOperator{\Ann}{Ann}
+\DeclareMathOperator{\Mod}{Mod}
+\DeclareMathOperator{\Cone}{Cone}
+\DeclareMathOperator{\FI}{FI}
+\DeclareMathOperator{\End}{End}
+\DeclareMathOperator{\Alb}{Alb}
+\DeclareMathOperator{\Ext}{Ext}
+\DeclareMathOperator{\ab}{ab}
+\DeclareMathOperator{\Jac}{Jac}
+\DeclareMathOperator{\coker}{coker}
+\DeclareMathOperator{\fr}{frac}
+\DeclareMathOperator{\spn}{span}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\rk}{rk}
+\DeclareMathOperator{\GL}{GL}
+\DeclareMathOperator{\Aut}{Aut}
+\DeclareMathOperator{\ch}{char}
+\DeclareMathOperator{\Fix}{Fix}
+
+
+%----Analysis
+\newcommand{\dd}[2][]{\frac{\partial^{#1}}{\partial {#2}^{#1}}}
+\newcommand{\summ}{\sum\limits}
+\newcommand{\norm}[1]{\left \vert \left \vert #1 \right \vert \right \vert}
+\newcommand{\thicc}{\bigg}
+\newcommand{\eps}{\varepsilon}
+\newcommand*\cls[1]{\overline{#1}}
+
+
+%--------Theorem environments--------
+\newtheorem{definition}{Definition}[]
+\newtheorem{lemma}{Lemma}[]
+\newtheorem{corollary}{Corollary}[]
+\newtheorem{theorem}{Theorem}[]
+\theoremstyle{remark}
+\newtheorem*{claim}{Claim}
+
+
+\newenvironment{solution}
+{\begin{proof}[Solution]}
+{\end{proof}}
+
+
+\makeatletter
+\newcolumntype{"}{@{\hskip\tabcolsep\vrule width 1pt\hskip\tabcolsep}}
+\makeatother
+
+% --------Problem environment--------
+\setlength\parindent{0pt}
+\setcounter{secnumdepth}{0}
+\newcounter{partCounter}
+\newcounter{homeworkProblemCounter}
+\setcounter{homeworkProblemCounter}{1}
+
+
+\newenvironment{homeworkProblem}[1][-1]{
+    \ifnum#1>0
+        \setcounter{homeworkProblemCounter}{#1}
+    \fi
+    \section{Problem \arabic{homeworkProblemCounter}}
+    \setcounter{partCounter}{1}
+    \stepcounter{homeworkProblemCounter}
+}
+
+
+%--------Metadata--------
+\title{MATH 7752 Homework 11}
+\author{James Harbour}
+
+
+\begin{document}
+\maketitle
+
+
+\begin{homeworkProblem}
+  In this problem you will need the following two definitions. \\
+
+  \textbf{Definition 1:} Let $L/F$ be a finite separable extension and let $\overline{F}$ be an algebraic closure of $F$ containing $L$. A subfield $L'$ of $\overline{F}$ is called \textbf{conjugate to $L$ over $F$} if $L'=\sigma(L)$ for some $F$-embedding $\sigma:L\to\overline{F}$. (Note: $L/F$ is Galois if and only if the only conjugate to $L$ over $F$ is itself.) \\
+
+  \textbf{Definition 2:} A finite extension $K/F$ is called a \textbf{$p$-extension} if $K/F$ is \textbf{Galois} and $\Gal(K/F)$ is a $p$-group.
+
+  \begin{enumerate}
+    \item Let $L/F$ be a separable extension of degree $n$ and let $K$ be the Galois closure of $L$ over $F$. Prove that $K$ can be written as a compositum $L_1 L_2\cdots L_n$, where $L_1,\ldots, L_n$ are (not necessarily distinct) conjugates of $L$ over $F$.
+    \item Let $K/F$ and $L/F$ be finite $p$-extensions. Prove that $KL/F$ is also a $p$-extension.
+    \item Suppose that $K/L$ and $L/F$ are both $p$-extensions, and let $M$ be the Galois closure of $K$ over $F$ (note: we do not know whether $K/F$ is Galois or not). Prove that $M/F$ is also a $p$-extension.
+    \item Now assume only that $L/F$ is a separable extension with $[L:F]=p^r$, for some $r\geq 1$. Let $M$ be the Galois closure of $L$ over $F$. Prove that $[M:F]$ need not be a power of $p$.
+  \end{enumerate}
+\end{homeworkProblem}
+
+
+
+\begin{homeworkProblem}
+  Let $f(x)$ and $g(x)$ be irreducible polynomials in $\F_p[x]$ of the same degree. Let $F=\F_p[x]/(f(x))$. Prove that $g(x)$ splits completely over $F$.
+
+  \begin{proof}
+    By a vector space counting argument, $|F| = p^n$. By uniqueness of splitting fields, $F$ is $\F_p$-isomorphic to $\F_{p^n}$ which is $\F_p$-isomorphic to $\F_p[x]/(q(x))$ which contains a root of $q(x)$. Thus, $F$ contains a root of $q(x)$ whence by normality of the extensions $F/\F_p$, $q(x)$ splits over $F$.
+  \end{proof}
+\end{homeworkProblem}
+
+
+\begin{homeworkProblem}
+  Consider the polynomial $f(x)=x^4-2x^2-5\in\Q[x]$.\\
+
+  \textbf{(a)}: Determine the Galois group $G$ of the splitting field $K$ of $f(x)$ over $\Q$.
+
+  \begin{proof}
+    Let $\alpha = \sqrt{1+\sqrt{6}}$ and $\beta = \sqrt{1-\sqrt{6}}$. Then $f(x) = (x-\alpha)(x+\alpha)(x-\beta)(x+\beta)$ and $K = \Q(\alpha,\beta)$. Noting that $\alpha^2+\beta^2 = 2$, it follows that $\mu_{\beta,\Q(\alpha)} = x^2 +(\alpha^2-2)$ and thus $[K:\Q(\alpha)] = 2$. Note that $f(x)$ is irreducible as  none of the choices of pairs of linear factors provide a polynomial in $\Q[x]$ by appealing to Vieta's formulae and the fact that $\alpha^2,\beta^2,\alpha\pm\beta\not\in\Q$.
+
+    Thus $\G$ is an order $8$ subgroup of $S_4$, whence its isomorphism class is $D_8$.
+  \end{proof}
+
+  \textbf{(b)}: Find all subgroups of $G$ and their corresponding fixed fields. Which of those are normal extensions of $\Q$?
+
+\end{homeworkProblem}
+
+
+
+\begin{homeworkProblem}
+  Let $p$ and $q$ be distinct primes with $q>p$, and let $K/F$ be a Galois extension of degree $pq$. Prove the following:\\
+
+  \textbf{(a)}: There exists a field $L$ with $F\subset L\subset K$ and $[L:F]=q$.
+
+  \begin{proof}
+    Let $G = \Gal(K/F)$. Then $|G| = pq$, whence by Sylow's existence theorem there is some subgroup $H\sub G$ such that $|H| = p$. Setting $L = K^{H}$, by the fundamental theorem of Galois theory, $p = |H| = [K:K^H]$ whence $[K^H: F] = q$ as desired.
+  \end{proof}
+
+  \textbf{(b)}: There exists a \textbf{unique} field $M$ with $F\subset M\subset K$ and $[M:F]=p$.
+
+  \begin{proof}
+    Let $G = \Gal(K/F)$. Let $n_q$ denote the number of Sylow $q$-subgroups of $G$. Then as $n_q \divides p$ and $n_q\equiv 1 mod\ q$, the restriction that $q>p$ forces  $n_q = 1$. Thus there is a unique subgroup of $Q$ of $G$ of order $q$, whence by the fundamental theorem of Galois theory there is a unique intermediate subfield $M = K^Q$ of $K/F$ with $[K:M] = q$ or equivalently $[M:F] = p$.
+  \end{proof}
+
+\end{homeworkProblem}
+
+
+\begin{homeworkProblem}
+  Prove the following analogue of Kummer's theorem for abelian extensions: Let $n\in\N$ and let $F$ be a field containing a primitive $n^{th}$ root of unity.\\
+
+  \textbf{(a)}: Let $K/F$ be a finite Galois extension such that $G=\Gal(K/F)$ is abelian of exponent $n$. Then there exists $a_1,\ldots,a_t\in F$ such that $K=F(\sqrt[n]{a_1},\ldots,\sqrt[n]{a_t})$. More precisely, there exists $\alpha_1,\ldots,\alpha_t\in K$ such that $K=F(\alpha_1,\ldots,\alpha_t)$ and $\alpha_i^n\in F$ for all $i$. \\
+
+  \textbf{(b)}: Conversely, suppose that $K=F(\sqrt[n]{a_1},\ldots,\sqrt[n]{a_t})$ for some $a_1,\ldots, a_t\in F$. Prove that $K/F$ is Galois and $G=\Gal(K/F)$ is abelian of exponent $n$. \textbf{Hint:} For part (b) use one of the problems from the previous homework. \\
+\end{homeworkProblem}
+
+
+\begin{homeworkProblem}
+  Let $F$ be a field containing a primitive $n^{th}$ root of unity. Let $a,b\in F$ be such that the polynomials $f(x)=x^n-a$, and $g(x)=x^n-b$ are both irreducible over $F$. Consider the Kummer extensions $F(\alpha)$, $F(\beta)$, where $\alpha$ is a root of $f(x)$ and $\beta$ is a root of $g(x)$. Prove that
+ $F(\alpha)=F(\beta)$ if and only if $\beta=c\alpha^r$, for some $c\in F$ and some integer $r$ which is coprime to $n$ (equivalently, if and only if $b=c^n a^r$, for some $c\in F$ and some $(r,n)=1)$.
+\end{homeworkProblem}
+
+
+
+
+\end{document}

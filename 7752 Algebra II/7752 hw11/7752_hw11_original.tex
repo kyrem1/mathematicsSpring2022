@@ -1,0 +1,240 @@
+\documentclass[12pt,
+psamsfonts]{amsart}
+
+%-------Packages---------
+\usepackage{amssymb,amsfonts,amsmath}
+\usepackage[all,arc]{xy}
+\usepackage{enumerate}
+\usepackage{mathrsfs}
+\usepackage{fullpage}
+\usepackage{xspace}
+\usepackage[margin=1.0in]{geometry}
+\usepackage{tcolorbox}
+\usepackage{tikz-cd}
+\usepackage{color}
+\usepackage{aliascnt}
+\usepackage[foot]{amsaddr}
+\usepackage{hyperref}
+
+
+%--------Theorem Environments--------
+%theoremstyle{plain} --- default
+\newtheorem{thm}{Theorem}[section]
+
+%----Theorem
+\newaliascnt{theo}{thm}
+\newtheorem{theo}[theo]{Theorem}
+\aliascntresetthe{theo}
+\newcommand{\theoautorefname}{Theorem}
+%----Corollary
+\newaliascnt{cor}{thm}
+\newtheorem{cor}[cor]{Corollary}
+\aliascntresetthe{cor}
+\newcommand{\corautorefname}{Corollary}
+%----Proposition
+\newaliascnt{prop}{thm}
+\newtheorem{prop}[prop]{Proposition}
+\aliascntresetthe{prop}
+\newcommand{\propautorefname}{Proposition}
+%----Lemma
+\newaliascnt{lem}{thm}
+\newtheorem{lem}[lem]{Lemma}
+\aliascntresetthe{lem}
+\newcommand{\lemautorefname}{Lemma}
+%----Conjecture
+\newaliascnt{conj}{thm}
+\newtheorem{conj}[conj]{Conjecture}
+\aliascntresetthe{conj}
+\newcommand{\conjautorefname}{Conjecture}
+%----Question
+\newaliascnt{que}{thm}
+\newtheorem{que}[que]{Question}
+\aliascntresetthe{que}
+\newcommand{\queautorefname}{Question}
+%----Assumption
+\newaliascnt{ass}{thm}
+\newtheorem{ass}[ass]{Assumption}
+\aliascntresetthe{ass}
+\newcommand{\assautorefname}{Assumption}
+%----Definition
+\newaliascnt{defn}{thm}
+\newtheorem{defn}[defn]{Definition}
+\aliascntresetthe{defn}
+\newcommand{\defnautorefname}{Definition}
+
+
+
+
+%Style
+\theoremstyle{remark}
+%----Remark
+\newaliascnt{rem}{thm}
+\newtheorem{rem}[rem]{Remark}
+\aliascntresetthe{rem}
+\newcommand{\remautorefname}{Remark}
+
+\newtheorem*{ack}{Acknowledgements}
+
+
+
+
+\newtheorem{Proof}{Proof}
+
+\theoremstyle{definition}
+%\newtheorem{defn}[thm]{Definition}
+\newtheorem{defns}[thm]{Definitions}
+\newtheorem{con}[thm]{Construction}
+\newtheorem{exmp}[thm]{Example}
+\newtheorem{exmps}[thm]{Examples}
+\newtheorem{notn}[thm]{Notation}
+\newtheorem{notns}[thm]{Notations}
+\newtheorem{addm}[thm]{Addendum}
+\newtheorem{exer}[thm]{Exercise}
+\newtheorem{conv}[thm]{Convention}
+
+\newtheorem{case}[thm]{Case}
+
+
+\newtheorem{rems}[thm]{Remarks}
+\newtheorem{warn}[thm]{Warning}
+%\newtheorem{sch}[thm]{Scholium}
+\newtheorem{notation}[thm]{Notation}
+\newtheorem{ex}[thm]{Examples}
+\newtheorem{note}[thm]{Note}
+
+
+
+\newcommand{\N}{\mathbb{N}\xspace}
+\newcommand{\I}{\mathbb{I}\xspace}
+\newcommand{\R}{\mathbb{R}\xspace}
+\newcommand{\Z}{\mathbb{Z}\xspace}
+\newcommand{\Q}{\mathbb{Q}\xspace}
+\newcommand{\C}{\mathbb{C}\xspace}
+\newcommand{\G}{\mathbb{G}\xspace}
+\newcommand{\F}{\mathbb{F}\xspace}
+\DeclareMathOperator{\Spec}{Spec}
+\DeclareMathOperator{\res}{res}
+\DeclareMathOperator{\Tr}{Tr}
+\DeclareMathOperator{\ord}{ord}
+\DeclareMathOperator{\Sym}{Sym}
+\DeclareMathOperator{\dv}{div}
+\DeclareMathOperator{\alb}{alb}
+\DeclareMathOperator{\img}{Im}
+\DeclareMathOperator{\et}{et}
+\DeclareMathOperator{\ck}{coker}
+\DeclareMathOperator{\Reg}{Reg}
+\DeclareMathOperator{\Cor}{Cor}
+\DeclareMathOperator{\ch}{char}
+\DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\Aut}{Aut}
+\DeclareMathOperator{\Gal}{Gal}
+\DeclareMathOperator{\fc}{frac}
+\DeclareMathOperator{\Ann}{Ann}
+\DeclareMathOperator{\Mod}{Mod}
+\DeclareMathOperator{\Cone}{Cone}
+\DeclareMathOperator{\FI}{FI}
+\DeclareMathOperator{\End}{End}
+\DeclareMathOperator{\rk}{rk}
+\DeclareMathOperator{\Ext}{Ext}
+\DeclareMathOperator{\ab}{ab}
+
+\DeclareMathOperator{\coker}{coker}
+\DeclareMathOperator{\fr}{frac}
+\makeatletter
+\let\c@equation\c@theo
+\makeatother
+\numberwithin{equation}{section}
+
+\bibliographystyle{plain}
+%\newcommand{\textlatin }
+
+
+
+
+%--------Meta Data: Fill in your info------
+\title{Math 7752 - Homework 11\\
+Due Friday 04/29/22}
+
+\begin{document}
+
+\maketitle
+
+%\textbf{Reminders:} If $K/F$ and $L/K$ are finite extensions, then 
+%$L/F$ is finite and \[[L:F]=[L:K][K:F].\] In particular, both $[K:F]$ and $[L:K]$ divide $[L:F]$. 
+%\\
+
+%\textbf{Reminder:} A field $F$ of characteristc $p>0$ is perfect if the Frobenius map $\varphi:x\mapsto x^p$ is surjective. \\
+
+\begin{enumerate}
+%\item Let $K/L/F$ be a tower of algebraic extensions. Show that $K/F$ is separable if and only if $K/L$ and $L/F$ are separable. \\
+%\item Let $K/F$ be a finite separable extension. Show that there is a finite number of fields $L$ such that $F\subseteq L\subseteq K$. \\
+%\item Let $F$ be a field of $\ch(F)=p>0.$ Show that $F$ admits a finite inseparable extension $K/F$ if and only if $F$ is not perfect. \\
+\item In this problem you will need the following two definitions. \\
+\textbf{Definition 1:} Let $L/F$ be a finite separable extension and let $\overline{F}$ be an algebraic closure of $F$ containing $L$. A subfield $L'$ of $\overline{F}$ is called \textbf{conjugate to $L$ over $F$} if $L'=\sigma(L)$ for some $F$-embedding $\sigma:L\to\overline{F}$. (Note: $L/F$ is Galois if and only if the only conjugate to $L$ over $F$ is itself.) \\
+\textbf{Definition 2:} A finite extension $K/F$ is called a \textbf{$p$-extension} if $K/F$ is \textbf{Galois} and $\Gal(K/F)$ is a $p$-group. 
+\begin{enumerate}
+\item Let $L/F$ be a separable extension of degree $n$ and let $K$ be the Galois closure of $L$ over $F$. Prove that $K$ can be written as a compositum $L_1 L_2\cdots L_n$, where $L_1,\ldots, L_n$ are (not necessarily distinct) conjugates of $L$ over $F$. 
+\item Let $K/F$ and $L/F$ be finite $p$-extensions. Prove that $KL/F$ is also a $p$-extension.  
+\item Suppose that $K/L$ and $L/F$ are both $p$-extensions, and let $M$ be the Galois closure of $K$ over $F$ (note: we do not know whether $K/F$ is Galois or not). Prove that $M/F$ is also a $p$-extension. 
+\item Now assume only that $L/F$ is a separable extension with $[L:F]=p^r$, for some $r\geq 1$. Let $M$ be the Galois closure of $L$ over $F$. Prove that $[M:F]$ need not be a power of $p$. 
+\end{enumerate} 
+\medskip 
+\medskip 
+\item Let $f(x)$ and $g(x)$ be irreducible polynomials in $\F_p[x]$ of the same degree. Let $F=\F_p[x]/(f(x))$. Prove that $g(x)$ splits completely over $F$. 
+\\
+\item Consider the polynomial $f(x)=x^4-2x^2-5\in\Q[x]$.
+\begin{enumerate}
+\item Determine the Galois group $G$ of the splitting field $K$ of $f(x)$ over $\Q$.
+\item Find all subgroups of $G$ and their corresponding fixed fields. Which of those are normal extensions of $\Q$?  
+\end{enumerate} 
+\medskip
+\medskip
+\item Let $p$ and $q$ be distinct primes with $q>p$, and let $K/F$ be a Galois extension of degree $pq$. Prove the following: 
+ \begin{enumerate}
+[(a)]\item There exists a field $L$ with $F\subset L\subset K$ and $[L:F]=q$. 
+\item There exists a \textbf{unique} field $M$ with $F\subset M\subset K$ and $[M:F]=p$. 
+\end{enumerate} 
+\medskip
+\medskip 
+\item Prove the following analogue of Kummer's theorem for abelian extensions: Let $n\in\N$ and let $F$ be a field containing a primitive $n^{th}$ root of unity. 
+\begin{enumerate}
+\item  Let $K/F$ be a finite Galois extension such that $G=\Gal(K/F)$ is abelian of exponent $n$. Then there exists $a_1,\ldots,a_t\in F$ such that $K=F(\sqrt[n]{a_1},\ldots,\sqrt[n]{a_t})$. More precisely, there exists $\alpha_1,\ldots,\alpha_t\in K$ such that $K=F(\alpha_1,\ldots,\alpha_t)$ and $\alpha_i^n\in F$ for all $i$. 
+\item Conversely, suppose that $K=F(\sqrt[n]{a_1},\ldots,\sqrt[n]{a_t})$ for some $a_1,\ldots, a_t\in F$. Prove that $K/F$ is Galois and $G=\Gal(K/F)$ is abelian of exponent $n$. \textbf{Hint:} For part (b) use one of the problems from the previous homework. 
+\end{enumerate}
+\medskip
+\medskip
+\item Let $F$ be a field containing a primitive $n^{th}$ root of unity. Let $a,b\in F$ be such that the polynomials $f(x)=x^n-a$, and $g(x)=x^n-b$ are both irreducible over $F$. Consider the Kummer extensions $F(\alpha)$, $F(\beta)$, where $\alpha$ is a root of $f(x)$ and $\beta$ is a root of $g(x)$. Prove that 
+$F(\alpha)=F(\beta)$ if and only if $\beta=c\alpha^r$, for some $c\in F$ and some integer $r$ which is coprime to $n$ (equivalently, if and only if $b=c^n a^r$, for some $c\in F$ and some $(r,n)=1)$. 
+\\
+%\item Let $n\geq 1$. Consider the finite field $\F_{p^n}=\{\alpha\in\overline{\F}_p: \alpha^{p^n}=\alpha\}$. Consider the Frobenius endomorphism $\varphi:\F_{p^n}\to\F_{p^n}$ given by $x\mapsto x^{p}$.  
+%\begin{enumerate}
+%\item Prove that $\varphi$ is an isomorphism of $\F_{p^n}$ to itself (and hence an automorphism). 
+%\item  Determine the rational canonical form of the $\F_p$-linear transformation $\varphi$. 
+%\end{enumerate}
+%\medskip
+%\item Let $F$ be a field and $p(x)\in F[x]$ be a non-constant polynomial. Show that $p(x)$ is separable if and only if $\gcd(p(x),p'(x))=1$.\\
+%\item  The purpose of this problem is to prove that the group $\Aut_\Q(\R)$ is trivial by following the suggested steps. Let $\sigma:\R\to\R$ be an automorphism of $\R$.
+%\begin{enumerate}
+%\item  Show that $\sigma$ is strictly increasing. 
+%\item Use the density of $\Q$ in $\R$ to show that $\sigma$ is continuous at $x=0$. 
+%\item Deduce that $\sigma$ is continuous on $\R$, and hence $\sigma(x)=x$.  
+%\end{enumerate}
+%
+%\medskip
+%\item (\textbf{Bonus}) Finish the proof we started in class to show that the Galois group $\Gal(\overline{\F}_p/\F_p)$ is uncountable.  
+%\end{enumerate} 
+%\medskip
+%\medskip
+%\item Dummit and Foote, Problems 17 \& 18 on pages 582-583. 
+
+
+
+
+\end{enumerate}
+
+
+
+
+
+\end{document}
