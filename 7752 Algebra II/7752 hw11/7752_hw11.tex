@@ -339,6 +339,7 @@
     \[
       \iota: \Gal(K/F)\hookrightarrow \prod_{i=1}^{t}\Gal(F(\alpha_i)/F) \cong \prod_{i=1}^{t}\Z/n_i\Z
     \]
+    As the latter group has exponent dividing $n$, it follows that $\Gal(K/F)$ has exponent dividing $n$.
   \end{proof}
 \end{homeworkProblem}
 
@@ -350,14 +351,18 @@
   \begin{proof}\ \\
     \underline{$\impliedby$}: Suppose that $\beta=c\alpha^r$, for some $c\in F$ and some integer $r$ which is coprime to $n$. Note that we immediately have the equality and inclusion $F(\beta) = F(c\alpha^r) = F(\alpha^r)\sub F(\alpha)$, thus it suffices to show that $[F(\alpha): F(\alpha^r)] = |\Gal(F(\alpha)/F(\alpha^r))| = 1$. We will show that the Galois group of this extension is trivial.\\
 
-    Suppose that $\sigma\in \Gal(F(\alpha)/F(\alpha^r))$. Noting that $\sigma(\alpha)$ is also a root of $f(x)$ (since $f(x)$ is irreducible), it follows that $\sigma(\alpha) = \zeta^k \alpha$ for some $0\leq k\leq n-1$. Observe that
+    Suppose that $\sigma\in \Gal(F(\alpha)/F(\alpha^r))$. Let $\zeta$ be a primitive $n^{th}$ root of unity. Noting that $\sigma(\alpha)$ is also a root of $f(x)$ (since $f(x)$ is irreducible), it follows that $\sigma(\alpha) = \zeta^k \alpha$ for some $0\leq k\leq n-1$. Observe that
     \[
       \alpha^r = \sigma(\alpha^r) = (\zeta^k \alpha)^r \implies \alpha^r(\zeta^{kr}-1) = 0 \implies \zeta^{kr}-1 = 0,
     \]
     so $(\zeta^r)^k = 1$. As $r$ is coprime to $n$, we have that $\zeta^r$ is also a primitive $n^{th}$ root of unity, whence $n\divides k$. As $0\leq k \leq n-1$, it must hold that $k = 0$, so $\sigma(\alpha) = \alpha$ whence $\sigma = id$ as desired. \\
 
 
-    \underline{$\implies$}: Suppose that $F(\alpha) = F(\beta)$.
+    \underline{$\implies$}: Suppose that $F(\alpha) = F(\beta)$. Then $G = \Gal(F(\alpha)/F) = \Gal(F(\beta)/F)$. By Kummer's theorem and irreducibility of $f$ and $g$, $G$ is cyclic of order $n$. Let $G = \cyclic{\sigma}$ and $\zeta$ is a primitive $n^{th}$ root of unity. Then there exist $r,s\in\N$ both coprime to $n$ such that $\sigma(\alpha) = \zeta^r \alpha$ and $\sigma(\beta) = \zeta^s\beta$. As $\zeta^r$ and $\zeta^s$ are both also primitive $n^{th}$ roots of unity, there is some $k\in\N$ coprime to $n$ such that $\zeta^s = (\zeta^r)^k$. Then, we observe that
+    \[
+      \frac{\sigma(\beta)}{\beta} = \zeta^s = (\zeta^r)^k = \lr{\frac{\sigma(\alpha)}{\alpha}}^k \implies \sigma\lr{\frac{\beta}{\alpha^k}} = \frac{\beta}{\alpha^k}
+    \]
+    thus $c = \frac{\beta}{\alpha^k}$ is fixed by $G$ so $c\in F$. Thus $\beta = c\alpha^k$ for some $c\in F$ and $k$ coprime to $n$.
 
 
   \end{proof}
