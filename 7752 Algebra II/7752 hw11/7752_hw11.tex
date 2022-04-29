@@ -195,12 +195,70 @@
   \textbf{(a)}: Determine the Galois group $G$ of the splitting field $K$ of $f(x)$ over $\Q$.
 
   \begin{proof}
-    Let $\alpha = \sqrt{1+\sqrt{6}}$ and $\beta = \sqrt{1-\sqrt{6}}$. Then $f(x) = (x-\alpha)(x+\alpha)(x-\beta)(x+\beta)$ and $K = \Q(\alpha,\beta)$. Noting that $\alpha^2+\beta^2 = 2$, it follows that $\mu_{\beta,\Q(\alpha)} = x^2 +(\alpha^2-2)$ and thus $[K:\Q(\alpha)] = 2$. Note that $f(x)$ is irreducible as  none of the choices of pairs of linear factors provide a polynomial in $\Q[x]$ by appealing to Vieta's formulae and the fact that $\alpha^2,\beta^2,\alpha\pm\beta\not\in\Q$.
+    Let $\alpha = \sqrt{1+\sqrt{6}}$ and $\beta = \sqrt{1-\sqrt{6}}$. Then $f(x) = (x-\alpha)(x+\alpha)(x-\beta)(x+\beta)$ and $K = \Q(\alpha,\beta)$. Noting that $\alpha^2+\beta^2 = 2$, it follows that $\mu_{\beta,\Q(\alpha)} = x^2 +(\alpha^2-2)$ and thus $[K:\Q(\alpha)] = 2$. Note that $f(x)$ is irreducible as  none of the choices of pairs of linear factors provide a polynomial in $\Q[x]$ by appealing to Vieta's formulae and the fact that $\alpha^2,\beta^2,\alpha\pm\beta\not\in\Q$. Hence, $[\Q(\alpha): \Q] = 4$ and thus $|G| = [K:\Q] = 8$.\\
 
-    Thus $\G$ is an order $8$ subgroup of $S_4$, whence its isomorphism class is $D_8$.
+    Letting $\alpha_1 = \alpha$, $\alpha_2 = -\alpha$, $\alpha_3 = \beta$, $\alpha_4 = -\beta$, it follows that the action of $G$ on $\{\alpha_1,\cdots,\alpha_4\}$ induces an injective group homomorphism $\rho:G\hookrightarrow S_4$. Thus $G\cong\rho(G)\sub S_4$ is an order $8$ subgroup of $S_4$, all of which are isomorphic to $D_4$ so $G\cong D_4$.
   \end{proof}
 
   \textbf{(b)}: Find all subgroups of $G$ and their corresponding fixed fields. Which of those are normal extensions of $\Q$?
+
+  \begin{proof}[Solution]
+    Let $\alpha_1,\ldots,\alpha_4$ and $\rho$ be as in part (a). Set $\gamma = \alpha\beta = \sqrt{-5}$. Note that if $\sigma\in G$, then $\sigma(\alpha)$,$\sigma(\gamma)$ are roots of the minimal polynomials of $\alpha$ and $\gamma$ respectively, whence $\sigma(\alpha)\in\{\alpha_1,\ldots,\alpha_4\}$ and $\sigma(\gamma)\in \{\pm\gamma\}$. Moreover, as $K = \Q(\alpha,\gamma)$, the images of $\alpha$ and $\gamma$ completely determine the $\Q$-automorphism $\sigma$. Since there are only $8$ such choices of images and $|G| = 8$, it follows that $G$ contains automorphisms with all possible images of these elements. \\
+
+    Let $\sigma,\tau\in G$ such that
+    \begin{align*}
+      \sigma(\alpha) &= \beta  &\tau(\alpha) &= \alpha\\
+      \sigma(\gamma) &= -\gamma &\tau(\gamma) &= -\gamma.
+    \end{align*}
+    Then $\rho(\sigma) = (1324)$ and $\rho(\tau) = (34)$. Moreover, $\rho(\tau\sigma\tau) = \rho(\sigma)^{-1}$. Thus, $\rho,\sigma$ generate $G$ and satisfy the relations defining $D_4$.\\
+
+    For the subgroup diagram, we have
+    \[\begin{tikzcd}
+    	&& {\langle \sigma,\tau\rangle} \\
+    	& {\langle \sigma^2,\sigma\tau\rangle} & {\langle \sigma\rangle} & {\langle \sigma^2,\tau\rangle} \\
+    	{\langle \sigma\tau\rangle} & {\langle \sigma^3\tau\rangle} & {\langle \sigma^2\rangle} & {\langle \sigma^2\tau\rangle} & {\langle \tau\rangle} \\
+    	&& {\{e\}}
+    	\arrow[no head, from=3-1, to=4-3]
+    	\arrow[no head, from=3-2, to=4-3]
+    	\arrow[no head, from=3-3, to=4-3]
+    	\arrow[no head, from=3-4, to=4-3]
+    	\arrow[no head, from=3-5, to=4-3]
+    	\arrow[no head, from=2-2, to=3-2]
+    	\arrow[no head, from=2-2, to=3-1]
+    	\arrow[no head, from=2-2, to=3-3]
+    	\arrow[no head, from=2-3, to=3-3]
+    	\arrow[no head, from=2-4, to=3-3]
+    	\arrow[no head, from=2-4, to=3-4]
+    	\arrow[no head, from=2-4, to=3-5]
+    	\arrow[no head, from=1-3, to=2-3]
+    	\arrow[no head, from=1-3, to=2-2]
+    	\arrow[no head, from=1-3, to=2-4]
+    \end{tikzcd}\]
+
+    with its corresponding subfield diagram
+
+    \[\begin{tikzcd}
+      && {\mathbb{Q}(\alpha,\beta)} \\
+      {\mathbb{Q}(a)} & {\mathbb{Q}(b)} & {\mathbb{Q}(\gamma,\alpha^2-\beta^2)} & {\mathbb{Q}(\alpha^2,\beta)} & {\mathbb{Q}(\alpha)} \\
+      & {\mathbb{Q}(\gamma)} & {\mathbb{Q}(\gamma(\alpha^2-\beta^2))} & {\mathbb{Q}(\alpha^2)} \\
+      && {\mathbb{Q}}
+      \arrow[no head, from=2-1, to=3-2]
+      \arrow[no head, from=2-2, to=3-2]
+      \arrow[no head, from=2-3, to=3-3]
+      \arrow[no head, from=2-3, to=3-2]
+      \arrow[no head, from=2-3, to=3-4]
+      \arrow[no head, from=2-4, to=3-4]
+      \arrow[no head, from=2-5, to=3-4]
+      \arrow[no head, from=3-2, to=4-3]
+      \arrow[no head, from=3-3, to=4-3]
+      \arrow[no head, from=3-4, to=4-3]
+      \arrow[no head, from=2-1, to=1-3]
+      \arrow[no head, from=2-2, to=1-3]
+      \arrow[no head, from=1-3, to=2-3]
+      \arrow[no head, from=1-3, to=2-4]
+      \arrow[no head, from=1-3, to=2-5]
+    \end{tikzcd}\]
+  \end{proof}
 
 \end{homeworkProblem}
 
@@ -242,7 +300,10 @@
   \textbf{(b)}: Conversely, suppose that $K=F(\sqrt[n]{a_1},\ldots,\sqrt[n]{a_t})$ for some $a_1,\ldots, a_t\in F$. Prove that $K/F$ is Galois and $G=\Gal(K/F)$ is abelian of exponent $n$. \textbf{Hint:} For part (b) use one of the problems from the previous homework.
 
   \begin{proof}
-    Write $\alpha_i = \sqrt[n]{a_i}$, so $\alpha_i^n = a_i$. As $F$ contains a primitive $n^{th}$ root of unity, K\"{u}mmer's theorem implies that each $F(\alpha_i)/F$ is Galois with $\Gal(F(\alpha_i)/F)\cong \Z/n_i\Z$ for some $n_i\divides n$.
+    Write $\alpha_i = \sqrt[n]{a_i}$, so $\alpha_i^n = a_i$. As $F$ contains a primitive $n^{th}$ root of unity, K\"{u}mmer's theorem implies that each $F(\alpha_i)/F$ is Galois with $\Gal(F(\alpha_i)/F)\cong \Z/n_i\Z$ for some $n_i\divides n$. Applying homework 10 problem 4(b) part(ii) iteratively, we obtain an embedding
+    \[
+      \iota: \Gal(K/F)\hookrightarrow \prod_{i=1}^{t}\Gal(F(\alpha_i)/F) \cong \prod_{i=1}^{t}\Z/n_i\Z
+    \]
   \end{proof}
 \end{homeworkProblem}
 
@@ -250,6 +311,18 @@
 \begin{homeworkProblem}
   Let $F$ be a field containing a primitive $n^{th}$ root of unity. Let $a,b\in F$ be such that the polynomials $f(x)=x^n-a$, and $g(x)=x^n-b$ are both irreducible over $F$. Consider the K\"{u}mmer extensions $F(\alpha)$, $F(\beta)$, where $\alpha$ is a root of $f(x)$ and $\beta$ is a root of $g(x)$. Prove that
   $F(\alpha)=F(\beta)$ if and only if $\beta=c\alpha^r$, for some $c\in F$ and some integer $r$ which is coprime to $n$ (equivalently, if and only if $b=c^n a^r$, for some $c\in F$ and some $(r,n)=1)$.
+
+  \begin{proof}\ \\
+    \underline{$\impliedby$}: Suppose that $\beta=c\alpha^r$, for some $c\in F$ and some integer $r$ which is coprime to $n$. Note that we immediately have the equality and inclusion $F(\beta) = F(c\alpha^r) = F(\alpha^r)\sub F(\alpha)$, thus it suffices to show that $[F(\alpha): F(\alpha^r)] = |\Gal(F(\alpha)/F(\alpha^r))| = 1$. We will show that the Galois group of this extension is trivial.\\
+
+    Suppose that $\sigma\in \Gal(F(\alpha)/F(\alpha^r))$. Noting that $\sigma(\alpha)$ is also a root of $f(x)$ (since $f(x)$ is irreducible), it follows that $\sigma(\alpha) = \zeta^k \alpha$ for some $0\leq k\leq n-1$. Observe that
+    \[
+      \alpha^r = \sigma(\alpha^r) = (\zeta^k \alpha)^r \implies \alpha^r(\zeta^{kr}-1) = 0 \implies \zeta^{kr}-1 = 0,
+    \]
+    so $(\zeta^r)^k = 1$. As $r$ is coprime to $n$, we have that $\zeta^r$ is also a primitive $n^{th}$ root of unity, whence $n\divides k$. As $0\leq k \leq n-1$, it must hold that $k = 0$, so $\sigma(\alpha) = \alpha$ whence $\sigma = id$ as desired.
+
+
+  \end{proof}
 \end{homeworkProblem}
 
 
