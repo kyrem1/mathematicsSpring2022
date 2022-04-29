@@ -198,9 +198,20 @@
 \begin{homeworkProblem}[2]
   If $X,Y$ are sets, and $f:X\to\C$, $g:Y\to\C$, we define $f\otimes g:X\times Y\to\C$ by $(f\otimes g)(x,y) = f(x)g(y)$. Fix $1\leq p<+\infty$.\\
 
-  \textbf{(a)}: Let $(X,\Sigma,\mu),(Y,\mc{F},\nu)$ be $\sigma$-finite measure spaces. Show that if $f\in L^p(X,\mu),g\in L^p(Y,\nu)$, then $\norm{f\otimes g}_p = \norm{f}_p \norm{g}_p$.\\
+  \textbf{(a)}: Let $(X,\Sigma,\mu),(Y,\mc{F},\nu)$ be $\sigma$-finite measure spaces. Show that if $f\in L^p(X,\mu),g\in L^p(Y,\nu)$, then $\norm{f\otimes g}_p = \norm{f}_p \norm{g}_p$.
 
-  \textbf{(b)}: Let $(Z,\mc{O},\zeta)$ be a finite measure space. Suppose that $\mc{A}\sub\mc{O}$ is an algebra which generates the $\sigma$-algebra of $\mc{O}$. Use the monotone class lemma to show that $\{\ind_A:A\in\mc{A}\}$ is dense in $\{\ind_E:E\in\mc{O}\}$ in the $L^p$-norm for all $1\leq p <+\infty$.\\
+  \begin{proof}
+    By Tonelli's theorem,
+    \begin{align*}
+      \norm{f\otimes g}_p^p &= \int_{X\times Y} |f\otimes g|^p\dd{\mu\otimes\nu} = \int_{Y}\int_{X} |f(x)|^p |g(y)|^p \dd{\mu(x)}\dd{\nu(y)} \\&= \int_{Y}|g(y)|^p\int_{X}|f(x)|^p \dd{\mu(x)}\dd{\nu(y)} = \norm{f}_p^p \int_{Y}|g(y)|^p \dd{\nu(y)} = \norm{f}_p^p \norm{g}_p^p.
+    \end{align*}
+  \end{proof}
+
+  \textbf{(b)}: Let $(Z,\mc{O},\zeta)$ be a finite measure space. Suppose that $\mc{A}\sub\mc{O}$ is an algebra which generates the $\sigma$-algebra of $\mc{O}$. Use the monotone class lemma to show that $\{\ind_A:A\in\mc{A}\}$ is dense in $\{\ind_E:E\in\mc{O}\}$ in the $L^p$-norm for all $1\leq p <+\infty$.
+
+  \begin{proof}
+    By the monotone class lemma, $\mc{O} = \Sigma(\mc{A}) = M(\mc{A})$. Let $E\in\mc{O}$. Then
+  \end{proof}
 
   \textbf{(c)}: Let $(X,\Sigma,\mu),(Y,\mc{F},\nu)$ be finite measure spaces. Use the previous part to show that $\{\ind_E : E\in \Sigma\otimes\mc{F}\}\sub\cls{\Span}^{\norm{\cdot}_p}\{\ind_E\otimes\ind_F:E\in\Sigma,F\in\mc{F}\}$. Use this to show that $\cls{\Span}^{\norm{\cdot}_p}\{\ind_E\otimes\ind_F:E\in\Sigma,F\in\mc{F}\} = L^p(X\times Y,\mu\otimes\nu)$.\\
 
