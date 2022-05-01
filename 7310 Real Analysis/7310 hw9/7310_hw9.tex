@@ -334,16 +334,22 @@
   Let $\psi:\R\to\R$ be given as $\psi = \ind_{[0,1/2)}-\ind_{[1/2,1]}$. For $n,k\in\Z$ define $h_{n,k}(t) = 2^{n/2}\psi(2^n t-k)$. Show that $\mc{E} = \{ 1\}\cup\{h_{n,k}:n\in \N\cup\{ 0\},\, 0\leq k<2^n \}$ is an orthonormal basis for $L^2([0,1])$.
 
   \begin{proof}
-    Let $A_{nk}=[k2^{-n},(k+1/2)2^{-n})$ and $B_{nk}=[(k+1/2)2^{-n},(k+1)2^{-n}]$.
     Note that
     \[
-      h_{n,k} = 2^{n/2}\lr{\ind_{[k2^{-n},(k+1/2)2^{-n})}-\ind_{[(k+1/2)2^{-n},(k+1)2^{-n}]}} = 2^{n/2}\lr{\ind_{A_{nk}}-\ind_{B_{nk}}}.
+      h_{n,k} = 2^{n/2}\lr{\ind_{[k2^{-n},(k+1/2)2^{-n})}-\ind_{[(k+1/2)2^{-n},(k+1)2^{-n}]}}
     \]
-    Then we compute
-    \begin{align*}
-      \inp{h_{n,k}}{h_{m,l}} &= 2^{(n+m)/2}\int\lr{\ind_{A_{nk}}-\ind_{B_{nk}}}\lr{\ind_{A_{ml}}-\ind_{B_{ml}}}\dd{t}\\
-      &=2^{(n+m)/2}\lr{m(A_{nk}\cap A_{ml}) + m(B_{nk}\cap B_{ml}) - m(A_{nk}\cap B_{ml}) - m(A_{ml}\cap B_{nk})}.
-    \end{align*}
+    Suppose that $f\in L^2([0,1])$ and $f\in \mc{E}^\perp$.
+    For $n\in\N\cup\{0\}$, define a function $c_n:\{0,\ldots,2^{n+1}-1\}$ by $c_n(k) = \int_{[k2^{-(n+1)},(k+1)2^{-(n+1)}]}f(x)\dd{x}$. Then, for all $n\in\N\cup\{0\}$ and $0\leq k<2^n$,
+    \[
+      0 = \inp{f}{h_{nk}} \implies c_n(2k) = \int_{[k2^{-n},(k+1/2)2^{-n})}f(x)\dd{x} = \int_{[(k+1/2)2^{-n},(k+1)2^{-n}]}f(x)\dd{x} = c_n(2k+1).
+    \]
+    We show that $c_n(\cdot)$ is constant for all $n\in\N\cup\{0\}$ by induction on $n$. For $n=0$, we have already shown that $c_0(0) = c_0(1)$. Now suppose that $c_{n-1}(\cdot)$ is constant. Then, for $k\in\{0,\ldots,2^{-(n+1)}\}$
+    \[
+      c_{n-1}(0) = c_{n-1}(k) = c_n(2k)+c_n(2k+1) = 2c_n(2k) = 2c_n(2k+1),
+    \]
+    so $c_n(\cdot)$ is constant.\\
+
+    However then Lebsegue differentiation theorem implies that $f$ is constant as we may always find a nicely shrinking sequence of sets in our aforementioned family, however the expression we would obtain for $f(x)$ would not depend on $x$ as $c_n$ is constant. Now the fact that $\int_0^1 f(x)\dd{x} = 0$ implies that $f=0$.
   \end{proof}
 \end{homeworkProblem}
 
