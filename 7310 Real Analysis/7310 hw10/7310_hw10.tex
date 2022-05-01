@@ -1,0 +1,291 @@
+\documentclass[12pt,letterpaper]{article}
+
+%--------Packages--------
+\usepackage{amsmath, amsthm, amssymb}
+\usepackage{xspace}
+\usepackage{graphicx}
+\usepackage{hhline}
+\usepackage{amssymb}
+\usepackage{array}
+\usepackage{braket}
+\usepackage{multicol}
+\usepackage{mathtools}
+\usepackage{enumerate}
+\usepackage{delarray}
+\usepackage{mathtools}
+\usepackage{fullpage}
+\usepackage{faktor} % For quotients
+\usepackage{mathrsfs}
+
+\usepackage[italicdiff]{physics} % For differentials
+\usepackage{bbm} % For indicator
+
+% \usepackage{quiver}
+\usepackage[linguistics]{forest}
+
+
+
+
+%--------Page Setup--------
+
+\pagestyle{empty}%
+
+\setlength{\hoffset}{-1.54cm}
+\setlength{\voffset}{-1.54cm}
+
+\setlength{\topmargin}{0pt}
+\setlength{\headsep}{0pt}
+\setlength{\headheight}{0pt}
+
+\setlength{\oddsidemargin}{0pt}
+
+\setlength{\textwidth}{195mm}
+\setlength{\textheight}{250mm}
+
+
+%--------Macros--------
+
+\newcommand{\sub}{\subseteq}
+\newcommand{\lcm}{\text{lcm}}
+\newcommand{\mc}[1]{\mathcal{#1}}
+\newcommand{\mf}[1]{\mathfrak{#1}}
+\newcommand{\ms}[1]{\mathscr{#1}}
+\newcommand{\sO}{\mathcal{O}}
+\newcommand{\cyclic}[1]{\langle#1\rangle}
+\newcommand{\units}[1]{#1 ^{\times}}
+\newcommand{\la}{\langle}
+\newcommand{\ra}{\rangle}
+\newcommand{\lr}[1]{\left(#1\right)}
+\newcommand{\lrvert}[1]{\left\lvert#1\right\rvert}
+
+\DeclarePairedDelimiterX{\inp}[2]{\langle}{\rangle}{#1, #2}
+
+%----Switch phi and varphi
+% \let\temp\phi
+% \let\phi\varphi
+% \let\varphi\temp
+
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\N}{\mathbb{N}\xspace}
+\newcommand{\I}{\mathbb{I}\xspace}
+\newcommand{\R}{\mathbb{R}\xspace}
+\newcommand{\Z}{\mathbb{Z}\xspace}
+\newcommand{\Q}{\mathbb{Q}\xspace}
+\newcommand{\G}{\mathbb{G}\xspace}
+
+\DeclareMathOperator{\Spec}{Spec}
+\DeclareMathOperator{\res}{res}
+% \DeclareMathOperator{\Tr}{Tr}
+\DeclareMathOperator{\ord}{ord}
+\DeclareMathOperator{\Sym}{Sym}
+% \DeclareMathOperator{\dv}{div}
+\DeclareMathOperator{\alb}{alb}
+\DeclareMathOperator{\img}{Im}
+\DeclareMathOperator{\et}{et}
+\DeclareMathOperator{\ck}{coker}
+\DeclareMathOperator{\Reg}{Reg}
+\DeclareMathOperator{\Cor}{Cor}
+\DeclareMathOperator{\Ac}{at}
+\DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\Pic}{Pic}
+\DeclareMathOperator{\Gal}{Gal}
+\DeclareMathOperator{\fc}{frac}
+\DeclareMathOperator{\Ann}{Ann}
+\DeclareMathOperator{\Mod}{Mod}
+\DeclareMathOperator{\Cone}{Cone}
+\DeclareMathOperator{\FI}{FI}
+\DeclareMathOperator{\End}{End}
+\DeclareMathOperator{\Alb}{Alb}
+\DeclareMathOperator{\Ext}{Ext}
+\DeclareMathOperator{\ab}{ab}
+\DeclareMathOperator{\Jac}{Jac}
+\DeclareMathOperator{\coker}{coker}
+\DeclareMathOperator{\fr}{frac}
+\DeclareMathOperator{\Int}{Int}
+\let\Span\relax
+\DeclareMathOperator{\Span}{Span}
+\DeclareMathOperator{\Ran}{Ran}
+
+
+
+%----Analysis
+\newcommand{\summ}{\sum\limits}
+% \newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\thicc}{\bigg}
+\newcommand{\eps}{\varepsilon}
+\newcommand*\cls[1]{\overline{#1}}
+\newcommand{\ind}{\mathbbm{1}}
+\DeclareMathOperator{\sgn}{sgn}
+
+
+%--------Theorem environments--------
+\newtheorem{definition}{Definition}[]
+\newtheorem{lemma}{Lemma}[]
+\newtheorem{corollary}{Corollary}[]
+\newtheorem{theorem}{Theorem}[]
+\theoremstyle{remark}
+\newtheorem*{claim}{Claim}
+
+
+\newenvironment{solution}
+{\begin{proof}[Solution]}
+{\end{proof}}
+
+
+\makeatletter
+\newcommand{\thickhline}{%
+    \noalign {\ifnum 0=`}\fi \hrule height 1pt
+    \futurelet \reserved@a \@xhline
+}
+\newcolumntype{"}{@{\hskip\tabcolsep\vrule width 1pt\hskip\tabcolsep}}
+\makeatother
+
+% --------Problem environment--------
+\setlength\parindent{0pt}
+\setcounter{secnumdepth}{0}
+\newcounter{partCounter}
+\newcounter{homeworkProblemCounter}
+\setcounter{homeworkProblemCounter}{1}
+
+
+\newenvironment{homeworkProblem}[1][-1]{
+    \ifnum#1>0
+        \setcounter{homeworkProblemCounter}{#1}
+    \fi
+    \section{Problem \arabic{homeworkProblemCounter}}
+    \setcounter{partCounter}{1}
+    \stepcounter{homeworkProblemCounter}
+}
+
+
+%--------Metadata--------
+\title{MATH 7310 Homework 10}
+\author{James Harbour}
+
+\begin{document}
+\maketitle
+
+\begin{homeworkProblem}
+  If $F\in NBV$, let $G(x)=|\mu_F|((-\infty,x])$, Prove that $|\mu_F|=\mu_{T_F}$ by showing that $G=T_F$ via the following steps.\\
+
+  \textbf{(a)}: From the definition of $T_F$, show that $T_F\leq G$.
+
+  \begin{proof}
+    Let $x\in \R$. Then for $x_0<x_1<\cdots<x_n=x$, observe that
+    \[
+      \sum_{j=1}^{\infty} |F(x_j)-F(x_{j-1})| = \sum_{j=1}^{\infty} |\mu_F((x_{j-1},x_j])|\leq \sum_{j=1}^{\infty} |\mu_F|((x_{j-1},x_j]) = |\mu_F|((x_0,x]),
+    \]
+    whence $T_F(x)\leq \sup_{x_0<x}|\mu_F|((x_0,x]) = |\mu_F|((-\infty,x]) = G(x)$.
+  \end{proof}
+
+  \textbf{(b)}: $|\mu_F(E)|\leq \mu_{T_F}(E)$ when $E$ is an interval, and hence when $E$ is a Borel set.
+
+  \begin{proof}
+    Let $I=(a,b]$ be an interval. Then
+    \begin{align*}
+      |\mu_F(I)| = |F(b)-F(a)| \leq T_F(b)-T_F(a) = \mu_{T_F}(I).
+    \end{align*}
+    Now suppose that $E$ is Borel and let $(a_j,b_j]$ be a countable sequence of $h$-intervals such that $E\sub \bigcup_{j=1}^\infty (a_j,b_j]$. Then
+    \[
+      \lrvert{\sum_{j=1}^{\infty}\mu_F((a_j,b_j])}\leq \sum_{j=1}^{\infty}|\mu_F((a_j,b_j])| \leq \sum_{j=1}^{\infty}\mu_{T_F}((a_j,b_j]),
+    \]
+    whence $|\mu_F(E)|\leq \sum_{j=1}^{\infty}\mu_{T_F}((a_j,b_j])$. As $E\sub \bigcup_{j=1}^\infty (a_j,b_j]$ was arbitrary, after taking an infimum it follows by outer regularity of $\mu_{T_F}$ that $|\mu_F(E)|\leq \mu_{T_F}(E)$. 
+  \end{proof}
+
+  \textbf{(c)}: $|\mu_F|\leq \mu_{T_F}$, and hence $G\leq T_F$ (Use exercise 21).
+
+  \begin{proof}
+    Observe that, by part (b),
+    \begin{align*}
+      |\mu_F|(E) &= \sup\left\{\sum_1^\infty |\mu_F(E_j)|:E_1,E_2,\ldots \text{ disjoint},\,E=\bigsqcup_1^\infty E_j\right\}\\
+      &\leq \sup\left\{\sum_1^\infty \mu_{T_F}(E_j):E_1,E_2,\ldots \text{ disjoint},\,E=\bigsqcup_1^\infty E_j\right\} = \mu_{T_F}(E),
+    \end{align*}
+    so $T_F(x) = \mu_{T_F}((-\infty,x]) \geq |\mu_F|((-\infty,x]) = G(x)$.
+
+  \end{proof}
+\end{homeworkProblem}
+
+
+\begin{homeworkProblem}
+  Let $G$ be a continuous increasing function on $[a,b]$ and let $G(a)=c$, $G(b)=d$.\\
+
+  \textbf{(a)}: If $E\sub [c,d]$ is a Borel set, then $m(E) = \mu_G(G^{-1}(E))$. (First consider the case where $E$ is an interval.)
+
+  \begin{proof}
+
+  \end{proof}
+
+  \textbf{(b)}: If $f$ is a Borel measurable and integrable function on $[c,d]$, then $\int_c^d f(y)\dd{y} = \int_a^b f(G(x))\dd{G(x)}$. In particular, $\int_c^d f(y)\dd{y} = \int_a^b f(G(x))G'(x)\dd{x}$ if $G$ is absolutely continuous.\\
+
+  \textbf{(c)}: The validity of (b) may fail if $G$ is merely right continuous rather than continuous.
+\end{homeworkProblem}
+
+
+\begin{homeworkProblem}
+  Suppose $F:\R\to \C$. Prove that $F$ is Lipschitz with constant $M$ if and only if $F$ is absolutely continuous and $|F'|\leq M$ a.e.
+
+  \begin{proof}\ \\
+    \underline{$\implies$}: Suppose that $M>0$ is such that $|F(x)-F(y)|\leq M|x-y|$ for all $x,y\in\R$. Let $\eps >0$. Choose $\delta = \eps/M$. Then, for any finite set of disjoint intervals $(a_1,b_1),\ldots,(a_N,b_N)$ with $\sum_{j=1}^{N}(b_j-a_j)<\delta$, we have
+    \[
+      \sum_{j=1}^{N} |F(b_j)-F(a_j)|\leq M\sum_{j=1}^{N} (b_j-a_j)< M\cdot\frac{\eps}{M} = \eps,
+    \]
+    so $F$ is absolutely continuous. Thus, $F$ is differentiable almost everywhere. If $x\neq y$, then $|F(x)-F(y)|/|x-y|\leq M$, so for a.e. $x\in \R$ we have that $|F'|\leq M$.\\
+
+    \underline{$\impliedby$}: Suppose that $F$ is absolutely continuous and $|F'|\leq M$ a.e. Let $x,y\in\R$ and without loss of generality suppose that $x<y$. Then by the FTC for Lebesgue integrals,
+    \[
+      |F(y)-F(x)| = \lrvert{\int_{x}^{y} F'\dd{t}} \leq \int_{x}^{y}|F'| \dd{t} \leq M|y-x|.
+    \]
+  \end{proof}
+\end{homeworkProblem}
+
+
+
+\begin{homeworkProblem}
+  Let $A\sub [0,1]$ be a Borel set such that $0<m(A\cap I)<m(I)$ for every subinterval $I$ of $[0,1]$.\\
+
+  \textbf{(a)}: Let $F(x) = m([0,x]\cap A)$. Show that $F$ is absolutely continuous and strictly increasing on $[0,1]$, but $F'=0$ on a set of positive measure.
+
+  \begin{proof}
+    If $y>x$, then $F(y) = m([0,y]\cap A) = m([0,x]\cap A) + m((x,y]\cap A) > F(x)$ by assumption, so $F$ is strictly increasing. Now fix $\eps>0$ and set $\delta = \eps$. Then, for any finite set of disjoint intervals $(a_1,b_1),\ldots,(a_N,b_N)$ with $\sum_{j=1}^{N}(b_j-a_j)<\delta$,
+    \[
+      \sum_{j=1}^{N} |F(b_j)-F(a_j)|\leq \sum_{j=1}^{N} m((a_j,b_j]\cap A)< \sum_{j=1}^{N}(b_j-a_j) <\eps,
+    \]
+    so $F$ is absolutely continuous. Let $\mu_F$ be the unique Borel measure such that $F(x) = \mu_F([0,x])$. Then the absolute continuity of $F$ implies that $\mu_F\ll m$ and $\dd{\mu_F} = F'\dd{m}$. On the other hand, for $a<b$ in $[0,1]$,
+    \[
+      \mu_F((a,b]) = F(b)-F(a) = m([0,b]\cap A) - m([0,a]\cap A) = m([a,b]\cap A) = \int_a^b \ind_A \dd{m},
+    \]
+    whence $\dd{\mu_F} = \ind_A\dd{m}$. By the uniqueness of Radon-Nikodym derivatives, $F' = \ind_A$ almost everywhere, whence $F' = 0$ on $[0,1]\setminus A$. Moreover $m([0,1]\setminus A) = m([0,1])-m(A) = m([0,1])-m([0,1]\cap A) > 0$ by assumption.
+  \end{proof}
+
+  \textbf{(b)}: Let $G(x) = m([0,x]\cap A) - m([0,x]\setminus A)$. Show that $G$ is absolutely continuous on $[0,1]$, but $G$ is not monotone on any subinterval of $[0,1]$.
+
+  \begin{proof}
+    Let $\eps>0$. Again set $\delta = \eps$. Then, for any finite set of disjoint intervals $(a_1,b_1),\ldots,(a_N,b_N)$ with $\sum_{j=1}^{N}(b_j-a_j)<\delta$,
+    \[
+      \sum_{j=1}^{N} |G(b_j)-G(a_j)| = \sum_{j=1}^{N} m((a_j,b_j]\cap A) - m((a_j,b_j]\setminus A)< \sum_{j=1}^{N}m((a_j,b_j]) <\eps,
+    \]
+    so $G$ is absolutely continuous. Let $\mu$ be the measure given by $\dd{\mu} = G'\dd{m}$. Then for $a<b$,
+    \[
+      \int_{a}^{b}G' \dd{m}= m((a,b]\cap A) -m((a,b]\setminus A) = \int_{a}^{b}\ind_A-\ind_{[0,1]\setminus A}\dd{m}.
+    \]
+    Then as intervals generate all borel subsets of $[0,1]$, $G'\dd{m} = \dd{\mu} = (\ind_A-\ind_{[0,1]\setminus A})\dd{m}$, so by uniqueness of Radon-Nikodym derivatives $G' = \ind_A-\ind_{[0,1]\setminus A}$ almost everywhere. Let $I\sub [0,1]$ be an interval. Then $G' = 1$ on $I\cap A$ and $G' = -1$ on $I\setminus A$, but $m(I\cap A),m(I\setminus A)>0$, so we must have that $G$ is not monotonic on $I$.
+  \end{proof}
+\end{homeworkProblem}
+
+
+\begin{homeworkProblem}
+
+\end{homeworkProblem}
+
+
+\begin{homeworkProblem}
+  Let $a<b$ be real numbers and let $1\leq p \leq +\infty$. Let $X$ be the set of functions $f:[a,b]\to \C$ which are absolutely continuous and such that $f'\in L^p([a,b])$. Fix $x_0\in[a,b]$. For $f\in X$, define
+  \[
+    \norm{f} = |f(x_0)| + \norm{f'}_p.
+  \]
+  Show that $\norm{\cdot}$ is a norm which turns $X$ into a Banach space.
+\end{homeworkProblem}
+\end{document}

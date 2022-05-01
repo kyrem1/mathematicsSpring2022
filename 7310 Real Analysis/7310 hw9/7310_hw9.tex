@@ -56,6 +56,7 @@
 \newcommand{\la}{\langle}
 \newcommand{\ra}{\rangle}
 \newcommand{\lr}[1]{\left(#1\right)}
+\newcommand{\lrvert}[1]{\left\lvert#1\right\rvert}
 
 \DeclarePairedDelimiterX{\inp}[2]{\langle}{\rangle}{#1, #2}
 
@@ -117,6 +118,7 @@
 \newcommand{\eps}{\varepsilon}
 \newcommand*\cls[1]{\overline{#1}}
 \newcommand{\ind}{\mathbbm{1}}
+\DeclareMathOperator{\sgn}{sgn}
 
 
 %--------Theorem environments--------
@@ -167,14 +169,83 @@
 \maketitle
 
 
+\begin{homeworkProblem}
+  Let $\nu$ be a complex measure on $(X,\Sigma)$. If $\nu(X) = |\nu|(X)$, prove that $\nu = |\nu|$.
+
+  \begin{proof}
+    As $\nu\ll |\nu|$ and $|\nu|$ is a finite measure (so \emph{a fortiori} a $\sigma$-finite measure), $\dd{\nu} = f\dd{|\nu|}$ where $f = \frac{\dd{\nu}}{\dd{|\nu|}}$. Moreover, by Proposition 3.13(b), $|f| = 1$ $|\nu|$-almost everywhere. As $|\Re(f)|\leq 1$ a.e., it follows that $1-\Re(f)\geq$ a.e. Then, we observe by finiteness of $\nu(X)$ that
+    \begin{align*}
+      0 = |\nu|(X)-\nu(X) = \int 1-f\dd{|\nu|} = \int 1-\Re(f)\dd{|\nu|} - i \int \Im(f)\dd{|\nu|}.
+    \end{align*}
+    Thus, the real and imaginary parts of the right side of the above equation must both be zero, so the almost everywhere positivity of $1-\Re(f)$ implies that $\Re(f) = 1$ $|\nu|$-almost everywhere. After modifying out by the measure zero sets upon which $|f|$ and $\Re(f)$ are not both equal to one, we obtain that $\Re(f) = |f|$ $|\nu|$-almost everywhere, whence $f = \Re(f)=1$ and $\Im(f) = 0$. Thus, for all $E\in\Sigma$, \[\nu(E) = \int_E f\dd{|\nu|} = \int_E \Re(f)\dd{|\nu|} + i\int_E \Im(F)\dd{|\nu|} = \int_E 1\dd{|\nu|} = |\nu|(E).\]
+  \end{proof}
+\end{homeworkProblem}
+
+
+\begin{homeworkProblem}
+  Let $\nu$ be a complex measure on $(X,\Sigma)$. If $E\in\Sigma$, define
+  \begin{align*}
+    \mu_1(E) &= \sup\left\{\sum_1^n |\nu(E_j)|:n\in\N,\,E_1,\ldots,E_n \text{ disjoint},\,E=\bigsqcup_1^n E_j\right\}, \\
+    \mu_2(E) &= \sup\left\{\sum_1^\infty |\nu(E_j)|:E_1,E_2,\ldots \text{ disjoint},\,E=\bigsqcup_1^\infty E_j\right\} \\
+    \mu_3(E) &= \sup\left\{\left\lvert\int_E f\dd{\nu}\right\rvert: |f|\leq 1\right\}.
+  \end{align*}
+  Prove that $\mu_1 = \mu_2 = \mu_3$. (\emph{Hint}: First show that $\mu_1\leq\mu_2\leq\mu_3$. To see that $\mu_3 = |\nu|$, let $f = \cls{\dd{\nu}/\dd{|\nu|}}$ and apply Proposition 3.13. To see that $\mu_3\leq \mu_1$, approximate $f$ by simple functions).
+
+  \begin{proof}
+    That $\mu_1\leq\mu_2$ is clear as we may take the sequence $E_1,\ldots,E_n,\emptyset,\ldots$ in the set for $\mu_2$ to recover the values in the set for $\mu_1$. \\
+
+    Recall from page 46 of Folland that for any function $f:X\to \C$ we have its polar decomposition $f = \sgn(f)|f|$ where $\sgn(z) = z/|z|$ if $z\neq 0$ and $\sgn(0) = 0$. Moreover, if $f$ is measurable with respect to some positive measure, then so are $\sgn(f)$ and $|f|$. From the polar decomposition of $f$, it follows that $\cls{\sgn(f)}f = |f|$. Using this idea, suppose that$ E_1,E_2,\ldots $ are disjoint with $E = \bigsqcup_{j=1}^\infty E_j$. Then we compute
+    \[
+      \sum_{j=1}^{\infty}|\nu(E_j)| = \sum_{j=1}^{\infty} \cls{\sgn{\nu(E_j)}}\nu(E_j)
+    \]
+    Hence, we are led to define $f = \sum_{j=1}^{\infty}\cls{\sgn(\nu(E_j))}\ind_{E_j}$. This function is measurable as it is a pointwise limit of simple functions. Moreover, as the sets $E_j$ are pairwise disjoint and $|\sgn(z)|\leq 1$ for all $z$, it follows that $|f|\leq 1$. Noting that $|\Re(f)|, |\Im(f)|\leq |f|\leq 1\in L^1(|\nu|)$ (as $|\nu(X)|<+\infty$), we may apply the dominated convergence theorem to the positive and negative parts of the partial sums for both $\Re(f)$ and $\Im(f)$ with respect to the positive and negative parts of the signed measures $\Re(\nu)$ and $\Im(\nu)$ to obtain that
+    \[
+      \left\lvert\int_E f\dd{\nu}\right\rvert = \left\lvert\sum_{j=1}^{\infty}\int \cls{\sgn(\nu(E_j))}\ind_{E_j}\dd{\nu}\right\rvert = \left\lvert\sum_{j=1}^{\infty} \cls{\sgn(\nu(E_j))}\nu(E_j)\right\rvert = \sum_{j=1}^{\infty}|\nu(E_j)|,
+    \]
+    so $\mu_2\leq\mu_3$.\\
+
+    Now fix $E\in \Sigma$. One one hand, suppose that $|g|\leq 1$. Then by Proposition 3.13(c),
+    \[
+      \lrvert{\int_E g\dd{\nu}} \leq \int_E |g| \dd{|\nu|} \leq \int_E 1\dd{|\nu|} = |\nu|(E),
+    \]
+    whence $\mu_3(E)\leq |\nu|(E)$. On the other hand, let $f = \cls{\dd{\nu}/\dd{|\nu|}}$. By Proposition 3.13(b), $|\dd{\nu}/\dd{|\nu|}| = 1$ $|\nu|$-a.e. whence $\dd{\nu}/\dd{|\nu|} = 1/f$ $|\nu|$-a.e. Thus, we compute
+    \[
+      \lrvert{\int_E f\dd{\nu}} = \lrvert{\int_E f \frac{\dd{\nu}}{\dd{|\nu|}}\dd{|\nu|}} = |\nu|(E),
+    \]
+    whence $|\nu|(E)\leq \mu_3(E)$. So we have show that $\mu_3 = |\nu|$. \\
+
+    It remains to show that $\mu_3\leq \mu_1$. Fix $E\in\Sigma$ and suppose $f$ is measurable with $|f|\leq 1$. Chose simple functions $(\phi_k)_{k=1}^{\infty}$ such that $0\leq|\phi_1|\leq |\phi_2|\leq\cdots\leq|f|$ and $\phi_k\to f$ pointwise. Write $\phi_k = \sum_{j=1}^{n_k}c_{j}^{(k)}\ind_{E_j^{(k)}}$ where, for all $k\in\N$, $E_1^{(k)},\ldots,E_{n_k}^{(k)}$ are pairwise disjoint such that $X = \bigsqcup_{j=1}^{n_k}E_{j}^{(k)}$ and $c_{j}^{(k)}\in\C$ with $|c_{j}^{(k)}|\leq 1$. \\
+
+    As before, we may apply the dominated convergence theorem to the positive and negative parts for the sequences $\Re(\phi_k\ind_E)$ and $\Im(\phi_k\ind_E)$ with respect to the positive and negative parts of the signed measures $\Re(\nu)$ and $\Im(\nu)$ to obtain that
+    \begin{align*}
+      \lrvert{\int_E f \dd{\nu}} &= \lrvert{\lim_{k\to\infty}\int \phi_k\ind_E\dd{\nu}} = \lrvert{\lim_{k\to\infty}\int \sum_{j=1}^{n_k}c_{j}^{(k)}\ind_{E_j^{(k)}\cap E}\dd{\nu}} \\
+      &= \lim_{k\to\infty}\lrvert{\sum_{j=1}^{n_k}c_{j}^{(k)}\nu(E_j^{(k)}\cap E)} \leq \lim_{k\to\infty}\sum_{j=1}^{n_k}|\nu(E_j^{(k)}\cap E)| \leq \mu_1(E).
+    \end{align*}
+    As $|f|\leq 1$ was arbitrary, it follows that $\mu_3(E)\leq \mu_1(E)$ as desired.
+  \end{proof}
+\end{homeworkProblem}
+
+
 \begin{homeworkProblem}[3]
   \textbf{(a)}: Let $(X,\Sigma)$ be a measurable space. Let $M(\Sigma)$ be the vector space of complex measures on $\Sigma$ with the total variation norm $\norm{\mu} = |\mu|(X)$. Show that $M(\Sigma)$ is a Banach space. \\
-  \hspace{10pt}Suggestion: it may be helpful to use that for $\mu\in M(\Sigma)$ we ahve
+  \hspace{10pt}Suggestion: it may be helpful to use that for $\mu\in M(\Sigma)$ we have
   \[
     \sum_{n=1}^{\infty}|\mu(E_n)|\leq\norm{\mu}
   \]
   where $(E_n)_{n=1}^
-  \infty$ is a sequence of pairwise disjoint elements of $\Sigma$ (this is a consequence of a prior problem on this homework).\\
+  \infty$ is a sequence of pairwise disjoint elements of $\Sigma$ (this is a consequence of a prior problem on this homework).
+
+  \begin{proof}
+    Let $(\mu_n)_{n=1}^{\infty}$ be a Cauchy sequence in $M(\Sigma)$. Define a new positive measure $\lambda$ on $\Sigma$ by
+    \[
+      \lambda(E) = \sum_{n=1}^{\infty}2^{-n}\frac{|\mu_n|(E)}{\norm{\mu_n}+1}.
+    \]
+    Then by nonnegativity, we have that for all $n\in\N$, $\mu_n\ll \lambda$ whence there exists some measurable $f_n$ such that $\dd{\mu_n} = f_n\dd{\lambda}$. Moreover, $f_n\in L^1(\lambda)$ as $\int |f_n|\dd{\lambda} = |\mu_n|(X) <+\infty$. Note that $\lambda$ is necessarily a finite measure, so we utilize part (b) of this exercise. Let $J:L^1(X,\lambda)\to M(\Sigma)$ be as in part (b). Then $\mu_n = J(f_n)$ for all $n\in \N$. As $J$ is an isometry, it follows that $(f_n)_{n=1}^{\infty}$ is Cauchy in $L^1(\lambda)$, whence by completeness there exists some $f\in L^1(\lambda)$ such that $\norm{f_n - f}_{L^1(\lambda)}\xrightarrow{n\to\infty}0$. Let $\mu = J(f)$. Then
+    \[
+      \norm{\mu_n-\mu} = \norm{f_n-f}_{L^1(\lambda)}\xrightarrow{n\to\infty}0,
+    \]
+    so $\mu_n\to\mu$ in total variation norm. Thus $M(\Sigma)$ is Banach.
+  \end{proof}
 
   \textbf{(b)}: Fix a positive, $\sigma$-finite measure $\mu$ on $\Sigma$. Show that the map $J : L^1(X,\mu)\to M(\Sigma)$ given by $J(f) = f\dd{\mu}$ is a linear isometry with closed image.
 
@@ -206,8 +277,27 @@
     \norm{\mu-\nu} = \norm{1-f}_{L^1(\mu)}+\norm{\lambda}.
   \]
 
+  \begin{lemma}[Lemma 1]
+    If $\nu_1,\nu_2\in M(\Sigma)$ and $\nu_1\perp\nu_2$, then $\norm{\nu_1+\nu_2} = \norm{\nu_1}+\norm{\nu_2}$.
+  \end{lemma}
+
+  \begin{proof}[Proof of Lemma 1]
+    Let $\mu = |\nu_1|+|\nu_2|$, so $\mu$ is a positive finite measure such that $\nu_j\ll \mu$. By Radon-Nikodym theorem, there is some $f_j$ ($j=1,2$) such that $\dd{\nu_j} = f_j \dd{\mu}$. Then $\dd{|\nu_j|} = |f_j|\dd{\mu}$ and $\dd{|\nu_1+\nu_2|} = |f_1+f_2|\dd{\mu}$. Let $E,F\sub X$ such that $X = E\cup F$, $E\cap F = \emptyset$, $E$ is null for $\nu_2$, and $F$ is null for $\nu_1$. Then $0 = |\nu_1|(F) = \int_F |f_1|\dd{\mu}$ whence $f_1 = 0$ $\mu$-almost everywhere on $F$ and similarly we obtain that $f_2 = 0$ $\mu$-almost everywhere on $E$. On the other hand, by the finiteness of $|\nu_1|,|\nu_2|$, it follows that $|\nu_1|(X) = |\nu_1|(E)$ and $|\nu_2|(X) = |\nu_2|(F)$. We compute
+    \begin{align*}
+      \norm{\nu_1+\nu_2} &= \int_X |f_1+f_2|\dd{\mu} = \int_E |f_1+f_2|\dd{\mu} + \int_F |f_1+f_2|\dd{\mu}\\
+      &=\int_E |f_1|\dd{\mu} + \int_F |f_2|\dd{\mu} = |\nu_1|(E) + |\nu_2|(F) = \norm{\nu_1}+\norm{\nu_2}.
+    \end{align*}
+  \end{proof}
+
   \begin{proof}
-    Observe that
+    For notational clarity, let $\nu = \delta_{ac}+\delta_{s}$ be the Lebesgue decomposition of $\nu$ with respect to $\mu$, so $\delta_{ac}\ll \mu$ and $\delta_s \perp\mu$. Let $\dd{\delta_{ac}} = f\dd{\mu}$. As $\mu\ll\mu$ and $\delta_{ac}\ll \mu$, we have that $\mu-\delta_{ac}\ll\mu$, whence noting that $-\delta_s\perp \mu$ we conclude that $\mu-\delta_{ac}\perp -\delta_s$. Lastly, observe that for $E\in \Sigma$,
+    \[
+      \mu(E)-\delta_{ac}(E) = \int_E 1\dd{\mu}-\int_E f\dd{\mu} = \int_E 1-f\dd{\mu},
+    \]
+    whence $\frac{\dd{(\mu-\delta_{ac})}}{\dd{\mu}} = 1-f$. Hence, in the notation of part (b), $\mu-\delta_{ac} = J(1-f)$. So, noting that $J$ is an isometry and applying Lemma 1 to $\mu-\delta_{ac}\perp -\delta_s$, we find that
+    \[
+      \norm{\mu-\nu} = \norm{\mu-\delta-{ac}-\delta_s} = \norm{\mu-\delta_{ac}} + \norm{\delta_s} = \norm{1-f}_{L^1(\mu)}+\norm{\delta_s}.
+    \]
   \end{proof}
 \end{homeworkProblem}
 
@@ -232,13 +322,60 @@
     whence the claim follows.
   \end{proof}
 
-  \textbf{(b)}: Find examples of $E$ and $x$ such that $D_E(x)$ is a given number $\alpha\in (0,1)$, or such that $D_E(x)$ does not exist. \\
+  \textbf{(b)}: Find examples of $E$ and $x$ such that $D_E(x)$ is a given number $\alpha\in (0,1)$, or such that $D_E(x)$ does not exist.
 
+  \begin{proof}[Solution]
+    For an example where $E$ and $x$ are such that $D_E(x)$ is any given number $\alpha\in (0,1)$, consider $X= \R^2$, $x = (0,0)$, and $E$ a sector of the unit disk centered at $(0,0)$ making an $\alpha\cdot 2\pi$ radians angle with $(0,0)$ and the $x$-axis. By definition of angles, $D_E((0,0))$ is clearly $\alpha$.\\
+  \end{proof}
 \end{homeworkProblem}
 
 
 \begin{homeworkProblem}[5]
-  Let $\psi:\R\to\R$ be given as $\psi = \ind_{[0,1/2)}-\ind_{[1/2,1]}$. For $n,k\in\Z$ define $h_{n,k}(t) = 2^{n/2}\psi(2^n t-k)$. Show that $\mc{E} = \{ 1\}\cup\{h_{n,k}:n\in \N\cup\{ 0\{,\, 0\leq k<2^n \}$ is an orthonormal basis for $L^2([0,1])$.
+  Let $\psi:\R\to\R$ be given as $\psi = \ind_{[0,1/2)}-\ind_{[1/2,1]}$. For $n,k\in\Z$ define $h_{n,k}(t) = 2^{n/2}\psi(2^n t-k)$. Show that $\mc{E} = \{ 1\}\cup\{h_{n,k}:n\in \N\cup\{ 0\},\, 0\leq k<2^n \}$ is an orthonormal basis for $L^2([0,1])$.
+
+  \begin{proof}
+    Let $A_{nk}=[k2^{-n},(k+1/2)2^{-n})$ and $B_{nk}=[(k+1/2)2^{-n},(k+1)2^{-n}]$.
+    Note that
+    \[
+      h_{n,k} = 2^{n/2}\lr{\ind_{[k2^{-n},(k+1/2)2^{-n})}-\ind_{[(k+1/2)2^{-n},(k+1)2^{-n}]}} = 2^{n/2}\lr{\ind_{A_{nk}}-\ind_{B_{nk}}}.
+    \]
+    Then we compute
+    \begin{align*}
+      \inp{h_{n,k}}{h_{m,l}} &= 2^{(n+m)/2}\int\lr{\ind_{A_{nk}}-\ind_{B_{nk}}}\lr{\ind_{A_{ml}}-\ind_{B_{ml}}}\dd{t}\\
+      &=2^{(n+m)/2}\lr{m(A_{nk}\cap A_{ml}) + m(B_{nk}\cap B_{ml}) - m(A_{nk}\cap B_{ml}) - m(A_{ml}\cap B_{nk})}.
+    \end{align*}
+  \end{proof}
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+  Fix $n\in\N$, and $1\leq p< +\infty$. For $y\in\R^n$, define $\tau_y:L^p(\R^n)\to L^p(\R^n)$ by $\tau_y(f)(x) = f(x-y)$. Show that if $f\in L^p(\R^n)$, then
+  \begin{equation}
+    \norm{\tau_y f}_p = \norm{f}_p.
+  \end{equation}
+  \begin{equation}
+    \lim_{y\to0}\norm{\tau_y f - f}_p = 0.
+  \end{equation}
+  Hint: use (1) to show that the set of $f'$s for which (2) is true is a closed, linear subspace of $L^p(\R^n)$. Then check (2) on a dense set of $f'$s where (2) is easier to see.
+
+  \begin{proof}
+    Part (1) follows trivially from the change of variables $x-y\rightsquigarrow x$. Let $S\sub L^p(\R^n)$ be the set of $f$'s in $L^p(\R^n)$ for which (2) is true. Suppose $(f_n)_{n=1}^{\infty}$ is a sequence in $S$ and $f\in L^p(\R^n)$ such that $\norm{f_n-f}_p\xrightarrow{n\to\infty}0$. Observe that
+    \begin{align*}
+      \norm{\tau_y f - f}_p \leq \norm{\tau_y f - f_n}_p + \norm{f_n - f}_p &\leq \norm{\tau_y (f - f_n)}_p + \norm{\tau_y f_n - f_n}_p + \norm{f_n - f}_p \\&= 2\norm{f_n-f}_p + \norm{\tau_y f_n - f_n},
+    \end{align*}
+    which implies that $f\in S$. \\
+
+    Property (2) is clearly invariant under scaling by a real number, so to show $S$ is a linear subspace of $L^p(\R^n)$ it suffices to show that it is closed under sums. Suppose that $f,g\in S$. Then
+    \[
+      \norm{\tau_y(f+g)-(f+g)}_p \leq \norm{\tau_y f -f}_p + \norm{\tau_y g -g}_p
+    \]
+    whence $f+g\in S$.\\
+
+    We show that (2) holds for $C_c(\R^n)$. Fix $f\in C_c(\R^n)$ and let $K$ be the closure of the support of $f$. By continuity of $f$, $\tau_y f\to f$ pointwise. Without loss of generality, we restrict our limit to over $y<1$. Then, $|\tau_y f| \leq \sup_{x\in\R^n}|f(x)| \ind_{K+B_1(0)}\in L^p(\R^n)$, whence by the dominated convergence theorem
+    \[
+      \lim_{y\to 0}\int|f(x-y)-f(x)|^p\dd{x} = \int\lim_{y\to0}|f(x-y)-f(x)|^p\dd{x} = 0.
+    \]
+    Thus, (2) holds for a dense subspace of $L^p(\R^n)$, so it holds for all of $L^p(\R^n)$.
+  \end{proof}
 \end{homeworkProblem}
 
 \end{document}
