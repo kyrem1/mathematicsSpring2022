@@ -1,0 +1,463 @@
+\documentclass[12pt,letterpaper]{article}
+
+%--------Packages--------
+\usepackage{amsmath, amsthm, amssymb}
+\usepackage{xspace}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{array}
+\usepackage{braket}
+\usepackage{multicol}
+\usepackage{mathtools}
+\usepackage{enumerate}
+\usepackage{delarray}
+\usepackage{mathtools}
+\usepackage{fullpage}
+\usepackage{faktor} % For quotients
+\usepackage{mathrsfs}
+\usepackage{quiver}
+\usepackage{tikz}
+
+\usepackage[linguistics]{forest}
+
+
+
+
+%--------Page Setup--------
+
+\pagestyle{empty}%
+
+\setlength{\hoffset}{-1.54cm}
+\setlength{\voffset}{-1.54cm}
+
+\setlength{\topmargin}{0pt}
+\setlength{\headsep}{0pt}
+\setlength{\headheight}{0pt}
+
+\setlength{\oddsidemargin}{0pt}
+
+\setlength{\textwidth}{195mm}
+\setlength{\textheight}{250mm}
+
+
+%--------Macros--------
+
+\newcommand{\ilm}[1]{\begin{psmallmatrix} #1 \end{psmallmatrix}}
+\newcommand{\ilmb}[1]{\boxed{\begin{smallmatrix} #1 \end{smallmatrix}}}
+
+\newcommand{\sub}{\subseteq}
+\newcommand{\lcm}{\text{lcm}}
+\newcommand{\ms}[1]{\mathscr{#1}}
+\newcommand{\mc}[1]{\mathcal{#1}}
+\newcommand{\mf}[1]{\mathfrak{#1}}
+\newcommand{\sO}{\mathcal{O}}
+\newcommand{\cyclic}[1]{\langle#1\rangle}
+\newcommand{\units}[1]{#1 ^{\times}}
+\newcommand{\la}{\langle}
+\newcommand{\ra}{\rangle}
+\newcommand{\lr}[1]{\left(#1\right)}
+\newcommand{\divides}{\bigm|}
+%----Switch phi and varphi
+\let\temp\phi
+\let\phi\varphi
+\let\varphi\temp
+
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\N}{\mathbb{N}\xspace}
+\newcommand{\I}{\mathbb{I}\xspace}
+\newcommand{\R}{\mathbb{R}\xspace}
+\newcommand{\Z}{\mathbb{Z}\xspace}
+\newcommand{\Q}{\mathbb{Q}\xspace}
+\newcommand{\G}{\mathbb{G}\xspace}
+\DeclareMathOperator{\Spec}{Spec}
+\DeclareMathOperator{\res}{res}
+\DeclareMathOperator{\Tr}{Tr}
+\DeclareMathOperator{\ord}{ord}
+\DeclareMathOperator{\Sym}{Sym}
+\DeclareMathOperator{\dv}{div}
+\DeclareMathOperator{\alb}{alb}
+\let\Im\relax
+\DeclareMathOperator{\Im}{Im}
+\DeclareMathOperator{\et}{et}
+\DeclareMathOperator{\ck}{coker}
+\DeclareMathOperator{\Reg}{Reg}
+\DeclareMathOperator{\Cor}{Cor}
+\DeclareMathOperator{\Ac}{at}
+\DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\Pic}{Pic}
+\DeclareMathOperator{\Gal}{Gal}
+\DeclareMathOperator{\fc}{frac}
+\DeclareMathOperator{\Ann}{Ann}
+\DeclareMathOperator{\Mod}{Mod}
+\DeclareMathOperator{\Cone}{Cone}
+\DeclareMathOperator{\FI}{FI}
+\DeclareMathOperator{\End}{End}
+\DeclareMathOperator{\Alb}{Alb}
+\DeclareMathOperator{\Ext}{Ext}
+\DeclareMathOperator{\ab}{ab}
+\DeclareMathOperator{\Jac}{Jac}
+\DeclareMathOperator{\coker}{coker}
+\DeclareMathOperator{\fr}{frac}
+\DeclareMathOperator{\spn}{span}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\rk}{rk}
+\DeclareMathOperator{\GL}{GL}
+\DeclareMathOperator{\Aut}{Aut}
+\DeclareMathOperator{\ch}{char}
+\DeclareMathOperator{\Fix}{Fix}
+
+
+%----Analysis
+\newcommand{\dd}[2][]{\frac{\partial^{#1}}{\partial {#2}^{#1}}}
+\newcommand{\summ}{\sum\limits}
+\newcommand{\norm}[1]{\left \vert \left \vert #1 \right \vert \right \vert}
+\newcommand{\thicc}{\bigg}
+\newcommand{\eps}{\varepsilon}
+\newcommand*\cls[1]{\overline{#1}}
+
+
+%--------Theorem environments--------
+\newtheorem{definition}{Definition}[]
+\newtheorem{lemma}{Lemma}[]
+\newtheorem{corollary}{Corollary}[]
+\newtheorem{theorem}{Theorem}[]
+\theoremstyle{remark}
+\newtheorem*{claim}{Claim}
+
+
+\newenvironment{solution}
+{\begin{proof}[Solution]}
+{\end{proof}}
+
+
+\makeatletter
+\newcolumntype{"}{@{\hskip\tabcolsep\vrule width 1pt\hskip\tabcolsep}}
+\makeatother
+
+% --------Problem environment--------
+\setlength\parindent{0pt}
+\setcounter{secnumdepth}{0}
+\newcounter{partCounter}
+\newcounter{homeworkProblemCounter}
+\setcounter{homeworkProblemCounter}{1}
+
+
+\newenvironment{homeworkProblem}[1][-1]{
+    \ifnum#1>0
+        \setcounter{homeworkProblemCounter}{#1}
+    \fi
+    \section{Problem \arabic{homeworkProblemCounter}}
+    \setcounter{partCounter}{1}
+    \stepcounter{homeworkProblemCounter}
+}
+
+
+%--------Metadata--------
+\title{MATH 7752 Final}
+\author{James Harbour}
+
+
+\begin{document}
+\maketitle
+
+
+\begin{homeworkProblem}
+  Let $F$ be a field, $n\in\N$ and $A\in Mat_n(F)$.\\
+
+  \textbf{(a)}: ($10$ points) Assume that $\ch(F)=0$. Prove that the matrix $A$ is nilpotent if and only if $\Tr(A^k)=0$, for all $k\in\N$.
+
+  \begin{proof}\ \\
+
+    \underline{$\implies$}: Suppose that $A$ is nilpotent. Then there exists some $N\in\N$ such that $A^N = 0$. Let $k\in\N$. Then we have that $(A^{k})^N = (A^N)^k = 0$, so by definition $\mu_{A^k}\divides x^N$ whence $\mu_{A^k}(x) = x^m$ for some $m\leq N$. \\
+
+    Now let $\alpha_1(x)\divides\alpha_2(x)\cdots\divides \alpha_s(x)$ be the invariant factors for $A^k$. As $\alpha_s(x) = \mu_{A^k}(x) = x^m$, it follows that each $\alpha_i = x^{m_i}$ for some $0\leq m_i\leq m$. But then each companion matrix $C_{\alpha_i}$ has zeroes along its diagonal, whence $\Tr(A^k) = \sum_{i=1}^{s}\Tr(C_{\alpha_i}) = 0$.\\
+
+    \underline{$\impliedby$}: (\emph{N.B. I was unable to complete this direction, however I have left my partial work here}) Fix an algebraic closure $\cls{F}\supseteq F$ and let
+    \[
+      JCF(A) = \begin{pmatrix}
+        J(d_1,\lambda_1) & & \\
+        & \ddots & \\
+        & & J(d_s,\lambda_s)
+    \end{pmatrix}
+    \]
+    where $\lambda_i\in \cls{F}$, $d_i\in\N$. As $\Tr(JCF(A)^k) = \Tr(A^k)$ for all $k\in\N$ and $JCF(A)$ is nilpotent if and only if $A$ is nilpotent, we may assume without loss of generality that $A = JCF(A)$. For $1\leq i \leq s$, write $J(d_i,\lambda_i) = D_i + N_i$ where $D_i = \mathrm{diag}(\lambda_i,\ldots,\lambda_i)\in M_{d_i\times d_i}(\cls{F})$ and
+    $N_i = \ilm{
+      0 & 1 & & \\
+      & 0 &  & \\
+      & & \ddots & 1\\
+      & & & 0} \in M_{d_i\times d_i}(F)$. Then, $A = D + N$ where
+    \[
+      D = \begin{pmatrix} D_1 & & \\ & \ddots & \\ & & D_s \end{pmatrix},\hspace{30pt} N = \begin{pmatrix} N_1 & & \\ & \ddots & \\ & & N_s \end{pmatrix}.
+    \]
+    Note that $D$ is diagonal and $N$ is nilpotent. Now we compute
+    \begin{align*}
+      DN = \begin{pmatrix} D_1 & & \\ & \ddots & \\ & & D_s \end{pmatrix}\begin{pmatrix} N_1 & & \\ & \ddots & \\ & & N_s \end{pmatrix} &= \begin{pmatrix} D_1 N_1 & & \\ & \ddots & \\ & & D_s N_s \end{pmatrix} = \begin{pmatrix} \lambda_1 I_{d_1} N_1 & & \\ & \ddots & \\ & & \lambda_s I_{d_s} N_s \end{pmatrix} \\
+      &= \begin{pmatrix} N_1 (\lambda_1 I_{d_1})  & & \\ & \ddots & \\ & & N_s (\lambda_s I_{d_s}) \end{pmatrix} = \begin{pmatrix} N_1 D_1  & & \\ & \ddots & \\ & & N_s D_s \end{pmatrix} = ND.
+    \end{align*}
+    Thus by repeated transpositions, $D^i N^j = N^j D^i$ for all $i,j\in\N$. Fix $i,j\in\N$. As $N$ is nilpotent, there exists some $t\in\N$ such that $N^t = 0$. Then
+    \[
+      (D^i N^j)^t = \overbrace{D^i N^j \cdots D^i N^j}^{t\text{ times}} = (D^i)^t (N^j)^t = D^{it} (N^t)^j = 0,
+    \]
+    so $D^i N^j$ is nilpotent. Then by the forward direction, $\Tr(D^i N^j) = 0$. So, for all $m\in\N$,
+    \[
+      0 = \Tr(J^m) = \Tr\lr{\sum_{k=0}^{m} \binom{m}{k} D^{m-k}N^k} = \sum_{k=0}^{m} \binom{m}{k} \Tr(D^{m-k}N^k) =   \Tr(D^m) = d_1\cdot\lambda_1^m +\cdots d_s\cdot \lambda_s^m.
+    \]
+
+  \end{proof}
+
+  \textbf{(b)}: ($4$ points) Show that the assertion of (a) is false if $\ch(F)\neq 0$.
+
+  \begin{proof}[Solution]
+    Let $p = \ch(F) > 0$.\\
+
+    If $n\geq p$, then consider the matrix $A = \ilm{I_p & \\ & 0_{n-p}}$. We have that $\Tr(A^k) = \Tr(A) = p\cdot1 = 0$ for all $k\in\N$, but $A^k = A \neq 0$ for all $k\in \N$. Thus, the assertion is false for nonzero characteristic.\\
+  \end{proof}
+\end{homeworkProblem}
+
+
+\begin{homeworkProblem}
+  Let $A\in GL_n(\F_p)$, where $p$ is a prime number and $n\in\N$.\\
+
+  \textbf{(a)}: ($6$ points) Suppose that the matrix $A$ is \textbf{diagonalizable over the algebraic closure} $\overline{\F}_p$. Show that the order of $A$ in the group $GL_n(\F_p)$ is equal to the lcm of the orders of the eigenvalues of $A$ in $\overline{\F}_p^\times$.
+
+  \begin{proof}
+    Let $\lambda_1,\cdots,\lambda_n\in \units{\cls{\F}_p}$ be the eigenvalues of $A$ counted with multiplicity, let $D = \mathrm{diag}(\lambda_1,\ldots,\lambda_n)$, and let $m$ be the order of $A$ in $\GL_n(\cls{\F}_p)$. Then by assumption there exists some $S\in\GL_n{\cls{\F}_p}$ such that $A = S^{-1} D S$. Set $l = \lcm\{o(\lambda_i): 1\leq i \leq n\}$ where $o(\lambda)$ denotes the order of $\lambda$ in $\units{\cls{\F}_p}$. Then $A^l = S^{-1} D^l S = I_{n}$, so $m\divides l$.\\
+
+    On the other hand, suppose for the sake of contradiction that $m < l$. Then $I_n = A^m = S^{-1}D^m S \implies D^m = I_n$, whence $\lambda_i^m = 1$ for all $1\leq i\leq n$, contradicting that $l$ is the least common multiple of the orders of the $\lambda_i$'s.
+  \end{proof}
+
+  \textbf{(b)}: ($10$ points) Prove that $GL_n(\F_p)$ has an element $B$ of exact order $p^n-1$.
+
+  \begin{proof}
+    Note that as $[\F_{p^n}:\F_p] = n$, $\F_{p^n}\cong (\F_p)^n$ as $\F_p$-vector spaces. Motivated by this observation, recall that $\units{\F_{p^n}}$ is cyclic of order $p^n-1$, so let $\units{\F_{p^n}} = \cyclic{\omega}$. Consider the $\F_p$-linear map $T_\omega:\F_{p^n}\to\F_{p^n}$ given by left multiplication by $\omega$. Note that as $\omega\neq 0$, $T_\omega \in \GL(\F_{p^n})$. Moreover, $(T_\omega)^k = T_{\omega^k}$ for $k\in\N$, so $(T_{\omega})^k = id$ if and only if $\omega^k = 1$, whence the order of $T_\omega$ is precisely the order of $\omega$, i.e. $p^n-1$. Now fix any $\F_p$-basis $\mc{B} = \{1,\alpha_1,\ldots,\alpha_{n-1}\}$ of $\F_{p^n}$ and set $B = [T_\omega]_{\mc{B}} \in \GL_n(\F_p)$. Then the order of $B\in\GL_n(\F_p)$ equals the order $T_\omega\in\GL(\F_{p^n})$, so we have found an element of order $p^n-1$.
+  \end{proof}
+
+  \textbf{(c)}: ($4$ points) Construct explicitly an element $B\in GL_2(\F_3)$ of order $8$.
+
+  \begin{proof}[Solution]
+    To begin, we compute in $\F_3[x]$ that
+    \[
+      (x+1)^2 = x^2+2x +1\hspace{20pt} (x+2)^2 = x^2+x+1 \hspace{20pt} (x+1)(x+2) = x^2+2.
+    \]
+    As $x^2+1$ is clearly not divisible by $x$ and does not appear as one of the products above, it is irreducible in $\F_3[x]$. Thus $\F_{9}\cong \F_3[x]/(x^2+1)$. In the following, we suppress the overbars when denoting elements of $\F_3$ identified inside of $\F_3[x]/(x^2+1)$ and write $\F_9 = \F_3[x]/(x^2+1)$. Let $\alpha = \cls{x}\in \F_9$ so $\alpha^2 = -1 = 2$. Then $\{1,\alpha\}$ is an $\F_3$-basis for $\F_9 = \F_3[x]/(x^2+1)$ and we have the following complete list of elements:
+    \[
+      \begin{array}{l|l|l}
+        0 & \alpha & 2\alpha \\
+        1 & \alpha+1 & 2\alpha+1\\
+        2 & \alpha+2 & 2\alpha+2.
+      \end{array}
+    \]
+    We claim that $\units{\F_9} = \cyclic{\alpha+1}$. We compute
+    \begin{align*}
+      (\alpha+1)^2 &= \alpha^2 +2\alpha + 1 = 2 + 2\alpha + 1 = 2\alpha\\
+      (\alpha+1)^3 &= (2\alpha)(\alpha+1) = 2\alpha^2 +2 = 2\alpha+1\\
+      (\alpha+1)^4 &= (2\alpha+1)(\alpha+1) = 2\alpha^2 + 2\alpha + \alpha + 1 = 2\\
+      (\alpha+1)^5 &= 2(\alpha+1) = 2\alpha+2\\
+      (\alpha+1)^6 &= (2\alpha+2)(\alpha+1) = 4\alpha = \alpha \\
+      (\alpha+1)^7 &= (\alpha)(\alpha+1) = \alpha^2 + \alpha = \alpha + 2 \\
+      (\alpha+1)^8 &= (\alpha+2)(\alpha+1) = \alpha^2 + 3\alpha + 2 = 1,
+    \end{align*}
+    so $\cyclic{\alpha+1} = \F_9\setminus \{0\} = \units{\F_9}$. Set $\omega = \alpha+1$ and let $T_\omega:\F_9\to\F_9$ be given by left multiplication by $\omega$. For the $\F_3$-basis $\mc{B} = \{1,\alpha\}$ of $\F_9$, we have that
+    \[
+      B : = [T_\omega]_{\mc{B}} =
+      \begin{pmatrix}
+        1 & 2 \\ 1 & 1
+      \end{pmatrix}
+    \]
+    is an order $8$ element of $\GL_2(\F_3)$.
+  \end{proof}
+\end{homeworkProblem}
+
+
+\begin{homeworkProblem}
+  Let $f(x)=(x^2-2)(x^3-3)\in\Q[x]$, and let $K$ be a splitting field of $f(x)$ over $\Q$. \\
+
+  \textbf{(a)}: ($10$ points) Prove that $\Gal(K/\Q)\simeq S_3\times\Z/2\Z$.
+
+  \begin{proof}
+    Let $\zeta\in \C$ be a primitive 3rd root of unity. We compute
+    \[
+      f(x) = (x-\sqrt{2})(x+\sqrt{2})(x-\sqrt[3]{3})(x-\zeta\sqrt[3]{3})(x-\zeta^2\sqrt[3]{3})
+    \]
+    over $\C$, so $K = \Q(\sqrt{2},\sqrt[3]{3},\zeta)$. As $\Q(\sqrt[3]{3})\sub\R$ and $\zeta\in \C\setminus\R$, it follows that $\mu_{\zeta,\Q(\sqrt[3]{3})} = \mu_{\zeta,\Q} = x^2+x+1$ so $[\Q(\sqrt[3]{3},\zeta):\Q(\sqrt[3]{3})] = 2$. By Eisenstein's criterion, $x^3-3$ is irreducible over $\Q$ so $[\Q(\sqrt[3]{3}):\Q] =3$ whence $[\Q(\sqrt[3]{3},\zeta):\Q] = 6$. Hence $[\Q(\sqrt[3]{3},\zeta):\Q(\zeta)] = 3$.  On the other hand, we clearly have that $[\Q(\zeta,\sqrt{2}):\Q(\sqrt{2})]=2$, so $[\Q(\zeta,\sqrt{2}):\Q]=4$ whence $[\Q(\zeta,\sqrt{2}):\Q(\zeta)]=2$. Observe that
+    \[
+      [K: \Q(\zeta,\sqrt{2})]\cdot 2 =  [K:\Q(\zeta)] = [K:\Q(\sqrt[3]{3},\zeta)]\cdot 3,
+    \]
+    so $2,3\divides [K:\Q(\zeta)]\implies 6\divides [K:\Q(\zeta)]$.
+    On the other hand, $\deg(\mu_{\sqrt[3]{3},\Q(\sqrt{2},\zeta)}) \leq \deg(\mu_{\sqrt[3]{3},\Q(\zeta)}) = 3$ whence
+    \[
+      6\divides[K:\Q(\zeta)] = [K:\Q(\sqrt{2},\zeta)][\Q(\sqrt{2},\zeta):\Q(\zeta)] =[K:\Q(\sqrt{2},\zeta)]\cdot 2 \leq 6
+    \]
+    so $[K:\Q(\zeta)] = 6$ and thus $|\Gal(K/\Q)| = [K:\Q] = 12$. \\
+
+    Let $K_1 = \Q(\sqrt{2})$ and $K_2 = \Q(\sqrt[3]{3},\zeta)$. Note that $K_1$ is a splitting field for $x^2-2$ over $\Q$ and $K_2$ is a splitting field for $x^3-3$ over $\Q$, so $K_1/\Q$ and $K_2/\Q$ are Galois. We claim that $K$ is the compositum of $K_1$ and $K_2$. One one hand, as $K_1,K_2\sub K$ we have by minimality that $K_1 K_2\sub K$. On the other hand, suppose that $L/\Q$ is a field extension such that $K_1,K_2\sub L$. Then $\zeta,\sqrt{2},\sqrt[3]{3}\in L$ whence $K\sub L$. Thus $K = K_1,K_2$. Now, we obtain an embedding
+    \[
+      \Gal(K/\Q)\hookrightarrow\Gal(K_1/\Q)\times\Gal(K_2/\Q).
+    \]
+    As $|\Gal(K_1/\Q)\times\Gal(K_2/\Q)| = 12 = |\Gal(K/\Q)|$, it follows that this injection is actually a group isomorphism.\\
+
+    As $|\Gal(K_1/\Q)| = 2$, we have that $\Gal(K_1/\Q)\cong \Z/2\Z$. On the other hand, as $x^3-3$ is irreducible over $\Q$ and $K_2$ is a splitting  of $x^3-3$, the action of $\Gal(K_2/\Q)$ on $K_2$ induces transitive action on the roots of $x^3-3$ and thus an embedding $\Gal(K_2/\Q)\hookrightarrow S_3$. However, $|\Gal(K_2/\Q)| = 6 = |S_3|$, so this embedding is actually an isomorphism i.e. $\Gal(K_2/\Q)\cong S_3$. Thus $\Gal(K/\Q)\cong \Gal(K_1/\Q)\times\Gal(K_2/\Q)\cong \Z/2\Z\times S_3$.
+
+  \end{proof}
+
+  \textbf{(b)}: ($8$ points) Find a primitive element of $K$ over $\Q$ (and prove your answer).
+
+  \begin{proof}
+    We claim that $\alpha := \sqrt{2} + \sqrt[3]{3} + \zeta$ is a primitive element of $K/\Q$. As $\alpha\in K$ and consequently $\Q(\alpha)\sub K$, it suffices to show that $|\Gal(K/\Q(\alpha))| = [K:\Q(\alpha)] = 1$, i.e. that $\Gal(K/\Q(\alpha))\sub\Gal(K/\Q)$ is trivial. Henceforth, it is enough to show that every nonidentity element of $\Gal(K/\Q)$ does not fix $\alpha$.\\
+
+    Note that the isomorphism $\Gal(K/\Q)\hookrightarrow\Gal(K_1/\Q)\times\Gal(K_2/\Q)$ is given by restriction in each component and that, for any $\upsilon\in \Gal(K/\Q)$,
+    \[
+      \upsilon(\alpha) = \upsilon\vert_{K_1}(\sqrt{2}) + \upsilon\vert_{K_2}(\sqrt[3]{3} + \zeta).
+    \]
+    Moreover, this being an isomorphism implies that $K_1\cap K_2 = \Q$.\\
+
+    Suppose $\mu\in\Gal(K/\Q)$ fixes $\alpha$.
+    \[
+      \sqrt{2} + \sqrt[3]{3} + \zeta = \mu(\sqrt{2}) + \mu(\sqrt[3]{3} + \zeta) \implies\mu(\sqrt{2})-\sqrt{2} = \mu(\sqrt[3]{3} + \zeta) - \sqrt[3]{3} + \zeta.
+    \]
+    As $\mu\vert_{K_1}(K_1) = K_1$ and $\mu\vert_{K_2}(K_2) = K_2$, it follows that
+    \[
+      \mu(\sqrt{2})-\sqrt{2} = \mu(\sqrt[3]{3} + \zeta) - \sqrt[3]{3} - \zeta\in K_1\cap K_2 = \Q.
+    \]
+    As $\mu\vert_{K_1}\in \Gal(K_1/\Q)$ permutes $\{\pm\sqrt{2}\}$, it follows that $\mu(\sqrt{2}) - \sqrt{2} = 0$. As $\mu\vert_{K_2}\in\Gal(K_2/\Q)$ permutes $\{\sqrt[3]{3},\zeta\sqrt[3]{3},\zeta^2\sqrt[3]{3}\}$ and $\{\zeta,\zeta^2\}$, it follows that
+    \[\mu(\sqrt[3]{3} + \zeta) - (\sqrt[3]{3} + \zeta) = 0\]
+    But then $\mu(\sqrt[3]{3}) = \sqrt[3]{3}$ and $\mu(\zeta) = \zeta$, so $\mu = id$.
+  \end{proof}
+\end{homeworkProblem}
+
+
+\begin{homeworkProblem}
+
+  \textbf{(a)}: ($10$ points) Let $F\subseteq K\subseteq L$ be a tower of algebraic extensions. Let $\alpha\in L$, and let $\mu_{\alpha,F}(x)$ be its minimal polynomial over $F$. Prove an isomorphism of $K$-algebras \[K\otimes_F F(\alpha)\simeq K[x]/(\mu_{\alpha,F}(x)).\]
+
+  \begin{proof}
+    Define a map $\Psi: K[x]\to K\otimes_F F(\alpha)$ by $\Psi(\sum_{i=0}^{n}c_i x^i) = \sum_{i=0}^{n}c_i\otimes \alpha^i$. Suppose $f(x),g(x)\in K[x]$. Write $f(x) = \sum_{i=0}^{n}c_i x^i$ and $g(x) = \sum_{i=0}^{n}d_i x^i$, where we have made the number of summands in each sum agree by taking zeroes as extra coefficients if the degrees do not match. Then
+    \[
+      \Psi(f(x)+g(x)) = \Psi\lr{\sum_{i=0}^{n}(c_i + d_i)x^i} = \sum_{i=0}^{n}(c_i+d_i)\otimes \alpha^i = \sum_{i=0}^{n}c_i\otimes \alpha^i + \sum_{i=0}^{n}d_i\otimes \alpha^i = \Psi(f(x)) + \Psi(g(x)),
+    \]
+    and
+    \[
+      \Psi(f(x)g(x)) = \Psi\lr{\sum_{k=0}^{n}\lr{\sum_{i=0}^{k}c_{k-i}d_{i}}x^k} = \sum_{k=0}^{n}\lr{\sum_{i=0}^{k}c_{k-i}d_{i}}\otimes \alpha^k = \lr{\sum_{i=0}^{n}c_i\otimes \alpha^i}\lr{\sum_{j=0}^{n}d_j\otimes \alpha^j} = \Psi(f(x))\Psi(g(x)).
+    \]
+    Lastly, for any $\lambda\in K$,
+    \[
+      \Psi(\lambda f(x)) =\Psi(\sum_{i=0}^{n}\lambda c_i x^i) = \sum_{i=0}^{n}\lambda c_i \otimes\alpha = (\lambda\otimes 1) \Psi(f(x)) = \lambda\cdot\Psi(f(x)),
+    \]
+    so $\Psi$ is indeed a $K$-algebra homomorphism. Moreover, $\Psi$ is surjective as the image of $\Psi$ clearly contains all simple tensors $c\otimes f(\alpha)$ (take $\Psi(cf(x))$), whence by linearity the image of $\Psi$ is all of $K\otimes_F F(\alpha)$. \\
+
+    Suppose that $f(x)\in K[x]$ and write $\mu_{\alpha,F}(x) = \sum_{i=0}^{n}a_i x^i$ for some $a_i\in F$. Then
+    \begin{align*}
+      \Psi(f(x)\mu_{\alpha,F}(x)) &= \Psi(f(x))\lr{\sum_{i=0}^{n}a_i\otimes \alpha^i} = \Psi(f(x))\lr{\sum_{i=0}^{n}1 \otimes a_i\alpha^i}\\
+      &= \Psi(f(x))\lr{1 \otimes \lr{\sum_{i=0}^{n} a_i\alpha^i}} = \Psi(f(x))\lr{1 \otimes \mu_{\alpha,F}(\alpha)} = 0,
+    \end{align*}
+    so $(\mu_{\alpha,F}(x))\sub \ker(\Psi)$. Hence, there exists a well-defined $K$-algebra homomorphism $\tilde{\Psi}: K[x]/(\mu_{\alpha,F}(x))\to K\otimes_F F(\alpha)$ such that the diagram below commutes
+    \[
+      \begin{tikzcd}
+    	{K[x]} && {K\otimes_F F(\alpha)} \\
+    	{\frac{K[x]}{(\mu_{\alpha,F}(x))}}
+    	\arrow["\Psi", two heads, from=1-1, to=1-3]
+    	\arrow["{\tilde{\Psi}}"', dashed, from=2-1, to=1-3]
+    	\arrow["\pi"', two heads, from=1-1, to=2-1]
+      \end{tikzcd}
+    \]
+    where $\pi:K[x]\to K[x]/(\mu_{\alpha,F}(x))$ is the natural projection. On one hand, as $\Psi$ is surjective it immediately follows that $\tilde{\Psi}$ is also surjective. On the other hand, as $K[x]$ is a PID and $(\mu_{\alpha,F}(x))$ is a prime ideal of $K[x]$, $(\mu_{\alpha,F}(x))$ is actually a maximal ideal of $K[x]$ so $K[x]/(\mu_{\alpha,F}(x))$ is a field. Thus, as $\ker(\tilde{\Psi})$ is an ideal of $K[x]/(\mu_{\alpha,F}(x))$ and $\tilde{\Psi}$ is not trivial, it follows that $\ker(\tilde{\Psi})=0$ i.e. $\tilde{\Psi}$ is injective. Hence $\tilde{\Psi}$ is a $K$-algebra isomorphism.
+
+
+  \end{proof}
+
+  \textbf{(b)}: ($13$ points) Let $K_1, K_2$ be two algebraic extensions (not necessarily finite) of a field $F$. Suppose that $F$ has characteristic $0$ and that we have $F$-embeddings $K_1, K_2\hookrightarrow\overline{F}$, to a fixed algebraic closure of $F$. Prove that the $F$-algebra $K_1\otimes_F K_2$ has no nonzero nilpotent elements. \textbf{Hint:} Reduce to the case when one of the extensions is finite over $F$.
+
+  \begin{proof}
+    Suppose first that $K_2/F$ is finite. As $\ch(F) = 0$, $K_2/F$ is finite and separable whence by the primitive element theorem there exists some $\alpha\in K_2$ such that $K_2 = F(\alpha)$. By part(a) applied to the algebraic tower $F\sub K_1\sub \cls{F}$, we have an isomorphism of $K_1$-algebras (and thus $F$-algebras),
+    \[
+      K_1\otimes_F K_2 = K_1\otimes_F F(\alpha) \cong K_1[x]/(\mu_{\alpha,F}(x)).
+    \]
+    Suppose that $f\in K[x]$ is such that $f^n\in (\mu_{\alpha,F}(x))$ for some $n\in\N$. Then $(f(\alpha))^n = 0$, whence $f(\alpha) = 0$ so $f\in (\mu_{\alpha,F}(x))$ and thus $\cls{f} \equiv 0$ in $K_1[x]/(\mu_{\alpha,F}(x))$. Thus, $K_1\otimes_F K_2 \cong K_1[x]/(\mu_{\alpha,F}(x))$ has no nonzero nilpotents.\\
+
+    Now suppose that $K_1,K_2$ are just algebraic extensions of $F$. Suppose that $\gamma = \sum_{j=1}^{m} c_j \alpha_j\otimes\beta_j\in K_1\otimes_F K_2$ is nilpotent. Note that the field $F(\beta_1,\cdots,\beta_m)\sub K_2$ is finite over $F$, so the by part (a) the sub-$F$-algebra $K_1\otimes_F F(\beta_1,\cdots,\beta_m)\sub K_1\otimes_F K_2$ contains no nonzero nilpotents. However, $\gamma = \sum_{j=1}^{m} c_j \alpha_j\otimes\beta_j \in K_1\otimes_F F(\beta_1,\cdots,\beta_m)$, so $\gamma $ being nilpotent implies that $\gamma = 0$.
+  \end{proof}
+\end{homeworkProblem}
+
+
+\begin{homeworkProblem}
+  \textbf{(a)}: ($6$ points) Let $K/F$ be a finite Galois extension and let $G=\Gal(K/F)$. Assume that $G$ is a simple group (recall: this means that $G$ has no nontrivial proper normal subgroups). Let $\alpha\in K\setminus F$ and $\mu_{\alpha,F}(x)\in F[x]$ its minimal polynomial over $F$. Prove that $K$ is a splitting field for $\mu_{\alpha,F}(x)$.
+
+  \begin{proof}
+    On one hand, as $\alpha\in K$ and $\mu_{\alpha,F}(\alpha) = 0$, the normality of $K/F$ implies that $\mu_{\alpha,F}(x)$ splits over $K$. Hence, there exist $\alpha_1,\ldots,\alpha_n\in K$ (take $\alpha_1 = \alpha$) such that
+    \[
+      \mu_{\alpha,F}(x) = (x-\alpha_1)\cdots(x-\alpha_n)\in K[x].
+    \]
+    Let $K_0 = F(\alpha_1,\cdots,\alpha_n)$, so $F\sub K_0 \sub K$. As $K/F$ is Galois, it follows that $K_0/F$ is separable. As $K_0$ is a splitting field of $\mu_{\alpha,F}$ over $F$, it follows that $K_0/F$ is normal, and thus Galois. Hence, by the fundamental theorem of Galois theory $\Gal(K/K_0)\triangleleft G$. As $\alpha\in K_0\setminus F$, we have that $[K_0:F] > 1$ and thus
+    \[
+      |\Gal(K/K_0)| = [K:K_0] = \frac{[K:F]}{[K_0:F]} < [K:F] = |G|.
+    \]
+    Now the simplicity of $G$ implies that $\Gal(K/K_0)$ is trivial, so $K=K_0$ is a splitting field for $\mu_{\alpha,F}(x)$.
+  \end{proof}
+
+  \textbf{(b)}: ($8$ points) Let $F\subseteq L\subseteq K$ be a tower of finite extensions. Suppose that both $L/F$ and $K/F$ are Galois and the Galois group $H=\Gal(K/L)$ of $K/L$ is cyclic. Let $M$ be any subfield of $K/L$. Prove that the extension $M/F$ is Galois.
+
+  \begin{proof}
+    Let $\sigma\in H$ be such that $H = \cyclic{\sigma}$. As $\Gal(K/M)\sub \Gal(K/L) = H$, there exists some $d\in\{1,\ldots,|H|\}$ such that $\Gal(K/M) = \cyclic{\sigma^d}$. By the fundamental theorem of Galois theory, as $L/F$ is Galois we have that $\cyclic{\sigma} = H \triangleleft \Gal(K/F)$. \\
+
+    Suppose that $\tau \in \Gal(K/F)$. By normality, there is some $k\in\N\cup\{0\}$ such that $\tau\sigma\tau^{-1} = \sigma^k$. For $s\in\N$ we compute,
+    \[
+      \tau(\sigma^d)^s\tau^{-1} = \tau\sigma^{ds}\tau^{-1} = (\tau\sigma\tau^{-1})^{ds} = (\sigma^{k})^{ds} = (\sigma^d)^{sk}\in \cyclic{\sigma^d},
+    \]
+    so $\tau\cyclic{\sigma^d}\tau^{-1} = \cyclic{\sigma^d}$. Thus $\Gal(K/M) = \cyclic{\sigma^d}\triangleleft\Gal(K/F)$, so by the fundamental theorem of Galois theory $M/F$ is Galois.
+  \end{proof}
+\end{homeworkProblem}
+
+
+\begin{homeworkProblem}
+  Let $p$ be an odd prime. Consider the $p^{th}$ cyclotomic field, $K=\Q(\zeta)$, where $\zeta\in\C$ is a primitive $p^{th}$ root of unity. \\
+
+  \textbf{(a)}: ($6$ points) Prove that $K$ contains a unique subfield of the form $\Q(\sqrt{m})$, where $m\in\Z$ is a square-free integer.
+
+  \begin{proof}
+    Note that $K/\Q$ is Galois and $G = \Gal(K/\Q)\cong \units{\Z/p\Z} \cong \Z/(p-1)\Z$. Let $\sigma\in \Gal(K/\Q)$ by such that $\sigma(\zeta) = \zeta^m$ for some $m>1$ with $(m,p) = 1$. Then $\Gal(K/\Q) = \cyclic{\sigma}$. Consider the subgroup $H = \cyclic{\sigma^{2}}\sub G$. As $|H| = \frac{p-1}{2}$, $[G:H] = 2$ and thus $H\triangleleft G$.  Letting $K_0 = K^{H}$, it follows by the fundamental theorem of Galois theory that $[K : K_0] = |H| = \frac{p-1}{2}$ and that $K_0/\Q$ is Galois with $[K_0:\Q] = 2$. Note that this is the unique subgroup of index $2$ by cyclicity of $G$, whence the Galois correspondence implies that $K_0$ is the unique subfield of $K$ with $[K:\Q]=2$. Now, by Kummer's theorem, there exists some $\alpha\in K_0\setminus \Q$ such that $\alpha^2 \in \Q$ and $K_0 = \Q(\alpha)$. As such, we may write $\alpha = \sqrt{\frac{a}{b}}$ for some square-free $a,b\in\Z\setminus\{0\}$ with $(a,b) = 1$.\\
+
+    As $a,b$ are square-free and $(a,b)$, $x^2-ab$ and $x^2-\frac{a}{b}$ are irreducible in $\Q[x]$. Thus, the relation $\sqrt{ab} = b\sqrt{\frac{a}{b}}$ combined with the reverse direction of homework 11 problem 6 gives that $\Q(\sqrt{\frac{a}{b}}) = \Q(\sqrt{ab})$. As $a$,$b$ are square-free and coprime, $ab$ is square-free and we are done. \\
+
+    Now suppose that $\Q(\sqrt{m}) = \Q(\sqrt{m'})$ for some $m'\in\Z$ also square-free. By homework 11 problem 6 forward direction, $m' = c^2 m^r$ for some $r\in\N$ with $(r,2) = 1$. By square-freeness, we have that $c=1$ and $r=1$, so $m = m'$.
+  \end{proof}
+
+  \textbf{(b)}: ($10$ points) Now suppose $p=5$. Find the integer $m$ explicitly. \textbf{Hint:} Finding an explicit generator of the Galois group $G=\Gal(K/\Q)$  might be useful.
+
+  \begin{proof}
+    Let $\sigma\in\Gal(K/\Q)$ be such that $\sigma(\zeta) = \zeta^2$. Then $\Gal(K/\Q) = \cyclic{\sigma}$. Let $H = \cyclic{\sigma^2} = \{id,\sigma^2\}$. We compute that $\sigma^2(\zeta) = \sigma(\zeta^2) = \zeta^4$. Consider $\alpha = id(\zeta) + \sigma^2(\zeta) = \zeta + \zeta^4$. By construction, $\alpha\in K^H$. Moreover,
+    \[
+      \alpha = \zeta + \zeta^{-1} = \zeta + \cls{\zeta} = 2\cos(\frac{2\pi}{5}) = \frac{\sqrt{5}-1}{2}\not\in\Q
+    \]
+    so $\Q(\alpha) = K^H$. As $\sqrt{5} = 2\alpha+1$, $\sqrt{5}\in \Q(\alpha)$. On the other hand, the above identity shows that $\alpha\in \Q(\sqrt{5})$, so $K^H = \Q(\alpha) = \Q(\sqrt{5})$ and thus $m=5$.
+  \end{proof}
+
+  \textbf{(c)}: ($5$ points) Do the same for $p=7$. How is your answer different from (b)? What would you expect the general answer to be?
+
+  \begin{proof}
+    Let $\sigma\in\Gal(K/\Q)$ be such that $\sigma(\zeta) = \zeta^2$. Then $\Gal(K/\Q) = \cyclic{\sigma}$. Let $H = \cyclic{\sigma^2} = \{id,\sigma^2,\sigma^4\}$. Let $\alpha = id(\zeta) + \sigma^2(\zeta)+\sigma^4(\zeta) = \zeta + \zeta^{2^2} + \zeta^{2^4} = \zeta + \zeta^2 + \zeta^4$. Again by construction it is clear that $\alpha\in K^H$. Note that $1 + \zeta + \zeta^2 + \zeta^4 + \zeta^{-1}+\zeta^{-2}+\zeta^{-4} = 1 + \zeta + \zeta^2 +\zeta^3+ \zeta^4+\zeta^5+\zeta^6 = 0$, whence
+    \[
+      \zeta + \zeta^2 + \zeta^4 = \alpha = -1 - \zeta^{-1}+\zeta^{-2}+\zeta^{-4}
+    \]
+    For brevity, let $\beta = \zeta^{-1}+\zeta^{-2}+\zeta^{-4}$, so
+    \[
+      2\alpha + 1 = \zeta + \zeta^2 + \zeta^4 - (\zeta^{-1}+\zeta^{-2}+\zeta^{-4}) = \alpha - \beta.
+    \]
+    We compute (pain pain pain),
+    \begin{align*}
+      (2\alpha+1)^2 &= \zeta + \zeta^2 + \zeta^4 + 2(\zeta^3 + \zeta^5 + \zeta^6)+ \zeta^3 + \zeta^5 + \zeta^6 + 2(\zeta + \zeta^2 +\zeta^4) - 2\alpha\beta \\
+      &= 3(\zeta + \zeta^2 + \zeta^3 + \zeta^4 + \zeta^5 + \zeta^6) - 2\alpha\beta = -3 -2\alpha\beta\\
+      &=-3 -2\lr{\zeta^4+\zeta^6 + \zeta^7 + \zeta^5 + \zeta^8 + \zeta^7 + \zeta^9 + \zeta^10}\\
+      &=-3 -2\lr{3 + \zeta + \zeta^2 + \zeta^3 + \zeta^4 + \zeta^5 + \zeta^6} = -3-2(3-1) = -7,
+    \end{align*}
+    so $\alpha\in\{\frac{1}{2}(-1\pm\sqrt{-7})\}\not\in\Q$, whence $K^H = \Q(\alpha)$. On one hand, we than have that $\alpha\in\Q(\sqrt{-7})$. On the other hand, the above relation implies that $2\alpha+1\in\{\pm\sqrt{-7}\}$ so $\sqrt{-7}\in \Q(\alpha)$. Thus $K^H = \Q(\alpha) = \Q(\sqrt{-7})$, so $m=-7$.\\
+
+    This answer is different from that in part (b) as it is $\sqrt{-p}$ as opposed to $\sqrt{p}$. I conjecture that the general answer is $\sqrt{\pm p}$ where the sign depends on whether $p\equiv 1\, \mathrm{ mod }\, 4$ or $p\equiv 3\, \mathrm{ mod }\, 4$.
+
+
+
+  \end{proof}
+\end{homeworkProblem}
+
+\end{document}

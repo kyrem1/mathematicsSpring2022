@@ -1,0 +1,256 @@
+\documentclass[12pt,
+psamsfonts]{amsart}
+
+%-------Packages---------
+\usepackage{amssymb,amsfonts,amsmath}
+\usepackage[all,arc]{xy}
+\usepackage{enumerate}
+\usepackage{mathrsfs}
+\usepackage{fullpage}
+\usepackage{xspace}
+\usepackage[margin=1.0in]{geometry}
+\usepackage{tcolorbox}
+\usepackage{tikz-cd}
+\usepackage{color}
+\usepackage{aliascnt}
+\usepackage[foot]{amsaddr}
+\usepackage{hyperref}
+
+
+%--------Theorem Environments--------
+%theoremstyle{plain} --- default
+\newtheorem{thm}{Theorem}[section]
+
+%----Theorem
+\newaliascnt{theo}{thm}
+\newtheorem{theo}[theo]{Theorem}
+\aliascntresetthe{theo}
+\newcommand{\theoautorefname}{Theorem}
+%----Corollary
+\newaliascnt{cor}{thm}
+\newtheorem{cor}[cor]{Corollary}
+\aliascntresetthe{cor}
+\newcommand{\corautorefname}{Corollary}
+%----Proposition
+\newaliascnt{prop}{thm}
+\newtheorem{prop}[prop]{Proposition}
+\aliascntresetthe{prop}
+\newcommand{\propautorefname}{Proposition}
+%----Lemma
+\newaliascnt{lem}{thm}
+\newtheorem{lem}[lem]{Lemma}
+\aliascntresetthe{lem}
+\newcommand{\lemautorefname}{Lemma}
+%----Conjecture
+\newaliascnt{conj}{thm}
+\newtheorem{conj}[conj]{Conjecture}
+\aliascntresetthe{conj}
+\newcommand{\conjautorefname}{Conjecture}
+%----Question
+\newaliascnt{que}{thm}
+\newtheorem{que}[que]{Question}
+\aliascntresetthe{que}
+\newcommand{\queautorefname}{Question}
+%----Assumption
+\newaliascnt{ass}{thm}
+\newtheorem{ass}[ass]{Assumption}
+\aliascntresetthe{ass}
+\newcommand{\assautorefname}{Assumption}
+%----Definition
+\newaliascnt{defn}{thm}
+\newtheorem{defn}[defn]{Definition}
+\aliascntresetthe{defn}
+\newcommand{\defnautorefname}{Definition}
+
+
+
+
+%Style
+\theoremstyle{remark}
+%----Remark
+\newaliascnt{rem}{thm}
+\newtheorem{rem}[rem]{Remark}
+\aliascntresetthe{rem}
+\newcommand{\remautorefname}{Remark}
+
+\newtheorem*{ack}{Acknowledgements}
+
+
+
+
+\newtheorem{Proof}{Proof}
+
+\theoremstyle{definition}
+%\newtheorem{defn}[thm]{Definition}
+\newtheorem{defns}[thm]{Definitions}
+\newtheorem{con}[thm]{Construction}
+\newtheorem{exmp}[thm]{Example}
+\newtheorem{exmps}[thm]{Examples}
+\newtheorem{notn}[thm]{Notation}
+\newtheorem{notns}[thm]{Notations}
+\newtheorem{addm}[thm]{Addendum}
+\newtheorem{exer}[thm]{Exercise}
+\newtheorem{conv}[thm]{Convention}
+
+\newtheorem{case}[thm]{Case}
+
+
+\newtheorem{rems}[thm]{Remarks}
+\newtheorem{warn}[thm]{Warning}
+%\newtheorem{sch}[thm]{Scholium}
+\newtheorem{notation}[thm]{Notation}
+\newtheorem{ex}[thm]{Examples}
+\newtheorem{note}[thm]{Note}
+
+
+
+\newcommand{\N}{\mathbb{N}\xspace}
+\newcommand{\I}{\mathbb{I}\xspace}
+\newcommand{\R}{\mathbb{R}\xspace}
+\newcommand{\Z}{\mathbb{Z}\xspace}
+\newcommand{\Q}{\mathbb{Q}\xspace}
+\newcommand{\C}{\mathbb{C}\xspace}
+\newcommand{\G}{\mathbb{G}\xspace}
+\newcommand{\F}{\mathbb{F}\xspace}
+\DeclareMathOperator{\Spec}{Spec}
+\DeclareMathOperator{\res}{res}
+\DeclareMathOperator{\Tr}{Tr}
+\DeclareMathOperator{\ord}{ord}
+\DeclareMathOperator{\Sym}{Sym}
+\DeclareMathOperator{\dv}{div}
+\DeclareMathOperator{\alb}{alb}
+\DeclareMathOperator{\img}{Im}
+\DeclareMathOperator{\et}{et}
+\DeclareMathOperator{\ck}{coker}
+\DeclareMathOperator{\Reg}{Reg}
+\DeclareMathOperator{\Cor}{Cor}
+\DeclareMathOperator{\ch}{char}
+\DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\Aut}{Aut}
+\DeclareMathOperator{\Gal}{Gal}
+\DeclareMathOperator{\fc}{frac}
+\DeclareMathOperator{\Ann}{Ann}
+\DeclareMathOperator{\Mod}{Mod}
+\DeclareMathOperator{\Cone}{Cone}
+\DeclareMathOperator{\FI}{FI}
+\DeclareMathOperator{\End}{End}
+\DeclareMathOperator{\rk}{rk}
+\DeclareMathOperator{\Ext}{Ext}
+\DeclareMathOperator{\ab}{ab}
+
+\DeclareMathOperator{\coker}{coker}
+\DeclareMathOperator{\fr}{frac}
+\makeatletter
+\let\c@equation\c@theo
+\makeatother
+\numberwithin{equation}{section}
+
+\bibliographystyle{plain}
+%\newcommand{\textlatin }
+
+
+
+
+%--------Meta Data: Fill in your info------
+\title{Algebra II - FINAL EXAM\\
+Opens: Monday 05/02/22 at 9 a.m. \\
+Closes: Friday 05/06/22 at 11.59 p.m.}
+
+\begin{document}
+
+\maketitle
+
+\textbf{Directions:} 
+\begin{itemize}
+\item There are six problems in this exam. The total number of points is 110, but you only need 100 to get $100\%$.\\
+%\item There are a few bonus points in this exam. You should try those, even if you choose not to do that problem. (Some of those are pretty easy). \\
+\item Please show all your work and justify any statements you make. \\
+\item Vague statements and hand-waving arguments won't be appreciated. State clearly any result you are referring to. \\ 
+\item You may assume the statement of an earlier part of a problem to do a later part. \\
+\item After completion, please submit an electronic copy of your exam to Gradescope. Typed solutions are preferred, but hand-written solutions are also allowed, \textbf{as long as the writing is legible, and the scanned copy is clear}. 
+\end{itemize}
+
+\vspace{100pt}
+\textbf{Rules:} \begin{itemize}
+\item You are only allowed to use the lecture notes and statements from homework assignments. Answers of the form: ``It follows from Theorem blah in Dummit and Foote" will only be given partial credit. \\ 
+\item No outside resources are allowed. Moreover, \textbf{NO} collaboration is allowed. \\
+
+\item In the beginning of your exam, please sing the pledge:
+
+``\textit{In my honor as a student, I pledge that I have neither given nor received help on this assignment''.}
+\end{itemize}
+
+\newpage
+
+%\textbf{Reminders:} If $K/F$ and $L/K$ are finite extensions, then 
+%$L/F$ is finite and \[[L:F]=[L:K][K:F].\] In particular, both $[K:F]$ and $[L:K]$ divide $[L:F]$. 
+%\\
+
+%\textbf{Reminder:} A field $F$ of characteristc $p>0$ is perfect if the Frobenius map $\varphi:x\mapsto x^p$ is surjective. \\
+
+\begin{enumerate}
+\item[\textbf{1.}] Let $F$ be a field, $n\in\N$ and $A\in Mat_n(F)$.
+\begin{enumerate}
+\item ($10$ points) Assume that $\ch(F)=0$. Prove that the matrix $A$ is nilpotent if and only if $\Tr(A^k)=0$, for all $k\in\N$. 
+\item ($4$ points) Show that the assertion of (a) is false if $\ch(F)\neq 0$. \\
+\end{enumerate}
+
+\item[\textbf{2.}] Let $A\in GL_n(\F_p)$, where $p$ is a prime number and $n\in\N$. 
+\begin{enumerate}
+\item ($6$ points) Suppose that the matrix $A$ is \textbf{diagonalizable over the algebraic closure} $\overline{\F}_p$.  Show that the order of $A$ in the group $GL_n(\F_p)$ is equal to the lcm of the orders of the eigenvalues of $A$ in $\overline{\F}_p^\times$. 
+\item ($10$ points) Prove that $GL_n(\F_p)$ has an element $B$ of exact order $p^n-1$. 
+\item ($4$ points) Construct explicitly an element $B\in GL_2(\F_3)$ of order $8$. \\
+\end{enumerate}
+
+%\item Let $f(x)=x^4-x^2+1\in\Q[x]$. 
+%\begin{enumerate}
+%\item Describe a splitting field $K$ for $f$ over $\Q$, and find its degree. 
+%\item Describe explicitly the Galois group $G=\Gal(K/\Q)$ and determine its isomorphism class. 
+%\item Find all subfields of $K/\Q$. 
+%\end{enumerate}
+
+\item[\textbf{3.}] Let $f(x)=(x^2-2)(x^3-3)\in\Q[x]$, and let $K$ be a splitting field of $f(x)$ over $\Q$. 
+\begin{enumerate}
+\item ($10$ points) Prove that $\Gal(K/\Q)\simeq S_3\times\Z/2\Z$.
+\item ($8$ points) Find a primitive element of $K$ over $\Q$ (and prove your answer). \\
+\end{enumerate} 
+
+\item[\textbf{4.}] \begin{enumerate}
+\item ($10$ points) Let $F\subseteq K\subseteq L$ be a tower of algebraic extensions. Let $\alpha\in L$, and let $\mu_{\alpha,F}(x)$ be its minimal polynomial over $F$. Prove an isomorphism of $K$-algebras \[K\otimes_F F(\alpha)\simeq K[x]/(\mu_{\alpha,F}(x)).\]
+\item ($13$ points) Let $K_1, K_2$ be two algebraic extensions (not necessarily finite) of a field $F$. Suppose that $F$ has characteristic $0$ and that we have $F$-embeddings $K_1, K_2\hookrightarrow\overline{F}$, to a fixed algebraic closure of $F$. Prove that the $F$-algebra $K_1\otimes_F K_2$ has no nonzero nilpotent elements. \textbf{Hint:} Reduce to the case when one of the extensions is finite over $F$. \\
+\end{enumerate}
+
+\item[\textbf{5.}]
+\begin{enumerate}
+\item ($6$ points) Let $K/F$ be a finite Galois extension and let $G=\Gal(K/F)$. Assume that $G$ is a simple group (recall: this means that $G$ has no nontrivial proper normal subgroups). Let $\alpha\in K\setminus F$ and $\mu_{\alpha,F}(x)\in F[x]$ its minimal polynomial over $F$. Prove that $K$ is a splitting field for $\mu_{\alpha,F}(x)$. 
+\item ($8$ points) Let $F\subseteq L\subseteq K$ be a tower of finite extensions. Suppose that both $L/F$ and $K/F$ are Galois and the Galois group $H=\Gal(K/L)$ of $K/L$ is cyclic. Let $M$ be any subfield of $K/L$. Prove that the extension $M/F$ is Galois. \\
+\end{enumerate}
+
+\item[\textbf{6.}] Let $p$ be an odd prime. Consider the $p^{th}$ cyclotomic field, $K=\Q(\zeta)$, where $\zeta\in\C$ is a primitive $p^{th}$ root of unity. 
+\begin{enumerate}
+\item ($6$ points) Prove that $K$ contains a unique subfield of the form $\Q(\sqrt{m})$, where $m\in\Z$ is a square-free integer.
+\item ($10$ points) Now suppose $p=5$. Find the integer $m$ explicitly. \textbf{Hint:} Finding an explicit generator of the Galois group $G=\Gal(K/\Q)$  might be useful. 
+\item ($5$ points) Do the same for $p=7$. How is your answer different from (b)? What would you expect the general answer to be? 
+\end{enumerate}
+\medskip 
+\medskip
+%\item[\textbf{7.}] 
+%\begin{enumerate}
+%\item ($5$ points) Let $p$ be a prime and $n\in\N$.
+% Consider the polynomial $f(x)=x^{p^n}-x\in\F_p[x]$. Prove that $f(x)$ is equal to the product of \textbf{ALL monic irreducible polynomials} $g(x)\in\F_p[x]$ whose degree divides $n$ (with each of the polynomials appearing in the factorization only once). 
+%\item ($5$ points)  Consider the polynomial $p(x)=x^5-1\in\F_7[x]$. Let $K$ be a splitting field for $p(x)$ over $\F_7$. Compute the Galois group $G=\Gal(K/\F_7)$. 
+%%We already know that the finite field $\F_{p^n}$ is a splitting field for $f(x)=x^{p^n}-x$. Let $m\in\N$ be the minimal positive integer  such that $\F_{p^n}$ is a splitting field over $\F_p$ for some polynomial of degree $m$ (not necessarily irreducible). Prove that $m=q_1^{l_1}+\cdots+q_r^{l_r}$, where $n=q_1^{l_1}\cdots q_r^{l_r}$ is the prime factorization of $n$. 
+%\end{enumerate}
+\medskip 
+\medskip
+
+
+
+\end{enumerate}
+
+
+
+
+
+\end{document}
