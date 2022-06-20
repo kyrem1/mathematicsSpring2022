@@ -210,17 +210,96 @@
   \textbf{(b)}: Let $(Z,\mc{O},\zeta)$ be a finite measure space. Suppose that $\mc{A}\sub\mc{O}$ is an algebra which generates the $\sigma$-algebra of $\mc{O}$. Use the monotone class lemma to show that $\{\ind_A:A\in\mc{A}\}$ is dense in $\{\ind_E:E\in\mc{O}\}$ in the $L^p$-norm for all $1\leq p <+\infty$.
 
   \begin{proof}
-    By the monotone class lemma, $\mc{O} = \Sigma(\mc{A}) = M(\mc{A})$. Let $E\in\mc{O}$. Then
+    By the monotone class lemma, $\mc{O} = \Sigma(\mc{A}) = M(\mc{A})$. Let $E\in\mc{O}$. Let
+    \[
+      \ms{C} = \left\{E\in\mc{O}: \ind_E \in \cls{\{\ind_A : A\in\mc{A}\}}^{\norm{\cdot}_p}\right\}.
+    \]
+    We will show that $\ms{C}$ is a monotone class as then $\mc{A}\sub \ms{C}$ would imply that $\mc{O} = M(\mc{A})\sub\ms{C}$ and we would be done.\\
+
+    First, we compute that for any $A,B\in\ms{O}$, by problem 1(ii)
+    \[
+      \norm{\ind_A-\ind_B}_p^p = \int|\ind_A-\ind_B|^p \dd{\zeta} = \int \ind_{A\Delta B}\dd{\zeta} = \norm{\ind_A-\ind_B}_1 = \rho([A],[B]) = \zeta(A\Delta B).
+    \]
+
+    Suppose that $E_1\sub E_2\sub \cdots$ is an increasing sequence of sets in $\ms{C}$ and let $E = \bigcup_{j\in\N} E_j$. Then, the finiteness of $\zeta$ and continuity from below,
+    \[
+        \norm{\ind_E - \ind_{E_n}}_p^p = \zeta(E\Delta E_n) = \zeta(E\setminus E_n) = \zeta(E)-\zeta(E_n)\xrightarrow{n\to\infty}0,
+    \]
+    whence $\ind_E\in\ms{C}$.\\
+
+    On the other hand, suppose that $F_1\supseteq F_2\supseteq \cdots$ is a decreasing sequence of sets in $\ms{C}$ and let $F = \bigcup_{j\in\N} F_j$. Then by finiteness of $\zeta$ and continuity from below,
+    \[
+      \norm{\ind_F - \ind_{F_n}}_p^p = \zeta(F_n\Delta F) = \zeta(F_n\setminus F) = \zeta(F_n)-\zeta(F)\xrightarrow{n\to\infty}0,
+    \]
+    whence $\ind_F\in\ms{C}$.
   \end{proof}
 
-  \textbf{(c)}: Let $(X,\Sigma,\mu),(Y,\mc{F},\nu)$ be finite measure spaces. Use the previous part to show that $\{\ind_E : E\in \Sigma\otimes\mc{F}\}\sub\cls{\Span}^{\norm{\cdot}_p}\{\ind_E\otimes\ind_F:E\in\Sigma,F\in\mc{F}\}$. Use this to show that $\cls{\Span}^{\norm{\cdot}_p}\{\ind_E\otimes\ind_F:E\in\Sigma,F\in\mc{F}\} = L^p(X\times Y,\mu\otimes\nu)$.\\
+  \textbf{(c)}: Let $(X,\Sigma,\mu),(Y,\mc{F},\nu)$ be finite measure spaces. Use the previous part to show that $\{\ind_E : E\in \Sigma\otimes\mc{F}\}\sub\cls{\Span}^{\norm{\cdot}_p}\{\ind_E\otimes\ind_F:E\in\Sigma,F\in\mc{F}\}$. Use this to show that $\cls{\Span}^{\norm{\cdot}_p}\{\ind_E\otimes\ind_F:E\in\Sigma,F\in\mc{F}\} = L^p(X\times Y,\mu\otimes\nu)$.
+
+  \begin{proof}
+    Let $\mc{A}\sub \Sigma\otimes\mc{F}$ be the algebra of finite disjoint unions of rectangles in $X\times Y$. Note that any $A\in \mc{A}$ has the form $A = \bigsqcup_{j=1}^{n}E_j\times F_j$ for some $E_j\in\Sigma$ and $F_j\in \mc{F}$, whence $\ind_A = \sum_{j=1}^{n}\ind_{E_j}\otimes\ind_{F_j}$, so
+    \[
+      \{\ind_A : A\in \mc{A}\} \sub \Span\{\ind_E\otimes\ind_F:E\in\Sigma,F\in\mc{F}\}.
+    \]
+
+    By definition of the product sigma algebra, $\Sigma(\mc{A}) = \Sigma\otimes\mc{F}$, so part (b) implies that
+    \[
+      \{\ind_E : E\in \Sigma\otimes\mc{F}\} = \cls{\{\ind_A : A\in \mc{A}\}}^{\norm{\cdot}_p} \sub \cls{\Span}^{\norm{\cdot}_p}\{\ind_E\otimes\ind_F:E\in\Sigma,F\in\mc{F}\}.
+    \]
+    As the left hand side is a linear subspace,
+    \[
+      \Span\{\ind_E : E\in \Sigma\otimes\mc{F}\}\sub\cls{\Span}^{\norm{\cdot}_p}\{\ind_E\otimes\ind_F:E\in\Sigma,F\in\mc{F}\}
+    \]
+    whence by density of simple functions in $L^p$ and the finiteness of $\mu\otimes\nu$,
+    \[
+      L^p(X\times Y,\mu\otimes\nu)\sub \cls{\Span}^{\norm{\cdot}_p} \{\ind_E : E\in \Sigma\otimes\mc{F}\} \sub \cls{\Span}^{\norm{\cdot}_p}\{\ind_E\otimes\ind_F:E\in\Sigma,F\in\mc{F}\} \sub L^p(X\times Y,\mu\otimes\nu).
+    \]
+
+  \end{proof}
 
   \textbf{(d)}: Let $(X,\Sigma,\mu),(Y,\mc{F},\nu)$ be $\sigma$-finite measure spaces. Suppose that $D_X\sub L^p(X,\mu)$, $D_Y\sub L^p(Y,\nu)$ and that
   \[
-    \cls{\Span}^{\norm{\cdot}_p}(D_X) = L^1(X,\mu),\hspace{10pt}\cls{\Span}^{\norm{\cdot}_p}(D_Y) = L^1(Y,\nu).
+    \cls{\Span}^{\norm{\cdot}_p}(D_X) = L^p(X,\mu),\hspace{10pt}\cls{\Span}^{\norm{\cdot}_p}(D_Y) = L^p(Y,\nu).
   \]
   Show that $\cls{\Span}^{\norm{\cdot}_p}(\{f\otimes g: f\in D_X,g\in D_Y\}) = L^p(X\times Y,\mu\otimes\nu)$.
 
+  \begin{proof}
+    First suppose that $X,Y$ are finite measure spaces. By part (c), it suffices to show that
+    \[
+      \{\ind_E\otimes\ind_F : E\in\Sigma, F\in\mc{F}\} \sub\cls{\Span}^{\norm{\cdot}_p}\{f\otimes g : f\in D_X, g\in D_Y\} = L^p(X\times Y,\mu\otimes\nu).
+    \]
+    To this end, take $E\in\Sigma$ and $F\in \mc{F}$. By finiteness, $\ind_E\in L^p(X,\mu)$ and $\ind_F\in L^p(Y,\nu)$. Then by assumption, there are sequences $(f_n)_{n=1}^{\infty}$ in $\Span(D_X)$ and $(g_n)_{n=1}^{\infty}$ in $\Span(D_Y)$ such that
+    \[
+      \norm{f_n-\ind_E}_p,\norm{g_n-\ind_F}_p \xrightarrow{n\to\infty}0.
+    \]
+    Then, we compute using Tonelli's theorem that
+    \begin{align*}
+      \norm{f_n\otimes g_n-\ind_E\otimes\ind_F}_p^p &=\int|f_n\otimes g_n-\ind_E\otimes\ind_F|^p\dd{(\mu\otimes\nu)} \\&=\int|f_n\otimes g_n-\ind_E\otimes g_n+\ind_E\otimes g_n-\ind_E\otimes\ind_F|^p\dd{(\mu\otimes\nu)} \\
+      &\leq \int|f_n\otimes g_n-\ind_E\otimes g_n|^p+\ind_E\otimes g_n-\ind_E\otimes\ind_F|^p\dd{(\mu\otimes\nu)} \\ &= \norm{f_n-\ind_E}_p^p\norm{g_n}_p^p + \mu(E)\norm{g_n-\ind_F}_p^p \xrightarrow{n\to\infty}0,
+    \end{align*}
+    as desired. Thus, the claim holds for finite measure spaces. Now suppose $X,Y$ are $\sigma$-finite and let $X_1\sub X_2\sub \cdots$ and $Y_1\sub Y_2\sub\cdots$ be measurable of finite measure such that $X = \bigcup X_i$ and $Y= \bigcup Y_j$. By part (c), for all $n\in\N$
+    \[
+      \cls{\Span}^{\norm{\cdot}_p}\{\ind_{X_n\times Y_n}(f\otimes g) : f\in D_X, g\in D_Y\} = L^p(X_n\times Y_n,\mu\otimes\nu)
+    \]
+    whence
+    \[
+      L^p(X\times Y) = \bigcup_{n=1}^\infty \cls{\Span}^{\norm{\cdot}_p}\{\ind_{X_n\times Y_n}(f\otimes g) : f\in D_X, g\in D_Y\}.
+    \]
+    As such, it suffices to show that
+    \[
+      \{\ind_{X_n\times Y_n}(f\otimes g): f\in D_X, g\in D_Y\}\sub \cls{\Span}^{\norm{\cdot}_p}\{f\otimes g : f\in D_X, g\in D_Y\}
+    \]
+    for all $n\in \N$. Hence, let $n\in\N$, $f\in D_X$, and $g\in D_Y$. Then there are sequences $(f_k)_{k=1}^{\infty}$ in $\Span(D_X)$ and $(g_k)_{k=1}^{\infty}$ in $\Span(D_Y)$ such that
+    \[
+      \norm{f_k-\ind_{X_n}f}_p,\norm{g_k-\ind_{Y_n}g}_p\xrightarrow{n\to\infty}0.
+    \]
+    Then we compute
+    \begin{align*}
+      \norm{f_k\otimes g_k-\ind_{X_n}f\otimes\ind_{Y_n}g}_p^p &=\int|f_k\otimes g_k-\ind_{X_n}f\otimes\ind_{Y_n}g|^p\dd{(\mu\otimes\nu)} \\&=\int|f_k\otimes g_k-\ind_{X_n}f\otimes g_k+\ind_{X_n}f\otimes g_k-\ind_{X_n}f\otimes\ind_{Y_n}g|^p\dd{(\mu\otimes\nu)} \\
+      &\leq \int|f_k\otimes g_k-\ind_{X_n}f\otimes g_k|^p+\ind_{X_n}f\otimes g_k-\ind_{X_n}f\otimes\ind_{Y_n}g|^p\dd{(\mu\otimes\nu)} \\ &= \norm{f_k-\ind_{X_n}f}_p^p\norm{g_k}_p^p + \norm{\ind_{X_n}f}_p^p\norm{g_k-\ind_{Y_n}g}_p^p \xrightarrow{k\to\infty}0,
+    \end{align*}
+    so $\ind_{X_n\times Y_n}(f\otimes g)\in\cls{\Span}^{\norm{\cdot}_p}\{f\otimes g : f\in D_X, g\in D_Y\}$.
+  \end{proof}
 \end{homeworkProblem}
 
 
@@ -356,11 +435,7 @@
 
     Thus $f_n\to f$ in measure, whence $(f_n)_{n=1}^{\infty}$ is Cauchy in measure. \\
 
-    By the reverse triangle inequality,
-    \[
-      \left\lvert\norm{f_n}_p - \norm{f}_p\right\rvert \leq \norm{f_n-f}_p\xrightarrow{n\to\infty}0,
-    \]
-    so $\norm{|f_n|^p}_1\xrightarrow{n\to\infty}\norm{|f|^p}_1\in L^1(\mu)$. Now by Lemma 2, $(|f_n|^p)_{n=1}^{\infty}$ is uniformly integrable. Also by Lemma 4, condition (3) holds for $(|f_n|^p)_{n=1}^{\infty}$.\\
+    By an inequality obtained from Gennady, $\norm{|f_n|^p}_1\xrightarrow{n\to\infty}\norm{|f|^p}_1\in L^1(\mu)$. Now by Lemma 2, $(|f_n|^p)_{n=1}^{\infty}$ is uniformly integrable. Also by Lemma 4, condition (3) holds for $(|f_n|^p)_{n=1}^{\infty}$.\\
 
     \underline{$\impliedby$}: Suppose that $(f_n)_{n=1}^{\infty}$ in $L^p(\mu)$ satisfies the three listed conditions. Fix $\eps>0$ and let $E\sub X$ be as in condition (3). Set $A_{mn} = \{x: |f_m(x)-f_n(x)|\geq\eps\}$ and let $\delta >0$ be as in condition (2). \\
 
@@ -400,7 +475,7 @@
     \end{proof}
 
     \begin{proof}
-      On one hand, note that $E\sub \cls{\Span(E)}\implies (E^\perp)^\perp\sub (\cls{\Span(E)}^\perp)^\perp \overset{\text{claim}}{=}\cls{\Span(E)}$. On the other hand, as $(E^\perp)^\perp$ is a closed linear subspace of $\mc{H}$ and $E\sub(E^\perp)^\perp$, it follows that $\cls{\Span(E)}\sub (E^\perp)^\perp$.
+      On one hand, note that $E\sub \cls{\Span(E)}\implies (E^\perp)^\perp\sub (\cls{\Span(E)}^\perp)^\perp \overset{\text{claim}}{=}\cls{\Span(E)}$. On the other hand, by the continuity and linearity of the inner product, $(E^\perp)^\perp$ is a closed linear subspace of $\mc{H}$. Thus, as $E\sub(E^\perp)^\perp$, it follows that $\cls{\Span(E)}\sub (E^\perp)^\perp$.
     \end{proof}
 
     % TODO Show E^\perp is a closed linear subspace of $\mc{H}$.

@@ -184,15 +184,17 @@
   \textbf{(b)}: $|\mu_F(E)|\leq \mu_{T_F}(E)$ when $E$ is an interval, and hence when $E$ is a Borel set.
 
   \begin{proof}
-    Let $I=(a,b]$ be an interval. Then
+    Let $I=(a,b)$ be an interval. Then
     \begin{align*}
       |\mu_F(I)| = |F(b)-F(a)| \leq T_F(b)-T_F(a) = \mu_{T_F}(I).
     \end{align*}
-    Now suppose that $E$ is Borel and let $(a_j,b_j]$ be a countable sequence of $h$-intervals such that $E\sub \bigcup_{j=1}^\infty (a_j,b_j]$. Then
+
+    Now suppose $U\sub\R$ is open. Then there exist countably many disjoint intervals $(a_j,b_j)\sub \R$ such that $U = \bigsqcup_{j=1}^{\infty}(a_j,b_j)$. Hence,
     \[
-      \lrvert{\sum_{j=1}^{\infty}\mu_F((a_j,b_j])}\leq \sum_{j=1}^{\infty}|\mu_F((a_j,b_j])| \leq \sum_{j=1}^{\infty}\mu_{T_F}((a_j,b_j]),
+      |\mu_F(U)| \leq \sum_{j=1}^{\infty} |\mu_F((a_j,b_j))| \leq \sum_{j=1}^{\infty} \mu_{T_F}((a_j,b_j)) = \mu_{T_F}(U).
     \]
-    whence $|\mu_F(E)|\leq \sum_{j=1}^{\infty}\mu_{T_F}((a_j,b_j])$. As $E\sub \bigcup_{j=1}^\infty (a_j,b_j]$ was arbitrary, after taking an infimum it follows by outer regularity of $\mu_{T_F}$ that $|\mu_F(E)|\leq \mu_{T_F}(E)$. 
+
+    The case where $E$ is Borel follows by outer regularity.
   \end{proof}
 
   \textbf{(c)}: $|\mu_F|\leq \mu_{T_F}$, and hence $G\leq T_F$ (Use exercise 21).
@@ -215,12 +217,30 @@
   \textbf{(a)}: If $E\sub [c,d]$ is a Borel set, then $m(E) = \mu_G(G^{-1}(E))$. (First consider the case where $E$ is an interval.)
 
   \begin{proof}
-
+    Suppose first that $(e,f]\sub[c,d]$. Then by elementary analysis there exist some $p<q\in[c,d]$ such that $G^{-1}((e,f]) = (p,q]$, $G(p) = e$, $G(q) =f$. So,
+    \[
+      \mu_{G}(G^{-1}((e,f])) = G(q)-G(p) = e-f = m((e,f]).
+    \]
+    Now suppose that $E\sub [c,d]$ is Borel. As $G$ is real-valued and increasing, we may apply outer regularity of $\mu_G$ combined with the fact that $G^{-1}(E)\sub \bigcup I_j$ if and only if $E\sub \bigcup G(I_j)$ to conclude that $m(E) = \mu_G(G^{-1}(E))$.
   \end{proof}
 
-  \textbf{(b)}: If $f$ is a Borel measurable and integrable function on $[c,d]$, then $\int_c^d f(y)\dd{y} = \int_a^b f(G(x))\dd{G(x)}$. In particular, $\int_c^d f(y)\dd{y} = \int_a^b f(G(x))G'(x)\dd{x}$ if $G$ is absolutely continuous.\\
+  \textbf{(b)}: If $f$ is a Borel measurable and integrable function on $[c,d]$, then $\int_c^d f(y)\dd{y} = \int_a^b f(G(x))\dd{G(x)}$. In particular, $\int_c^d f(y)\dd{y} = \int_a^b f(G(x))G'(x)\dd{x}$ if $G$ is absolutely continuous.
+
+  \begin{proof}
+    By linearity of the statement, it suffices to prove for real-valued nonnegative functions $f$, as then we would apply to positive and negative parts of real and imaginary parts. Thus, assume $f\geq 0$. Choose simple functions $0\leq \phi_1\leq \phi_2\leq \cdots\leq f$ such that $\phi_n\to f$ pointwise. Write $\phi_n = \sum a_j \ind_{E_j}$ for some $a_j\geq0$ and $E_j\sub[c,d]$ Borel. Then we compute by part (a) that
+    \begin{align*}
+      \int_{[c,d]}\phi_n\dd{m} = \sum a_j m(E_j) = \sum a_j \mu_G(G^{-1}(E_j)) = \int_{[a,b]}\phi_n\circ G\dd{\mu_G},
+    \end{align*}
+    whence by the monotone convergence theorem $\int_{[c,d]} f\dd{m} = \int_{[a,b]}f\circ G\dd{\mu_G}$.
+  \end{proof}
 
   \textbf{(c)}: The validity of (b) may fail if $G$ is merely right continuous rather than continuous.
+
+  \begin{proof}
+    Consider the function $G = \ind_{[1/2,1]}$ and $f(x) = x$. Then $\int_{0}^1 f(x)\dd{x} = 1$ but \[\int_{0}^1 (f\circ G)(x)\dd{G(x)} = \int_{0}^1 \ind_{[1/2,1]}(x)\dd{G(x)} = \mu_G([1/2,1]) = 0. \]
+
+
+  \end{proof}
 \end{homeworkProblem}
 
 
@@ -287,5 +307,31 @@
     \norm{f} = |f(x_0)| + \norm{f'}_p.
   \]
   Show that $\norm{\cdot}$ is a norm which turns $X$ into a Banach space.
+
+  \begin{proof}
+    % TODO prove is a norm
+    That $\norm{\cdot}$ is a norm follows from the fact that $|\cdot|$ and $\norm{\cdot}_p$ are norms.\\
+
+    Suppose that $(f_n)_{n=1}^{\infty}$ is a Cauchy sequence in $(X,\norm{\cdot})$. Then
+    \[
+      |f_n(x_0)-f_m(x_0)| + \norm{f_n'-f_m'}_p = \norm{f_n-f_m} \xrightarrow{n,m\to\infty}0
+    \]
+    whence $|f_n(x_0)-f_m(x_0)|,\norm{f_n'-f_m'}_p \xrightarrow{n,m\to\infty}0$. By completeness of $\C$ and $L^p([a,b])$, there exists some $y_0\in\C$ and $F\in L^p([a,b])$ such that $f_n(x_0)\to y_0$ and $f_n'\xrightarrow{L^p} F$. As $\norm{F}_1\leq m([a,b])^{1-\frac{1}{p}}\norm{F}_p < +\infty$, $F\in L^1([a,b])$. Define $f:[a,b]\to\C$ by
+    \[
+      f(x) = y_0 + \int_{a}^x F(t)\dd{t}.
+    \]
+    Then $f(x)-f(x_0) = \int_{a}^x F(t)\dd{t}$, whence by Folland 3.35(a) $f$ is absolutely continuous. Moreover, by Folland 3.35(c), $f$ is differentiable almost everywhere, $f'\in L^1([a,b])$, and $f(x)-f(x_0) = \int_{a}^x f'(t)\dd{t}$. So
+    \[
+      \int_a^x f'(t)\dd{t} = \int_a^x F(t)\dd{t}
+    \]
+    for all $x\in[a,b]$, whence by uniqueness in premesures give measures $f'(t)\dd{t} = F(t)\dd{t}$. However then by uniqueness of Radon-Nikodym derivatives, it follows that $f' = F$ almost everywhere, so $f'\in L^p([a,b])$. Thus $f\in X$.\\
+
+    As $f' = F$, we have that
+    \[
+      \norm{f-f_n} = |f(x_0)-f_n(x_0)| + \norm{f'-f_n'}_p = |y_0-f_n(x_0)| + \norm{F-f_n'}_p \xrightarrow{n\to\infty}0.
+    \]
+
+
+  \end{proof}
 \end{homeworkProblem}
 \end{document}

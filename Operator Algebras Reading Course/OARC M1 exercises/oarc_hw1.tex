@@ -1,0 +1,307 @@
+\documentclass[12pt,letterpaper]{scrartcl}
+
+%--------Packages--------
+\usepackage{amsmath, amsthm, amssymb}
+\usepackage{xspace}
+\usepackage{graphicx}
+\usepackage{hhline}
+\usepackage{amssymb}
+\usepackage{array}
+\usepackage{braket}
+\usepackage{multicol}
+\usepackage{mathtools}
+\usepackage{enumerate}
+\usepackage{delarray}
+\usepackage{mathtools}
+\usepackage{fullpage}
+\usepackage{faktor} % For quotients
+\usepackage{mathrsfs}
+
+
+
+\usepackage[italicdiff]{physics} % For differentials
+\usepackage{bbm} % For indicator
+
+% \usepackage{quiver}
+\usepackage[linguistics]{forest}
+
+
+
+
+%--------Page Setup--------
+
+\pagestyle{empty}%
+
+\setlength{\hoffset}{-1.54cm}
+\setlength{\voffset}{-1.54cm}
+
+\setlength{\topmargin}{0pt}
+\setlength{\headsep}{0pt}
+\setlength{\headheight}{0pt}
+
+\setlength{\oddsidemargin}{0pt}
+
+\setlength{\textwidth}{195mm}
+\setlength{\textheight}{250mm}
+
+\setlength{\parindent}{0pt}
+
+%--------Macros--------
+
+\newcommand{\sub}{\subseteq}
+\newcommand{\lcm}{\text{lcm}}
+\newcommand{\mc}[1]{\mathcal{#1}}
+\newcommand{\mf}[1]{\mathfrak{#1}}
+\newcommand{\ms}[1]{\mathscr{#1}}
+\newcommand{\sO}{\mathcal{O}}
+\newcommand{\cyclic}[1]{\langle#1\rangle}
+\newcommand{\units}[1]{#1 ^{\times}}
+\newcommand{\la}{\langle}
+\newcommand{\ra}{\rangle}
+\newcommand{\lr}[1]{\left(#1\right)}
+\newcommand{\lrvert}[1]{\left\lvert#1\right\rvert}
+
+\DeclarePairedDelimiterX{\inp}[2]{\langle}{\rangle}{#1, #2}
+
+%----Switch phi and varphi
+% \let\temp\phi
+% \let\phi\varphi
+% \let\varphi\temp
+
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\D}{\mathbb{D}}
+\newcommand{\N}{\mathbb{N}\xspace}
+\newcommand{\I}{\mathbb{I}\xspace}
+\newcommand{\R}{\mathbb{R}\xspace}
+\newcommand{\Z}{\mathbb{Z}\xspace}
+\newcommand{\Q}{\mathbb{Q}\xspace}
+\newcommand{\G}{\mathbb{G}\xspace}
+
+\DeclareMathOperator{\Spec}{Spec}
+\DeclareMathOperator{\res}{res}
+% \DeclareMathOperator{\Tr}{Tr}
+\DeclareMathOperator{\ord}{ord}
+\DeclareMathOperator{\Sym}{Sym}
+% \DeclareMathOperator{\dv}{div}
+\DeclareMathOperator{\alb}{alb}
+\DeclareMathOperator{\img}{Im}
+\DeclareMathOperator{\et}{et}
+\DeclareMathOperator{\ck}{coker}
+\DeclareMathOperator{\Reg}{Reg}
+\DeclareMathOperator{\Cor}{Cor}
+\DeclareMathOperator{\Ac}{at}
+\DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\Pic}{Pic}
+\DeclareMathOperator{\Gal}{Gal}
+\DeclareMathOperator{\fc}{frac}
+\DeclareMathOperator{\Ann}{Ann}
+\DeclareMathOperator{\Mod}{Mod}
+\DeclareMathOperator{\Cone}{Cone}
+\DeclareMathOperator{\FI}{FI}
+\DeclareMathOperator{\End}{End}
+\DeclareMathOperator{\Alb}{Alb}
+\DeclareMathOperator{\Ext}{Ext}
+\DeclareMathOperator{\ab}{ab}
+\DeclareMathOperator{\Jac}{Jac}
+\DeclareMathOperator{\coker}{coker}
+\DeclareMathOperator{\fr}{frac}
+\DeclareMathOperator{\Int}{Int}
+\let\Span\relax
+\DeclareMathOperator{\Span}{Span}
+\DeclareMathOperator{\Ran}{Ran}
+
+
+
+%----Analysis
+\newcommand{\summ}{\sum\limits}
+% \newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\thicc}{\bigg}
+\newcommand{\eps}{\varepsilon}
+\newcommand*\cls[1]{\overline{#1}}
+\newcommand{\ind}{\mathbbm{1}}
+\DeclareMathOperator{\sgn}{sgn}
+
+
+%--------Theorem environments--------
+\newtheoremstyle{mystyle}%                % Name
+  {}%                                     % Space above
+  {}%                                     % Space below
+  {}%                                     % Body font
+  {}%                                     % Indent amount
+  {\bfseries}%                            % Theorem head font
+  {.}%                                    % Punctuation after theorem head
+  { }%                                    % Space after theorem head, ' ', or \newline
+  {\thmname{#1}\thmnote{ #3}}%            % Theorem head spec (can be left empty, meaning `normal')
+
+\theoremstyle{mystyle}
+\newtheorem*{problem}{Problem}
+
+\theoremstyle{plain}
+\newtheorem{definition}{Definition}[]
+\newtheorem{lemma}{Lemma}[]
+\newtheorem{corollary}{Corollary}[]
+\newtheorem{theorem}{Theorem}[]
+\theoremstyle{remark}
+\newtheorem*{claim}{Claim}
+
+
+\newenvironment{solution}
+{\begin{proof}[Solution]}
+{\end{proof}}
+
+
+%--------Metadata--------
+\title{Operator Algebras Reading Course}
+\subtitle{Meeting 1 Exercises}
+\author{James Harbour}
+
+\begin{document}
+\maketitle
+
+\begin{problem}
+    Let $X$ be a topological vector space over $\F\in\{\R,\C\}$ and $\phi:X\to \F$ a linear functional. Then $\phi$ is continuous if and only if $\ker(\phi)$ is closed.
+\end{problem}
+
+\vspace{3pt}
+\begin{problem}
+  Let $V$ be a vector space over $\F\in\{\R,\C\}$ and $f,f_1,\ldots,f_n$ linear functionals on $V$. Then there exist $c_1,\ldots,c_n\in\F$ such that $f = \sum_{j}c_j f_j$ if and only if $\ker(f)\supseteq \bigcap_{j=1}^{n}\ker(f_j)$.
+\end{problem}
+
+\begin{proof}
+  The forward direction is clear by definition. Now suppose that $\ker(f)\supseteq \bigcap_{j=1}^{n}\ker(f_j)$. If $f=0$ then we are done so suppose that $f\neq 0$. Then $f$ is surjective. Consider $T:V\to\F^n$ given by $T(x) = (f_1(x),\ldots,f_n(x))$. This map is linear and $\ker(T) = \bigcap_{j=1}^{n}\ker(f_j)\sub \ker(f)$, so $f$ factors through $V/\ker(T)$. Moreover, $V/\ker(T)$ is isomorphic to $T(V)$ which is a subspace of $\F^n$, so there exists a map $g: \F^n\to \F$ such that $f = g\circ T$. Now, let $c_1,\ldots, c_n\in\F$ be such that $g(x_1,\cdots,x_n) = \sum_{j=1}^{n}c_j x_j$. Then $f(x) = h(f_1(x),\ldots,f_n(x)) = \sum_{j=1}^{n}c_j f_j(x)$ as desired.
+\end{proof}
+
+\vspace{3pt}
+\begin{problem}[IV-1.23]
+  Let $X$ and $Y$ be locally convex spaces and $T:X\to Y$ a linear transformation. Show that $T$ is continuous if and only if for every continuous seminorm $p$ on $Y$, $p\circ T$ is a continuous seminorm on $X$.
+\end{problem}
+
+\begin{proof}
+  Note that if $p$ is a seminorm on $Y$, then by linearity of $T$ it is clear that $p\circ T$ is a seminorm on $X$. Hence, the forward direction follows immediately from transitivity of continuity. \\
+
+  Now suppose that for every continuous seminorm $p$ on $Y$, $p\circ T$ is a continuous seminorm on $X$.
+  % TODO finish proof after completing proposition 1.15
+
+  By linearity, it suffices to prove that $T$ is continuous at $0$. Moreover, by proposition 1.15, we have a basis for the neighborhood system at $0$ given by the collection of all open, convex, balanced subsets of $Y$. As such, let $C\sub Y$ by open, convex, and balanced. It is enough to show that $T^{-1}(C)$ is open, as $0\in T^{-1}(C)$.\\
+
+  By proposition 1.14, the Minkowski function $p$ of $C$ is the unique seminorm on $Y$ such that
+  \[
+    C = \{y\in Y : p(y) < 1\}.
+  \]
+  As $\{y\in Y : p(y)<1\}$ is open by assumption, proposition 1.3(b) implies that $p$ is continuous whence $p\circ T$ is a continuous seminorm on $X$. Thus, proposition 1.3 implies that the set $V:=\{x\in X: (p\circ T)(x) < 1\}$ is open. Noting that
+  \[
+    x\in T^{-1}(C) \iff Tx \in C \iff (p\circ T)(x)<1,
+  \]
+  it follows that $T^{-1}(C)= V$ is open.
+\end{proof}
+
+\vspace{3pt}
+\begin{problem}[IV-2.4]
+  A subset $B$ of a TVS $X$ is \emph{bounded} if for every open set $U$ containing $0$, there exists an $\eps>0$ such that $\eps B\sub U$.
+  Let $X$ be a topological vector space. Prove the following.
+\end{problem}
+
+  \textbf{(a)}: If $B$ is a bounded subset of $X$, then so is $\cls{B}$.
+
+  \begin{lemma}
+    If $U$ is a neighborhood of $0$, then there is a neighborhood $V$ of $0$ such that $\cls{V}\sub U$.
+  \end{lemma}
+
+  \begin{proof}[Proof of Lemma 1]
+    By an exercise we had in algebraic topology on topological groups, there exists a symmetric neighborhood $V$ of $0$ such that $V+V\sub U$. Take $x\in \cls{V}$. Then $x + V$ is an open neighborhood of $x$, so there is some $y\in V\cap (x + V)$. Writing $y = x+v$ for some $v\in V$, it follows that $x = y-v\in V-V = V+V\sub U$.
+  \end{proof}
+
+  \begin{proof}
+
+
+  \end{proof}
+
+  \textbf{(b)}: The finite union of bounded sets is bounded.\\
+
+  \textbf{(c)}: Every compact set is bounded.
+
+  \begin{lemma}
+    If $U$ is a neighborhood of $0$, then there is a balanced neighborhood $W$ of $0$ such that $W\sub U$.
+  \end{lemma}
+
+  \begin{proof}[Proof of Lemma 2]
+    The multiplication map $m:\F\times X\to X$ is continuous and $U$ is a neighborhood of $0$, so there exist $\delta>0$ and a neighborhood $V$ of 0 such that $m(B(0, \delta) \times V) \sub U$, i.e. $\alpha V\sub U$ for all $|\alpha|<\delta$. Let $W = \bigcup_{|\alpha|<\delta}\alpha V$. \\
+
+    Suppose $w\in W$ and $|\beta|<1$. Writing $w = \alpha v$ for some $|\alpha|<\delta$ and $v\in V$, as $|\alpha\beta|<\delta$ it follows that $\beta w = \alpha\beta v \in W$. Thus $W$ is a balanced open neighborhood of $0$ constructed such that $W\sub U$.
+  \end{proof}
+
+  \begin{proof}
+    Let $U$ be a neighborhood of $0$. By the above lemma, there is a balanced neighborhood $V$ of $0$ such that $V\sub U$.
+
+    As $V$ is absorbing, $X = \bigcup_{n=1}^{\infty}nV$. Suppose that $K$ is compact. Then $K\sub \bigcup_{n=1}^{\infty}nV$ whence there are some $n_1<\cdots<n_k$ such that
+    \[
+      K\sub n_1 V\cup n_2 V \cdots n_k V.
+    \]
+    As $V$ is balanced, $n_1 V\cup n_2 V \cdots n_k V = n_k V$
+  \end{proof}
+
+  \textbf{(d)}: If $B\sub X$, then $B$ is bounded if and only if for every sequence $(x_n)$ contained in $B$ and for every $(\alpha_n)$ in $c_0$, $\alpha_n x_n\to 0$ in $X$.
+
+  \begin{proof}\ \\
+    \underline{$\implies$}: Suppose $(x_n)$ is a sequence in $B$ and $(\alpha_n)$ in $c_0$. Let $U$ be a neighborhood of $0$. By the lemma, there is a balanced neighborhood $V$ of $0$ such that $V\sub U$. The boundedness of $B$ implies that there is some $\eps>0$ such that $\eps B \sub V$. Let $N\in \N$ be such that $|\alpha_n| < \eps$ for all $n\geq N$. Then, as $V$ is balanced, for $n\geq N$
+    \[
+      \alpha_n x_n = \frac{\alpha}{\eps}\eps x_n \in \frac{\alpha}{\eps}\eps B \sub  \frac{\alpha}{\eps}V \sub V \sub U.
+    \]
+
+    \underline{$\impliedby$}: Suppose, for the sake of contradiction, that $B$ is not bounded. Then there is some neighborhood $U$ of $0$ such that $\eps B \not\sub U$ for all $\eps>0$. Thus, for $n\in \N$ there exists $x_n\in B\setminus nV$. Then $\frac{1}{n}x_n\not\in V$ for all $n\in \N$, contradicting the assumption that $\frac{1}{n}x_n\to 0$ in $X$.
+  \end{proof}
+
+  \textbf{(e)}: If $Y$ is a TVS, $T:X\to Y$ continuous linear, and $B$ is a bounded subset of $X$, then $T(B)$ is a bounded subset of $Y$.
+
+  \begin{proof}
+    Suppose that $V\sub Y$ is a neighborhood of $0$. Then $T^{-1}(V)$ is a neighborhood of $0$ in $X$, so there is some $\eps>0$ such that $\eps B\sub T^{-1}(V)$. Applying $T$, it follows that $\eps T(B) = T(\eps B)\sub T(T^{-1}(V))\sub V$.
+  \end{proof}
+
+  \textbf{(f)}: If $X$ is a LCS and $B\sub X$, then $B$ is bounded if and only if for every continuous seminorm $p$, $\sup\{p(b):b\in B\}<\infty$.
+
+  \begin{proof}\ \\
+    \underline{$\implies$}: Suppose that $p$ is a continuous seminorm. Then $V : =\{x: p(x)<1\}$ is an open neighborhood of $0$, so there is some $\eps>0$ such that $\frac{1}{\eps}B \sub V$, whence
+    \[
+      B\sub \eps V  = \{\eps x : p(x)<1\} = \{x: p(x) < \eps\}
+    \]
+    so $\sup\{p(b):b\in B\}\leq \eps < + \infty$.\\
+
+    \underline{$\impliedby$}: Suppose that U is an open neighborhood of $0$. As $X$ is locally convex, there is an open balanced convex set $C$ such that $C\sub U$. Let $p$ be the Minkowski function corresponding to $C$, so $C = \{x : p(x)<1\}$. Letting $\delta > \sup\{p(b):b\in B\}$, it follows that
+    \[
+      \delta C = \{\delta x: p(x)< 1\} = \{x: p(x)<\delta\} \implies B\sub \delta C\sub \delta U.
+    \]
+
+  \end{proof}
+
+  \textbf{(g)}: If $X$ is a normed space and $B\sub X$, then $B$ is bounded if and only if $\sup\{\norm{b}: b\in B\}<\infty$.
+
+  \begin{proof}\ \\
+    \underline{$\implies$}: The unit ball $B(0,1)$ is an open neighborhood of $0$ so there is some $r>0$ such that $B \sub rB(0,1) \sub B(0,r)$, so $\sup\{\norm{b}: b\in B\}\leq r < \infty$.\\
+
+    \underline{$\impliedby$}: Suppose that $U$ is an open neighborhood of $0$. Then there exists some $\eps > 0$ such that $B(0,\eps)\sub U$. Letting $\delta =\sup\{\norm{b}: b\in B\}$, it follows that
+    \[
+      B\sub B(0,\delta) = \frac{\delta}{\eps}B(0,\eps)\sub \frac{\delta}{\eps}U.
+    \]
+
+  \end{proof}
+
+  \textbf{(i)}: The translate of a bounded set is bounded.
+
+  \begin{proof}
+    Let $a\in X$. As $\{a\}$ is compact, the previous part implies that $\{a\}$ is bounded. Let $U$ be a neighborhood of $0$ and $V$ a neighborhood of $0$ such that $V+V\sub U$. Let $\eps_1,\eps_2>0$ such that $\eps_1 B\sub V$ and $\eps_2 a\in V$. Letting $\delta = \max\{\frac{1}{\eps_1},\frac{1}{\eps_2}\}$, it follows that
+    \[
+      B+a \sub \frac{1}{\eps_1}V + \frac{1}{\eps_2}V \sub \delta V  + \delta V\sub \delta U.
+    \]
+  \end{proof}
+
+
+\begin{problem}
+  Do IV-3 problems 1, 2, 6, 8-13.
+\end{problem}
+
+% Challenge problems are those on the strict topology for $C_b(X)$.
+
+\end{document}

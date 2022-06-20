@@ -168,4 +168,98 @@
 \begin{document}
 \maketitle
 
+\begin{homeworkProblem}[1]
+
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+  Let $(X,\Sigma,\mu)$ be a probability space. Fix $p\in[1,+\infty]$ and $f\in L^p(X,\Sigma,\mu)$, let $p'\in[1,+\infty]$ be the conjugate exponent. Let $\mc{F}\sub \Sigma$ be a sub-$\sigma$-algebra.\\
+
+  \textbf{(a)}: Show that $f\in L^1(X,\Sigma,\mu)$.
+
+  \begin{proof}
+    By proposition 6.12, $\norm{f}_1\leq \mu(X)^{1-\frac{1}{p}}\norm{f}_p < +\infty$, whence $f\in L^1(X,\Sigma,\mu)$.
+  \end{proof}
+
+  \textbf{(b)}: Let $\E_\mc{F}(f)$ be the conditional expectation onto $\mc{F}$. Show that
+  \[
+    \norm{\E_\mc{F}(f)g}_1 \leq \norm{f}_p\norm{g}_{p'}
+  \]
+  for all $\mc{F}$-measurable simple functions $g$. Use this to show that $\E_\mc{F}(f)\in L^p(X,\mc{F},\mu)$ and that
+  \[
+    \norm{\E_\mc{F}(f)}_p\leq \norm{f}_p.
+  \]
+
+  \begin{proof}
+    Let $\alpha:X\to\C$ be the $\mc{F}$-measurable function such that $\alpha\E_\mc{F}(f) = |\E_\mc{F}(f)|$ and $|\alpha|=1$. Note that then by finiteness $\alpha\in L^\infty(X,\mc{F},\mu\vert_\mc{F})$. Then, for $\mc{F}$-measurable simple functions $g$, by Homework 8 problems 5(a) and 4(b),
+    \begin{align*}
+      \norm{\E_\mc{F}(f)g}_1 &= \int \E_\mc{F}(f)\alpha |g|\dd{\mu\vert_{\mc{F}}} = \int \E_\mc{F}(f\alpha) |g|\dd{\mu\vert_{\mc{F}}} \\
+      &= \int f\alpha |g|\dd{\mu} = \lrvert{\int f\alpha |g|\dd{\mu}} \leq \int |f| |g|\dd{\mu} \leq \norm{f}_p\norm{g}_{p'}.
+    \end{align*}
+    Now by $L^p$-$L^{p'}$ duality,
+    \begin{align*}
+      \norm{\E_\mc{F}(f)}_p &= \sup\left\{\lrvert{\int\E_\mc{F}(f)g\dd{\mu\vert_\mc{F}}}:g\in L^{p'}(X,\mu\vert_{\mc{F}})\text{ simple with }\norm{g}_{p'}=1\right\} \\
+      &\leq\sup\left\{\norm{\E_\mc{F}(f)g}_1:g\in L^{p'}(X,\mu\vert_{\mc{F}})\text{ simple with }\norm{g}_{p'}=1\right\} \\
+      &\leq\sup\left\{\norm{f}_p\norm{g}_{p'}:g\in L^{p'}(X,\mu\vert_{\mc{F}})\text{ simple with }\norm{g}_{p'}=1\right\}  = \norm{f}_p\\
+    \end{align*}
+  \end{proof}
+\end{homeworkProblem}
+
+
+\begin{homeworkProblem}
+  Suppose that $(X,\Sigma,\mu)$ and $(Y,\mc{F},\nu)$ are $\sigma$-finite measure spaces and $K\in L^2(X\times Y,\mu\otimes\nu)$. If $f\in L^2(Y,\nu)$, the integral $Tf(x) = \int_Y K(x,y)f(y)\dd{\nu(y)}$ converges for a.e. $x\in X$, $Tf\in L^2(X,\mu)$, and $\norm{Tf}_2\leq \norm{K}_2 \norm{f}_2$.
+
+  \begin{proof}
+    By Holder's inequality with $p=2$,
+    \[
+      \int |K(x,y)||f(y)|\dd{\nu(y)} = \norm{K(x,\cdot)}_{L^2(\nu)}\norm{f}_{L^2(\nu)} < +\infty,
+    \]
+    so the integral converges absolutely for a.e. $x$. Now, we compute
+
+    \[
+      \norm{Tf}_{L^2(\mu)} \leq \norm{\int|K(x,y)||f(y)|\dd{\nu(y)}}_{L^2(\mu)} \leq \norm{\norm{K(\cdot,\cdot)}_{L^2(\mu)}}_{L^2(\nu)}\norm{f}_{L^2(\nu)} = \norm{K}_{L^2(\mu\otimes\nu)} \norm{f}_{L^2(\nu)} < +\infty
+    \]
+    so $Tf\in L^2(\mu)$.
+  \end{proof}
+\end{homeworkProblem}
+
+
+\begin{homeworkProblem}
+  Let $\eta(t) = e^{-1/t}$ for $t>0$ and $\eta(t) = 0$ for $t \leq 0$.\\
+
+  \textbf{(a)}: For $k\in \N$, $t>0$, prove that $\eta^{(k)}(t) = P_k(1/t)e^{-1/t}$ where $P_k$ is a polynomial of degree $2k$.
+
+  \begin{proof}
+    We induct on $k\in \N$. We compute that $\eta'(t) = \frac{1}{t^2}e^{-1/t}$, so $P_1(x) = x^2$ is degree $2$ and thus satisfies the hypothesis. Now suppose that $\eta^{(k)}(t) = P_k(\frac{1}{t})e^{-1/t}$ where $P_k$ is a polynomial of degree $2k$. Then
+    \begin{align*}
+      \eta^{(k+1)}(t) = (P_k(\frac{1}{t})e^{-1/t})' = \frac{1}{t^2}P_k'(\frac{1}{t})e^{-1/t} + \frac{1}{t^2}P_k(\frac{1}{t})e^{-1/t} =(\frac{1}{t^2}P_k'(\frac{1}{t}) + \frac{1}{t^2}P_k(\frac{1}{t}))e^{-1/t}
+    \end{align*}
+    so $P_{k+1}(x) = x^2 P_k'(x)+x^2 P_k(x)$ is a degree $2(k+1)$ polynomial we have satisfied the hypothesis.
+  \end{proof}
+
+  \textbf{(b)}: Prove that $\eta^{(k)}(0)$ exists and is zero for all $k\in\N$.
+
+  \begin{proof}
+    We compute that $\lim_{t\to0^+}\frac{\eta(t)}{t} = 0$, so $\eta'(0)$ exists and equals zero. Now suppose $\eta^{(k)}(0)$ exists and equals zero. Then
+    \[
+      \lim_{t\to0+}\frac{\eta^{(k)}(t)-\eta^{(k)}(0)}{t} =\lim_{t\to0+}\frac{P_k(\frac{1}{t})e^{\frac{-1}{t}}}{t} = \lim_{t\to0+}\frac{1}{t P_k(\frac{1}{t})e^{\frac{1}{t}}} = 0,
+    \]
+    so $\eta^{(k+1)}(0)$ exists and equals zero. By induction, we are done.
+  \end{proof}
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+  Let $E$ be a measurable subset of $\R^n$ of positive measure. Show that $E-E$ contains an open set $U$ with $0\in U$.
+
+  \begin{proof}
+    Suppose first that $E\sub \R^n$ has $m(E)<+\infty$. Let $U = \{x: \ind_E*\ind_{-E}(x) >0\}$. As $\ind_E*\ind_{-E}$ is continuous, $U = (\ind_E*\ind_{-E})^{-1}((0,+\infty))$ is open. Moreover,
+    \[
+      \ind_E*\ind_{-E}(0) = \int \ind_E(y)\ind_{-E}(-y)\dd{y} = \int\ind_E\dd{y} = m(E) > 0,
+    \]
+    so $0\in U$. Lastly, suppose $x\in U$. Then $0 < \ind_E*\ind_{-E}(x) = \int \ind_E(y)\ind_{-E}(x-y)\dd{y}$, whence by positivity of the integrand there exists some $y\in\R^n$ such that $\ind_E(y)\ind_{-E}(x-y) \neq 0$. But then $y\in E$ and $x-y\in -E$, so $x = y + (x-y)\in E-E$. Thus $U\sub E-E$.\\
+
+    Now suppose $m(E) = +\infty$. By $\sigma$-finiteness, there exists some $F\sub E$ measurable such that $0<m(F)<+\infty$. By the previous case, we may find some open $U\sub F-F$ with $0\in U$, whence $U\sub F-F\sub E-E$, as desired. 
+  \end{proof}
+\end{homeworkProblem}
+
 \end{document}
